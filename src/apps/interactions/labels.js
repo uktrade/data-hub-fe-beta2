@@ -56,6 +56,7 @@ const filters = {
   dit_team: 'Service provider',
   sector_descends: 'Sector',
   service: 'Service',
+  team: 'Service provider',
 }
 
 module.exports = {

@@ -6,9 +6,9 @@
     <multiselect
       label="label"
       open-direction="bottom"
-      placeholder="Starts with"
       track-by="value"
       v-model="selectedOptions"
+      :placeholder="label"
       :clear-on-select="true"
       :close-on-select="false"
       :hide-selected="true"
@@ -83,14 +83,15 @@
       allowMultiple: {
         type: Boolean,
         default: true,
-      },
+      }
     },
     data () {
       return {
         selectedOptions: this.value ? JSON.parse(this.value) : [],
         options: [],
         isLoading: false,
-        id: uuid()
+        id: uuid(),
+        something: '1'
       }
     },
     watch: {

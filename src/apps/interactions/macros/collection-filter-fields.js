@@ -57,6 +57,11 @@ module.exports = function ({
       placeholder: `e.g. ${currentYear}-07-21`,
     },
     {
+      macroName: 'Typeahead',
+      name: 'team',
+      entity: 'team',
+    },
+    {
       ...provider(teamOptions),
       type: 'checkbox',
       modifier: 'option-select',
