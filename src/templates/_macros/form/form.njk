@@ -29,13 +29,17 @@
   {% set returnText = props.returnText or 'Back' %}
   {% set hideFormActions = props.hideFormActions or false %}
   {% set children = caller() if caller else renderAsMacro(props.children) %}
-
   <form
       method="{{ method }}"
       {% if props.enctype %}
         enctype="{{ props.enctype }}"
       {% endif %}
-      action="{{ props.action }}?_csrf={{csrfToken}}"
+      action="{{ props.action }}?_csrf={{csrfToken}}
+      {%- if props.actionExtension -%}
+        {%- for key, value in  props.actionExtension -%}
+           &{{ key }}={{ value }}
+        {%- endfor -%}
+      {%- endif -%}"
       {% if props.class %}class="{{ props.class }}"{% endif %}
       {% if props.role %}role="{{ props.role }}"{% endif %}
   >

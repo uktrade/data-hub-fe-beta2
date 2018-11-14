@@ -36,6 +36,7 @@ const FILTER_CONSTANTS = {
         NAME: 'sector_descends',
         QUERY_STRING: '?level__lte=0',
       },
+      MAX_EXPORT_ITEMS: 5000,
     },
   },
   ORDERS: {

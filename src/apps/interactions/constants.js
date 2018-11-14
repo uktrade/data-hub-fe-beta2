@@ -11,6 +11,18 @@ const GLOBAL_NAV_ITEM = {
   order: 4,
 }
 
+const QUERY_FIELDS = [
+  'kind',
+  'sector_descends',
+  'communication_channel',
+  'dit_adviser',
+  'date_after',
+  'date_before',
+  'sortby',
+  'dit_team',
+  'service',
+]
+
 const APP_PERMISSIONS = [ GLOBAL_NAV_ITEM ]
 
 const POLICY_FEEDBACK_PERMISSIONS = {
@@ -68,6 +80,7 @@ const IST_ONLY_SERVICES = [
 ]
 
 module.exports = {
+  QUERY_FIELDS,
   APP_PERMISSIONS,
   DEFAULT_COLLECTION_QUERY,
   GLOBAL_NAV_ITEM,

@@ -13,6 +13,9 @@ describe('interaction list', () => {
           permissions: [],
         },
       },
+      query: {
+        sortby: 'date:desc',
+      },
     }
 
     this.res = {

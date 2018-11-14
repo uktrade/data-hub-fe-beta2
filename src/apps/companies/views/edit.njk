@@ -29,6 +29,9 @@
     buttonText: 'Save and return' if company.id else 'Add company',
     returnLink: '/companies/' + company.id if company.id else '/companies/add-step-1',
     returnText: 'Return without saving' if company.id else 'Back',
+    actionExtension: {
+        country : 'non-uk' if isForeign else 'uk'
+    },
     errors: {
       messages: errors
     },
