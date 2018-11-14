@@ -35,10 +35,16 @@ describe('#postDetails', () => {
       }
     }
 
+    const done = sendSpy ? {
+      send: sendSpy,
+      message: 'Data has been added',
+      nextPath: ({ id }) => `/base/${id}`,
+    } : null
+
     return {
+      done,
       ...steps[0],
       macro,
-      send: sendSpy,
     }
   }
 
@@ -58,7 +64,6 @@ describe('#postDetails', () => {
           journey: {
             currentStep: buildCurrentStep(this.sendSpy),
             key: '/base/step-1',
-            successMessage: 'Data has been added',
           },
         },
         redirect: this.redirectSpy,
@@ -127,7 +132,6 @@ describe('#postDetails', () => {
           journey: {
             currentStep: buildCurrentStep(),
             key: '/base/step-1',
-            successMessage: 'Data has been added',
           },
         },
         redirect: this.redirectSpy,
@@ -173,7 +177,7 @@ describe('#postDetails', () => {
   context('when the current step does have a send function and the API call is successful', () => {
     beforeEach(async () => {
       this.flashSpy = sinon.spy()
-      this.sendSpy = sinon.stub().callsFake((data, next) => { next() })
+      this.sendSpy = sinon.stub().callsFake(() => { return { id: 1 } })
       this.redirectSpy = sinon.spy()
       this.req = {
         baseUrl: '/base',
@@ -204,7 +208,6 @@ describe('#postDetails', () => {
           journey: {
             currentStep: buildCurrentStep(this.sendSpy),
             key: '/base/step-1',
-            successMessage: 'Data has been added',
           },
         },
         redirect: this.redirectSpy,
@@ -243,7 +246,7 @@ describe('#postDetails', () => {
     })
 
     it('should redirect', () => {
-      expect(this.redirectSpy).to.be.calledWithExactly('/base/step-2')
+      expect(this.redirectSpy).to.be.calledWithExactly('/base/1')
       expect(this.redirectSpy).to.have.been.calledOnce
     })
   })
@@ -251,7 +254,12 @@ describe('#postDetails', () => {
   context('when the controller has an error with status code 400', () => {
     beforeEach(async () => {
       this.flashSpy = sinon.spy()
-      this.sendSpy = sinon.stub().callsFake((data, next) => { next({ statusCode: 400, error: 'error' }) })
+      this.sendSpy = sinon.stub().callsFake(() => {
+        const error = new Error()
+        error.statusCode = 400
+        error.error = 'error'
+        throw error
+      })
       this.redirectSpy = sinon.spy()
       this.req = {
         baseUrl: '/base',
@@ -282,7 +290,6 @@ describe('#postDetails', () => {
           journey: {
             currentStep: buildCurrentStep(this.sendSpy),
             key: '/base/step-1',
-            successMessage: 'Data has been added',
           },
         },
         redirect: this.redirectSpy,
@@ -337,7 +344,9 @@ describe('#postDetails', () => {
   context('when the controller has another type of error', () => {
     beforeEach(async () => {
       this.flashSpy = sinon.spy()
-      this.sendSpy = sinon.stub().callsFake((data, next) => { next({ error: 'error' }) })
+      this.sendSpy = sinon.stub().callsFake(() => {
+        throw new Error('error')
+      })
       this.redirectSpy = sinon.spy()
       this.req = {
         baseUrl: '/base',
@@ -368,7 +377,6 @@ describe('#postDetails', () => {
           journey: {
             currentStep: buildCurrentStep(this.sendSpy),
             key: '/base/step-1',
-            successMessage: 'Data has been added',
           },
         },
         redirect: this.redirectSpy,
@@ -399,8 +407,10 @@ describe('#postDetails', () => {
     })
 
     it('should call next with the error', () => {
-      expect(this.nextSpy).to.be.calledWithExactly({ error: 'error' })
-      expect(this.nextSpy).to.have.been.calledOnce
+      expect(this.nextSpy).to.be.calledWith(sinon.match({
+        message: 'error',
+      }))
+      expect(this.nextSpy).to.be.calledOnce
     })
 
     it('should send to the API', () => {

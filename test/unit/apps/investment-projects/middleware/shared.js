@@ -1,6 +1,7 @@
-const { merge } = require('lodash')
+const { merge, cloneDeep } = require('lodash')
 
 const investmentData = require('~/test/unit/data/investment/investment-data.json')
+const investmentProjectStages = require('~/test/unit/data/investment/investment-project-stages.json')
 
 const companyData = {
   id: '6c388e5b-a098-e211-a939-e4115bead28a',
@@ -17,34 +18,6 @@ const adviserData = {
   },
 }
 
-const investmentProjectStages = [
-  {
-    id: '8a320cc9-ae2e-443e-9d26-2f36452c2ced',
-    name: 'Prospect',
-    disabled_on: null,
-  },
-  {
-    id: 'c9864359-fb1a-4646-a4c1-97d10189fc03',
-    name: 'Assign PM',
-    disabled_on: null,
-  },
-  {
-    id: '7606cc19-20da-4b74-aba1-2cec0d753ad8',
-    name: 'Active',
-    disabled_on: null,
-  },
-  {
-    id: '49b8f6f3-0c50-4150-a965-2c974f3149e3',
-    name: 'Verify win',
-    disabled_on: null,
-  },
-  {
-    id: '945ea6d1-eee3-4f5b-9144-84a75b71b8e6',
-    name: 'Won',
-    disabled_on: null,
-  },
-]
-
 const getInvestmentData = (ukCompanyId, clientRelationshipManagerId) => {
   return merge({}, investmentData, {
     uk_company: {
@@ -56,7 +29,7 @@ const getInvestmentData = (ukCompanyId, clientRelationshipManagerId) => {
   })
 }
 
-const createMiddleware = (investmentData, adviserData, companyData) => {
+const createMiddleware = (investmentData, adviserData, companyData, stages = investmentProjectStages) => {
   return proxyquire('~/src/apps/investment-projects/middleware/shared', {
     '../repos': {
       getInvestment: sinon.stub().resolves(investmentData),
@@ -68,7 +41,7 @@ const createMiddleware = (investmentData, adviserData, companyData) => {
       getDitCompany: sinon.stub().resolves(companyData),
     },
     '../../../lib/metadata': {
-      investmentProjectStage: investmentProjectStages,
+      investmentProjectStage: stages,
     },
   })
 }
@@ -167,9 +140,10 @@ describe('Investment shared middleware', () => {
             },
           ],
           nextStage: {
-            disabled_on: null,
-            id: 'c9864359-fb1a-4646-a4c1-97d10189fc03',
             name: 'Assign PM',
+            disabled_on: null,
+            exclude_from_investment_flow: false,
+            id: 'c9864359-fb1a-4646-a4c1-97d10189fc03',
           },
         }
 
@@ -272,6 +246,35 @@ describe('Investment shared middleware', () => {
       })
       it('should call next with error', () => {
         expect(this.nextSpy).to.have.been.calledWith(this.error)
+      })
+    })
+
+    context('when the streamlined-investment-flow feature flag is set to true', () => {
+      beforeEach(async () => {
+        const stages = cloneDeep(investmentProjectStages)
+
+        // Exclude the Assign PM stage.
+        stages[1].exclude_from_investment_flow = true
+
+        this.resMock = {
+          breadcrumb: sinon.stub().returnsThis(),
+          locals: {
+            features: {
+              'streamlined-investment-flow': true,
+            },
+          },
+        }
+        const middleware = createMiddleware(getInvestmentData(2, null), adviserData, companyData, stages)
+
+        await middleware.getInvestmentDetails(this.reqMock, this.resMock, this.nextSpy)
+      })
+      it('should remove the Assign PM stage from the investmentProjectStages array on locals', () => {
+        expect(this.resMock.locals.investmentProjectStages).to.deep.equal([
+          'Prospect',
+          'Active',
+          'Verify win',
+          'Won',
+        ])
       })
     })
   })

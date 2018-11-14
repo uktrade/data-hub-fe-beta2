@@ -4,7 +4,7 @@ describe('Timeline transformers', () => {
   context('when called with a valid source', () => {
     beforeEach(() => {
       this.actual = transformTimelineToListItem({
-        data_source: 'companies_house.companies',
+        data_source_label: 'Companies House (Companies)',
         datetime: '2017-02-04T00:00:00Z',
         description: 'Returns next due date',
       })

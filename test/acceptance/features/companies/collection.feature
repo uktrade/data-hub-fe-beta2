@@ -55,13 +55,13 @@ Feature: View collection of companies
     And the result count should be reset
     Given I store the result count in state
     When I filter the companies list by active status
-    Then the result count should be 1 less than the total
+    Then the result count should be 2 less than the total
     When I clear all filters
     Then there are no filters selected
     And the result count should be reset
     Given I store the result count in state
     When I filter the companies list by inactive status
-    Then the result count should be 1
+    Then the result count should be 2
     When I clear all filters
     Then there are no filters selected
     And the result count should be reset

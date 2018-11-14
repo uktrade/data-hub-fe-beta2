@@ -25,6 +25,13 @@ function getCompanyDetails (req, res, next) {
     .catch(next)
 }
 
+function getInvestmentProjectStages (features) {
+  if (features && features['streamlined-investment-flow']) {
+    return metadata.investmentProjectStage.filter(stage => stage.exclude_from_investment_flow !== true)
+  }
+  return metadata.investmentProjectStage
+}
+
 async function getInvestmentDetails (req, res, next) {
   const investmentId = req.params.investmentId
 
@@ -37,7 +44,7 @@ async function getInvestmentDetails (req, res, next) {
     const ukCompanyId = get(investmentData, 'uk_company.id')
     const clientRelationshipManagerId = get(investmentData, 'client_relationship_manager.id')
     const stageName = investmentData.stage.name
-    const investmentProjectStages = metadata.investmentProjectStage
+    const investmentProjectStages = getInvestmentProjectStages(res.locals.features)
 
     investmentData.investor_company = Object.assign({}, investmentData.investor_company, investorCompany)
 

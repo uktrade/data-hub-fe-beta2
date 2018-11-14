@@ -18,7 +18,7 @@ const setJourneyDetails = (journey, currentStep, currentStepId) => {
 }
 
 const postDetails = async (req, res, next) => {
-  const { currentStep, key, successMessage } = res.locals.journey
+  const { currentStep, key } = res.locals.journey
   const errors = getErrors(currentStep.macro(res.locals).children, req.body)
 
   if (!isEmpty(errors)) {
@@ -27,23 +27,24 @@ const postDetails = async (req, res, next) => {
     return next()
   }
 
-  if (currentStep.send) {
+  if (currentStep.done) {
     const data = state.reduceSteps(req.session, key)
-    await currentStep.send(data, (err) => {
-      if (err) {
-        state.update(req.session, key, currentStep.path, { completed: false })
-        if (err.statusCode === 400) {
-          set(res.locals, 'form.errors.messages', err.error)
-          return next()
-        } else {
-          return next(err)
-        }
-      }
+
+    try {
+      const response = await currentStep.done.send(data)
 
       state.remove(req.session, key)
-      req.flash('success', successMessage)
-      res.redirect(joinPaths([ req.baseUrl, getNextPath(currentStep, req.body) ]))
-    })
+      req.flash('success', currentStep.done.message)
+      res.redirect(joinPaths([ res.locals.returnLink, currentStep.done.nextPath(response) ]))
+    } catch (err) {
+      state.update(req.session, key, currentStep.path, { completed: false })
+      if (err.statusCode === 400) {
+        set(res.locals, 'form.errors.messages', err.error)
+        return next()
+      } else {
+        return next(err)
+      }
+    }
   } else {
     const nextPath = getNextPath(currentStep, req.body)
     state.update(req.session, key, currentStep.path, { completed: true, nextPath })
