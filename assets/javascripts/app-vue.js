@@ -2,6 +2,7 @@
 const Vue = require('vue')
 
 const Typeahead = require('./vue/typeahead.vue').default
+const Search = require('./vue/search/search.vue').default
 const { highlight } = require('./vue/filters')
 
 Vue.filter('highlight', highlight)
@@ -13,6 +14,7 @@ vueWrappers.forEach((wrapper) => {
     el: wrapper,
     components: {
       'typeahead': Typeahead,
+      'search': Search,
     },
   })
 })
