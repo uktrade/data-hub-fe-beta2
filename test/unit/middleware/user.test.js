@@ -15,7 +15,7 @@ describe('user middleware', () => {
       '../../config': {
         apiRoot: apiRoot,
       },
-      '../lib/authorised-request': this.authorisedRequestStub,
+      '../lib/authorised-request': { authorisedRequest: this.authorisedRequestStub },
     })
   })
 

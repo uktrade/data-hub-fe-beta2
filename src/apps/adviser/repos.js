@@ -1,6 +1,6 @@
 const { get, isEmpty } = require('lodash')
 const config = require('../../../config')
-const authorisedRequest = require('../../lib/authorised-request')
+const { authorisedRequest } = require('../../lib/authorised-request')
 
 function getAdvisers (token) {
   return authorisedRequest(token, `${config.apiRoot}/adviser/?limit=100000&offset=0`)

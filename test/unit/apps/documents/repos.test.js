@@ -5,7 +5,7 @@ describe('Documents Upload repos', () => {
     this.getDocumentUploadS3UrlStub = sinon.stub()
 
     this.repos = proxyquire('~/src/apps/documents/repos', {
-      '../../lib/authorised-request': this.authorisedRequestStub,
+      '../../lib/authorised-request': { authorisedRequest: this.authorisedRequestStub },
       '/repos': {
         getDocumentUploadS3Url: this.getDocumentUploadS3UrlStub.onCall(0).returns({
           id: '123',

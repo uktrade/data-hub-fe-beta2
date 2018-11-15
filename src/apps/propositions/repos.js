@@ -1,5 +1,5 @@
 const config = require('../../../config')
-const authorisedRequest = require('../../lib/authorised-request')
+const { authorisedRequest } = require('../../lib/authorised-request')
 
 function fetchProposition (token, propositionId, investmentId) {
   return authorisedRequest(token, `${config.apiRoot}/v3/investment/${investmentId}/proposition/${propositionId}`)

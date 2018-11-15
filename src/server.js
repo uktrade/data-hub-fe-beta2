@@ -17,6 +17,7 @@ const i18n = require('i18n-future').middleware()
 
 const title = require('./middleware/title')
 const breadcrumbs = require('./middleware/breadcrumbs')
+const currentJourney = require('./modules/form/current-journey')
 const nunjucks = require('../config/nunjucks')
 const headers = require('./middleware/headers')
 const locals = require('./middleware/locals')
@@ -98,6 +99,8 @@ app.use('/fonts', express.static(path.join(config.buildDir, 'fonts')))
 app.use(title())
 app.use(breadcrumbs.init())
 app.use(breadcrumbs.setHome())
+
+app.use(currentJourney())
 
 app.use(flash())
 

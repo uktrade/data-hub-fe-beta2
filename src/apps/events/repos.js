@@ -1,5 +1,5 @@
 const config = require('../../../config')
-const authorisedRequest = require('../../lib/authorised-request')
+const { authorisedRequest } = require('../../lib/authorised-request')
 const { search } = require('../search/services')
 
 function saveEvent (token, event) {

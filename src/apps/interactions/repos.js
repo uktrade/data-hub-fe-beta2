@@ -1,5 +1,5 @@
 const config = require('../../../config')
-const authorisedRequest = require('../../lib/authorised-request')
+const { authorisedRequest } = require('../../lib/authorised-request')
 
 function fetchInteraction (token, interactionId) {
   return authorisedRequest(token, `${config.apiRoot}/v3/interaction/${interactionId}`)

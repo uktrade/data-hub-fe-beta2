@@ -243,7 +243,7 @@ describe('Company repository', () => {
     beforeEach(() => {
       this.authorisedRequestStub = sinon.stub().resolves(companyData)
       this.repo = proxyquire('~/src/apps/companies/repos', {
-        '../../lib/authorised-request': this.authorisedRequestStub,
+        '../../lib/authorised-request': { authorisedRequest: this.authorisedRequestStub },
         '../../../config': {
           apiRoot: 'http://test.com',
         },
@@ -266,7 +266,7 @@ describe('Company repository', () => {
 
   function makeRepositoryWithAuthRequest (authorisedRequestStub) {
     return proxyquire('~/src/apps/companies/repos', {
-      '../../lib/authorised-request': authorisedRequestStub,
+      '../../lib/authorised-request': { authorisedRequest: authorisedRequestStub },
     })
   }
 

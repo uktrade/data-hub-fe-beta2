@@ -1,7 +1,7 @@
 const { castArray, sortBy } = require('lodash')
 
 const config = require('../../config')
-const authorisedRequest = require('../lib/authorised-request')
+const { authorisedRequest } = require('../lib/authorised-request')
 const { filterDisabledOption } = require('../modules/permissions/filters')
 const { transformObjectToOption } = require('../apps/transformers')
 

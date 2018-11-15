@@ -3,7 +3,7 @@ const config = require('../../../config')
 const request = require('request')
 const fs = require('fs')
 
-const authorisedRequest = require('../../lib/authorised-request')
+const { authorisedRequest } = require('../../lib/authorised-request')
 
 async function chainUploadSequence (token, data) {
   const documentUploadData = await getDocumentUploadS3Url(token, data)

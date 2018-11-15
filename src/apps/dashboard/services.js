@@ -1,4 +1,4 @@
-const authorisedRequest = require('../../lib/authorised-request')
+const { authorisedRequest } = require('../../lib/authorised-request')
 const config = require('../../../config')
 
 function mapContacts (contacts) {

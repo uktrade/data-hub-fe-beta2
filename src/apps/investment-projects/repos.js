@@ -1,5 +1,5 @@
 const config = require('../../../config')
-const authorisedRequest = require('../../lib/authorised-request')
+const { authorisedRequest } = require('../../lib/authorised-request')
 const { getDitCompany } = require('../companies/repos')
 
 function getCompanyInvestmentProjects (token, companyId, page = 1) {

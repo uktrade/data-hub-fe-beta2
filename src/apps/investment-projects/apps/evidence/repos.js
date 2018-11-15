@@ -1,5 +1,5 @@
 const config = require('../../../../../config/index')
-const authorisedRequest = require('../../../../lib/authorised-request')
+const { authorisedRequest } = require('../../../../lib/authorised-request')
 
 function getEvidenceForInvestment (token, investmentId) {
   return authorisedRequest(token, `${config.apiRoot}/v3/investment/${investmentId}/evidence-document`)

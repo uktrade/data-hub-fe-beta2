@@ -8,7 +8,7 @@ describe('Event repos', () => {
     this.authorisedRequestStub = sinon.stub().resolves()
     this.searchSpy = sinon.spy(search)
     this.repos = proxyquire('~/src/apps/events/repos', {
-      '../../lib/authorised-request': this.authorisedRequestStub,
+      '../../lib/authorised-request': { authorisedRequest: this.authorisedRequestStub },
       '../search/services': {
         search: this.searchSpy,
       },

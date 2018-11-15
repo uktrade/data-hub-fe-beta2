@@ -1,5 +1,5 @@
 const config = require('../../config')
-const authorisedRequest = require('../lib/authorised-request')
+const { authorisedRequest } = require('../lib/authorised-request')
 
 async function userMiddleware (req, res, next) {
   const token = req.session.token

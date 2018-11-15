@@ -1,0 +1,18 @@
+{% from "./form-group.njk" import FormGroup %}
+
+{##
+ # Render a field showing a previously selected value and "Change" link
+ # @param {object} props - An object containing field properties
+ # @param {array} [props.value] - previously selected value
+ # @param {array} [props.url] - URL to change selected value
+ #}
+{% macro PreviouslySelected(props) %}
+  {% set fieldId = 'field-' + props.name if props.name %}
+
+  {% call FormGroup(props | assign({ fieldId: fieldId })) %}
+    <div class="previously-selected">
+      <p>{{ props.value }}</p>
+      <a href="{{ props.url }}">Change</a>
+    </div>
+  {% endcall %}
+{% endmacro %}

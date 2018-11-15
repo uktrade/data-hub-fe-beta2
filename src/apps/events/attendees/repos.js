@@ -1,7 +1,7 @@
 const { isNil, pickBy } = require('lodash')
 
 const config = require('../../../../config')
-const authorisedRequest = require('../../../lib/authorised-request')
+const { authorisedRequest } = require('../../../lib/authorised-request')
 
 async function fetchEventAttendees ({ token, eventId, page = 1, sortby, limit = 10, contactId }) {
   if (!eventId) {

@@ -1,0 +1,15 @@
+{% from "./form-group.njk" import FormGroup %}
+
+{##
+ # Render a link within a form
+ # @param {object} props - An object containing field properties
+ # @param {array} [props.url] - URL for link
+ # @param {array} [props.url] - Text for link
+ #}
+{% macro Link(props) %}
+  <div class="c-form-group">
+    <p>
+      <a href="{{ props.url }}">{{ props.text }}</a>
+    </p>
+  </div>
+{% endmacro %}
