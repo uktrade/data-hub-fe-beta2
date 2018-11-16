@@ -42,6 +42,7 @@ module.exports = function ({
       macroName: 'Typeahead',
       name: 'dit_adviser',
       entity: 'adviser',
+      placeholder: 'Search adviser',
     },
     {
       macroName: 'TextField',
@@ -56,9 +57,8 @@ module.exports = function ({
       placeholder: `e.g. ${currentYear}-07-21`,
     },
     {
-      macroName: 'Search',
+      macroName: 'Typeahead',
       name: 'dit_team',
-      entity: 'team',
       placeholder: 'Search teams',
       options: teamOptions,
     },

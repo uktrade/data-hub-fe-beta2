@@ -3,6 +3,8 @@
     entity="{{ props.entity }}"
     name="{{ props.name }}"
     label="{{ props.label }}"
+    placeholder="{{props.placeholder}}"
+    model="{{ props.options | dump }}"
     value="{{ props.selectedOptions | dump }}"
   ></typeahead>
 {% endmacro %}
