@@ -151,7 +151,6 @@ describe('Typeahead', () => {
   })
 
   describe('methods', () => {
-
     describe('#asyncFind', () => {
       let instance
       let asyncFind
@@ -294,7 +293,7 @@ describe('Typeahead', () => {
         context('and when not already waiting for search results', () => {
           beforeEach((done) => {
             instance.isSubmitting = false
-            selectedOptions([{value: '1234', label: 'Fred Smith', subLabel: 'Charters'}])
+            selectedOptions([{ value: '1234', label: 'Fred Smith', subLabel: 'Charters' }])
             setTimeout(done, 100)
           })
 
@@ -309,7 +308,7 @@ describe('Typeahead', () => {
         context('and when already waiting for search results', () => {
           beforeEach((done) => {
             instance.isSubmitting = true
-            selectedOptions([{value: '1234', label: 'Fred Smith', subLabel: 'Charters'}])
+            selectedOptions([{ value: '1234', label: 'Fred Smith', subLabel: 'Charters' }])
             setTimeout(done, 100)
           })
 
