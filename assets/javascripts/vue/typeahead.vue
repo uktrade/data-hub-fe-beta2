@@ -55,6 +55,7 @@
   const pickBy = require('lodash/pickBy')
   const uuid = require('uuid')
   const XHR = require('../lib/xhr')
+  const { matchWords } = require('../lib/helpers')
 
   export default {
     components: {
@@ -109,15 +110,11 @@
       }
     },
     methods: {
-      searchType: function(query){
+      searchType: function (query) {
         !!this.model ? this.find(query) : this.asyncFind(query)
       },
       find: function (query) {
-        if (query.length < 3) {
-          this.options = []
-          return
-        }
-        this.options = this.optionsData.filter((obj) => obj.label.search(new RegExp(query, "i")) !== -1)
+        this.options = this.optionsData.filter((obj) => matchWords(obj.label, query))
       },
       asyncFind: _.debounce(function (query) {
         if (query.length < 3) {

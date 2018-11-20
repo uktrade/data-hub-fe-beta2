@@ -207,6 +207,17 @@ function closest (element, selector) {
   return null
 }
 
+function matchWords (str, words) {
+  const queryWords = words.split(' ')
+  let matched = 0
+  queryWords.forEach((word) => {
+    if (str.search(new RegExp(word, 'i')) !== -1) {
+      matched += 1
+    }
+  })
+  return queryWords.length === matched
+}
+
 module.exports = {
   addClass,
   removeClass,
@@ -223,4 +234,5 @@ module.exports = {
   regenIds,
   resetFieldValues,
   closest,
+  matchWords,
 }
