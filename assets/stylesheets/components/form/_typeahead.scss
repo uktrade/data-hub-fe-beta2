@@ -44,6 +44,8 @@
   border-bottom: 1px solid $grey-2;
   overflow: hidden;
   width: 100%;
+  white-space: normal;
+  line-height: 24px;
 
   .highlight {
     font-weight: 600;
