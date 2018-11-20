@@ -67,7 +67,7 @@
       },
       entity: {
         type: String,
-        required: true,
+        required: false,
       },
       name: {
         type: String,
@@ -102,21 +102,23 @@
       return {
         selectedOptions: this.value ? JSON.parse(this.value) : [],
         options: [],
+        optionsData: this.model && JSON.parse(this.model),
         isLoading: false,
-        id: uuid()
+        id: uuid(),
+
       }
     },
     methods: {
       searchType: function(query){
         !!this.model ? this.find(query) : this.asyncFind(query)
       },
-      find: _.debounce(function (query) {
+      find: function (query) {
         if (query.length < 3) {
           this.options = []
           return
         }
-        this.options = JSON.parse(this.model).filter((obj) => obj.label.search(new RegExp(query, "i")) !== -1)
-      }, 1000),
+        this.options = this.optionsData.filter((obj) => obj.label.search(new RegExp(query, "i")) !== -1)
+      },
       asyncFind: _.debounce(function (query) {
         if (query.length < 3) {
           this.options = []
