@@ -55,7 +55,7 @@
   const pickBy = require('lodash/pickBy')
   const uuid = require('uuid')
   const XHR = require('../lib/xhr')
-  const { matchWords } = require('../lib/helpers')
+  const { matchWords, memoize } = require('../lib/helpers')
 
   export default {
     components: {
@@ -113,9 +113,9 @@
       searchType: function (query) {
         !!this.model ? this.find(query) : this.asyncFind(query)
       },
-      find: function (query) {
+      find: _.debounce(function (query) {
         this.options = this.optionsData.filter((obj) => matchWords(obj.label, query))
-      },
+      }, 500),
       asyncFind: _.debounce(function (query) {
         if (query.length < 3) {
           this.options = []
