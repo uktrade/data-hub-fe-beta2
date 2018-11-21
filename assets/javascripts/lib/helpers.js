@@ -211,9 +211,9 @@ function closest (element, selector) {
  * matchWords
  *
  * breaks your search query into an array containing a word/character or words/characters
- * loops through your array and increments a count whenever it gets a match
- * returns true when the count value matches the array length
- * Useful when doing a fuzzy search on a string
+ * loops through your array and increments a count which is compared against the length of your array
+ * returns a true when the count is matched
+ * Useful when doing a fuzzy search
  *
  * @param {string} str is the data to search on
  * @param {string} words is your query
