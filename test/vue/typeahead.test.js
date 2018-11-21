@@ -240,16 +240,66 @@ describe('Typeahead', () => {
       })
 
       context('when the user enters less than 3 characters', () => {
+        beforeEach((done) => {
+          textInput.setValue('z')
+          setTimeout(done, 600)
+        })
         it('should not have fetched results', () => {
-          textInput.setValue('ab')
           listItem = wrapper.find('.multiselect__content li')
           expect(listItem.text()).to.equal('No elements found. Consider changing the search query.')
         })
       })
 
-      context('when the user enters more than 3 characters', () => {
+      context('when the user enters a character that matches', () => {
+        beforeEach((done) => {
+          textInput.setValue('a')
+          setTimeout(done, 600)
+        })
         it('should have fetched results', () => {
+          listItem = wrapper.find('.multiselect__content li')
+          expect(listItem.text()).to.equal('Aberdeen City Council')
+        })
+      })
+
+      context('when the user enters characters that match', () => {
+        beforeEach((done) => {
           textInput.setValue('aber')
+          setTimeout(done, 600)
+        })
+        it('should have fetched results', () => {
+          listItem = wrapper.find('.multiselect__content li')
+          expect(listItem.text()).to.equal('Aberdeen City Council')
+        })
+      })
+
+      context('when the user enters words that match in reverse order', () => {
+        beforeEach((done) => {
+          textInput.setValue('City Aberdeen')
+          setTimeout(done, 600)
+        })
+        it('should have fetched results', () => {
+          listItem = wrapper.find('.multiselect__content li')
+          expect(listItem.text()).to.equal('Aberdeen City Council')
+        })
+      })
+
+      context('when the user enters words that match in all lowercase', () => {
+        beforeEach((done) => {
+          textInput.setValue('aberdeen city')
+          setTimeout(done, 600)
+        })
+        it('should have fetched results', () => {
+          listItem = wrapper.find('.multiselect__content li')
+          expect(listItem.text()).to.equal('Aberdeen City Council')
+        })
+      })
+
+      context('when the user enters words that match in all uppercase', () => {
+        beforeEach((done) => {
+          textInput.setValue('ABERDEEN CITY')
+          setTimeout(done, 600)
+        })
+        it('should have fetched results', () => {
           listItem = wrapper.find('.multiselect__content li')
           expect(listItem.text()).to.equal('Aberdeen City Council')
         })
