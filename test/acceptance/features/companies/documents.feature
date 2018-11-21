@@ -4,12 +4,12 @@ Feature: Company documents
   @companies-documents--document-link
   Scenario: Company has documents
     When I navigate to the `companies.documents` page using `company` `Venus Ltd` fixture
-    Then view should contain the Documents link
+    Then I should see the "View files and documents" link
 
   @companies-documents--no-document-link
   Scenario: Company does not have documents
     When I navigate to the `companies.documents` page using `company` `Lambda plc` fixture
-    Then view should not contain the Documents link
+    Then I should not see the "View files and documents" link
 
   @companies-documents--lep @lep
   Scenario: Navigate to documents as LEP

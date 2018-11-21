@@ -35,6 +35,14 @@ module.exports = {
       town: 'New York',
       postcode: '765413',
       country: 'United States',
+      primaryAddress: '12 First Street, New York, 765413, United States',
+      businessType: 'Partnership',
+      headquarterType: 'Not a headquarters',
+      globalHeadquarters: 'Link the Global HQ',
+      sector: 'Retail',
+      description: 'This is a dummy company for testing',
+      employeeRange: '500+',
+      turnoverRange: '£33.5M+',
     },
     ukLtd: {
       id: '0f5216e0-849f-11e6-ae22-56b6b6499611',
@@ -50,7 +58,7 @@ module.exports = {
       description: 'This is a dummy company for testing',
       referenceCode: 'ORG-10096257',
     },
-    oneList: {
+    oneListCorp: {
       id: '375094ac-f79a-43e5-9c88-059a7caa17f0',
       name: 'One List Corp',
       address1: '12 St George\'s Road',
@@ -64,6 +72,8 @@ module.exports = {
       description: 'This is a dummy company for testing the One List',
       employeeRange: '500+',
       turnoverRange: '£33.5M+',
+      oneListTier: 'Tier A - Strategic Account',
+      globalAccountManager: 'Travis Greene',
     },
     archived: {
       id: '346f78a5-1d23-4213-b4c2-bf48246a13c3',
@@ -79,6 +89,10 @@ module.exports = {
       description: 'This is a dummy company for testing archived features',
       employeeRange: '500+',
       turnoverRange: '£33.5M+',
+    },
+    archivedContactless: {
+      id: '346f78a5-1d23-4213-b4c2-bf48246a13c4',
+      name: 'Contactless Archived Ltd',
     },
   },
   contact: {

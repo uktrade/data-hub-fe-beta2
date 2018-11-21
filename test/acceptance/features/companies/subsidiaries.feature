@@ -46,3 +46,5 @@ Feature: Company subsidiaries
     And I should not see the "Link a subsidiary" button
     And I can view the collection
     And I should not see the "Remove subsidiary" link
+    And the page should contain text "Why can I not link a subsidiary"
+

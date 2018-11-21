@@ -69,6 +69,13 @@ Then(/^I should not see the "([^"]*)?" (link|button)$/, async function (linkText
     .useCss()
 })
 
+Then(/^I should see the "([^"]*)?" (link|button)$/, async function (linkText, type) {
+  await client
+    .useXpath()
+    .assert.elementPresent(`//a[text()='${linkText}']`)
+    .useCss()
+})
+
 Then(/^I am on the `(.+)` page$/, async function (pageName) {
   try {
     const page = get(client.page, pageName)()
@@ -81,6 +88,10 @@ Then(/^I am on the `(.+)` page$/, async function (pageName) {
   } catch (error) {
     throw new Error(error)
   }
+})
+
+Then(/^the page should contain text "(.*?)"$/, (text) => {
+  return client.expect.element('body').text.to.contain(text)
 })
 
 Then(/^I should see the correct text on the `(.+)` page$/, async function (pageName, data) {

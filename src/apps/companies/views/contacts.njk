@@ -1,23 +1,40 @@
 {% extends "./_layout-view.njk" %}
 
 {% block main_grid_right_column %}
-  <h2 class="heading-medium">Contacts</h2>
+<h2 class="heading-medium">Contacts</h2>
 
-  {{ CollectionFilters({
-      query: QUERY,
-      filtersFields: filtersFields,
-      action: CURRENT_PATH
-  }) }}
-  {% block xhr_content %}
-    <article id="xhr-outlet">
-      {{ CollectionContent(contactResults | assign({
-          countLabel: 'contact',
-          sortForm: assign({}, sortForm, {action: CURRENT_PATH}),
-          selectedFilters: selectedFilters,
-          query: QUERY,
-          action: CURRENT_PATH,
-          actionButtons: actionButtons
-      })) }}
-    </article>
-  {% endblock %}
+
+
+{% if company.archived %}
+<details role="group">
+  <summary role="button" aria-controls="details-content-0" aria-expanded="false">
+    <span class="details__summary">
+      Why can I not add a contact?
+    </span>
+  </summary>
+  <div class="details__content" id="details-content-0" aria-hidden="false">
+    <p class="c-message c-message--muted">Contacts cannot be added to an archived company.
+      <a href="/companies/{{company.id}}/unarchive">Click here to unarchive</a>
+    </p>
+  </div>
+</details>
+{% endif %}
+
+{{ CollectionFilters({
+query: QUERY,
+filtersFields: filtersFields,
+action: CURRENT_PATH
+}) }}
+{% block xhr_content %}
+<article id="xhr-outlet">
+  {{ CollectionContent(contactResults | assign({
+  countLabel: 'contact',
+  sortForm: assign({}, sortForm, {action: CURRENT_PATH}),
+  selectedFilters: selectedFilters,
+  query: QUERY,
+  action: CURRENT_PATH,
+  actionButtons: actionButtons
+  })) }}
+</article>
+{% endblock %}
 {% endblock %}

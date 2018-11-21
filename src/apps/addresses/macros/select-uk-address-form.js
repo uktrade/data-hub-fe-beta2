@@ -19,7 +19,7 @@ module.exports = ({
       {
         macroName: 'MultipleChoiceField',
         type: 'radio',
-        name: 'address',
+        name: 'lookup_address_id',
         label: 'Select an address',
         options: addresses,
         validations: [

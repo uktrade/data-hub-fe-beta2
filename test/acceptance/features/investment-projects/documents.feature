@@ -4,12 +4,12 @@ Feature: Investment project documents
   @investment-projects-documents--document-link
   Scenario: Investment project has documents
     When I navigate to the `investments.documents` page using `investment project` `New hotel (commitment to invest)` fixture
-    Then view should contain the Documents link
+    Then I should see the "View files and documents" link
 
   @investment-projects-documents--no-document-link
   Scenario: Investment project does not have documents
     When I navigate to the `investments.documents` page using `investment project` `New rollercoaster` fixture
-    Then view should not contain the Documents link
+    Then I should not see the "View files and documents" link
 
   @investment-projects-documents--lep @lep
   Scenario: Navigate to documents as LEP

@@ -2,7 +2,6 @@ module.exports = ({
   returnLink,
   errors = {},
   state = {},
-  countries = [],
 }) => {
   return {
     returnLink,
@@ -60,21 +59,6 @@ module.exports = ({
         ],
         error: errors.postcode,
         value: state.postcode,
-      },
-      {
-        macroName: 'MultipleChoiceField',
-        name: 'address_country',
-        label: 'Country',
-        initialOption: '-- Select country --',
-        options: countries,
-        validations: [
-          {
-            type: 'required',
-            message: 'Country is required',
-          },
-        ],
-        error: errors.address_country,
-        value: state.address_country,
       },
     ],
   }

@@ -4,12 +4,12 @@ Feature: Contact details
   @contact-documents--link
   Scenario: Contact has Documents link
     When I navigate to the `contacts.documents` page using `contact` `Johnny Cakeman` fixture
-    Then view should contain the Documents link
+    Then I should see the "View files and documents" link
 
   @contact-documents--no-documents-link
   Scenario: Contact does not have Documents link
     When I navigate to the `contacts.documents` page using `contact` `Georgina Clark` fixture
-    Then view should not contain the Documents link
+    Then I should not see the "View files and documents" link
 
   @contact-documents--lep @lep
   Scenario: Navigate to documents as LEP

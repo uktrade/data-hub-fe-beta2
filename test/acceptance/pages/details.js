@@ -19,11 +19,6 @@ module.exports = {
     heading: '.c-local-header__heading',
     contentHeading: '.heading-medium',
     localNav: '.c-local-nav',
-    documentsLink: {
-      selector: '//a[contains(.,"View files and documents")][contains(@aria-labelledby,"external-link-label")]',
-      locateStrategy: 'xpath',
-    },
-    noDocumentsMessage: getSelectorForElementWithText('There are no files or documents', { el: '//article//p' }),
   },
   commands: [
     {

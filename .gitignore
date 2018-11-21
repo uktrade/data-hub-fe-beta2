@@ -33,6 +33,8 @@ npm*.log
 yarn-error.log
 stats.json
 package-lock.json
+.vscode/launch.json
+.vscode/settings.json
 
 # Tests
 .nyc_output

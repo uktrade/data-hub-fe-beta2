@@ -43,6 +43,9 @@ const config = {
     apiKey: process.env.POSTCODE_KEY,
     baseUrl: 'https://api.getAddress.io/v2/uk/{postcode}?api-key={api-key}',
   },
+  regionLookup: {
+    baseUrl: 'https://ukregionlookup.cloudapps.digital/pcode={postcode}',
+  },
   redis: buildRedisConfig(),
   googleTagManagerKey: process.env.GOOGLE_TAG_MANAGER_KEY,
   session: {

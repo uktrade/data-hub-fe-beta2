@@ -25,9 +25,8 @@ function stripScripts (key, value) {
   return value
 }
 
-function parseOptions (opts, token, jsonReviver = false) {
+function parseOptions (opts, token) {
   const defaults = {
-    jsonReviver,
     headers: {
       ...opts.headers,
       ...token ? { 'Authorization': `Bearer ${token}` } : null,
@@ -65,9 +64,10 @@ const acceptUntrustedCertificatesForDevEnvironments = () => {
 function authorisedRequest (token, opts) {
   acceptUntrustedCertificatesForDevEnvironments()
 
-  const requestOptions = parseOptions(opts, token, stripScripts)
+  const requestOptions = parseOptions(opts, token)
 
   logger.debug('Send authorised request: ', requestOptions)
+  requestOptions.jsonReviver = stripScripts
 
   return requestPromise(requestOptions)
 }

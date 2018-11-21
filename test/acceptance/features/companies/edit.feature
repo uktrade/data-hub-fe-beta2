@@ -4,8 +4,7 @@ Feature: Company details
   @companies-edit--headquarters
   Scenario: Update company headquarters
 
-    When I navigate to the `companies.list` page
-    And I choose the first item in the collection
+    When I navigate to the `companies.details` page using `company` `Mars Exports Ltd` fixture
 
     When I click the Company summary edit button
     When I change "headquarter_type" radio button option to "Not a headquarters"

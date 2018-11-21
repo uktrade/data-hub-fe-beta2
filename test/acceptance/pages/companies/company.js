@@ -5,7 +5,6 @@ const {
   getMetaListItemValueSelector,
   getButtonWithText,
   getKeyValueTableRowValueCell,
-  getSelectorForDetailsSectionEditButton,
 } = require('../../helpers/selectors')
 const { appendUid, getUid } = require('../../helpers/uuid')
 const { getAddress } = require('../../helpers/address')
@@ -40,7 +39,6 @@ module.exports = {
     collectionsCompanyNameInput: '#field-name',
     collectionResultsCompanyName: '.c-entity-list li:first-child .c-entity__title > a',
     xhrTargetElement: '#xhr-outlet',
-    accountManagementEditButton: getSelectorForDetailsSectionEditButton('Account management'),
   },
   commands: [
     {
@@ -482,43 +480,6 @@ module.exports = {
           .waitForElementNotVisible('@xhrTargetElement') // wait for xhr results to come back
           .waitForElementVisible('@xhrTargetElement')
       },
-
-      updateAccountManagement (callback) {
-        const accountManagement = {}
-
-        this
-          .waitForElementPresent('@accountManagementEditButton')
-          .click('@accountManagementEditButton')
-
-        return this
-          .section.accountManagementForm
-          .waitForElementPresent('@oneListAccountOwner')
-          .api.perform((done) => {
-            this
-              .section.accountManagementForm
-              .getListOption('@oneListAccountOwner', (oneListAccountOwner) => {
-                accountManagement.oneListAccountOwner = oneListAccountOwner
-                done()
-              })
-          })
-          .perform(() => {
-            for (const key in accountManagement) {
-              if (accountManagement[key]) {
-                this
-                  .section.accountManagementForm
-                  .setValue(`@${key}`, accountManagement[key])
-              }
-            }
-          })
-          .perform(() => {
-            this
-              .section.accountManagementForm
-              .waitForElementPresent('@saveButton')
-              .click('@saveButton')
-
-            callback(accountManagement)
-          })
-      },
     },
   ],
   sections: {
@@ -546,13 +507,6 @@ module.exports = {
       selector: '.table--key-value',
       elements: {
         ukRegion: getKeyValueTableRowValueCell('UK region'),
-      },
-    },
-    accountManagementForm: {
-      selector: 'form',
-      elements: {
-        oneListAccountOwner: '#field-one_list_account_owner',
-        saveButton: getButtonWithText('Save'),
       },
     },
   },

@@ -19,15 +19,11 @@ Feature: Create a new company
       | UK region                 | company.ukRegion           |
       | Headquarter type          | company.headquarterType    |
       | Global HQ                 | company.globalHeadquarters |
-      | Sector                    | company.sector    |
+      | Sector                    | company.sector             |
       | Website                   | company.website            |
       | Business description      | company.description        |
       | Number of employees       | company.employeeRange      |
       | Annual turnover           | company.turnoverRange      |
-    And the Global Account Manager – One List key value details are displayed
-      | key                       | value                      |
-      | One List tier             | None                       |
-      | Global Account Manager    | None                       |
 
   @companies-save--uk-non-private-or-non-public-ltd-company
   Scenario: Create a UK non-private or non-public limited company
@@ -43,15 +39,11 @@ Feature: Create a new company
       | UK region                 | company.ukRegion           |
       | Headquarter type          | company.headquarterType    |
       | Global HQ                 | company.globalHeadquarters |
-      | Sector                    | company.sector    |
+      | Sector                    | company.sector             |
       | Website                   | company.website            |
       | Business description      | company.description        |
       | Number of employees       | company.employeeRange      |
       | Annual turnover           | company.turnoverRange      |
-    And the Global Account Manager – One List key value details are displayed
-      | key                       | value                      |
-      | One List tier             | None                       |
-      | Global Account Manager    | None                       |
 
   @companies-save--foreign
   Scenario: Create a foreign company
@@ -66,16 +58,12 @@ Feature: Create a new company
       | Primary address           | company.primaryAddress           |
       | Headquarter type          | company.headquarterType          |
       | Global HQ                 | company.globalHeadquarters       |
-      | Sector                    | company.sector          |
+      | Sector                    | company.sector                   |
       | Website                   | company.website                  |
       | Business description      | company.description              |
       | Number of employees       | company.employeeRange            |
       | Annual turnover           | company.turnoverRange            |
       | Country                   | company.registeredAddressCountry |
-    And the Global Account Manager – One List key value details are displayed
-      | key                       | value                            |
-      | One List tier             | None                             |
-      | Global Account Manager    | None                             |
 
   @companies-save--foreign-uk-branch
   Scenario: Create a UK branch of a foreign company
@@ -91,12 +79,8 @@ Feature: Create a new company
       | UK region                 | company.ukRegion           |
       | Headquarter type          | company.headquarterType    |
       | Global HQ                 | company.globalHeadquarters |
-      | Sector                    | company.sector    |
+      | Sector                    | company.sector             |
       | Website                   | company.website            |
       | Business description      | company.description        |
       | Number of employees       | company.employeeRange      |
       | Annual turnover           | company.turnoverRange      |
-    And the Global Account Manager – One List key value details are displayed
-      | key                       | value                      |
-      | One List tier             | None                       |
-      | Global Account Manager    | None                       |

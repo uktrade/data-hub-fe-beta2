@@ -4,7 +4,6 @@ const { assign, forEach, keys } = require('lodash')
 const {
   getSelectorForElementWithText,
   getButtonWithText,
-  getLinkWithText,
 } = require('../../helpers/selectors')
 const { generateFutureDate } = require('../../helpers/date')
 const { appendUid } = require('../../helpers/uuid')
@@ -188,12 +187,4 @@ module.exports = {
       },
     },
   ],
-  sections: {
-    details: {
-      selector: '.table--key-value',
-      elements: {
-        documentsLink: getLinkWithText('Documents'),
-      },
-    },
-  },
 }

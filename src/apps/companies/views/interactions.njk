@@ -1,28 +1,51 @@
 {% extends "./_layout-view.njk" %}
 
 {% block main_grid_right_column %}
-  <h2 class="heading-medium">Company interactions</h2>
+<h2 class="heading-medium">Company interactions</h2>
 
-  {% if company.contacts.length %}
-    <p>
-      An interaction could be a meeting, call, email or another activity where you have been in touch with a company.
+{% if company.contacts.length %}
+<p>
+  An interaction could be a meeting, call, email or another activity where you have been in touch with a company.
+</p>
+
+{% if company.archived %}
+<details role="group">
+  <summary role="button" aria-controls="details-content-0" aria-expanded="false">
+    <span class="details__summary">
+      Why can I not add an interaction?
+    </span>
+  </summary>
+  <div class="details__content" id="details-content-0" aria-hidden="false">
+    <p class="c-message c-message--muted">Interactions cannot be added to an archived company.
+      <a href="/companies/{{company.id}}/unarchive">Click here to unarchive</a>
     </p>
+  </div>
+</details>
+{% endif %}
 
-    {% block xhr_content %}
-      <article id="xhr-outlet">
-        {{
-          CollectionContent(results | assignCopy({
-            countLabel: 'interaction',
-            sortForm: assign({}, sortForm, {action: CURRENT_PATH}),
-            actionButtons: actionButtons,
-            query: QUERY
-          }))
-        }}
-      </article>
-    {% endblock %}
-  {% else %}
-    {% call Message({ type: 'info' }) %}
-      You currently have no contacts for this company. To add an interaction you must first <a href="/contacts/create?company={{company.id}}">add a contact</a>.
-    {% endcall %}
-  {% endif %}
+{% block xhr_content %}
+<article id="xhr-outlet">
+  {{
+  CollectionContent(results | assignCopy({
+  countLabel: 'interaction',
+  sortForm: assign({}, sortForm, {action: CURRENT_PATH}),
+  actionButtons: actionButtons,
+  query: QUERY
+  }))
+  }}
+</article>
+{% endblock %}
+{% else %}
+{% call Message({ type: 'info' }) %}
+
+You currently have no contacts for this company.
+
+{% if not company.archived %}
+To add an interaction you must first <a href="/contacts/create?company={{company.id}}">add a contact</a>.
+{% else %}
+
+{% endif %}
+
+{% endcall %}
+{% endif %}
 {% endblock %}

@@ -55,4 +55,5 @@ const getAddresses = async (postcode) => {
 
 module.exports = {
   getAddresses,
+  transformLookupAddressToObject,
 }

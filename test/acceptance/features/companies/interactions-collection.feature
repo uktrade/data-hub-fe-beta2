@@ -8,6 +8,11 @@ Feature: View collection of interactions for a company
     And I can view the collection
     And the result count should be greater than 0
 
+  @companies-interactions-collection--view-archived-company
+  Scenario: View companies interaction collection for archived company without contacts
+    When I navigate to the `companies.interactions` page using `company` `Contactless Archived Ltd` fixture
+    Then I should not see the "add a contact" link
+
   @companies-interactions-collection--filter # TODO
 
   @companies-interactions-collection--sort # TODO

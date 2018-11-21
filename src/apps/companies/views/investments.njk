@@ -3,6 +3,22 @@
 {% block main_grid_right_column %}
   <h2 class="heading-medium">Investment projects</h2>
 
+  {% if company.archived %}
+    <details role="group">
+      <summary role="button" aria-controls="details-content-0" aria-expanded="false">
+        <span class="details__summary">
+          Why can I not add an investment project?
+        </span>
+      </summary>
+      <div class="details__content" id="details-content-0" aria-hidden="false">
+        <p class="c-message c-message--muted">Investment projects cannot be added to an archived company.
+          <a href="/companies/{{company.id}}/unarchive">Click here to unarchive</a>
+        </p>
+      </div>
+    </details>
+  {% endif %}
+
+
   {{
     CollectionContent(results | assignCopy({
       sort: sort,

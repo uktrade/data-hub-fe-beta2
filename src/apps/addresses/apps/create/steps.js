@@ -1,58 +1,81 @@
 const {
+  manualUkAddressForm,
   overseasAddressForm,
   postcodeLookupForm,
   selectUkAddressForm,
   ukOrOverseasForm,
 } = require('../../macros')
+const {
+  setAddresses,
+  setCountries,
+} = require('./middleware')
+const api = require('./api')
 
 module.exports = {
+  breadcrumbs: [
+    { name: 'Add an address', url: '/address-type' },
+  ],
   steps: [
     {
-      path: '/create/step-1',
       type: 'form',
+      path: '/address-type',
       heading: 'Is this a UK or overseas address?',
-      breadcrumbs: [
-        { name: 'Add an address' },
-      ],
       macro: ukOrOverseasForm,
       nextPath: ({ uk_or_overseas: ukOrOverseas }) => {
         const path = {
-          uk: '/create/postcode-lookup',
-          overseas: '/create/overseas-address',
+          uk: '/postcode-lookup',
+          overseas: '/overseas-address',
         }
 
         return path[ukOrOverseas]
       },
     },
     {
-      path: '/create/postcode-lookup',
       type: 'form',
+      path: '/postcode-lookup',
       heading: 'Add a company address',
-      breadcrumbs: [
-        { name: 'Add an address' },
-      ],
       macro: postcodeLookupForm,
-      nextPath: '/create/select-uk-address',
+      nextPath: '/select-uk-address',
     },
     {
-      path: '/create/select-uk-address',
       type: 'form',
+      path: '/select-uk-address',
       heading: 'Add a company address',
-      breadcrumbs: [
-        { name: 'Add an address' },
+      middleware: [
+        setAddresses,
       ],
       macro: selectUkAddressForm,
-      nextPath: '/',
+      done: {
+        send: api.send,
+        message: 'Address has been added',
+        nextPath: ({ id }) => `/addresses/${id}`,
+      },
     },
     {
-      path: '/create/overseas-address',
       type: 'form',
+      path: '/manual-uk-address',
       heading: 'Add a company address',
-      breadcrumbs: [
-        { name: 'Add an address' },
+      macro: manualUkAddressForm,
+      validateJourney: false,
+      done: {
+        send: api.send,
+        message: 'Address has been added',
+        nextPath: ({ id }) => `/addresses/${id}`,
+      },
+    },
+    {
+      type: 'form',
+      path: '/overseas-address',
+      heading: 'Add a company address',
+      middleware: [
+        setCountries,
       ],
       macro: overseasAddressForm,
-      nextPath: '/',
+      done: {
+        send: api.send,
+        message: 'Address has been added',
+        nextPath: ({ id }) => `/addresses/${id}`,
+      },
     },
   ],
 }

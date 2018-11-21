@@ -2,7 +2,7 @@ const faker = require('faker')
 const { addWeeks, format } = require('date-fns')
 const { get, camelCase, isNull, pickBy, keys, assign } = require('lodash')
 
-const { getButtonWithText, getLinkWithText } = require('../../helpers/selectors')
+const { getButtonWithText } = require('../../helpers/selectors')
 const { getDateFor } = require('../../helpers/date')
 const { appendUid, getUid } = require('../../helpers/uuid')
 
@@ -148,12 +148,4 @@ module.exports = {
       },
     },
   ],
-  sections: {
-    details: {
-      selector: '.table--key-value',
-      elements: {
-        documentsLink: getLinkWithText('Documents'),
-      },
-    },
-  },
 }
