@@ -207,6 +207,20 @@ function closest (element, selector) {
   return null
 }
 
+/**
+ * matchWords
+ *
+ * breaks your search query into an array containing a word/character or words/characters
+ * loops through your array and increments a count which is compared against the length of your array
+ * returns a true when the count is matched
+ * Useful when doing a fuzzy search
+ *
+ * @param {string} str is the data to search on
+ * @param {string} words is your query
+ *
+ * @returns {boolean}
+ */
+
 function matchWords (str, words) {
   const queryWords = words.split(' ')
   let matched = 0
