@@ -44,6 +44,7 @@ module.exports = {
     event: '#field-event',
     policyIssueType: '#field-policy_issue_type',
     policyArea: '#field-policy_areas',
+    teamSearch: '#dit_team__typeahead .multiselect__input',
   },
   commands: [
     {
