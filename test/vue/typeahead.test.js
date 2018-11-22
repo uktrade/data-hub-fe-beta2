@@ -17,6 +17,7 @@ describe('Typeahead', () => {
       name: 'adviser',
       entity: 'adviser',
       label: 'Adviser',
+      placeholder: 'Search adviser',
     }
 
     Vue.filter('highlight', highlight)
@@ -46,6 +47,10 @@ describe('Typeahead', () => {
 
       it('should render a multi select control', () => {
         expect(component.find('input.multiselect__input')).to.not.be.null
+      })
+
+      it('should render a placeholder value in search text field', () => {
+        expect(component.find('.multiselect__input').attributes().placeholder).to.equal('Search adviser')
       })
     })
 
@@ -146,17 +151,16 @@ describe('Typeahead', () => {
   })
 
   describe('methods', () => {
-    let instance
-
-    beforeEach(() => {
-      instance = {
-        name: 'adviser',
-        entity: 'adviser',
-      }
-    })
-
     describe('#asyncFind', () => {
+      let instance
       let asyncFind
+
+      beforeEach(() => {
+        instance = {
+          name: 'adviser',
+          entity: 'adviser',
+        }
+      })
 
       beforeEach(() => {
         asyncFind = Typeahead.methods.asyncFind.bind(instance)
@@ -203,6 +207,98 @@ describe('Typeahead', () => {
 
         it('should clear the available options', () => {
           expect(instance.options).to.deep.equal([])
+        })
+      })
+    })
+
+    describe('#find', () => {
+      const wrapper = mount(Typeahead, {
+        propsData: {
+          name: 'dit_team',
+          label: 'Team',
+          placeholder: 'Search teams',
+          model: `[{
+            "value": "cff02898-9698-e211-a939-e4115bead28a",
+            "label": "Aberdeen City Council"
+          }, {
+            "value": "08c14624-2f50-e311-a56a-e4115bead28a",
+            "label": "Advanced Manufacturing Sector"
+          }, {
+            "value": "d33ade1c-9798-e211-a939-e4115bead28a",
+            "label": "Advantage West Midlands (AWM)"
+          }]`,
+        },
+      })
+
+      const textInput = wrapper.find('.multiselect__input')
+
+      it('should have a placeholder with a value', () => {
+        expect(textInput.attributes().placeholder).to.equal('Search teams')
+      })
+
+      context('when the user enters less than 3 characters', () => {
+        beforeEach((done) => {
+          textInput.setValue('z')
+          setTimeout(done, 600)
+        })
+        it('should not have fetched results', () => {
+          const listItem = wrapper.find('.multiselect__content li')
+          expect(listItem.text()).to.equal('No elements found. Consider changing the search query.')
+        })
+      })
+
+      context('when the user enters a character that matches', () => {
+        beforeEach((done) => {
+          textInput.setValue('a')
+          setTimeout(done, 600)
+        })
+        it('should have fetched results', () => {
+          const listItem = wrapper.find('.multiselect__content li')
+          expect(listItem.text()).to.equal('Aberdeen City Council')
+        })
+      })
+
+      context('when the user enters characters that match', () => {
+        beforeEach((done) => {
+          textInput.setValue('aber')
+          setTimeout(done, 600)
+        })
+        it('should have fetched results', () => {
+          const listItem = wrapper.find('.multiselect__content li')
+          expect(listItem.text()).to.equal('Aberdeen City Council')
+        })
+      })
+
+      context('when the user enters words that match in reverse order', () => {
+        beforeEach((done) => {
+          textInput.setValue('City Aberdeen')
+          setTimeout(done, 600)
+        })
+        it('should have fetched results', () => {
+          const listItem = wrapper.find('.multiselect__content li')
+          expect(listItem.text()).to.equal('Aberdeen City Council')
+        })
+      })
+
+      context('when the user enters words that match in all lowercase', () => {
+        beforeEach((done) => {
+          textInput.setValue('aberdeen city')
+          setTimeout(done, 600)
+        })
+        it('should have fetched results', () => {
+          const listItem = wrapper.find('.multiselect__content li')
+          expect(listItem.text()).to.equal('Aberdeen City Council')
+        })
+      })
+
+      context('when the user enters words that match in all uppercase', () => {
+        beforeEach((done) => {
+          textInput.setValue('ABERDEEN CITY')
+          setTimeout(done, 600)
+        })
+        it('should have fetched results', () => {
+          const listItem = wrapper.find('.multiselect__content li')
+          expect(listItem.text()).to.equal('Aberdeen City Council')
         })
       })
     })
