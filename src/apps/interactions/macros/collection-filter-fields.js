@@ -1,7 +1,6 @@
 const { flatten } = require('lodash')
 
 const labels = require('../labels')
-const { provider } = require('./fields')
 const FILTER_CONSTANTS = require('../../../lib/filter-constants')
 const PRIMARY_SECTOR_NAME = FILTER_CONSTANTS.INTERACTIONS.SECTOR.PRIMARY.NAME
 const { POLICY_FEEDBACK_PERMISSIONS } = require('../constants')
@@ -43,6 +42,7 @@ module.exports = function ({
       macroName: 'Typeahead',
       name: 'dit_adviser',
       entity: 'adviser',
+      placeholder: 'Search adviser',
     },
     {
       macroName: 'TextField',
@@ -57,9 +57,10 @@ module.exports = function ({
       placeholder: `e.g. ${currentYear}-07-21`,
     },
     {
-      ...provider(teamOptions),
-      type: 'checkbox',
-      modifier: 'option-select',
+      macroName: 'Typeahead',
+      name: 'dit_team',
+      placeholder: 'Search teams',
+      options: teamOptions,
     },
     {
       macroName: 'MultipleChoiceField',

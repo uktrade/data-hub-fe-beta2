@@ -207,6 +207,31 @@ function closest (element, selector) {
   return null
 }
 
+/**
+ * matchWords
+ *
+ * breaks your search query into an array containing a word/character or words/characters
+ * loops through your array and increments a count whenever it gets a match
+ * returns true when the count value matches the array length
+ * Useful when doing a fuzzy search on a string
+ *
+ * @param {string} str is the data to search on
+ * @param {string} words is your query
+ *
+ * @returns {boolean}
+ */
+
+function matchWords (str, words) {
+  const queryWords = words.split(' ')
+  let matched = 0
+  queryWords.forEach((word) => {
+    if (str.search(new RegExp(word, 'i')) !== -1) {
+      matched += 1
+    }
+  })
+  return queryWords.length === matched
+}
+
 module.exports = {
   addClass,
   removeClass,
@@ -223,4 +248,5 @@ module.exports = {
   regenIds,
   resetFieldValues,
   closest,
+  matchWords,
 }
