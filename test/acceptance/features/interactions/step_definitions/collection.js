@@ -1,3 +1,5 @@
+// Todo The acceptance tests with the typeahead Vue component needs looking into as setting values with nightwatch in the search field does not work
+
 const { client } = require('nightwatch-cucumber')
 const { Then, When } = require('cucumber')
 const { get } = require('lodash')
