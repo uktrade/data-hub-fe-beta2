@@ -61,9 +61,9 @@ Feature: View collection of interactions
     Then I see the success message
     When I navigate to the `interactions.list` page
     Then I confirm I am on the Interactions page
-    And the results summary for a interaction collection is present
-    Then I filter the interactions list by service provider
-    Then the interactions should be filtered by service provider
+#    And the results summary for a interaction collection is present
+#    Then I filter the interactions list by service provider
+#    Then the interactions should be filtered by service provider
 
   @interactions-collection--lep @lep
   Scenario: Navigate to interactions shows 403 for LEPs

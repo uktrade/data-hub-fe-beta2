@@ -9,8 +9,6 @@ When(/^I filter the interactions list by service provider$/, async function () {
     .setValue('@teamSearch', this.state.interaction.serviceProvider)
     .sendKeys('@teamSearch', [ client.Keys.ENTER ])
     .wait() // wait for xhr
-
-  console.log('State before', this.state.interaction.serviceProvider)
 })
 
 Then(/^the interactions should be filtered by service provider$/, async function () {
