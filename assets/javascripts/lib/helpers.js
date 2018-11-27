@@ -223,13 +223,14 @@ function closest (element, selector) {
 
 function matchWords (str, words) {
   const queryWords = words.split(' ')
-  let matched = 0
-  queryWords.forEach((word) => {
+  const count = queryWords.reduce((allWords, word) => {
     if (str.search(new RegExp(word, 'i')) !== -1) {
-      matched += 1
+      allWords++
     }
-  })
-  return queryWords.length === matched
+    return allWords
+  }, 0)
+
+  return queryWords.length === count
 }
 
 module.exports = {
