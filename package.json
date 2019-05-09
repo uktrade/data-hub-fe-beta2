@@ -100,6 +100,7 @@
     "nunjucks-markdown": "^2.0.1",
     "postcss-cli": "^5.0.0",
     "postcss-loader": "^2.1.5",
+    "promise-redis": "^0.0.5",
     "qs": "^6.5.2",
     "raven": "^2.6.2",
     "redis": "^2.8.0",

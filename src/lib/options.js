@@ -1,9 +1,35 @@
 const { castArray, sortBy } = require('lodash')
 
 const config = require('../../config')
+const Redis = require('promise-redis')()
+
 const { authorisedRequest } = require('../lib/authorised-request')
 const { filterDisabledOption } = require('../modules/permissions/filters')
 const { transformObjectToOption } = require('../apps/transformers')
+
+const redisOpts = {
+  url: config.redis.url,
+}
+
+const client = Redis.createClient(redisOpts)
+
+async function tryCache (token, url) {
+  return client.get(url)
+    .then((redisResponse) => {
+      if (!redisResponse) {
+        throw new Error('banana')
+      }
+      let theAnswer = JSON.parse(redisResponse)
+      return theAnswer
+    })
+    .catch(() => {
+      return authorisedRequest(token, url)
+        .then((httpResponse) => {
+          client.set(url, JSON.stringify(httpResponse), 'ex', 100)
+          return httpResponse
+        })
+    })
+}
 
 async function getOptions (token, key, { createdOn, currentValue, includeDisabled = false, sorted = true, term, id, queryString = '', context } = {}) {
   if (id) {
@@ -19,7 +45,7 @@ async function getOptions (token, key, { createdOn, currentValue, includeDisable
   }
 
   const url = `${config.apiRoot}/metadata/${key}/${queryString}`
-  let options = await authorisedRequest(token, url)
+  let options = await tryCache(token, url)
 
   if (!includeDisabled) {
     options = options.filter(filterDisabledOption({ currentValue, createdOn }))

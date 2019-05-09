@@ -7,7 +7,7 @@ async function renderEventList (req, res, next) {
   try {
     const token = req.session.token
     const advisers = await getAdvisers(req.session.token)
-    const filtersFields = eventFiltersFields({ advisers: advisers.results, userAgent: res.locals.userAgent })
+    const filtersFields = eventFiltersFields({ advisers: advisers, userAgent: res.locals.userAgent })
     const filtersFieldsWithSelectedOptions = await buildFieldsWithSelectedEntities(token, filtersFields, req.query)
     const selectedFilters = await buildSelectedFiltersSummary(filtersFieldsWithSelectedOptions, req.query)
 
