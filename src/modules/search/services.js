@@ -22,7 +22,7 @@ const buildOptions = (
 
   return {
     body,
-    url: `${searchUrl}/${entity}`,
+    url: `${searchUrl}${entity ? `/${entity}` : ''}`,
     method: 'POST',
   }
 }
@@ -145,6 +145,16 @@ function searchAutocomplete ({ token, searchEntity, searchTerm = '', requestBody
     })
 }
 
+function searchDnbCompanies ({ token, requestBody = {} }) {
+  const url = `${config.apiRoot}/v4/dnb/company-search`
+  const options = buildOptions(false, url, requestBody)
+
+  return authorisedRequest(token, options)
+    .then(result => {
+      return result
+    })
+}
+
 module.exports = {
   search,
   searchCompanies,
@@ -153,4 +163,5 @@ module.exports = {
   searchInvestments,
   exportSearch,
   searchAutocomplete,
+  searchDnbCompanies,
 }
