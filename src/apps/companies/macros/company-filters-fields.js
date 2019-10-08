@@ -4,6 +4,7 @@ const { globalFields } = require('../../macros')
 
 const FILTER_CONSTANTS = require('../../../lib/filter-constants')
 const { QUERY_FIELDS_MAP } = require('../constants')
+
 const PRIMARY_SECTOR_NAME = FILTER_CONSTANTS.COMPANIES.SECTOR.PRIMARY.NAME
 
 const companyFiltersFields = function ({ sectorOptions }) {
@@ -72,7 +73,7 @@ const companyFiltersFields = function ({ sectorOptions }) {
       label: 'Currently exporting to',
     },
     {
-      macroName: 'Typeahead',
+      macroName: 'ReactTypeahead',
       name: QUERY_FIELDS_MAP.interestedIn,
       isAsync: false,
       classes: 'c-form-group c-form-group--smaller c-form-group--filter',

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { ActivityFeedApp } from 'data-hub-components'
+import { ActivityFeedApp, Typeahead } from 'data-hub-components'
 import AddCompanyForm from './apps/companies/apps/add-company/client/AddCompanyForm'
 import DeleteCompanyList from './apps/company-lists/client/DeleteCompanyList'
 import MyCompanies from './apps/dashboard/client/MyCompanies.jsx'
@@ -35,6 +35,9 @@ function App () {
       </Mount>
       <Mount selector="#create-company-list-form">
         {props => <CreateListFormSection {...props} />}
+      </Mount>
+      <Mount selector=".js-react-typeahead">
+        {props => <Typeahead {...props} />}
       </Mount>
     </>
   )

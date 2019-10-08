@@ -1,0 +1,16 @@
+{% from "./text-field.njk" import TextField with context %}
+{% from "./multiple-choice-field.njk" import MultipleChoiceField %}
+
+{% macro ReactTypeahead(props) %}
+  <div class="c-form-group c-form-group--AddItems">
+    <div class="c-typeahead--alternative">
+      <noscript>
+        {% call MultipleChoiceField(props) %}{% endcall %}
+      </noscript>
+    </div>
+    <div class="js-react-typeahead"
+      data-props="{{ props | dump }}"
+      >
+    </div>
+  </div>
+{% endmacro %}
