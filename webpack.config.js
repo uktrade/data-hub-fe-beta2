@@ -97,6 +97,7 @@ const common = {
     modules: [
       'node_modules',
       path.resolve(__dirname, 'src'),
+      '../data-hub-components/node_modules',
     ],
     alias: {
       'vue$': 'vue/dist/vue.common.js',
