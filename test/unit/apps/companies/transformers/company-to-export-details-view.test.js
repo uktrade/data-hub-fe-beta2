@@ -1,5 +1,3 @@
-const { assign } = require('lodash')
-
 const minimalCompany = require('~/test/unit/data/companies/minimal-company.json')
 const { transformCompanyToExportDetailsView } = require('~/src/apps/companies/transformers')
 
@@ -8,11 +6,12 @@ const EXPORT_POTENTIAL_LABEL = 'Export potential'
 describe('transformCompanyToExportDetailsView', () => {
   context('when no export market information has been entered', () => {
     beforeEach(() => {
-      const company = assign({}, minimalCompany, {
+      const company = {
+        ...minimalCompany,
         export_experience_category: null,
         export_to_countries: [],
         future_interest_countries: [],
-      })
+      }
 
       this.viewRecord = transformCompanyToExportDetailsView(company)
     })
@@ -40,7 +39,8 @@ describe('transformCompanyToExportDetailsView', () => {
         id: '8b05e8c7-1812-46bf-bab7-a0096ab5689f',
         name: 'Increasing export markets',
       }
-      const company = assign({}, minimalCompany, {
+      const company = {
+        ...minimalCompany,
         export_experience_category: this.exportExperienceCategory,
         export_to_countries: [{
           id: '1234',
@@ -51,7 +51,7 @@ describe('transformCompanyToExportDetailsView', () => {
           name: 'Germany',
         }],
         export_potential_score: 'low',
-      })
+      }
 
       this.viewRecord = transformCompanyToExportDetailsView(company)
     })
@@ -79,7 +79,8 @@ describe('transformCompanyToExportDetailsView', () => {
         id: '8b05e8c7-1812-46bf-bab7-a0096ab5689f',
         name: 'Increasing export markets',
       }
-      const company = assign({}, minimalCompany, {
+      const company = {
+        ...minimalCompany,
         export_experience_category: this.exportExperienceCategory,
         export_to_countries: [{
           id: '1234',
@@ -95,7 +96,7 @@ describe('transformCompanyToExportDetailsView', () => {
           id: '4123',
           name: 'Sweden',
         }],
-      })
+      }
 
       this.viewRecord = transformCompanyToExportDetailsView(company)
     })
