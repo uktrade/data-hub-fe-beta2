@@ -128,6 +128,7 @@ const config = {
     apiFeed: process.env.HELP_CENTRE_API_FEED,
     token: process.env.HELP_CENTRE_FEED_API_TOKEN,
   },
+  greatProfileUrl: process.env.GREAT_PROFILE_URL,
 }
 
 module.exports = config

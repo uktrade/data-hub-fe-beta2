@@ -2,6 +2,7 @@
 const { assign, filter, flatten } = require('lodash')
 
 const metadataRepo = require('../../../lib/metadata')
+const urls = require('../../../lib/urls')
 const { saveCompany } = require('../repos')
 const { transformObjectToOption } = require('../../transformers')
 const { transformCompanyToExportDetailsView } = require('../transformers')
@@ -12,7 +13,7 @@ function renderExports (req, res) {
   const exportDetails = transformCompanyToExportDetailsView(company)
 
   res
-    .breadcrumb(company.name, `/companies/${company.id}`)
+    .breadcrumb(company.name, urls.companies.detail(company.id))
     .breadcrumb('Exports')
     .render('companies/views/exports-view', {
       exportDetails,
@@ -40,8 +41,8 @@ function renderExportEdit (req, res) {
   const { company } = res.locals
 
   res
-    .breadcrumb(company.name, `/companies/${company.id}`)
-    .breadcrumb('Exports', `/companies/${company.id}/exports`)
+    .breadcrumb(company.name, urls.companies.detail(company.id))
+    .breadcrumb('Exports', urls.companies.exports(company.id))
     .breadcrumb('Edit')
     .render('companies/views/exports-edit', {
       exportDetailsLabels,
@@ -63,7 +64,7 @@ async function handleEditFormPost (req, res, next) {
   try {
     const save = await saveCompany(req.session.token, data)
 
-    res.redirect(`/companies/${save.id}/exports`)
+    res.redirect(urls.companies.exports(save.id))
   } catch (error) {
     next(error)
   }

@@ -9,6 +9,7 @@ Feature: Company export save
       | Export win category          | None                              |
       | Currently exporting to       | company.currentlyExportingTo      |
       | Future countries of interest | company.futureCountriesOfInterest |
+      | GREAT company profile        | No profile                        |
       | Export potential             | No score given                    |
     When I click the "Edit export markets" link
     And I update the company Exports details
@@ -18,6 +19,7 @@ Feature: Company export save
       | Export win category          | company.exportWinCategory         |
       | Currently exporting to       | company.currentlyExportingTo      |
       | Future countries of interest | company.futureCountriesOfInterest |
+      | GREAT company profile        | No profile                        |
       | Export potential             | No score given                    |
 
   @companies-export--archived-company

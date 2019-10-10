@@ -64,6 +64,7 @@ const exportDetailsLabels = {
   exportExperienceCategory: 'Export win category',
   exportToCountries: 'Currently exporting to',
   futureInterestCountries: 'Future countries of interest',
+  greatProfile: 'GREAT company profile',
   exportPotential: 'Export potential',
 }
 
