@@ -1,5 +1,5 @@
-const minimalCompany = require('~/test/unit/data/companies/minimal-company.json')
-const { transformCompanyToExportDetailsView } = require('~/src/apps/companies/transformers')
+const minimalCompany = require('../../../data/companies/minimal-company.json')
+const { transformCompanyToExportDetailsView } = require('../../../../../src/apps/companies/transformers')
 
 const EXPORT_POTENTIAL_LABEL = 'Export potential'
 
