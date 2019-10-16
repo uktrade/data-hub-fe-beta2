@@ -38,6 +38,11 @@ const XHR = {
       const url = `?${queryString.stringify(params)}`
       try {
         history.replace(url, { data: res.data })
+        if (typeof window.ga === 'function') {
+          console.log('send pageview')
+          window.ga('set', 'location', window.location.href)
+          window.ga('send', 'pageview')
+        }
       } catch (err) {
         // state was too large for browser to handle. Do full page load.
         window.location.assign(url)
