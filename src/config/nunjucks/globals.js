@@ -1,5 +1,5 @@
 const nunjucks = require('nunjucks')
-const { assign, omit, isFunction, isArray, map } = require('lodash')
+const { assign, omit, isFunction, map } = require('lodash')
 const queryString = require('qs')
 const config = require('../')
 const urls = require('../../lib/urls')
@@ -31,11 +31,11 @@ module.exports = {
 
         if (!macro) { return }
 
-        return macro(assign({}, sharedProps, props))
+        return macro({ ...sharedProps, ...props })
       })[0]
     }
 
-    if (isArray(config)) {
+    if (Array.isArray(config)) {
       const macroOutputs = config.map(renderMacro.bind(this))
       return new nunjucks.runtime.SafeString(macroOutputs.join('\r'))
     }
@@ -49,14 +49,16 @@ module.exports = {
     function renderMacro (props = {}) {
       const macroName = props.macroName
       if (!macroName) { return }
+
       const macro = this.env.globals.callAsMacro.call(this, macroName)
       if (!isFunction(macro)) {
         throw Error(`${macroName} macro not found`)
       }
-      return macro(assign({}, props, additionalProps))
+
+      return macro({ ...props, ...additionalProps })
     }
 
-    if (isArray(config)) {
+    if (Array.isArray(config)) {
       const macroOutputs = config.map(renderMacro.bind(this))
       return new nunjucks.runtime.SafeString(macroOutputs.join('\r'))
     }
@@ -65,11 +67,9 @@ module.exports = {
   },
 
   buildQuery (query = {}, include = {}, excludeKeys = []) {
-    return queryString.stringify(
-      assign(
-        include,
-        omit(query, [...excludeKeys], 'page'),
-      )
-    )
+    return queryString.stringify(Object.assign(
+      include,
+      omit(query, [...excludeKeys], 'page'),
+    ))
   },
 }
