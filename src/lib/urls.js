@@ -69,12 +69,13 @@ module.exports = {
   },
   dashboard: url('/'),
   companies: {
+    index: url('/companies'),
+    detail: url('/companies', '/:companyId'),
     activity: {
       index: url('/companies', '/:companyId/activity'),
       data: url('/companies', '/:companyId/activity/data'),
     },
     businessDetails: url('/companies', '/:companyId/business-details'),
-    detail: url('/companies', '/:companyId'),
     dnbSubsidiaries: {
       index: url('/companies', '/:companyId/dnb-subsidiaries'),
       data: url('/companies', '/:companyId/dnb-subsidiaries/data'),
@@ -91,7 +92,6 @@ module.exports = {
       confirm: url('/companies', '/:companyId/advisers/add'),
       replace: url('/companies', '/:companyId/advisers/replace'),
     },
-    index: url('/companies'),
     subsidiaries: url('/companies', '/:companyId/subsidiaries'),
     interactions: createInteractionsSubApp('/companies', '/:companyId'),
     orders: url('/companies', '/:companyId/orders'),
