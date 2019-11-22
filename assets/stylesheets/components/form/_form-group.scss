@@ -49,6 +49,10 @@
   }
 }
 
+.c-form-group__addGroupItems {
+  margin-top: $default-spacing-unit;
+}
+
 // States
 .c-form-group.has-error {
   border-left: 5px solid $error-colour;

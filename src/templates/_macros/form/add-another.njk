@@ -13,9 +13,10 @@
   {% set fieldId = 'field-' + props.name + ('-' + props.idSuffix if props.idSuffix) if props.name %}
   {% set element = props.element | default('fieldset') %}
   {% set typeaheadClassModifier = '--typeahead' if props.children[0].macroName === 'Typeahead' %}
+  {% set hasMultipleChildren = not props.value and props.children.length > 1 %}
 
   {% call FormGroup(props | assign({ fieldId: fieldId, element: element, groupClassName: 'c-form-group c-form-fieldset' })) %}
-    <div class="js-AddItems" data-item-selector=".c-form-group--AddItems">
+    <div class="js-AddItems" data-item-selector="{{ '.js-AddItems__group' if hasMultipleChildren else '.c-form-group--AddItems'}}">
 
       {% if props.value %}
         {% if props.value.length <= 0 %}
@@ -29,7 +30,13 @@
           {% endfor %}
         {% endif %}
       {% else %}
-        {{ renderAsMacro(props.children, { modifier: 'AddItems' } ) }}
+        {% if hasMultipleChildren %}
+          <div class="c-form-group__addGroupItems js-AddItems__group">
+            {{ renderAsMacro(props.children) }}
+          </div>
+        {% else %}
+          {{ renderAsMacro(props.children, { modifier: 'AddItems' } ) }}
+        {% endif %}
       {% endif %}
 
       <p class="c-form-fieldset__add-another">
