@@ -15,10 +15,12 @@ const interaction = {
   multiple_contacts: 'Multiple contacts',
   multiple_advisers: 'Multiple advisers',
   created_on: 'Created on',
-  was_policy_feedback_provided:
-    'Did the contact give any feedback on government policy?',
+  was_policy_feedback_provided: 'Did the contact give any feedback on government policy?',
   service_delivery_status: 'Service status',
   grant_amount_offered: 'Grant offered',
+  was_country_discussed: 'Were any countries discussed?',
+  country_discussed: 'Select a country that was discussed',
+  country_category: 'What type of country?',
 }
 
 const serviceDelivery = {
