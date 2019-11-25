@@ -19,8 +19,9 @@ const interaction = {
   service_delivery_status: 'Service status',
   grant_amount_offered: 'Grant offered',
   was_country_discussed: 'Were any countries discussed?',
-  country_discussed: 'Select a country that was discussed',
-  country_category: 'What type of country?',
+  future_countries: 'Future countries of interest',
+  export_countries: 'Countries currently exporting to',
+  no_interest_countries: 'Countries not interested in',
 }
 
 const serviceDelivery = {

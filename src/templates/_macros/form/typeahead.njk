@@ -2,7 +2,13 @@
 {% from "./multiple-choice-field.njk" import MultipleChoiceField %}
 
 {% macro Typeahead(props) %}
-  <div class="c-form-group c-form-group--AddItems">
+  {% set className = props.groupClassName | default('c-form-group') %}
+  <div class="c-form-group--AddItems {{ className | applyClassModifiers(props.modifier) }}{{ ' js-ConditionalSubfield' if props.condition }}"
+    {% if props.condition %}
+        data-controlled-by="{{ props.condition.name }}"
+        data-control-value="{{ props.condition.value }}"
+      {% endif %}
+  >
     <div class="c-typeahead--alternative">
       <noscript>
         {% call MultipleChoiceField(props) %}{% endcall %}

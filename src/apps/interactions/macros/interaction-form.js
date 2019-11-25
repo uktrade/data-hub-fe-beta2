@@ -42,38 +42,28 @@ function addCountriesDiscussed (featureFlags) {
           },
         ],
       },
-      {
-        macroName: 'AddAnother',
-        buttonName: 'add_item',
-        name: 'country_discussed',
+      ...[
+        'future_countries',
+        'export_countries',
+        'no_interest_countries',
+      ].map((name) => ({
+        macroName: 'Typeahead',
+        name,
+        hint: 'Add all that you discussed',
         modifier: 'subfield',
         condition: {
           name: 'was_country_discussed',
           value: 'true',
         },
-        children: [
-          globalFields.countries,
-          {
-            macroName: 'MultipleChoiceField',
-            type: 'radio',
-            name: 'country_category',
-            label: 'What type of country?',
-            optional: false,
-            options: [
-              {
-                label: 'Future country of interest',
-                value: 'future_interest',
-              }, {
-                label: 'Currently exporting to',
-                value: 'currenty_exporting',
-              }, {
-                label: 'Not interested',
-                value: 'not_interested',
-              },
-            ],
-          },
-        ],
-      },
+        isAsync: false,
+        isLabelHidden: false,
+        useSubLabel: false,
+        placeholder: 'Search countries',
+        classes: 'c-form-group--no-filter',
+        multipleSelect: true,
+        options: globalFields.countries.options(),
+        target: 'metadata',
+      })),
     ]
   }
 }
