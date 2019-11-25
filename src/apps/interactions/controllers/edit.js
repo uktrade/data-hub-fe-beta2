@@ -40,51 +40,47 @@ async function buildForm (req, res, interactionId, validatedKind) {
       ? 'Save and return'
       : `Add ${lowerCase(validatedKind)}`,
     company: get(res.locals, 'company.name'),
+    featureFlags: res.locals.features,
   }
 
   const form = formConfigs[validatedKind](formProperties)
   return form
 }
 
-function getMergedData (req, res) {
-  const user = get(req.session, 'user')
-
-  function setDefaultContact () {
-    if (res.locals.interaction) {
-      return res.locals.interaction.contacts.map(contact => contact.id)
-    }
-    if (res.locals.contact) {
-      return [get(res.locals.contact, 'id')]
-    }
-    return null
+function setDefaultContact (interaction, contact) {
+  if (interaction) {
+    return interaction.contacts.map(contact => contact.id)
   }
-
-  function setDefaultAdvisers (reqBody = {}) {
-    if (!get(reqBody, 'dit_participants')) return
-    return {
-      dit_participants: reqBody.dit_participants.map(
-        ditParticipant => ditParticipant.adviser
-      ),
-    }
+  if (contact) {
+    return [get(contact, 'id')]
   }
+  return null
+}
 
-  const interactionData = transformInteractionResponseToForm(
-    res.locals.interaction
-  )
+function setDefaultAdvisers (reqBody = {}) {
+  if (!get(reqBody, 'dit_participants')) return
+  return {
+    dit_participants: reqBody.dit_participants.map(
+      ditParticipant => ditParticipant.adviser
+    ),
+  }
+}
+
+function getMergedData (user, locals) {
+  const { interaction, contact, requestBody } = locals
+  const interactionData = transformInteractionResponseToForm(interaction)
   const interactionDefaults = {
     dit_participants: [user.id],
     date: transformDateStringToDateObject(new Date()),
-    contacts: setDefaultContact(),
+    contacts: setDefaultContact(interaction, contact),
   }
 
-  const mergedInteractionData = {
+  return {
     ...interactionDefaults,
     ...interactionData,
-    ...res.locals.requestBody,
-    ...setDefaultAdvisers(res.locals.requestBody),
+    ...requestBody,
+    ...setDefaultAdvisers(requestBody),
   }
-
-  return mergedInteractionData
 }
 
 function validateKind (requestParamsKind, existingKind) {
@@ -99,10 +95,10 @@ function validateKind (requestParamsKind, existingKind) {
 
 async function renderEditPage (req, res, next) {
   try {
-    const interactionId = get(req.params, 'interactionId')
+    const { interactionId, kind } = req.params
+    const mergedInteractionData = getMergedData(req.session.user, res.locals)
+    const validatedKind = validateKind(kind, mergedInteractionData.kind)
 
-    const mergedInteractionData = getMergedData(req, res)
-    const validatedKind = validateKind(req.params.kind, mergedInteractionData.kind)
     if (!validatedKind) {
       throw new Error('Invalid kind')
     }

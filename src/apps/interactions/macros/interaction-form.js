@@ -1,4 +1,5 @@
 const { assign } = require('lodash')
+const { globalFields } = require('../../macros')
 
 const labels = require('../labels')
 const {
@@ -19,19 +20,77 @@ const {
   feedbackPolicyNotes,
 } = require('./fields')
 
+function addCountriesDiscussed (featureFlags) {
+  if (!featureFlags['interaction-add-countries']) {
+    return []
+  } else {
+    return [
+      {
+        macroName: 'MultipleChoiceField',
+        type: 'radio',
+        name: 'was_country_discussed',
+        modifier: 'inline',
+        optional: false,
+        options: [
+          {
+            label: 'Yes',
+            value: 'true',
+          },
+          {
+            label: 'No',
+            value: 'false',
+          },
+        ],
+      },
+      {
+        macroName: 'AddAnother',
+        buttonName: 'add_item',
+        name: 'country_discussed',
+        modifier: 'subfield',
+        condition: {
+          name: 'was_country_discussed',
+          value: 'true',
+        },
+        children: [
+          globalFields.countries,
+          {
+            macroName: 'MultipleChoiceField',
+            type: 'radio',
+            name: 'country_category',
+            label: 'What type of country?',
+            optional: false,
+            options: [
+              {
+                label: 'Future country of interest',
+                value: 'future_interest',
+              }, {
+                label: 'Currently exporting to',
+                value: 'currenty_exporting',
+              }, {
+                label: 'Not interested',
+                value: 'not_interested',
+              },
+            ],
+          },
+        ],
+      },
+    ]
+  }
+}
+
 module.exports = function ({
   returnLink,
   returnText,
   buttonText,
   contacts = [],
   services = [],
-  teams = [],
   channels = [],
   advisers = [],
   hiddenFields,
   areas,
   types,
   company,
+  featureFlags,
 }) {
   return {
     returnLink,
@@ -61,6 +120,7 @@ module.exports = function ({
         },
       },
       feedbackPolicyNotes,
+      ...addCountriesDiscussed(featureFlags),
     ].map(field => {
       return assign(field, {
         label: field.label || labels.interaction[field.name],
