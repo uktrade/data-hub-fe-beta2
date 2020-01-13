@@ -169,13 +169,9 @@ router.get(urls.companies.subsidiaries.index.route, renderSubsidiaries)
 router.get(urls.companies.subsidiaries.link.route, renderLinkSubsidiary)
 
 router.use(activityFeedRouter)
-
 router.use(dnbHierarchyRouter)
-
 router.use(businessDetailsRouter)
-
 router.use(matchCompanyRouter)
-
 router.use(exportsRouter)
 
 module.exports = router

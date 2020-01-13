@@ -1,0 +1,10 @@
+{% extends "../../../views/template.njk" %}
+
+{% block body_main_content %}
+  Export markets history
+  {% component 'react-slot', {
+    id: 'company-export-countries',
+    props: props
+  } %}
+
+{% endblock %}

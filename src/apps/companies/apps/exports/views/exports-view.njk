@@ -28,6 +28,8 @@
       text: exportPotentialText | safe
     }) }}
 
+    <a href="{{ urls.companies.exports.countries(company.id)}}">View export countries history</a>
+
     {% if not company.archived %}
       <p class="actions">
         <a href="{{ urls.companies.exports.edit(company.id) }}" class="govuk-button govuk-button--secondary">Edit export countries</a>

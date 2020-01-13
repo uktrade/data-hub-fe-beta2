@@ -138,4 +138,13 @@ module.exports = {
   renderExports,
   renderExportEdit,
   handleEditFormPost,
+  renderExportCountries: (req, res) => {
+    const { company } = res.locals
+
+    res
+      .breadcrumb(company.name, urls.companies.detail(company.id))
+      .breadcrumb('Exports', urls.companies.exports.index(company.id))
+      .breadcrumb('Export markets history - all countries')
+      .render('companies/apps/exports/views/client-container')
+  },
 }

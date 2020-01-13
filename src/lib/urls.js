@@ -108,6 +108,7 @@ module.exports = {
     exports: {
       index: url('/companies', '/:companyId/exports'),
       edit: url('/companies', '/:companyId/exports/edit'),
+      countries: url('/companies', '/:companyId/exports/countries'),
     },
     hierarchies: {
       ghq: {
