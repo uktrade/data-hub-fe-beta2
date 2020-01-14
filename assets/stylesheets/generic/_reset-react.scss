@@ -1,0 +1,10 @@
+// Reset styles for React components.
+
+.react-slot {
+  * {
+    font: initial;
+  }
+  ul, ol {
+    list-style-type: initial;
+  }
+}
