@@ -67,6 +67,12 @@ const NONE_TEXT = 'None'
 const NOT_SET_TEXT = 'Not set'
 const NOT_AVAILABLE_TEXT = 'Not available'
 
+const COUNTRY_HISTORY_TYPES = {
+  INSERT: 'insert',
+  UPDATE: 'update',
+  DELETE: 'delete',
+}
+
 module.exports = {
   GLOBAL_NAV_ITEM,
   LOCAL_NAV,
@@ -77,4 +83,5 @@ module.exports = {
   NONE_TEXT,
   NOT_SET_TEXT,
   NOT_AVAILABLE_TEXT,
+  COUNTRY_HISTORY_TYPES,
 }
