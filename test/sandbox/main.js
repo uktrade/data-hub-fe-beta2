@@ -28,6 +28,7 @@ var v4Metadata = require('./routes/v4/metadata/index.js')
 var v4SearchCompany = require('./routes/v4/search/company.js')
 var v4SearchCompanyWithCountry = require('./routes/v4/search/company/autocomplete.js')
 var v4SearchLargeInvestorProfiles = require('./routes/v4/search/large-investor-profile/results.js')
+var v4ExportCountryHistory = require('./routes/v4/export-country-history.js')
 
 // Adviser endpoint
 Sandbox.define('/adviser/', 'GET', adviser.advisers)
@@ -487,6 +488,9 @@ Sandbox.define(
   'GET',
   v4SearchCompanyWithCountry.companiesAutocomplete
 )
+
+// V4 Company export country history
+Sandbox.define('/v4/export-country-history', 'GET', v4ExportCountryHistory)
 
 // Whoami endpoint
 Sandbox.define('/whoami/', 'GET', user.whoami)
