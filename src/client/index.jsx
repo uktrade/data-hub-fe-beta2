@@ -1,3 +1,4 @@
+/* eslint no-unused-vars:0 */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -22,6 +23,7 @@ import LeadAdvisers from '../apps/companies/apps/advisers/client/LeadAdvisers'
 import LargeCapitalProfileCollection from '../apps/investments/client/LargeCapitalProfileCollection'
 import ManageAdviser from '../apps/companies/apps/advisers/client/ManageAdviser'
 import CompanyBusinessDetails from '../apps/companies/apps/business-details/client/CompanyBusinessDetails'
+import CompanyExportCountries from '../apps/companies/apps/exports/client/CompanyExportCountries'
 
 const store = createStore(
   combineReducers({ companyLists }),
@@ -117,6 +119,14 @@ function App() {
       <Mount selector="#manage-adviser">
         {(props) => (
           <ManageAdviser {...props} csrfToken={globalProps.csrfToken} />
+        )}
+      </Mount>
+      <Mount selector="#company-export-countries">
+        {(props) => (
+          <CompanyExportCountries
+            {...props}
+            csrfToken={globalProps.csrfToken}
+          />
         )}
       </Mount>
     </Provider>

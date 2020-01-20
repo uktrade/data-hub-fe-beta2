@@ -8,8 +8,12 @@ const getExportCountries = require('../../../../lib/get-export-countries')
 
 const { saveCompany } = require('../../repos')
 const { transformObjectToOption } = require('../../../transformers')
-const transformCompanyToExportDetailsView = require('./transformer')
 const { exportDetailsLabels, exportPotentialLabels } = require('../../labels')
+const {
+  transformCompanyToExportDetailsView,
+  createExportHistory,
+} = require('./transformer')
+const repos = require('./repos')
 
 const {
   NEW_COUNTRIES_FEATURE,
@@ -138,13 +142,18 @@ module.exports = {
   renderExports,
   renderExportEdit,
   handleEditFormPost,
-  renderExportCountries: (req, res) => {
+  renderExportCountries: async (req, res) => {
     const { company } = res.locals
+    const data = await repos.getCompanyHistory()
 
     res
       .breadcrumb(company.name, urls.companies.detail(company.id))
       .breadcrumb('Exports', urls.companies.exports.index(company.id))
       .breadcrumb('Export markets history - all countries')
-      .render('companies/apps/exports/views/client-container')
+      .render('companies/apps/exports/views/countries', {
+        props: {
+          data: createExportHistory(data),
+        },
+      })
   },
 }

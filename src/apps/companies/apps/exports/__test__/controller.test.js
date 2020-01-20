@@ -11,13 +11,15 @@ const companyMock = require('../../../../../../test/unit/data/companies/company-
 
 describe('Company export controller', () => {
   let saveCompany
-  let transformerSpy
+  let transformCompanyToExportDetailsViewSpy
+  let createExportHistorySpy
   let middlewareParameters
   let controller
 
   beforeEach(() => {
     saveCompany = sinon.stub()
-    transformerSpy = sinon.spy()
+    transformCompanyToExportDetailsViewSpy = sinon.spy()
+    createExportHistorySpy = sinon.spy()
 
     controller = proxyquire('../controller', {
       '../../repos': {
@@ -37,7 +39,10 @@ describe('Company export controller', () => {
           },
         ],
       },
-      './transformer': transformerSpy,
+      './transformer': {
+        transformCompanyToExportDetailsView: transformCompanyToExportDetailsViewSpy,
+        createExportHistory: createExportHistorySpy,
+      },
     })
   })
 
@@ -59,8 +64,10 @@ describe('Company export controller', () => {
       )
     })
 
-    it('should call the transformer to get the deails', () => {
-      expect(transformerSpy).to.be.calledWith(companyMock)
+    it('should call the transformer to get the details', () => {
+      expect(transformCompanyToExportDetailsViewSpy).to.be.calledWith(
+        companyMock
+      )
     })
 
     it('should render the correct view', () => {
@@ -438,5 +445,33 @@ describe('Company export controller', () => {
         expect(middlewareParameters.nextSpy).to.have.been.calledOnce
       })
     })
+  })
+
+  describe('createExportCountries', () => {
+    context('with some valid data', () => {
+      it('Sets the breadcrumb and renders the template with the correct data', async () => {
+        const company = require('../../../../../../test/unit/data/company')
+        const { reqMock, resMock, nextSpy } = buildMiddlewareParameters({
+          locals: { company },
+        })
+        await controller.renderExportCountries(reqMock, resMock, nextSpy)
+
+        expect(resMock.breadcrumb.firstCall).to.be.calledWith(
+          company.name,
+          urls.companies.detail(company.id)
+        )
+
+        expect(resMock.breadcrumb.secondCall).to.be.calledWith(
+          'Exports',
+          urls.companies.exports.index(company.id)
+        )
+
+        expect(resMock.breadcrumb.thirdCall).to.be.calledWith(
+          'Export markets history - all countries'
+        )
+      })
+    })
+
+    context('When an error is returned from the API', () => {})
   })
 })

@@ -84,7 +84,7 @@ function getCountryText(countries, historyType, type) {
 function createInteraction(item) {
   return {
     headingText: item.subject,
-    badges: ['Interaction'],
+    badges: [{ text: 'Interaction' }],
     metadata: [
       { label: 'Date', value: formatDateTime(item.created_on) },
       {
