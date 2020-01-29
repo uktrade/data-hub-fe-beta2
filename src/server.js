@@ -123,9 +123,10 @@ app.use(csrfToken())
 const API_PROXY_PATH = '/api-proxy'
 app.use(
   proxy(config.apiProxyWhitelist.map((pth) => path.join(API_PROXY_PATH, pth)), {
+    changeOrigin: true,
     target: config.apiRoot,
     pathRewrite: {
-      ['^' + API_PROXY_PATH]: '/',
+      ['^' + API_PROXY_PATH]: '',
     },
     onProxyReq: (proxyReq, req) =>
       proxyReq.setHeader('authorization', `Bearer ${req.session.token}`),
