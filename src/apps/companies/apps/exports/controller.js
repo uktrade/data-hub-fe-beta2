@@ -130,6 +130,7 @@ async function handleEditFormPost(req, res, next) {
   const { token } = req.session
   const companyId = res.locals.company.id
   const data = {
+    ...res.locals.company,
     export_experience_category: req.body.export_experience_category,
   }
 

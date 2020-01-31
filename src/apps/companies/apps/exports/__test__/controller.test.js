@@ -394,7 +394,10 @@ describe('Company export controller', () => {
 
           it('should call update method with flattened body data', () => {
             const actualData = updateCompany.args[0][2]
-            expect(actualData.export_experience_category).to.equal('111')
+            expect(actualData).to.deep.equal({
+              ...companyMock,
+              export_experience_category: '111',
+            })
           })
 
           it('should call saveCompanyExportDetails with the correct arguments and data', () => {
@@ -488,12 +491,13 @@ describe('Company export controller', () => {
 
         it('should call save method with flattened body data', () => {
           const actualData = updateCompany.args[0][2]
-          expect(actualData.export_experience_category).to.equal('111')
-          expect(actualData.export_to_countries).to.deep.equal(['222'])
-          expect(actualData.future_interest_countries).to.deep.equal([
-            '333',
-            '444',
-          ])
+
+          expect(actualData).to.deep.equal({
+            ...companyMock,
+            export_experience_category: '111',
+            export_to_countries: ['222'],
+            future_interest_countries: ['333', '444'],
+          })
         })
 
         it('should redirect to exports routes', () => {
