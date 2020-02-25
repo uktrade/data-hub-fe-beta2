@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { TASK__START } from '../../actions'
+import { TASK__START, TASK__CANCEL } from '../../actions'
 import Err from './Error'
 import ProgressIndicator from '../ProgressIndicator'
 
@@ -76,16 +76,21 @@ const startOnRenderPropTypes = {
  * <Task>
  *   {getTask => {
  *     const task = getTask('square', 'foo')
- *     return (d
- *       <button
- *         disabled={task.progress}
- *         onClick={() => task.start({
- *           payload: 7,
- *           onSuccessDispatch: 'SQUARED',
- *         })}
- *       >
- *         start
- *       </button>
+ *     return (
+ *       <>
+ *         <button
+ *           disabled={task.progress}
+ *           onClick={() => task.start({
+ *             payload: 7,
+ *             onSuccessDispatch: 'SQUARED',
+ *           })}
+ *         >
+ *           start
+ *         </button>
+ *         <button onClick={task.cancel}>
+ *           cancel
+ *         </button>
+ *       </>
  *     )
  *   }}
  * </Task>
@@ -109,15 +114,22 @@ const Task = connect(
         name,
         onSuccessDispatch,
       }),
+    cancel: (name, id) =>
+      dispatch({
+        type: TASK__CANCEL,
+        name,
+        id,
+      }),
   })
-)(({ start, children, ...props }) =>
+)(({ start, cancel, children, ...props }) =>
   children((name, id) => {
     const taskState = get(props, [name, id], {})
     return {
       ...taskState,
       progress: taskState.status === 'progress',
       error: taskState.status === 'error',
-      start: (options) => start(name, id, options),
+      start: (options = {}) => start(name, id, options),
+      cancel: () => cancel(name, id),
     }
   })
 )

@@ -1,12 +1,24 @@
 import { get } from 'lodash'
-import { take, put, spawn, call, select } from 'redux-saga/effects'
+import { take, put, spawn, call, select, fork, cancel } from 'redux-saga/effects'
 
 import {
   TASK__START,
   TASK__PROGRESS,
   TASK__ERROR,
   TASK__CLEAR,
+  TASK__CANCEL,
 } from '../../actions'
+
+function* cancellation(task, action) {
+  const taskInProgress = yield fork(taskSaga, task, action)
+  while (true) {
+    const { name, id } = yield take(TASK__CANCEL)
+    if (action.name === name && action.id === id) {
+      yield cancel(taskInProgress)
+      break
+    }
+  }
+}
 
 function* taskSaga(task, action) {
   yield put({ ...action, type: TASK__PROGRESS })
@@ -57,6 +69,6 @@ export default (registry) =>
           `Cannot start task "${name}.${id}" because it is already in progress!`
         )
       }
-      yield spawn(taskSaga, task, action)
+      yield spawn(cancellation, task, action)
     }
   }
