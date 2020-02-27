@@ -8,7 +8,11 @@ import styled from 'styled-components'
 
 import urls from '../../../lib/urls'
 // TODO: Move to client/components
-import { AdviserDetails } from '../../../apps/referrals/client/referralDetails'
+import { AdviserDetails } from '../../../apps/referrals/apps/details/client/ReferralDetails'
+
+const STATUS_COLOURS = {
+  outstanding: colors.BLUE,
+}
 
 const StyledRoot = styled.div({
   border: `1px solid ${colors.GREY_2}`,
@@ -29,6 +33,9 @@ const StyledHeader = styled.div({
 const StyledLink = styled(Link)({
   textDecoration: 'none',
 })
+const StyledH3 = styled(H3)({
+  margin: 0,
+})
 
 const Referral = ({
   id,
@@ -37,13 +44,14 @@ const Referral = ({
   date,
   sendingAdviser,
   receivingAdviser,
+  status,
 }) => (
   <StyledRoot>
     <StyledHeader>{companyName}</StyledHeader>
     <StyledRow>
-      <H3>
+      <StyledH3>
         <StyledLink href={urls.referrals.details(id)}>{title}</StyledLink>
-      </H3>
+      </StyledH3>
       <div>{DateUtils.format(date)}</div>
     </StyledRow>
     <StyledRow>
@@ -62,7 +70,9 @@ const Referral = ({
           ]}
         />
       </StyledSummaryListWrapper>
-      <Badge borderColour={colors.BLUE}>Outstanding Referral</Badge>
+      <Badge borderColour={STATUS_COLOURS[status]}>
+        {status.toUpperCase()}
+      </Badge>
     </StyledRow>
   </StyledRoot>
 )
@@ -74,6 +84,7 @@ Referral.propTypes = {
   date: PropTypes.string.isRequired,
   sendingAdviser: PropTypes.shape(AdviserDetails.propTypes).isRequired,
   receivingAdviser: PropTypes.shape(AdviserDetails.propTypes).isRequired,
+  status: PropTypes.oneOf(['outstanding']),
 }
 
 export default Referral

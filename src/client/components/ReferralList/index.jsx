@@ -9,6 +9,8 @@ import styled from 'styled-components'
 import Task from '../Task'
 import Referral from './Referral'
 import { REFFERAL_LIST__LOADED } from '../../actions'
+import multiInstance from '../../utils/multiinstance'
+import reducer from './reducer'
 
 const StyledItemSpacer = styled.div({
   '& > *': {
@@ -32,17 +34,23 @@ ReferralList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape(ReferralList.propTypes)),
 }
 
-export default connect((state) => ({ items: state.referralList }))(
-  ({ items }) => (
-    <Task.Status
-      name="Referrals"
-      id="dashboard"
-      progressMessage="Loading referrals"
-      startOnRender={{
-        onSuccessDispatch: REFFERAL_LIST__LOADED,
-      }}
-    >
-      {() => items && <ReferralList items={items} />}
-    </Task.Status>
-  )
-)
+export default multiInstance({
+  componentStateToProps: (state) => ({ items: state }),
+  name: 'ReferralList',
+  reducer,
+  component: ({ id, items }) => (
+    console.log('items', items),
+    (
+      <Task.Status
+        name="Referrals"
+        id={id}
+        progressMessage="Loading referrals"
+        startOnRender={{
+          onSuccessDispatch: REFFERAL_LIST__LOADED,
+        }}
+      >
+        {() => items && <ReferralList items={items} />}
+      </Task.Status>
+    )
+  ),
+})
