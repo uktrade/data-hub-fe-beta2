@@ -26,7 +26,7 @@ import PropTypes from 'prop-types'
  */
 export const reducerDecorator = (reducer) => (
   state = {},
-  { id, type, action }
+  { id, type, ...action }
 ) => {
   if (id) {
     const nextState = reducer(state[id], { type, ...action })
@@ -37,8 +37,8 @@ export const reducerDecorator = (reducer) => (
 
 const interceptDispatch = (dispatch, id) => ({ type, ...action }) =>
   dispatch({
+    ...action,
     type,
-    action,
     id,
   })
 
@@ -80,7 +80,7 @@ export const connect = (componentState2props, dispatch2props, ...rest) =>
     componentState2props = componentState2props || ((x) => x)
     const Connected = reactRedux.connect(
       (state, props) =>
-        componentState2props(state[name]?.[props.id] || {}, state, props),
+        componentState2props(state[name]?.[props.id], state, props),
       dispatch2props &&
         ((dispatch, props, ...rest) =>
           dispatch2props(
