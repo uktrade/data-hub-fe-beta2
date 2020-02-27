@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Details from '@govuk-react/details'
 import Button from '@govuk-react/button'
 import Link from '@govuk-react/link'
+import PropTypes from 'prop-types'
 import { SummaryTable, FormActions, DateUtils } from 'data-hub-components'
 
 import Task from '../../../../../client/components/Task'
@@ -10,7 +11,7 @@ import { state2props } from './state'
 
 import { REFERRAL_DETAILS } from '../../../../../client/actions'
 
-const AdviserDetails = ({ name, email, team }) => (
+export const AdviserDetails = ({ name, email, team }) => (
   <>
     {name}
     {email && (
@@ -21,6 +22,12 @@ const AdviserDetails = ({ name, email, team }) => (
     {team && <>, {team}</>}
   </>
 )
+
+AdviserDetails.propTypes = {
+  name: PropTypes.string,
+  email: PropTypes.string,
+  team: PropTypes.string,
+}
 
 export default connect(state2props)(
   ({
