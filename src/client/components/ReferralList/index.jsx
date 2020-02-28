@@ -18,12 +18,12 @@ const StyledItemSpacer = styled.div({
   },
 })
 
-const ReferralList = ({ items }) => (
+const ReferralList = ({ referrals }) => (
   <div>
-    <H3>{pluralize('Referral', items.length, true)}</H3>
+    <H3>{pluralize('Referral', referrals.length, true)}</H3>
     <SectionBreak visible={true} />
     <StyledItemSpacer>
-      {items.map(({ id, ...referral }) => (
+      {referrals.map(({ id, ...referral }) => (
         <Referral key={id} id={id} {...referral} />
       ))}
     </StyledItemSpacer>
@@ -31,14 +31,14 @@ const ReferralList = ({ items }) => (
 )
 
 ReferralList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape(ReferralList.propTypes)),
+  referrals: PropTypes.arrayOf(PropTypes.shape(ReferralList.propTypes)),
 }
 
 export default multiInstance({
-  componentStateToProps: (state) => ({ items: state }),
+  componentStateToProps: (state) => ({ referrals: state }),
   name: 'ReferralList',
   reducer,
-  component: ({ id, items }) => (
+  component: ({ id, referrals }) => (
     <Task.Status
       name="Referrals"
       id={id}
@@ -47,7 +47,7 @@ export default multiInstance({
         onSuccessDispatch: REFFERAL_LIST__LOADED,
       }}
     >
-      {() => items && <ReferralList items={items} />}
+      {() => referrals && <ReferralList referrals={referrals} />}
     </Task.Status>
   ),
 })
