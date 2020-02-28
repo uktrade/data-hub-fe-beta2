@@ -1,29 +1,35 @@
+import axios from 'axios'
+
+const handleError = (e) => Promise.reject(Error(e.response.data.detail))
+
+const convertAdviser = ({ name, contact_email, dit_team }) => ({
+  name,
+  email: contact_email,
+  team: dit_team?.name,
+})
+
 export default () =>
-  new Promise((resolve) =>
-    setTimeout(resolve, 1000, [
-      {
-        id: '1234',
-        title: 'Andy to Lou',
-        companyName: 'Google',
-        date: '1979-11-18',
-        sendingAdviser: {
-          name: 'Andy Pipkin',
-        },
-        receivingAdviser: {
-          name: 'Lou Todd',
-        },
-      },
-      {
-        id: '1234',
-        title: 'Lou to Andy',
-        companyName: 'Amazon',
-        date: '1979-11-18',
-        sendingAdviser: {
-          name: 'Lou Todd',
-        },
-        receivingAdviser: {
-          name: 'Andy Pipkin',
-        },
-      },
-    ])
-  )
+  axios
+    .get('/api-proxy/v4/company-referral')
+    .catch(handleError)
+    .then(({ data: { results } }) =>
+      results.map(
+        ({
+          id,
+          subject,
+          company,
+          status,
+          created_by,
+          recipient,
+          created_on,
+        }) => ({
+          id,
+          status,
+          subject,
+          companyName: company.name,
+          date: created_on,
+          sender: convertAdviser(created_by),
+          recipient: convertAdviser(recipient),
+        })
+      )
+    )

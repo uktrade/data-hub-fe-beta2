@@ -1,7 +1,8 @@
+import { capitalize } from 'lodash'
 import React from 'react'
 import { H3, Link } from 'govuk-react'
 import { SPACING } from '@govuk-react/constants'
-import * as colors from 'govuk-colours'
+import * as colours from 'govuk-colours'
 import PropTypes from 'prop-types'
 import { SummaryList, Badge, DateUtils } from 'data-hub-components'
 import styled from 'styled-components'
@@ -11,11 +12,12 @@ import urls from '../../../lib/urls'
 import { AdviserDetails } from '../../../apps/referrals/apps/details/client/ReferralDetails'
 
 const STATUS_COLOURS = {
-  outstanding: colors.BLUE,
+  outstanding: colours.BLUE,
+  completed: colours.GREEN,
 }
 
 const StyledRoot = styled.div({
-  border: `1px solid ${colors.GREY_2}`,
+  border: `1px solid ${colours.GREY_2}`,
 })
 const StyledRow = styled.div({
   display: 'flex',
@@ -27,7 +29,7 @@ const StyledSummaryListWrapper = styled.div({
   flexGrow: 1,
 })
 const StyledHeader = styled.div({
-  background: colors.GREY_4,
+  background: colours.GREY_4,
   padding: SPACING.SCALE_2,
 })
 const StyledLink = styled(Link)({
@@ -40,17 +42,17 @@ const StyledH3 = styled(H3)({
 const Referral = ({
   id,
   companyName,
-  title,
+  subject,
   date,
-  sendingAdviser,
-  receivingAdviser,
+  sender,
+  recipient,
   status,
 }) => (
   <StyledRoot>
     <StyledHeader>{companyName}</StyledHeader>
     <StyledRow>
       <StyledH3>
-        <StyledLink href={urls.referrals.details(id)}>{title}</StyledLink>
+        <StyledLink href={urls.referrals.details(id)}>{subject}</StyledLink>
       </StyledH3>
       <div>{DateUtils.format(date)}</div>
     </StyledRow>
@@ -61,17 +63,17 @@ const Referral = ({
           rows={[
             {
               label: 'Sending adviser(s)',
-              value: <AdviserDetails {...sendingAdviser} />,
+              value: <AdviserDetails {...sender} />,
             },
             {
               label: 'Receiving adviser(s)',
-              value: <AdviserDetails {...receivingAdviser} />,
+              value: <AdviserDetails {...recipient} />,
             },
           ]}
         />
       </StyledSummaryListWrapper>
       <Badge borderColour={STATUS_COLOURS[status]}>
-        {status.toUpperCase()}
+        {capitalize(status)} referral
       </Badge>
     </StyledRow>
   </StyledRoot>
@@ -79,12 +81,12 @@ const Referral = ({
 
 Referral.propTypes = {
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  subject: PropTypes.string.isRequired,
   companyName: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  sendingAdviser: PropTypes.shape(AdviserDetails.propTypes).isRequired,
-  receivingAdviser: PropTypes.shape(AdviserDetails.propTypes).isRequired,
-  status: PropTypes.oneOf(['outstanding']),
+  sender: PropTypes.shape(AdviserDetails.propTypes).isRequired,
+  recipient: PropTypes.shape(AdviserDetails.propTypes).isRequired,
+  status: PropTypes.oneOf(['outstanding', 'completed']),
 }
 
 export default Referral
