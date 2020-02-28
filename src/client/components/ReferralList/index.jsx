@@ -39,18 +39,15 @@ export default multiInstance({
   name: 'ReferralList',
   reducer,
   component: ({ id, items }) => (
-    console.log('items', items),
-    (
-      <Task.Status
-        name="Referrals"
-        id={id}
-        progressMessage="Loading referrals"
-        startOnRender={{
-          onSuccessDispatch: REFFERAL_LIST__LOADED,
-        }}
-      >
-        {() => items && <ReferralList items={items} />}
-      </Task.Status>
-    )
+    <Task.Status
+      name="Referrals"
+      id={id}
+      progressMessage="Loading referrals"
+      startOnRender={{
+        onSuccessDispatch: REFFERAL_LIST__LOADED,
+      }}
+    >
+      {() => items && <ReferralList items={items} />}
+    </Task.Status>
   ),
 })
