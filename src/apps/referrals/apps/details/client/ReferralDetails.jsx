@@ -24,7 +24,7 @@ export const AdviserDetails = ({ name, email, team }) => (
 )
 
 AdviserDetails.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   email: PropTypes.string,
   team: PropTypes.string,
 }
