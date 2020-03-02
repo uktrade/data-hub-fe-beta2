@@ -2,7 +2,7 @@ import { capitalize } from 'lodash'
 import React from 'react'
 import { H3, Link } from 'govuk-react'
 import { SPACING } from '@govuk-react/constants'
-import * as colours from 'govuk-colours'
+import { BLUE, GREEN, GREY_2, GREY_4 } from 'govuk-colours'
 import PropTypes from 'prop-types'
 import { SummaryList, Badge, DateUtils } from 'data-hub-components'
 import styled from 'styled-components'
@@ -12,12 +12,12 @@ import urls from '../../../lib/urls'
 import { AdviserDetails } from '../../../apps/referrals/apps/details/client/ReferralDetails'
 
 const STATUS_COLOURS = {
-  outstanding: colours.BLUE,
-  completed: colours.GREEN,
+  outstanding: BLUE,
+  completed: GREEN,
 }
 
 const StyledRoot = styled.div({
-  border: `1px solid ${colours.GREY_2}`,
+  border: `1px solid ${GREY_2}`,
 })
 const StyledRow = styled.div({
   display: 'flex',
@@ -29,7 +29,7 @@ const StyledSummaryListWrapper = styled.div({
   flexGrow: 1,
 })
 const StyledHeader = styled.div({
-  background: colours.GREY_4,
+  background: GREY_4,
   padding: SPACING.SCALE_2,
 })
 const StyledLink = styled(Link)({
