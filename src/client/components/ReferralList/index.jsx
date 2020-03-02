@@ -3,7 +3,6 @@ import { SectionBreak, H3 } from 'govuk-react'
 import { SPACING } from '@govuk-react/constants'
 import PropTypes from 'prop-types'
 import pluralize from 'pluralize'
-import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import Task from '../Task'
