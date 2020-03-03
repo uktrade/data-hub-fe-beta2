@@ -30,7 +30,7 @@ const ReferralList = ({ referrals }) => (
 )
 
 ReferralList.propTypes = {
-  referrals: PropTypes.arrayOf(PropTypes.shape(ReferralList.propTypes)),
+  referrals: PropTypes.arrayOf(PropTypes.shape(Referral.propTypes)),
 }
 
 export default multiInstance({
