@@ -16,6 +16,7 @@ import Header from './Header'
 import ListHeader from './ListHeader'
 import Table from './Table'
 import { state2props } from './state'
+import ReferralList from '../ReferralList'
 
 const StyledSectionBreak = styled(SectionBreak)({
   marginBottom: SPACING.SCALE_3,
@@ -70,7 +71,7 @@ const CompanyList = connect((state) => {
   </div>
 ))
 
-export default connect(state2props)(({ lists }) =>
+const MyCompanies = connect(state2props)(({ lists }) =>
   lists ? (
     <>
       <Header />
@@ -94,4 +95,23 @@ export default connect(state2props)(({ lists }) =>
       startOnRender={{ onSuccessDispatch: COMPANY_LISTS__LISTS_LOADED }}
     />
   )
+)
+
+import TabNav from '../TabNav'
+
+export default () => (
+  <TabNav
+    id="homepage"
+    selectedIndex={0}
+    tabs={[
+      {
+        label: 'My companies lists',
+        content: <MyCompanies />,
+      },
+      {
+        label: 'My Referrals',
+        content: <ReferralList id="foo" />,
+      },
+    ]}
+  />
 )
