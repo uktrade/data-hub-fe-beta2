@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { get } from 'lodash'
+import { get, throttle } from 'lodash'
 
 import {
   FieldInput,
+  FieldTextarea,
+  FieldTypeahead,
   FormActions,
   Form,
   Step,
@@ -12,7 +14,6 @@ import {
 } from 'data-hub-components'
 import { Button, H4, Link } from 'govuk-react'
 
-import SendReferralConfirmation from './SendReferralConfirmation.jsx'
 import {
   FORM_FIELD_CHANGE,
   FORM_FIELD_SET_VALUE,
@@ -31,12 +32,14 @@ import {
 } from '../../../../../client/actions'
 import SecondaryButton from '../../../../../client/components/SecondaryButton'
 import styled from 'styled-components'
+import axios from 'axios'
+import ValidatedInput from '../../../../../client/components/ValidatedInput'
 
 const StyledParagraph = styled('p')`
   font-size: 16px;
 `
 
-const SendReferralForm = ({
+const SendReferralForm2 = ({
   companyName,
   companyId,
   csrfToken,
@@ -59,11 +62,12 @@ const SendReferralForm = ({
     <Form {...props}>
       <Step name="referral_details" backButton={null} forwardButton={null}>
         <H4>Who do you want to send this referral to?</H4>
-        <FieldInput
-          type="text"
+
+        <FieldTypeahead
           label="Adviser"
           name="adviser"
           required="Select an adviser for the referral"
+          placeholder="Search for an adviser"
           hint={
             <>
               This can be a person in Post, a sector team or an ITA. If you are
@@ -74,6 +78,25 @@ const SendReferralForm = ({
               .
             </>
           }
+          loadOptions={throttle(
+            (searchString) =>
+              axios
+                .get('/api-proxy/adviser/', {
+                  params: {
+                    autocomplete: searchString,
+                    permission__has: 'company_referral.change_companyreferral',
+                  },
+                })
+                .then(({ data: { results } }) =>
+                  results
+                    .filter((adviser) => adviser?.name.trim().length)
+                    .map(({ id, name, dit_team }) => ({
+                      label: `${name}${dit_team ? ', ' + dit_team.name : ''}`,
+                      value: id,
+                    }))
+                ),
+            500
+          )}
         />
 
         <H4>What is this referral or introduction about?</H4>
@@ -82,20 +105,30 @@ const SendReferralForm = ({
           label="Subject"
           name="subject"
           required="Enter a subject for the referral"
+          validate={(value) =>
+            value.length &&
+            value.length > 255 &&
+            'Subject must be 255 characters or less'
+          }
         />
 
-        <FieldInput
-          type="text"
-          label="Notes"
+        <FieldTextarea
+          label="Notes (optional)"
           hint="For example the details of previous conversations with the company, or a description of the purpose or opportunity this referral is about"
           name="notes"
         />
 
-        <FieldInput
-          type="text"
+        <FieldTypeahead
           label="Company contact (optional)"
-          hint="Should the person you're referring the company to get in contact with anyone in particular"
           name="contact"
+          hint="Should the person you're referring the company to get in contact with anyone in particular"
+          placeholder="Select a contact"
+          options={companyContacts.map((contact) => ({
+            label: contact.name,
+            value: contact.id,
+          }))}
+          isMulti={false}
+          isClearable={true}
         />
 
         <FormActions>
@@ -109,14 +142,14 @@ const SendReferralForm = ({
           <>
             <SummaryTable caption="Check referral details">
               <SummaryTable.Row heading="Send this company record to">
-                {props.values.adviser}
+                {props.values.adviser?.label}
               </SummaryTable.Row>
               <SummaryTable.Row heading="Subject">{subject}</SummaryTable.Row>
               <SummaryTable.Row heading="Notes">
                 {props.values.notes || 'No notes added'}
               </SummaryTable.Row>
               <SummaryTable.Row heading="Company contact">
-                {props.values.contact || 'No contact added'}
+                {props.values.contact?.label || 'No contact added'}
               </SummaryTable.Row>
             </SummaryTable>
             <SecondaryButton onClick={props.goBack}>
@@ -153,7 +186,7 @@ const SendReferralForm = ({
   )
 }
 
-SendReferralForm.propTypes = {
+SendReferralForm2.propTypes = {
   companyContacts: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -233,10 +266,4 @@ export default connect(
       })
     },
   })
-)(({ confirm, ...props }) =>
-  confirm ? (
-    <SendReferralConfirmation {...props} />
-  ) : (
-    <SendReferralForm {...props} />
-  )
-)
+)(SendReferralForm2)
