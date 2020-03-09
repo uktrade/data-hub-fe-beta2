@@ -15,25 +15,18 @@ import {
 import { Button, H4, Link } from 'govuk-react'
 
 import {
-  FORM_FIELD_CHANGE,
   FORM_FIELD_SET_VALUE,
   FORM_FIELD_TOUCHED,
-  FORM_FIELD_BLUR,
-  FORM_FIELD_FOCUS,
   FORM_FIELD_REGISTER,
   FORM_FIELD_DEREGISTER,
-  FORM_FIELD_ERROR,
-  FORM_VALIDATE,
   FORM_FORWARD,
   FORM_BACK,
-  FORM_SUBMIT,
   FORM_STEP_REGISTER,
   FORM_STEP_DEREGISTER,
 } from '../../../../../client/actions'
 import SecondaryButton from '../../../../../client/components/SecondaryButton'
 import styled from 'styled-components'
 import axios from 'axios'
-import ValidatedInput from '../../../../../client/components/ValidatedInput'
 
 const StyledParagraph = styled('p')`
   font-size: 16px;
@@ -196,74 +189,73 @@ SendReferralForm2.propTypes = {
   cancelUrl: PropTypes.string.isRequired,
 }
 
-export default connect(
-  (state) => ({
-    ...state.sendReferral2,
-    getStepIndex: (stepName) => {
-      const index = state.sendReferral2.steps.indexOf(stepName)
-      return index !== -1 ? index : null
-    },
-    isFirstStep: () => state.sendReferral2.currentStep === 0,
-    isLastStep: () =>
-      state.sendReferral2.currentStep ===
-        state.sendReferral2.steps.length - 1 ||
-      state.sendReferral2.steps.length === 0,
-    getFieldState: (fieldName) => {
-      const fieldState = {
-        value: get(state, `sendReferral2.values[${fieldName}]`, ''),
-        touched: get(state, `sendReferral2.touched[${fieldName}]`, false),
-        error: get(state, `sendReferral2.errors[${fieldName}]`, undefined),
-      }
-      return fieldState
-    },
+const withFormState = (state) => ({
+  ...state,
+  getStepIndex: (stepName) => {
+    const index = state.steps.indexOf(stepName)
+    return index !== -1 ? index : null
+  },
+  isFirstStep: () => state.currentStep === 0,
+  isLastStep: () =>
+    state.currentStep === state.steps.length - 1 || state.steps.length === 0,
+  getFieldState: (fieldName) => ({
+    value: get(state, `values[${fieldName}]`, ''),
+    touched: get(state, `touched[${fieldName}]`, false),
+    error: get(state, `errors[${fieldName}]`, undefined),
   }),
-  (dispatch) => ({
-    registerField: (field) => {
-      dispatch({
-        type: FORM_FIELD_REGISTER,
-        field,
-      })
-    },
-    deregisterField: (fieldName) => {
-      dispatch({
-        type: FORM_FIELD_DEREGISTER,
-        fieldName,
-      })
-    },
-    setFieldValue: (fieldName, fieldValue) => {
-      dispatch({
-        type: FORM_FIELD_SET_VALUE,
-        fieldName,
-        fieldValue,
-      })
-    },
-    setFieldTouched: (fieldName) => {
-      dispatch({
-        type: FORM_FIELD_TOUCHED,
-        fieldName,
-      })
-    },
-    goForward: () => {
-      dispatch({
-        type: FORM_FORWARD,
-      })
-    },
-    goBack: () => {
-      dispatch({
-        type: FORM_BACK,
-      })
-    },
-    registerStep: (stepName) => {
-      dispatch({
-        type: FORM_STEP_REGISTER,
-        stepName,
-      })
-    },
-    deregisterStep: (stepName) => {
-      dispatch({
-        type: FORM_STEP_DEREGISTER,
-        stepName,
-      })
-    },
-  })
+})
+
+const withFormDispatchers = (dispatch) => ({
+  registerField: (field) => {
+    dispatch({
+      type: FORM_FIELD_REGISTER,
+      field,
+    })
+  },
+  deregisterField: (fieldName) => {
+    dispatch({
+      type: FORM_FIELD_DEREGISTER,
+      fieldName,
+    })
+  },
+  setFieldValue: (fieldName, fieldValue) => {
+    dispatch({
+      type: FORM_FIELD_SET_VALUE,
+      fieldName,
+      fieldValue,
+    })
+  },
+  setFieldTouched: (fieldName) => {
+    dispatch({
+      type: FORM_FIELD_TOUCHED,
+      fieldName,
+    })
+  },
+  goForward: () => {
+    dispatch({
+      type: FORM_FORWARD,
+    })
+  },
+  goBack: () => {
+    dispatch({
+      type: FORM_BACK,
+    })
+  },
+  registerStep: (stepName) => {
+    dispatch({
+      type: FORM_STEP_REGISTER,
+      stepName,
+    })
+  },
+  deregisterStep: (stepName) => {
+    dispatch({
+      type: FORM_STEP_DEREGISTER,
+      stepName,
+    })
+  },
+})
+
+export default connect(
+  (state) => withFormState(state.sendReferral2),
+  (dispatch) => withFormDispatchers(dispatch)
 )(SendReferralForm2)
