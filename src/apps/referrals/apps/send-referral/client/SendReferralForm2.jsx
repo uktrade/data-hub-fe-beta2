@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { get, throttle } from 'lodash'
+import { throttle } from 'lodash'
 
 import {
   FieldInput,
@@ -199,9 +199,9 @@ const withFormState = (state) => ({
   isLastStep: () =>
     state.currentStep === state.steps.length - 1 || state.steps.length === 0,
   getFieldState: (fieldName) => ({
-    value: get(state, `values[${fieldName}]`, ''),
-    touched: get(state, `touched[${fieldName}]`, false),
-    error: get(state, `errors[${fieldName}]`, undefined),
+    value: state.values?.[fieldName] ?? '',
+    touched: state.touched?.[fieldName] ?? false,
+    error: state.errors?.[fieldName],
   }),
 })
 
