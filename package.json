@@ -78,7 +78,7 @@
     "core-js": "^2.5.7",
     "css-loader": "^1.0.0",
     "csurf": "^1.9.0",
-    "data-hub-components": "^3.11.4",
+    "data-hub-components": "file:.yalc/data-hub-components",
     "date-fns": "^1.29.0",
     "del-cli": "^2.0.0",
     "dotenv": "^5.0.0",

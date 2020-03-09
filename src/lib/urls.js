@@ -210,6 +210,8 @@ module.exports = {
   support: url('/support'),
   referrals: {
     index: url('/referrals'),
+    send: url('/referrals', '/:companyId/send'),
+    send2: url('/referrals', '/:companyId/send2'),
     details: url('/referrals', '/:referralId'),
     help: url('/referrals', '/:referralId/help'),
   },

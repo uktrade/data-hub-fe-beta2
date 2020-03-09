@@ -26,7 +26,9 @@ import ReferralDetails from '../apps/referrals/apps/details/client/ReferralDetai
 import ReferralHelp from '../apps/referrals/apps/help/client/ReferralHelp'
 import ValidatedInput from './components/ValidatedInput'
 import SendReferralForm from '../apps/referrals/apps/send-referral/client/SendReferralForm'
+import SendReferralForm2 from '../apps/referrals/apps/send-referral/client/SendReferralForm2'
 import sendReferral from '../apps/referrals/apps/send-referral/client/reducer'
+import sendReferral2 from '../apps/referrals/apps/send-referral/client/reducer2'
 import ExportsHistory from '../apps/companies/apps/exports/client/ExportsHistory'
 
 import tasksSaga from './components/Task/saga'
@@ -60,6 +62,7 @@ const store = createStore(
   combineReducers({
     tasks,
     sendReferral,
+    sendReferral2,
     [COMPANY_LISTS_STATE_ID]: companyListsReducer,
     [EXPORTS_HISTORY_ID]: exportsHistoryReducer,
     [REFERRALS_DETAILS_STATE_ID]: referralsReducer,
@@ -177,6 +180,11 @@ function App() {
       <Mount selector="#send-referral-form">
         {(props) => (
           <SendReferralForm {...props} csrfToken={globalProps.csrfToken} />
+        )}
+      </Mount>
+      <Mount selector="#send-referral-form2">
+        {(props) => (
+          <SendReferralForm2 {...props} csrfToken={globalProps.csrfToken} />
         )}
       </Mount>
       <Mount selector="#company-export-full-history">

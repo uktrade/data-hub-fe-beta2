@@ -1,0 +1,10 @@
+{% extends "_layouts/template.njk" %}
+
+{% block body_main_content %}
+
+  {% component 'react-slot', {
+    id: 'send-referral-form2',
+    props: props
+  } %}
+
+{% endblock %}

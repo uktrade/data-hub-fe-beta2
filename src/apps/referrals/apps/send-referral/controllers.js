@@ -14,7 +14,29 @@ function renderSendReferralForm(req, res) {
   res
     .breadcrumb(name, `/companies/${id}`)
     .breadcrumb('Send a referral')
-    .render('referrals/apps/send-referral/views/client-container.njk', {
+    .render('referrals/apps/send-referral/views/client-container', {
+      heading: 'Send a referral',
+      props: {
+        companyContacts,
+        companyName: name,
+        companyId: id,
+        cancelUrl: urls.companies.detail(id),
+      },
+    })
+}
+
+function renderSendReferralForm2(req, res) {
+  const {
+    company: { contacts, name, id },
+  } = res.locals
+  const companyContacts = contacts.map(({ first_name, last_name, id }) => ({
+    name: `${first_name} ${last_name}`,
+    id: id,
+  }))
+  res
+    .breadcrumb(name, `/companies/${id}`)
+    .breadcrumb('Send a referral')
+    .render('referrals/apps/send-referral/views/client-container2', {
       heading: 'Send a referral',
       props: {
         companyContacts,
@@ -43,4 +65,4 @@ async function submitSendReferralForm(req, res, next) {
   }
 }
 
-module.exports = { renderSendReferralForm, submitSendReferralForm }
+module.exports = { renderSendReferralForm, submitSendReferralForm, renderSendReferralForm2 }
