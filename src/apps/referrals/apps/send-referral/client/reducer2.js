@@ -10,8 +10,6 @@ import {
 } from '../../../../../client/actions'
 import { isEmpty, omit } from 'lodash'
 
-const isFirstStep = ({ currentStep }) => currentStep === 0
-
 const isLastStep = ({ currentStep, steps }) =>
   currentStep === steps.length - 1 || steps.length === 0
 
@@ -98,7 +96,6 @@ export default (state = {}, { type, errors, ...action }) => {
           values: omit(state.values, action.fieldName),
         }
       }
-
       return {
         ...state,
         values: {
@@ -120,7 +117,6 @@ export default (state = {}, { type, errors, ...action }) => {
         ...state,
         errors,
         touched,
-        isLastStep: isLastStep(state),
         currentStep:
           !isLastStep(state) && isEmpty(errors)
             ? state.currentStep + 1
