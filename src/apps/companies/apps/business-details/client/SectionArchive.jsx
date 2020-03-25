@@ -1,19 +1,12 @@
+import { omit } from 'lodash'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { BLACK, GREY_3 } from 'govuk-colours'
 import Button from '@govuk-react/button'
-import { ButtonLink } from '../../../../../client/components/'
 import { typography } from '@govuk-react/lib'
 import { SPACING } from '@govuk-react/constants'
 import axios from 'axios'
-
-import {
-  FormStateful,
-  FormActions,
-  FieldRadios,
-  FieldInput,
-} from '../../../../../client/components'
 
 const StyledSectionHeader = styled('div')`
   ${typography.font({ size: 24, weight: 'bold' })};
@@ -22,18 +15,20 @@ const StyledSectionHeader = styled('div')`
 
 const SectionArchive = ({ isArchived, isDnbCompany, urls }) => {
   const [formIsOpen, setFormIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   if (isArchived || isDnbCompany) {
     return null
   }
 
   const archiveSubmitCallback = async (values) => {
+    setIsLoading(true)
     await axios({
       method: 'POST',
       url: urls.companyArchive,
       data: values,
     })
-    return urls.companyBusinessDetails
+    window.location.href = urls.companyBusinessDetails
   }
 
   return (
@@ -43,30 +38,47 @@ const SectionArchive = ({ isArchived, isDnbCompany, urls }) => {
       <p>Archive this company if it is no longer required or active.</p>
 
       {formIsOpen && (
-        <FormStateful onSubmit={archiveSubmitCallback} scrollToTop={false}>
-          <FieldRadios
-            label="Archive reason"
-            name="archived_reason"
-            required="Select a reason"
-            options={[
-              { label: 'Company is dissolved', value: 'Company is dissolved' },
-              {
-                label: 'Other',
-                value: 'Other',
-                children: (
-                  <FieldInput label="Other" name="archived_reason_other" />
-                ),
-              },
+        <LoadingBox loading={isLoading}>
+          <ValidatedForm
+            id="business-details"
+            submitLabel="Archive"
+            secondaryActions={[
+              { children: 'Cancel', onClick: () => setFormIsOpen(false) },
             ]}
-          />
-
-          <FormActions>
-            <Button>Archive</Button>
-            <ButtonLink onClick={() => setFormIsOpen(false)}>Cancel</ButtonLink>
-          </FormActions>
-        </FormStateful>
+            onSubmit={(e, values) => {
+              e.preventDefault()
+              archiveSubmitCallback(values)
+            }}
+            validators={{
+              archived_reason: (x) => !x && 'Select a reason',
+              archived_reason_other: (x, { archived_reason }) =>
+                archived_reason === 'Other' && !x
+                  ? 'Describe the other reason'
+                  : false,
+            }}
+          >
+            {({ getField }) => (
+              <RadioField
+                {...getField('archived_reason')}
+                options={{
+                  'Company is dissolved': {
+                    value: 'Company is dissolved',
+                  },
+                  Other: {
+                    value: 'Other',
+                    inset: (
+                      <InputField
+                        label="Other"
+                        {...omit(getField('archived_reason_other'), 'onChange')}
+                      />
+                    ),
+                  },
+                }}
+              />
+            )}
+          </ValidatedForm>
+        </LoadingBox>
       )}
-
       {!formIsOpen && (
         <Button
           onClick={() => setFormIsOpen(true)}
