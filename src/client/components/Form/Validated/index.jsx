@@ -4,9 +4,12 @@ import Button from '@govuk-react/button'
 import ErrorSummary from '@govuk-react/error-summary'
 import styled from 'styled-components'
 
-import { VALIDATED_FORM__VALIDATE } from '../../actions'
-import SecondaryButton from '../SecondaryButton'
-import multiInstance from '../../utils/multiinstance'
+import {
+  VALIDATED_FORM__VALIDATE,
+  VALIDATED_FORM__FIELD_CHANGE,
+} from '../../../actions'
+import SecondaryButton from '../../SecondaryButton'
+import multiInstance from '../../../utils/multiinstance'
 
 import reducer from './reducer'
 
@@ -25,6 +28,7 @@ const ValidatedForm = ({
   errors = {},
   values = {},
   onSubmit,
+  onFieldChange,
   ...props
 }) => {
   const ref = useRef()
@@ -35,9 +39,13 @@ const ValidatedForm = ({
       onSubmit={(e) => {
         const formDataEntries = new FormData(e.target).entries()
         const values = Object.fromEntries(formDataEntries)
-        const errors = Object.entries(values).reduce((a, [name, value]) => {
-          const error = validators[name]?.(value)
-          return name in values && error ? { ...a, [name]: error } : a
+        const combined = { ...validators, ...values }
+        const errors = Object.entries(combined).reduce((a, [name, value]) => {
+          const error = validators[name]?.(
+            typeof value === 'function' ? undefined : value,
+            values
+          )
+          return name in combined && error ? { ...a, [name]: error } : a
         }, {})
 
         validate({ values, errors })
@@ -71,6 +79,7 @@ const ValidatedForm = ({
           key: name,
           error: errors[name],
           defaultValue: values[name],
+          onChange: (e) => onFieldChange(name, e.target.value),
         }),
       })}
       <FormActions>
@@ -99,6 +108,12 @@ export default multiInstance({
       dispatch({
         type: VALIDATED_FORM__VALIDATE,
         ...payload,
+      }),
+    onFieldChange: (name, value) =>
+      dispatch({
+        type: VALIDATED_FORM__FIELD_CHANGE,
+        name,
+        value,
       }),
   }),
 })
