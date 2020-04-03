@@ -10,7 +10,7 @@ export default (state = {}, { type, focusIndex, selectedIndex }) => {
     case TAB_NAV__SELECT:
       return {
         selectedIndex,
-        focusIndex: selectedIndex,
+        focusIndex,
       }
     default:
       return state

@@ -82,31 +82,31 @@ const TabNav = ({
       role="tablist"
       aria-label={label}
       onKeyUp={({ keyCode }) => {
-        const currentFocusIndex =
-          (focusIndex === undefined ? selectedIndex : focusIndex) || 0
+        const totalTabs = Object.keys(tabs).length
+        const currentFocusIndex = focusIndex || 0
 
         if (keyCode === RIGHT_ARROW_KEY) {
-          onFocusChange((currentFocusIndex + 1) % tabs.length)
+          onFocusChange((currentFocusIndex + 1) % totalTabs)
         }
 
         if (keyCode === LEFT_ARROW_KEY) {
           onFocusChange(
-            ((currentFocusIndex < 1 ? tabs.length : currentFocusIndex) - 1) %
-              tabs.length
+            ((currentFocusIndex < 1 ? totalTabs : currentFocusIndex) - 1) %
+              totalTabs
           )
         }
       }}
     >
-      {tabs.map(({ label }, index) => {
-        const selected = index === selectedIndex
+      {Object.entries(tabs).map(([key, { label }], index) => {
+        const selected = key == selectedIndex
         const Button = selected ? StyledSelectedButton : StyledButton
         return (
           <Button
-            key={index}
+            key={key}
             role="tab"
             focused={index === focusIndex}
             aria-selected={selected}
-            id={createId(id, index)}
+            id={createId(id, key)}
             tabIndex={
               // If no tab is selected...
               selectedIndex === undefined && !index
@@ -117,9 +117,9 @@ const TabNav = ({
                 ? 0
                 : -1
             }
-            onClick={() => onChange(index)}
+            onClick={() => selected || onChange(key, index)}
           >
-            {label}
+            {label} {key}
           </Button>
         )
       })}
@@ -134,23 +134,28 @@ const TabNav = ({
   </div>
 )
 
+const tabPropType = PropTypes.shape({
+  label: PropTypes.node.isRequired,
+  content: PropTypes.node,
+})
+
 TabNav.propTypes = {
   label: PropTypes.string.isRequired,
-  tabs: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.node.isRequired,
-      content: PropTypes.node,
-    })
-  ).isRequired,
+  routed: PropTypes.any,
+  tabs: PropTypes.oneOfType([
+    PropTypes.arrayOf(tabPropType),
+    PropTypes.objectOf(tabPropType),
+  ]).isRequired,
 }
 
 export default multiInstance({
   name: 'TabNav',
   dispatchToProps: (dispatch) => ({
-    onChange: (selectedIndex) =>
+    onChange: (selectedIndex, focusIndex) =>
       dispatch({
         type: TAB_NAV__SELECT,
         selectedIndex,
+        focusIndex,
       }),
     onFocusChange: (focusIndex) =>
       dispatch({
