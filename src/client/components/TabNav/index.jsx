@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 import { GREY_4, TEXT_COLOUR, BORDER_COLOUR, FOCUS_COLOUR } from 'govuk-colours'
 
@@ -70,6 +71,7 @@ const TabNav = ({
   onChange,
   onFocusChange,
   id,
+  routed,
   // We are only destructuring dispatch from the props so that <div> won't
   // complain about it being an unexpected prop.
   // eslint-disable-next-line no-unused-vars
@@ -77,60 +79,75 @@ const TabNav = ({
   ...props
 }) => (
   <div {...props}>
-    <StyledTablist
-      tabindex={0}
-      role="tablist"
-      aria-label={label}
-      onKeyUp={({ keyCode }) => {
-        const totalTabs = Object.keys(tabs).length
-        const currentFocusIndex = focusIndex || 0
+    <Route>
+      {({ location: { pathname }, history }) => {
+        selectedIndex = routed ? pathname.replace(/^\//, '') : selectedIndex
 
-        if (keyCode === RIGHT_ARROW_KEY) {
-          onFocusChange((currentFocusIndex + 1) % totalTabs)
-        }
-
-        if (keyCode === LEFT_ARROW_KEY) {
-          onFocusChange(
-            ((currentFocusIndex < 1 ? totalTabs : currentFocusIndex) - 1) %
-              totalTabs
-          )
-        }
-      }}
-    >
-      {Object.entries(tabs).map(([key, { label }], index) => {
-        const selected = key == selectedIndex
-        const Button = selected ? StyledSelectedButton : StyledButton
         return (
-          <Button
-            key={key}
-            role="tab"
-            focused={index === focusIndex}
-            aria-selected={selected}
-            id={createId(id, key)}
-            tabIndex={
-              // If no tab is selected...
-              selectedIndex === undefined && !index
-                ? // ...only the first tab participates in the tabindex
-                  0
-                : // Otherwise, only the selected tab participates in tabindex
-                selected
-                ? 0
-                : -1
-            }
-            onClick={() => selected || onChange(key, index)}
-          >
-            {label} {key}
-          </Button>
+          <>
+            <StyledTablist
+              tabindex={0}
+              role="tablist"
+              aria-label={label}
+              onKeyUp={({ keyCode }) => {
+                const totalTabs = Object.keys(tabs).length
+                const currentFocusIndex = focusIndex || 0
+
+                if (keyCode === RIGHT_ARROW_KEY) {
+                  onFocusChange((currentFocusIndex + 1) % totalTabs)
+                }
+
+                if (keyCode === LEFT_ARROW_KEY) {
+                  onFocusChange(
+                    ((currentFocusIndex < 1 ? totalTabs : currentFocusIndex) -
+                      1) %
+                      totalTabs
+                  )
+                }
+              }}
+            >
+              {Object.entries(tabs).map(([key, { label }], index) => {
+                const selected = key == selectedIndex
+                const Button = selected ? StyledSelectedButton : StyledButton
+                return (
+                  <Button
+                    key={key}
+                    role="tab"
+                    focused={index === focusIndex}
+                    aria-selected={selected}
+                    id={createId(id, key)}
+                    tabIndex={
+                      // If no tab is selected...
+                      selectedIndex === undefined && !index
+                        ? // ...only the first tab participates in the tabindex
+                          0
+                        : // Otherwise, only the selected tab participates in tabindex
+                        selected
+                        ? 0
+                        : -1
+                    }
+                    onClick={() =>
+                      selected || routed
+                        ? (history.push('/' + key), onFocusChange(index))
+                        : onChange(key, index)
+                    }
+                  >
+                    {label}
+                  </Button>
+                )
+              })}
+            </StyledTablist>
+            <StyledTabpanel
+              role="tabpanel"
+              tabIndex={0}
+              aria-labelledby={createId(id, selectedIndex)}
+            >
+              {tabs[selectedIndex]?.content}
+            </StyledTabpanel>
+          </>
         )
-      })}
-    </StyledTablist>
-    <StyledTabpanel
-      role="tabpanel"
-      tabIndex={0}
-      aria-labelledby={createId(id, selectedIndex)}
-    >
-      {tabs[selectedIndex]?.content}
-    </StyledTabpanel>
+      }}
+    </Route>
   </div>
 )
 
