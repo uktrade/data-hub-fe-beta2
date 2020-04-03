@@ -25,6 +25,13 @@
 {% endblock %}
 
 {% block head %}
+  {#
+  The base tag is needed for react-router's basename configuration.
+  The basePath is set in the spa-fallback middleware which is applied per route.
+  #}
+  {% if basePath -%}
+    <base href="{{ basePath }}" />
+  {% endif -%}
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="version" content="{{ APP_VERSION }}">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -93,7 +100,6 @@
 {% endblock %}
 
 {% block header %}
-
   {{ datahubHeader( PERMITTED_APPLICATIONS, {
       crmApps: ALLOWED_APPS,
       active: ACTIVE_KEY,
