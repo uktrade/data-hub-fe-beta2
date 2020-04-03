@@ -17,17 +17,17 @@ const Dashboard = ({ id }) => (
     <TabNav
       id={`${id}.TabNav`}
       label="Dashboard"
-      selectedIndex={0}
-      tabs={[
-        {
+      routed={true}
+      tabs={{
+        '': {
           label: 'My companies lists',
           content: <CompanyLists />,
         },
-        {
+        'my-referrals': {
           label: 'My referrals',
           content: <ReferralList id={`${id}:ReferralList`} />,
         },
-      ]}
+      }}
     />
   </StyledDiv>
 )
