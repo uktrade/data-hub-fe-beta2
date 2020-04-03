@@ -15,7 +15,9 @@ services:
     depends_on:
       - api
     env_file: dev-stack.env
-    command: sh -c './wait-for-it.sh api:8000 -t 240 -- yarn develop'
+    # There's a problem with node releasing/allocating port 9229 - so the following
+    # explicitly kills anything using port 9229 and waits for it to be released
+    command: ./wait-for-it.sh api:8000 -t 240 -- ./node_modules/.bin/nodemon --ext jsx,js $NODE_DEBUG_OPTION --delay 80ms --exec 'fuser -k 9229/tcp; sleep 0.1; yarn develop' -L
 
   api:
     build: ../data-hub-api
