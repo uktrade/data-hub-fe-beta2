@@ -1,5 +1,4 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
 import { omit, isEmpty, curry } from 'lodash'
 import * as reactRedux from 'react-redux'
 import PropTypes from 'prop-types'
@@ -169,5 +168,5 @@ export default ({
   )(component)(name)
 
   Connected.reducerSpread = { [name]: reducerDecorator(reducer) }
-  return withRouter(Connected)
+  return Connected
 }
