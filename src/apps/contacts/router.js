@@ -17,9 +17,11 @@ const {
 const {
   setLocalNav,
   setDefaultQuery,
-  redirectToFirstNavItem,
+  // redirectToFirstNavItem,
   handleRoutePermissions,
 } = require('../middleware')
+
+const { renderContacts } = require('./controllers/contacts')
 const { getCommon, getDetails } = require('./controllers/details')
 const { renderContactList } = require('./controllers/list')
 const { postDetails, editDetails } = require('./controllers/edit')
@@ -63,7 +65,8 @@ router.use(
   setLocalNav(LOCAL_NAV)
 )
 
-router.get('/:contactId', redirectToFirstNavItem)
+// router.get('/:contactId', redirectToFirstNavItem)
+router.get('/:contactId', renderContacts)
 router.get('/:contactId/details', getDetails)
 
 router
