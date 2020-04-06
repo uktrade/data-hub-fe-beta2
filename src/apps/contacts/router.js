@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const urls = require('../../lib/urls')
+const { spaFallbackSpread } = require('../../middleware/spa-fallback')
 
 const { ENTITIES } = require('../search/constants')
 const {
@@ -66,7 +67,7 @@ router.use(
 )
 
 // router.get('/:contactId', redirectToFirstNavItem)
-router.get('/:contactId', renderContacts)
+router.get(...spaFallbackSpread('/:contactId'), renderContacts)
 router.get('/:contactId/details', getDetails)
 
 router

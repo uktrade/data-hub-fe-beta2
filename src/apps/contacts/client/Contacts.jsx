@@ -23,25 +23,26 @@ const Contacts = ({ id }) => (
   <TabNav
     id={`${id}.TabNav`}
     label="Contacts"
-    selectedIndex={0}
-    tabs={[
-      {
+    selectedIndex=""
+    routed={true}
+    tabs={{
+      '': {
         label: 'Details',
         content: <Details />,
       },
-      {
+      interactions: {
         label: 'Interactions',
         content: <Interactions />,
       },
-      {
+      'audit-history': {
         label: 'Audit history',
         content: <AuditHistory />,
       },
-      {
+      documents: {
         label: 'Documents',
         content: <Documents />,
       },
-    ]}
+    }}
   />
 )
 
