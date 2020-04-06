@@ -1,6 +1,7 @@
-{% extends "_layouts/two-column.njk" %}
+{% extends "_layouts/template.njk" %}
 
 {% block local_header %}
+
   {% set headingBefore %}
     <a href="/companies/{{ contact.company.id }}">{{ contact.company.name }}</a>
   {% endset %}
@@ -22,6 +23,9 @@
   {% endcall %}
 {% endblock %}
 
-{% block main_grid_left_column %}
-  {{ LocalNav({ items: localNavItems }) }}
+{% block body_main_content %}
+  {% component 'react-slot', {
+    id: 'contacts',
+    props: props
+  } %}
 {% endblock %}
