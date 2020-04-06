@@ -37,6 +37,7 @@ import ReferralHelp from '../apps/companies/apps/referrals/help/client/ReferralH
 import SendReferralForm from '../apps/companies/apps/referrals/send-referral/client/SendReferralForm'
 import sendReferral from '../apps/companies/apps/referrals/send-referral/client/reducer'
 import InteractionReferralDetails from '../apps/companies/apps/referrals/details/client/InteractionReferralDetails.jsx'
+import Contacts from '../apps/contacts/client/Contacts.jsx'
 
 import tasksSaga from './components/Task/saga'
 import tasks from './components/Task/reducer'
@@ -237,6 +238,7 @@ function App() {
         <Mount selector="#company-export-countries-edit">
           {(props) => <ExportCountriesEdit {...props} />}
         </Mount>
+        <Mount selector="#contacts">{(props) => <Contacts {...props} />}</Mount>
       </ConnectedRouter>
     </Provider>
   )
