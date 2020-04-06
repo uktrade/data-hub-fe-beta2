@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import TabNav from '../../../client/components/TabNav/index.jsx'
 import details from './images/details.png'
 import interactions from './images/interactions.png'
-import audit from './images/audit.png'
+import AuditHistory from './components/audit-history/AuditHistory'
 import documents from './images/documents.png'
 
 const Img = styled('img')`
@@ -16,12 +16,11 @@ const Img = styled('img')`
 
 const Details = () => <Img src={details} alt="details" />
 const Interactions = () => <Img src={interactions} alt="interactions" />
-const AuditHistory = () => <Img src={audit} alt="auditHistory" />
 const Documents = () => <Img src={documents} alt="documents" />
 
-const Contacts = ({ id }) => (
+const Contacts = ({ contactId }) => (
   <TabNav
-    id={`${id}.TabNav`}
+    id={`${contactId}.TabNav`}
     label="Contacts"
     selectedIndex=""
     routed={true}
@@ -36,7 +35,7 @@ const Contacts = ({ id }) => (
       },
       'audit-history': {
         label: 'Audit history',
-        content: <AuditHistory />,
+        content: <AuditHistory contactId={contactId} />,
       },
       documents: {
         label: 'Documents',
@@ -47,7 +46,7 @@ const Contacts = ({ id }) => (
 )
 
 Contacts.propTypes = {
-  id: PropTypes.string.isRequired,
+  contactId: PropTypes.string.isRequired,
 }
 
 export default Contacts
