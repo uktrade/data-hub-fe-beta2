@@ -71,7 +71,12 @@ import exportCountriesEditReducer from '../apps/companies/apps/exports/client/Ex
 import * as exportCountriesEditTasks from '../apps/companies/apps/exports/client/ExportCountriesEdit/tasks'
 
 const sagaMiddleware = createSagaMiddleware()
-const history = createBrowserHistory()
+const history = createBrowserHistory({
+  // The baseURI is set to the <base/> tag by the spaFallbackSpread
+  // middleware, which should be applied to each Express route where
+  // react-router is expected to be used.
+  basename: new URL(document.baseURI).pathname,
+})
 
 const store = createStore(
   combineReducers({
@@ -126,13 +131,7 @@ function App() {
   const globalProps = parseProps(appWrapper)
   return (
     <Provider store={store}>
-      <ConnectedRouter
-        history={history}
-        // The baseURI is set to the <base/> tag by the spaFallbackSpread
-        // middleware, which should be applied to each Express route where
-        // react-router is expected to be used.
-        basename={new URL(document.baseURI).pathname}
-      >
+      <ConnectedRouter history={history}>
         <Mount selector="#add-company-form">
           {(props) => (
             <AddCompanyForm csrfToken={globalProps.csrfToken} {...props} />
