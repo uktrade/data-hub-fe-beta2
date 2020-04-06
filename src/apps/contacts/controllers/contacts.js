@@ -1,5 +1,10 @@
 function renderContacts(req, res) {
-  return res.breadcrumb('Contacts').render('contacts/views/template', {})
+  const { contactId } = req.params
+  return res.breadcrumb('Contacts').render('contacts/views/template', {
+    props: {
+      contactId,
+    },
+  })
 }
 
 module.exports = {
