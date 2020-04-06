@@ -7,6 +7,17 @@ const {
 } = require('../../../../../../test/unit/helpers/generate-export-countries')
 const { EXPORT_INTEREST_STATUS } = require('../../../../../apps/constants')
 
+function createRegion(name, status) {
+  const region = { id: faker.random.uuid(), name }
+  return {
+    input: {
+      region,
+      status,
+    },
+    output: region,
+  }
+}
+
 describe('transformCompanyToExportDetailsView', () => {
   context('when no export market information has been entered', () => {
     it('should create the correct viewRecord data', () => {
@@ -37,6 +48,11 @@ describe('transformCompanyToExportDetailsView', () => {
           { name: 'Future countries of interest', values: [] },
           { name: 'Countries of no interest', values: [] },
         ],
+        exportRegionsInformation: [
+          { name: 'Currently exporting to', values: [] },
+          { name: 'Future countries of interest', values: [] },
+          { name: 'Countries of no interest', values: [] },
+        ],
       })
     })
   })
@@ -46,6 +62,16 @@ describe('transformCompanyToExportDetailsView', () => {
       const exportExperienceCategory = {
         id: '8b05e8c7-1812-46bf-bab7-a0096ab5689f',
         name: 'Increasing export markets',
+      }
+      const regions = {
+        current: createRegion(
+          faker.lorem.words(),
+          EXPORT_INTEREST_STATUS.EXPORTING_TO
+        ),
+        future: createRegion(
+          faker.lorem.words(),
+          EXPORT_INTEREST_STATUS.FUTURE_INTEREST
+        ),
       }
       const company = {
         ...minimalCompany,
@@ -67,6 +93,7 @@ describe('transformCompanyToExportDetailsView', () => {
           },
         ],
         export_potential: 'low',
+        export_regions: [regions.current.input, regions.future.input],
       }
 
       const viewRecord = transformCompanyToExportDetailsView(company)
@@ -95,6 +122,17 @@ describe('transformCompanyToExportDetailsView', () => {
           },
           { name: 'Countries of no interest', values: [] },
         ],
+        exportRegionsInformation: [
+          {
+            name: 'Currently exporting to',
+            values: [regions.current.output],
+          },
+          {
+            name: 'Future countries of interest',
+            values: [regions.future.output],
+          },
+          { name: 'Countries of no interest', values: [] },
+        ],
       })
     })
   })
@@ -106,6 +144,18 @@ describe('transformCompanyToExportDetailsView', () => {
         const exportExperienceCategory = {
           id: '8b05e8c7-1812-46bf-bab7-a0096ab5689f',
           name: 'Increasing export markets',
+        }
+        const regions = {
+          currentA: createRegion('AAAA', EXPORT_INTEREST_STATUS.EXPORTING_TO),
+          currentB: createRegion('BBBB', EXPORT_INTEREST_STATUS.EXPORTING_TO),
+          noInterestA: createRegion(
+            'AAA',
+            EXPORT_INTEREST_STATUS.NOT_INTERESTED
+          ),
+          noInterestB: createRegion(
+            'BBB',
+            EXPORT_INTEREST_STATUS.NOT_INTERESTED
+          ),
         }
         const company = {
           ...minimalCompany,
@@ -139,6 +189,12 @@ describe('transformCompanyToExportDetailsView', () => {
               },
               status: 'future_interest',
             },
+          ],
+          export_regions: [
+            regions.noInterestB.input,
+            regions.noInterestA.input,
+            regions.currentB.input,
+            regions.currentA.input,
           ],
         }
 
@@ -179,6 +235,17 @@ describe('transformCompanyToExportDetailsView', () => {
               ],
             },
             { name: 'Countries of no interest', values: [] },
+          ],
+          exportRegionsInformation: [
+            {
+              name: 'Currently exporting to',
+              values: [regions.currentA.output, regions.currentB.output],
+            },
+            { name: 'Future countries of interest', values: [] },
+            {
+              name: 'Countries of no interest',
+              values: [regions.noInterestA.output, regions.noInterestB.output],
+            },
           ],
         })
       })
@@ -281,6 +348,11 @@ describe('transformCompanyToExportDetailsView', () => {
               EXPORT_INTEREST_STATUS.NOT_INTERESTED
             ),
           },
+        ],
+        exportRegionsInformation: [
+          { name: 'Currently exporting to', values: [] },
+          { name: 'Future countries of interest', values: [] },
+          { name: 'Countries of no interest', values: [] },
         ],
       })
     })

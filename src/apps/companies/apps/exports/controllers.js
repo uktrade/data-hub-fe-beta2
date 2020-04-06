@@ -55,6 +55,7 @@ function renderExports(req, res) {
     greatProfile,
     exportPotential,
     exportCountriesInformation,
+    exportRegionsInformation,
   } = transformCompanyToExportDetailsView(company)
 
   res
@@ -67,6 +68,7 @@ function renderExports(req, res) {
         greatProfile,
         exportPotential,
         exportCountriesInformation,
+        exportRegionsInformation,
         exportPotentials: Object.values(exportPotentialLabels),
         companyId: company.id,
         companyNumber: company.company_number,
@@ -139,16 +141,23 @@ function renderExportEdit(req, res) {
 }
 
 function countryToTypeaheadOption(country) {
-  return { value: country.id, label: country.name }
+  return { value: country.id, label: country.name, country: true }
 }
 
-function countriesToTypeaheadOptions(countries = []) {
-  return countries.map(countryToTypeaheadOption)
+function regionToTypeaheadOption(region) {
+  return { value: region.id, label: region.name, region: true }
+}
+
+function countriesToTypeaheadOptions(countries = [], regions = []) {
+  return countries
+    .map(countryToTypeaheadOption)
+    .concat(regions.map(regionToTypeaheadOption))
 }
 
 function renderExportEditCountries(req, res) {
   const { company } = res.locals
   const exportCountries = groupExportCountries(company.export_countries)
+  const exportRegions = groupExportCountries(company.export_regions, 'region')
   const {
     EXPORTING_TO,
     FUTURE_INTEREST,
@@ -162,27 +171,30 @@ function renderExportEditCountries(req, res) {
     .render('companies/apps/exports/views/edit-countries', {
       props: {
         companyId: company.id,
-        countryOptions: metadataRepo.countryOptions.map(
-          transformObjectToOption
-        ),
+        countries: metadataRepo.countryOptions,
         fields: [
           {
             name: EXPORTING_TO,
             label: exportDetailsLabels.exportToCountries,
-            values: countriesToTypeaheadOptions(exportCountries[EXPORTING_TO]),
+            values: countriesToTypeaheadOptions(
+              exportCountries[EXPORTING_TO],
+              exportRegions[EXPORTING_TO]
+            ),
           },
           {
             name: FUTURE_INTEREST,
             label: exportDetailsLabels.futureInterestCountries,
             values: countriesToTypeaheadOptions(
-              exportCountries[FUTURE_INTEREST]
+              exportCountries[FUTURE_INTEREST],
+              exportRegions[FUTURE_INTEREST]
             ),
           },
           {
             name: NOT_INTERESTED,
             label: exportDetailsLabels.noInterestCountries,
             values: countriesToTypeaheadOptions(
-              exportCountries[NOT_INTERESTED]
+              exportCountries[NOT_INTERESTED],
+              exportRegions[NOT_INTERESTED]
             ),
           },
         ],

@@ -3,8 +3,8 @@ const groupExportCountries = require('../../../../lib/group-export-countries')
 const { exportDetailsLabels, exportPotentialLabels } = require('../../labels')
 const { EXPORT_INTEREST_STATUS } = require('../../../constants')
 
-function getCountriesFields(company) {
-  const groupedExportCountries = groupExportCountries(company.export_countries)
+function getCountryFields(countries, propName = 'country') {
+  const groupedExportCountries = groupExportCountries(countries, propName)
 
   return {
     exportToCountries:
@@ -18,51 +18,58 @@ function getCountriesFields(company) {
 
 module.exports = {
   transformCompanyToExportDetailsView: (company) => {
-    const {
-      exportToCountries,
-      futureInterestCountries,
-      noInterestCountries,
-    } = getCountriesFields(company)
-
-    const exportWinCategory = {
-      name: exportDetailsLabels.exportExperienceCategory,
-      value:
-        company.export_experience_category &&
-        company.export_experience_category.name,
-    }
-
-    const greatProfile = {
-      name: exportDetailsLabels.greatProfile,
-      value: company.great_profile_status,
-    }
-
-    const exportPotential = {
-      name: exportDetailsLabels.exportPotential,
-      value:
-        exportPotentialLabels[company.export_potential] &&
-        exportPotentialLabels[company.export_potential].text,
-    }
-
-    const exportCountriesInformation = [
-      {
-        name: exportDetailsLabels.exportToCountries,
-        values: exportToCountries,
-      },
-      {
-        name: exportDetailsLabels.futureInterestCountries,
-        values: futureInterestCountries,
-      },
-      {
-        name: exportDetailsLabels.noInterestCountries,
-        values: noInterestCountries,
-      },
-    ]
+    const countryFields = getCountryFields(company.export_countries)
+    const regionFields = getCountryFields(company.export_regions, 'region')
 
     return {
-      exportWinCategory,
-      greatProfile,
-      exportPotential,
-      exportCountriesInformation,
+      exportWinCategory: {
+        name: exportDetailsLabels.exportExperienceCategory,
+        value:
+          company.export_experience_category &&
+          company.export_experience_category.name,
+      },
+
+      greatProfile: {
+        name: exportDetailsLabels.greatProfile,
+        value: company.great_profile_status,
+      },
+
+      exportPotential: {
+        name: exportDetailsLabels.exportPotential,
+        value:
+          exportPotentialLabels[company.export_potential] &&
+          exportPotentialLabels[company.export_potential].text,
+      },
+
+      exportCountriesInformation: [
+        {
+          name: exportDetailsLabels.exportToCountries,
+          values: countryFields.exportToCountries,
+        },
+        {
+          name: exportDetailsLabels.futureInterestCountries,
+          values: countryFields.futureInterestCountries,
+        },
+        {
+          name: exportDetailsLabels.noInterestCountries,
+          values: countryFields.noInterestCountries,
+        },
+      ],
+
+      exportRegionsInformation: [
+        {
+          name: exportDetailsLabels.exportToCountries,
+          values: regionFields.exportToCountries,
+        },
+        {
+          name: exportDetailsLabels.futureInterestCountries,
+          values: regionFields.futureInterestCountries,
+        },
+        {
+          name: exportDetailsLabels.noInterestCountries,
+          values: regionFields.noInterestCountries,
+        },
+      ],
     }
   },
 }

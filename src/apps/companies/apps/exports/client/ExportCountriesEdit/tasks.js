@@ -5,17 +5,28 @@ import urls from '../../../../../../lib/urls'
 import getExportCountries from '../../../../../../lib/get-export-countries'
 
 function transformFieldValues(fields) {
-  const countryFields = {}
+  const countries = {}
+  const regions = {}
+
   for (const [name, values] of Object.entries(fields)) {
-    countryFields[name] = values?.map(({ value }) => value)
+    regions[name] = values
+      ?.filter(({ region }) => !!region)
+      .map(({ value }) => value)
+
+    countries[name] = values
+      ?.filter(({ country }) => !!country)
+      .map(({ value }) => value)
   }
-  return countryFields
+
+  return { countries, regions }
 }
 
 export function saveExportCountries({ values, companyId }) {
+  const { countries, regions } = transformFieldValues(values)
   return axios
     .patch(`/api-proxy/v4/company/${companyId}/export-detail`, {
-      export_countries: getExportCountries(transformFieldValues(values)) || [],
+      export_countries: getExportCountries(countries) || [],
+      export_regions: getExportCountries(regions, 'region') || [],
     })
     .catch((e) => {
       const is400 = e?.response?.status === 400

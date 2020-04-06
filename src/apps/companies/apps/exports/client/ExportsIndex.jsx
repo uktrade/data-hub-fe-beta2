@@ -26,6 +26,7 @@ const ExportsIndex = ({
   greatProfile,
   exportPotential,
   exportCountriesInformation,
+  exportRegionsInformation,
   exportPotentials,
   companyId,
   companyNumber,
@@ -97,30 +98,41 @@ const ExportsIndex = ({
           )
         }
       >
-        {exportCountriesInformation.map(({ name, values }) => (
-          <SummaryTable.Row heading={name} key={name}>
-            <>
-              {values?.length
-                ? values.map(({ id, name }, i) => {
-                    const isLastItem = i === values.length - 1
-                    return (
-                      <React.Fragment key={id}>
-                        <Link
-                          href={urls.companies.exports.history.country(
-                            companyId,
-                            id
-                          )}
-                        >
-                          {name}
-                        </Link>
-                        {isLastItem ? null : ', '}
-                      </React.Fragment>
-                    )
-                  })
-                : 'None'}
-            </>
-          </SummaryTable.Row>
-        ))}
+        {exportCountriesInformation.map(({ name, values }) => {
+          const regions = exportRegionsInformation.find(
+            (region) => region.name === name
+          )
+          return (
+            <SummaryTable.Row heading={name} key={name}>
+              <>
+                {values?.length
+                  ? values.map(({ id, name }, i) => {
+                      const isLastItem = i === values.length - 1
+                      return (
+                        <React.Fragment key={id}>
+                          <Link
+                            href={urls.companies.exports.history.country(
+                              companyId,
+                              id
+                            )}
+                          >
+                            {name}
+                          </Link>
+                          {isLastItem ? null : ', '}
+                        </React.Fragment>
+                      )
+                    })
+                  : 'None'}
+                {regions?.values?.length ? (
+                  <div>
+                    Regions:
+                    <p>{regions.values.map(({ name }) => name).join(', ')}</p>
+                  </div>
+                ) : null}
+              </>
+            </SummaryTable.Row>
+          )
+        })}
       </StyledSummaryTable>
 
       <StyledLink href={urls.companies.exports.history.index(companyId)}>

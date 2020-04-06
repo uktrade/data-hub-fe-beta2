@@ -3,13 +3,9 @@ import { connect } from 'react-redux'
 import { Button, Link } from 'govuk-react'
 import { ERROR_COLOUR } from 'govuk-colours'
 import styled from 'styled-components'
-import {
-  FormActions,
-  FieldTypeahead,
-  FormStateful,
-  StatusMessage,
-} from 'data-hub-components'
+import { FormActions, FormStateful, StatusMessage } from 'data-hub-components'
 
+import FieldRegionTypeahead from '../FieldRegionTypeahead'
 import Task from '../../../../../../client/components/Task/index.jsx'
 import { EXPORT_COUNTRIES_EDIT__SAVE } from '../../../../../../client/actions'
 import {
@@ -57,7 +53,7 @@ function ErrorHandler({ errorMessage }) {
 }
 
 function ExportCountriesEdit(state) {
-  const { companyId, countryOptions, fields } = state
+  const { companyId, countries, fields } = state
 
   useEffect(() => {
     if (state[SAVED]) {
@@ -91,13 +87,13 @@ function ExportCountriesEdit(state) {
           />
 
           {fields.map(({ label, name }) => (
-            <FieldTypeahead
+            <FieldRegionTypeahead
               key={name}
               isMulti={true}
               label={label}
               name={name}
-              options={countryOptions}
-              placeholder="Search countries..."
+              countries={countries}
+              placeholder="Search for region or country..."
             />
           ))}
           <FormActions>
