@@ -70,6 +70,13 @@ import {
 import exportCountriesEditReducer from '../apps/companies/apps/exports/client/ExportCountriesEdit/reducer'
 import * as exportCountriesEditTasks from '../apps/companies/apps/exports/client/ExportCountriesEdit/tasks'
 
+import {
+  ID as AUDIT_HISTORY_ID,
+  TASK_NAME as AUDIT_HISTORY_NAME,
+} from '../apps/contacts/client/components/audit-history/state'
+import auditHistoryReducer from '../apps/contacts/client/components/audit-history/reducer'
+import auditHistoryTask from '../apps/contacts/client/components/audit-history/tasks'
+
 const sagaMiddleware = createSagaMiddleware()
 const history = createBrowserHistory({
   // The baseURI is set to the <base/> tag by the spaFallbackSpread
@@ -92,6 +99,7 @@ const store = createStore(
     // A reducer is required to be able to set a preloadedState parameter
     referrerUrl: (state = {}) => state,
     [EXPORT_COUNTRIES_EDIT_ID]: exportCountriesEditReducer,
+    [AUDIT_HISTORY_ID]: auditHistoryReducer,
   }),
   { referrerUrl: window.document.referrer },
   composeWithDevTools(
@@ -108,6 +116,7 @@ sagaMiddleware.run(
     Referrals: referralListTask,
     'Export wins': exportWinsTasks.fetchExportWins,
     [EXPORT_COUNTRIES_EDIT_NAME]: exportCountriesEditTasks.saveExportCountries,
+    [AUDIT_HISTORY_NAME]: auditHistoryTask,
   })
 )
 
