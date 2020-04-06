@@ -142,12 +142,12 @@ module.exports.fetchAll = (cb) => {
     }
   }
 
-  for (const item of metadataItems) {
+  for (const [metdataTable, exportName, postProcessFn] of metadataItems) {
     totalRequests += 1
-    getMetadata(item[0], item[1])
+    getMetadata(metdataTable, exportName)
       .then((data) => {
-        if (item[2]) {
-          item[2](data)
+        if (postProcessFn) {
+          postProcessFn(data)
         }
 
         checkResults()
