@@ -4,7 +4,7 @@ const config = require('../config/')
 
 const API_PROXY_PATH = '/api-proxy'
 const WHITELIST = [
-  '/v3/contact/:id/audit?limit=10&offset=0',
+  '/v3/contact/:id/audit',
   '/v4/company-list',
   '/v4/company-list/:id/item',
   '/v4/search/export-country-history',
