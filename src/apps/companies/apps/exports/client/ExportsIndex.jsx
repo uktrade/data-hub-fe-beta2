@@ -10,6 +10,7 @@ import { SPACING, FONT_SIZE } from '@govuk-react/constants'
 import urls from '../../../../../lib/urls'
 import ExportWins from './ExportWins/'
 import GreatProfile from './GreatProfile'
+import { GREY_1 } from 'govuk-colours'
 
 const StyledSummaryTable = styled(SummaryTable)`
   margin-top: 0;
@@ -21,7 +22,8 @@ const StyledLink = styled(Link)`
 `
 
 const StyledH4 = styled.h4`
-  font-size: ${FONT_SIZE.SIZE_16};
+  font-size: ${FONT_SIZE.SIZE_14};
+  color: ${GREY_1}
   font-weight: bold;
   margin-bottom: 0;
 `

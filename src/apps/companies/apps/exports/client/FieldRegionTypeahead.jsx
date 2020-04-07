@@ -1,5 +1,8 @@
 import React from 'react'
 import { FieldTypeahead } from 'data-hub-components'
+import defaultStyles from 'data-hub-components/dist/typeahead/styles'
+import { GREY_2 } from 'govuk-colours'
+import { FONT_SIZE } from '@govuk-react/constants'
 
 const EVENTS = {
   CHANGE: 'input-change',
@@ -40,10 +43,10 @@ function createRegionOptions(countries) {
       const { id: regionId, name: regionName } = region
 
       if (!regionCountries.hasOwnProperty(regionId)) {
-        regionCountries[regionId] = { regionName, countries: [] }
+        regionCountries[regionId] = { regionName, countryOptions: [] }
       }
 
-      regionCountries[regionId].countries.push(
+      regionCountries[regionId].countryOptions.push(
         createCountryOption(countryId, countryName)
       )
     } else {
@@ -52,18 +55,18 @@ function createRegionOptions(countries) {
   }
 
   return Object.entries(regionCountries)
-    .reduce((acc, [regionId, { regionName, countries }]) => {
+    .reduce((acc, [regionId, { regionName, countryOptions }]) => {
       acc.push({
         id: regionId,
         name: regionName,
-        countries,
+        countryOptions,
       })
 
       return acc
     }, [])
     .sort((a, b) => a.name.localeCompare(b.name))
-    .reduce((acc, { id, name, countries }) => {
-      acc.push(createRegionOption(id, name), ...countries)
+    .reduce((acc, { id, name, countryOptions }) => {
+      acc.push(createRegionOption(id, name), ...countryOptions)
 
       return acc
     }, [])
@@ -127,12 +130,35 @@ export default function RegionTypeahead({ countries, ...props }) {
     matchIds = []
   }
 
+  function optionStyles(styles, item, ...args) {
+    const { value } = item
+    const isCountry = filterLists.countries.some(
+      (country) => country.id === value
+    )
+    if (isCountry) {
+      styles = {
+        ...styles,
+        paddingLeft: '30px',
+        '&:before': {
+          content: '"Country: "',
+          color: GREY_2,
+          fontSize: FONT_SIZE.SIZE_14,
+          position: 'relative',
+          top: '-1px',
+        },
+      }
+    }
+
+    return defaultStyles.option(styles, item, ...args)
+  }
+
   return (
     <FieldTypeahead
       options={createRegionOptions(countries)}
       filterOption={filterOption}
       onInputChange={onInputChange}
       onFocus={onFocus}
+      styles={{ option: optionStyles }}
       {...props}
     />
   )
