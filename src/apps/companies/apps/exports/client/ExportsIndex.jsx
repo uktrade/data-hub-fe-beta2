@@ -5,7 +5,7 @@ import Details from '@govuk-react/details'
 import Link from '@govuk-react/link'
 import { H3 } from '@govuk-react/heading'
 import { SummaryTable } from 'data-hub-components'
-import { SPACING } from '@govuk-react/constants'
+import { SPACING, FONT_SIZE } from '@govuk-react/constants'
 
 import urls from '../../../../../lib/urls'
 import ExportWins from './ExportWins/'
@@ -18,6 +18,22 @@ const StyledSummaryTable = styled(SummaryTable)`
 const StyledLink = styled(Link)`
   display: inline-block;
   margin-bottom: ${SPACING.SCALE_5};
+`
+
+const StyledH4 = styled.h4`
+  font-size: ${FONT_SIZE.SIZE_16};
+  font-weight: bold;
+  margin-bottom: 0;
+`
+
+const StyledPCountries = styled.p`
+  margin-top: 0;
+  margin-bottom: ${SPACING.SCALE_3};
+`
+
+const StyledPRegions = styled.p`
+  margin-top: 0;
+  margin-bottom: 0;
 `
 
 const ExportsIndex = ({
@@ -105,30 +121,35 @@ const ExportsIndex = ({
           return (
             <SummaryTable.Row heading={name} key={name}>
               <>
-                {values?.length
-                  ? values.map(({ id, name }, i) => {
-                      const isLastItem = i === values.length - 1
-                      return (
-                        <React.Fragment key={id}>
-                          <Link
-                            href={urls.companies.exports.history.country(
-                              companyId,
-                              id
-                            )}
-                          >
-                            {name}
-                          </Link>
-                          {isLastItem ? null : ', '}
-                        </React.Fragment>
-                      )
-                    })
-                  : 'None'}
-                {regions?.values?.length ? (
-                  <div>
-                    Regions:
-                    <p>{regions.values.map(({ name }) => name).join(', ')}</p>
-                  </div>
-                ) : null}
+                <StyledH4>Countries</StyledH4>
+                <StyledPCountries>
+                  {values?.length
+                    ? values.map(({ id, name }, i) => {
+                        const isLastItem = i === values.length - 1
+                        return (
+                          <React.Fragment key={id}>
+                            <Link
+                              href={urls.companies.exports.history.country(
+                                companyId,
+                                id
+                              )}
+                            >
+                              {name}
+                            </Link>
+                            {isLastItem ? null : ', '}
+                          </React.Fragment>
+                        )
+                      })
+                    : 'None'}
+                </StyledPCountries>
+                <div>
+                  <StyledH4>Regions</StyledH4>
+                  <StyledPRegions>
+                    {regions?.values?.length
+                      ? regions.values.map(({ name }) => name).join(', ')
+                      : 'None'}
+                  </StyledPRegions>
+                </div>
               </>
             </SummaryTable.Row>
           )
