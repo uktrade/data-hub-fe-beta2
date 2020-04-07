@@ -76,6 +76,8 @@ import {
 } from '../apps/contacts/client/components/audit-history/state'
 import auditHistoryReducer from '../apps/contacts/client/components/audit-history/reducer'
 import auditHistoryTask from '../apps/contacts/client/components/audit-history/tasks'
+import ContactDetails from '../apps/contacts/client/Details'
+import contactDetailsTask from '../apps/contacts/client/Details/task'
 
 const sagaMiddleware = createSagaMiddleware()
 const history = createBrowserHistory({
@@ -95,6 +97,7 @@ const store = createStore(
     [REFERRALS_DETAILS_STATE_ID]: referralsReducer,
     ...TabNav.reducerSpread,
     ...ReferralList.reducerSpread,
+    ...ContactDetails.reducerSpread,
     [EXPORTS_WINS_ID]: exportWinsReducer,
     // A reducer is required to be able to set a preloadedState parameter
     referrerUrl: (state = {}) => state,
@@ -117,6 +120,7 @@ sagaMiddleware.run(
     'Export wins': exportWinsTasks.fetchExportWins,
     [EXPORT_COUNTRIES_EDIT_NAME]: exportCountriesEditTasks.saveExportCountries,
     [AUDIT_HISTORY_NAME]: auditHistoryTask,
+    'Contact details': contactDetailsTask,
   })
 )
 
