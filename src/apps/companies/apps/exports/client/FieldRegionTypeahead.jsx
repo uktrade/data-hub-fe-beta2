@@ -70,20 +70,31 @@ function createRegionOptions(countries) {
     .concat(noRegion)
 }
 
-function createFilterCountries(countries) {
-  return countries.reduce((acc, { id, name, overseas_region: region }) => {
-    acc.push({
-      id,
-      name: name.toLowerCase(),
-      regionId: region?.id,
-    })
+function createFilterLists(countries) {
+  return {
+    regions: countries.reduce((acc, { overseas_region: region }) => {
+      if (region) {
+        acc.push({ id: region.id, name: region.name.toLowerCase() })
+      }
+      return acc
+    }, []),
+    countries: countries.reduce(
+      (acc, { id, name, overseas_region: region }) => {
+        acc.push({
+          id,
+          name: name.toLowerCase(),
+          regionId: region?.id,
+        })
 
-    return acc
-  }, [])
+        return acc
+      },
+      []
+    ),
+  }
 }
 
 export default function RegionTypeahead({ countries, ...props }) {
-  const filterCountries = createFilterCountries(countries)
+  const filterLists = createFilterLists(countries)
   let matchIds
 
   function filterOption(option, value) {
@@ -94,12 +105,19 @@ export default function RegionTypeahead({ countries, ...props }) {
     if (action === EVENTS.CHANGE) {
       const lowerCaseValue = value.toLowerCase()
       matchIds = []
-      filterCountries.forEach(({ id, name, regionId }) => {
+
+      filterLists.countries.forEach(({ id, name, regionId }) => {
         if (name.includes(lowerCaseValue)) {
           matchIds.push(id)
           if (regionId) {
             matchIds.push(regionId)
           }
+        }
+      })
+
+      filterLists.regions.forEach(({ id, name }) => {
+        if (!matchIds.includes(id) && name.includes(lowerCaseValue)) {
+          matchIds.push(id)
         }
       })
     }
