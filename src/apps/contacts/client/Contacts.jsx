@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import TabNav from '../../../client/components/TabNav/index.jsx'
-import details from './images/details.png'
+import ContactDetails from './Details'
 import interactions from './images/interactions.png'
 import EditHistory from './components/edit-history/EditHistory'
 import documents from './images/documents.png'
@@ -14,7 +14,6 @@ const Img = styled('img')`
   ${({ alt }) => `alt: ${alt}`}
 `
 
-const Details = () => <Img src={details} alt="details" />
 const Interactions = () => <Img src={interactions} alt="interactions" />
 const Documents = () => <Img src={documents} alt="documents" />
 
@@ -27,7 +26,7 @@ const Contacts = ({ contactId }) => (
     tabs={{
       '': {
         label: 'Details',
-        content: <Details />,
+        content: <ContactDetails id={contactId} />,
       },
       interactions: {
         label: 'Interactions',
