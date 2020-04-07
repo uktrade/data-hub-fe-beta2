@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import TabNav from '../../../client/components/TabNav/index.jsx'
 import details from './images/details.png'
 import interactions from './images/interactions.png'
-import AuditHistory from './components/audit-history/AuditHistory'
+import EditHistory from './components/edit-history/EditHistory'
 import documents from './images/documents.png'
 
 const Img = styled('img')`
@@ -33,9 +33,9 @@ const Contacts = ({ contactId }) => (
         label: 'Interactions',
         content: <Interactions />,
       },
-      'audit-history': {
-        label: 'Audit history',
-        content: <AuditHistory contactId={contactId} />,
+      'edit-history': {
+        label: 'Edit history',
+        content: <EditHistory contactId={contactId} />,
       },
       documents: {
         label: 'Documents',

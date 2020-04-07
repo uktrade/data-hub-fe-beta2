@@ -73,9 +73,9 @@ import * as exportCountriesEditTasks from '../apps/companies/apps/exports/client
 import {
   ID as AUDIT_HISTORY_ID,
   TASK_NAME as AUDIT_HISTORY_NAME,
-} from '../apps/contacts/client/components/audit-history/state'
-import auditHistoryReducer from '../apps/contacts/client/components/audit-history/reducer'
-import auditHistoryTask from '../apps/contacts/client/components/audit-history/tasks'
+} from '../apps/contacts/client/components/edit-history/state'
+import auditHistoryReducer from '../apps/contacts/client/components/edit-history/reducer'
+import auditHistoryTask from '../apps/contacts/client/components/edit-history/tasks'
 
 const sagaMiddleware = createSagaMiddleware()
 const history = createBrowserHistory({
