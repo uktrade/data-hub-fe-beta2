@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { DateUtils } from 'data-hub-components'
 import { FONT_SIZE } from '@govuk-react/constants'
 import { GREY_1, GREY_2 } from 'govuk-colours'
+import { H3 } from '@govuk-react/heading'
 
 import { AUDIT_HISTORY__LOADED } from '../../../../../client/actions'
 import Task from '../../../../../client/components/Task/index.jsx'
@@ -40,6 +41,7 @@ const EditHistory = ({ auditHistory, contactId }) => {
       {() => {
         return (
           <div>
+            <H3>1 change</H3>
             {auditHistory &&
               auditHistory.map(({ timestamp, changes, user }) => (
                 <StyledListContainer key={timestamp}>
