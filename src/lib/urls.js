@@ -220,6 +220,7 @@ module.exports = {
       ),
       project: url('/investments', '/projects/:projectId'),
       status: url('/investments', '/projects/:projectId/status'),
+      admin: url('/investments', '/projects/:projectId/admin'),
     },
     profiles: {
       index: url('/investments', '/profiles'),

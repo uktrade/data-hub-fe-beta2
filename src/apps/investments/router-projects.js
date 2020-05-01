@@ -51,6 +51,7 @@ const {
 
 const { renderProjectsView } = require('./controllers/projects')
 const { renderPropositionList } = require('./controllers/propositions')
+const { renderAdminView } = require('./controllers/admin')
 const { renderEvidenceView } = require('./controllers/evidence')
 const { renderAddEvidence } = require('./apps/evidence/controllers/create')
 const { postUpload } = require('../documents/middleware/upload')
@@ -323,5 +324,7 @@ router.get(
 )
 
 router.get('/:investmentId/documents', documents.renderDocuments)
+
+router.get('/:investmentId/admin', renderAdminView)
 
 module.exports = router

@@ -4,7 +4,7 @@
   <div id="investors-profiles-tab">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-        {{ TabbedLocalNav({ items: investmentTabItems }) }}
+        {{ TabbedLocalNav({ items: investmentTabItems }) }} {# Don't show admin if user doesn't have permissions #}
       </div>
   </div>
 

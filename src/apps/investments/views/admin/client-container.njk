@@ -1,0 +1,10 @@
+{% extends "_layouts/template-no-local-header.njk" %}
+
+{% block body %}
+
+  {% component 'react-slot', {
+    id: 'investment-project-admin',
+    props: props
+  } %}
+
+{% endblock %}

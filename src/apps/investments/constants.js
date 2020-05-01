@@ -55,6 +55,10 @@ const LOCAL_NAV = [
     path: 'evidence',
     label: 'Evidence',
   },
+  {
+    path: 'admin',
+    label: 'Admin',
+  },
 ]
 
 const INVESTMENT_TAB_ITEMS = [
