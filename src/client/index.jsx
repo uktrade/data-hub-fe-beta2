@@ -76,6 +76,13 @@ import * as addInteractionFormState from '../apps/interactions/apps/add-interact
 import * as addInteractionFormTasks from '../apps/interactions/apps/add-interaction/client/tasks'
 import addInteractionFormReducer from '../apps/interactions/apps/add-interaction/client/reducer'
 
+import {
+  ID as INVESTEMENT_PROJECT_ADMIN_ID,
+  TASK_UPDATE_STAGE,
+} from '../apps/investments/views/admin/client/state'
+import * as investmentAdminTasks from '../apps/investments/views/admin/client/tasks'
+import investmentProjectAdminReducer from '../apps/investments/views/admin/client/reducer'
+
 const sagaMiddleware = createSagaMiddleware()
 const history = createBrowserHistory({
   // The baseURI is set to the <base/> tag by the spaFallbackSpread
@@ -105,6 +112,7 @@ const store = createStore(
     ...Form.reducerSpread,
     // A reducer is required to be able to set a preloadedState parameter
     referrerUrl: (state = {}) => state,
+    [INVESTEMENT_PROJECT_ADMIN_ID]: investmentProjectAdminReducer,
   }),
   {
     referrerUrl: window.document.referrer,
@@ -138,6 +146,7 @@ sagaMiddleware.run(
       addInteractionFormTasks.createInteraction,
     [addInteractionFormState.TASK_OPEN_CONTACT_FORM]:
       addInteractionFormTasks.openContactForm,
+    [TASK_UPDATE_STAGE]: investmentAdminTasks.updateProjectStage,
   })
 )
 
