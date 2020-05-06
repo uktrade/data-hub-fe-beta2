@@ -62,7 +62,7 @@ const Form = ({
       return index !== -1 ? index : null
     },
     isFirstStep: () => props?.currentStep === 0,
-    isLastStep: () => props?.currentStep === steps?.length - 1,
+    isLastStep: () => !steps.length || props?.currentStep === steps?.length - 1,
     getFieldState: (fieldName) => ({
       value: values[fieldName] ?? '',
       touched: touched[fieldName] ?? false,
