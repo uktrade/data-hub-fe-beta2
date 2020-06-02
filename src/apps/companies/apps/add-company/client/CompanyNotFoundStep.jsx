@@ -1,13 +1,18 @@
 /* eslint-disable camelcase */
 
 import React from 'react'
+import { connect } from 'react-redux'
 import { Details } from 'govuk-react'
 import PropTypes from 'prop-types'
+import { LoadingBox } from 'govuk-react'
 import { FieldInput, FieldRadios, FieldSelect, Step } from 'data-hub-components'
 import FieldAddress from 'data-hub-components/dist/forms/elements/FieldAddress'
 
+import Task from '../../../../../client/components/Task'
+import { ID, TASK_POSTCODE_TO_REGION } from './state'
 import { ISO_CODE, WEBSITE_REGEX } from './constants'
 import InformationList from './InformationList'
+import { ADD_COMPANY__REGION_LOADED } from '../../../../../client/actions'
 
 const requiredWebsiteAndOrPhoneValidator = (
   value,
@@ -26,7 +31,13 @@ const requiredWebsiteAndOrPhoneValidator = (
   return !WEBSITE_REGEX.test(website) ? 'Enter a valid website URL' : null
 }
 
-function CompanyNotFoundStep({ organisationTypes, regions, sectors, country }) {
+function CompanyNotFoundStep({
+  organisationTypes,
+  regions,
+  sectors,
+  country,
+  region,
+}) {
   return (
     <Step name="unhappy" forwardButton="Add company">
       <Details summary="Why am I seeing this?">
@@ -64,23 +75,47 @@ function CompanyNotFoundStep({ organisationTypes, regions, sectors, country }) {
         validate={requiredWebsiteAndOrPhoneValidator}
       />
 
-      <FieldAddress
-        country={{
-          id: country.key,
-          name: country.label,
-        }}
-        apiEndpoint="/api/postcodelookup"
-      />
+      <Task>
+        {(getTask) => {
+          const task = getTask(TASK_POSTCODE_TO_REGION, ID)
+          return (
+            <>
+              <FieldAddress
+                name="address"
+                country={{
+                  id: country.key,
+                  name: country.label,
+                }}
+                apiEndpoint="/api/postcodelookup"
+                onSelectUKAddress={({ postcode }) => {
+                  if (postcode === region?.postcode) {
+                    // Avoids repeating API calls
+                    // containing the same postcode.
+                    return
+                  }
+                  task.start({
+                    payload: postcode,
+                    onSuccessDispatch: ADD_COMPANY__REGION_LOADED,
+                  })
+                }}
+              />
 
-      {country.value === ISO_CODE.UK && (
-        <FieldSelect
-          name="uk_region"
-          label="DIT region"
-          emptyOption="-- Select DIT region --"
-          options={regions}
-          required="Select DIT region"
-        />
-      )}
+              {country.value === ISO_CODE.UK && (
+                <LoadingBox loading={task.progress}>
+                  <FieldSelect
+                    name="uk_region"
+                    label="DIT region"
+                    initialValue={region?.value}
+                    emptyOption="-- Select DIT region --"
+                    options={regions}
+                    required="Select DIT region"
+                  />
+                </LoadingBox>
+              )}
+            </>
+          )
+        }}
+      </Task>
 
       <FieldSelect
         name="sector"
@@ -134,6 +169,19 @@ CompanyNotFoundStep.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
   }),
+  region: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+  }),
 }
 
-export default CompanyNotFoundStep
+CompanyNotFoundStep.defaultProps = {
+  region: null,
+}
+
+export default connect(({ addCompany }) => {
+  const { region } = addCompany
+  return {
+    region,
+  }
+}, null)(CompanyNotFoundStep)
