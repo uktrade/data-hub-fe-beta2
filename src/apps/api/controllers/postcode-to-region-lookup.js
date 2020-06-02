@@ -18,7 +18,7 @@ async function postcodeToRegionLookupHandler(req, res) {
     const region = regions.find((region) => region.label === regionName)
     res.json(region)
   } catch (error) {
-    res.status(error.statusCode).json({ message: error.message })
+    res.status(error.statusCode || 500).json({ message: error.message })
   }
 }
 
