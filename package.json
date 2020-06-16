@@ -17,7 +17,7 @@
     "develop": "NODE_ENV=development run-p watch:js:*",
     "watch:test": "yarn test:unit -- -w",
     "watch:js:client": "webpack --watch --progress",
-    "watch:js:server": "nodemon $NODE_DEBUG_OPTION --inspect-brk=0.0.0.0 --ignore 'src/**/__test__/**/*'",
+    "watch:js:server": "nodemon $NODE_DEBUG_OPTION --inspect --ignore 'src/**/__test__/**/*'",
     "lint": "run-p lint:*",
     "lint:js": "eslint --ext .jsx,.js ./test ./src ./assets ./.circleci",
     "lint:sass": "sass-lint -v -q -c .sass-lint.yml assets/stylesheets/**/*.scss",
