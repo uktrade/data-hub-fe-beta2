@@ -10,7 +10,7 @@ import referralListTask from './components/ReferralList/task'
 import * as exportWinsTasks from '../apps/companies/apps/exports/client/ExportWins/tasks'
 import { TASK_NAME as EXPORT_COUNTRIES_EDIT_NAME } from '../apps/companies/apps/exports/client/ExportCountriesEdit/state'
 import * as exportCountriesEditTasks from '../apps/companies/apps/exports/client/ExportCountriesEdit/tasks'
-import addCompanyPostcodeToRegionTask from '../apps/companies/apps/add-company/client/tasks'
+import * as addCompanyTasks from '../apps/companies/apps/add-company/client/tasks'
 import { TASK_SAVE_ONE_LIST_DETAILS } from '../apps/companies/apps/edit-one-list/client/state'
 import * as editOneListTasks from '../apps/companies/apps/edit-one-list/client/tasks'
 import {
@@ -49,7 +49,7 @@ export default function* rootSaga() {
       [TASK_GET_PIPELINE_LIST]: pipelineListTasks.getPipelineList,
       [TASK_GET_PIPELINE_ITEM]: pipelineTasks.getPipelineItem,
       [TASK_EDIT_PIPELINE_ITEM]: pipelineTasks.editPipelineItem,
-      [TASK_POSTCODE_TO_REGION]: addCompanyPostcodeToRegionTask,
+      [TASK_POSTCODE_TO_REGION]: addCompanyTasks.postcodeToRegion,
       [TASK_GET_ACTIVE_EVENTS]: addInteractionFormTasks.fetchActiveEvents,
       [TASK_SAVE_INTERACTION]: addInteractionFormTasks.saveInteraction,
       [TASK_OPEN_CONTACT_FORM]: addInteractionFormTasks.openContactForm,
