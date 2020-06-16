@@ -83,7 +83,7 @@ import * as addInteractionFormTasks from '../apps/interactions/apps/details-form
 import addInteractionFormReducer from '../apps/interactions/apps/details-form/client/reducer'
 
 import * as addCompanyState from '../apps/companies/apps/add-company/client/state'
-import addCompanyPostcodeToRegionReducer from '../apps/companies/apps/add-company/client/reducer'
+import addCompanyReducer from '../apps/companies/apps/add-company/client/reducer'
 
 import { ID as ONE_LIST_DETAILS_ID } from '../apps/companies/apps/edit-one-list/client/state'
 import editOneListReducer from '../apps/companies/apps/edit-one-list/client/reducer'
@@ -123,7 +123,7 @@ const store = createStore(
     [EXPORT_COUNTRIES_EDIT_ID]: exportCountriesEditReducer,
     [addInteractionFormState.ID]: addInteractionFormReducer,
     [ONE_LIST_DETAILS_ID]: editOneListReducer,
-    [addCompanyState.ID]: addCompanyPostcodeToRegionReducer,
+    [addCompanyState.ID]: addCompanyReducer,
     [ADD_TO_PIPELINE_ID]: addToPipelineReducer,
     [PIPELINE_LIST_ID]: pipelineListReducer,
     ...TabNav.reducerSpread,
