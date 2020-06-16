@@ -451,6 +451,10 @@ describe('Add company form', () => {
         'when the form is submitted after filling the required fields',
         () => {
           before(() => {
+            cy.server()
+              .route('GET', '/api/postcode-to-region-lookup/SW1H 9AJ')
+              .as('postcodeToRegion')
+
             cy.get(
               selectors.companyAdd.newCompanyRecordForm.organisationType
                 .limitedCompany
@@ -473,9 +477,19 @@ describe('Add company form', () => {
             cy.get(
               selectors.companyAdd.newCompanyRecordForm.address.options
             ).select('Ministry of Justice')
+
+            cy.wait('@postcodeToRegion').should((xhr) => {
+              expect(xhr.status, 'successful GET').to.equal(200)
+              expect(xhr.url).to.contain(
+                '/api/postcode-to-region-lookup/SW1H 9AJ'
+              )
+              expect(xhr.response.body.label).to.contain('London')
+            })
+
             cy.get(selectors.companyAdd.newCompanyRecordForm.region).select(
               'London'
             )
+
             cy.get(selectors.companyAdd.newCompanyRecordForm.sector).select(
               'Advanced Engineering'
             )
