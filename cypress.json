@@ -1,12 +1,13 @@
 {
   "integrationFolder": "test/functional/cypress/specs",
-  "baseUrl": "http://localhost:3001",
+  "baseUrl": "http://localhost:3000",
   "video": true,
   "videoUploadOnPasses": false,
   "screenshotOnRunFailure": false,
   "pluginsFile": "test/cypress/plugins/index.js",
   "supportFile": "test/cypress/support/index.js",
   "defaultCommandTimeout": 10000,
+  "requestTimeout": 10000,
   "projectId": "w97se2",
   "env": {
     "codeCoverage": {

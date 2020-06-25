@@ -583,7 +583,7 @@ describe('Add company form', () => {
     })
 
     it('should render an "Add a company" H1 element', () => {
-      cy.get(selectors.companyAdd.title).should('have.prop', 'tagName', 'H1')
+      cy.get(selectors.companyAdd.title).should('have.text', 'Add company')
     })
 
     it('should render a form with both "Region" and "Sector" selects', () => {

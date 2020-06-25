@@ -1,32 +1,5 @@
 # Running tests
 
-## Creating Docker container for CircleCI
-
-```bash
-export VERSION=3.7.0 # Increment this version each time when you edit Dockerfile.
-
-docker login # Ask webops for Docker Hub access to the ukti group.
-docker build -f test/Dockerfile -t data-hub-frontend-test .
-
-docker tag data-hub-frontend-test:latest ukti/data-hub-frontend-test:${VERSION}
-docker tag data-hub-frontend-test:latest ukti/data-hub-frontend-test:latest
-
-docker push ukti/data-hub-frontend-test:${VERSION}
-docker push ukti/data-hub-frontend-test:latest
-```
-
-You image should be now listed at [Docker Hub](https://cloud.docker.com/u/ukti/repository/docker/ukti/data-hub-frontend-test/tags).
-
-## Executing CircleCI jobs locally
-
-Not all the jobs currently can be executed locally.
-
-```bash
-curl -fLSs https://circle.ci/cli | bash
-circleci local execute --job unit_tests
-circleci local execute --job unit_client_tests
-```
-
 ## Coding standards
 
 Prettier and Sass linter will run as part of the build, assure you run the command below before committing:
@@ -45,9 +18,11 @@ Sandbox is as a light replacement for API backend and it's used only by function
 
 ### Using sandbox within docker (preferred method)
 
-1. cd into `data-hub-frontend` and run `docker-compose up -f docker-compose.mock.yml`. This will start up the sandbox api in conjunction with the frontend, mock-sso, webpack and redis. You don't need to rebuild the image when you make changes.
+From the project root directory run `make start-mock`.
+   
+This will start up the sandbox api in conjunction with the frontend, mock-sso, webpack and redis. You don't need to rebuild the image when you make changes.
 
-### Using sandbox within docker with local frontend
+### Using sandbox within docker and with local frontend
 
 1. Build Sandbox image `docker build -t data-hub-sandbox ./test/sandbox`
 
@@ -159,16 +134,13 @@ Screenshots will be stored in the root of the project. We commit the baselines a
 
 ### Browserstack environment variables
 
-Before attempting to run the tests, copy `.bin.sample/visual` into `.bin/` folder
-and update the browserstack username and key environment variables.
-
-Also, copy `visual-stack.sample.env` to `visual-stack.env` and add the correct environment variables.
+Copy `sample.env` to `.env` and add `BROWSERSTACK_ACCESS_KEY` and `BROWSERSTACK_USERNAME` which can be found in Rattic.
 
 ### Running the tests
 
 Execute the command below:
 
-`$ ./.bin/visual`
+`make visual-tests`
 
 ### Updating the baseline image
 

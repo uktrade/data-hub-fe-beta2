@@ -1,3 +1,0 @@
-export BROWSERSTACK_USERNAME=user
-export BROWSERSTACK_ACCESS_KEY=key
-docker-compose -f docker-compose.visual.yml up

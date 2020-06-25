@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'header h1',
+  title: 'h1',
   form: 'form',
   continueButton: 'form button:contains("Continue")',
   submitButton: 'form button:contains("Add company")',

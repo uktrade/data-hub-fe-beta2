@@ -1,0 +1,28 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+    depends_on:
+      - redis
+    volumes:
+      - ./:/app:delegated
+      # Ensures that the local node_modules dir is not used in the container
+      - /app/node_modules
+    ports:
+      - ${PORT:-3000}:3000
+      - 9229:9229
+    env_file: .env
+    environment:
+      API_ROOT: ${API_ROOT}
+      # Required to test Data Hub roles in e2e tests, make sure this var
+      # doesn't exists in your .env file as the override below won't work
+      OAUTH2_DEV_TOKEN: ${OAUTH2_DEV_TOKEN:-ditStaffToken}
+      # BrowserStack vars cannot be placed in sample.env because they will take
+      # precedence over the ENV vars in CircleCI
+      BROWSERSTACK_ACCESS_KEY: ${BROWSERSTACK_ACCESS_KEY}
+      BROWSERSTACK_USERNAME: ${BROWSERSTACK_USERNAME}
+    command: yarn develop
+
+  redis:
+    image: redis:3.2.10

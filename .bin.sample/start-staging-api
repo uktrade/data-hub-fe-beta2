@@ -1,0 +1,1 @@
+API_ROOT=https://staging.api.datahub.example.com OAUTH2_DEV_TOKEN=userToken yarn docker:base:start

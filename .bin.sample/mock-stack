@@ -1,1 +1,0 @@
-docker-compose -p mock -f docker-compose.mock.yml up --build --abort-on-container-exit

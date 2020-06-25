@@ -1,0 +1,100 @@
+version: '3'
+services:
+  frontend:
+    depends_on:
+      - api
+      - mock-sso
+    entrypoint: dockerize -wait tcp://api:8000 -timeout 3m -wait-retry-interval 5s
+    environment:
+      DATA_STORE_SERVICE_POSTCODE_TO_REGION_URL: http://api:8000/api/v1/get-postcode-data/
+      MOCK_SSO_ROOT: http://mock-sso:8080
+      OAUTH2_AUTH_URL: http://mock-sso:8080/o/authorize
+      OAUTH2_LOGOUT_URL: http://mock-sso:8080/o/logout
+      OAUTH2_REDIRECT_URL: http://mock-sso:3000/oauth/callback
+      OAUTH2_TOKEN_FETCH_URL: http://mock-sso:8080/o/token
+      OAUTH2_USER_PROFILE_URL: http://mock-sso:8080/api/v1/user/me
+      OAUTH2_CLIENT_ID: randomClientId
+      OAUTH2_CLIENT_SECRET: youAintSeenMyRight
+
+  mock-sso:
+    image: quay.io/uktrade/mock-sso:latest
+    ports:
+      - 8080:8080
+    environment:
+      MOCK_SSO_SCOPE: data-hub:internal-front-end
+      MOCK_SSO_TOKEN: 123
+
+  api:
+    image: quay.io/uktrade/data-hub-api:master
+    env_file: .env
+    environment:
+      DEBUG: 'False'
+      ENABLE_CELERY_ES_SYNC_OBJECT: 'True'
+      REDIS_CACHE_DB: 5
+      REDIS_CELERY_DB: 6
+      SSO_ENABLED: 'True'
+      STAFF_SSO_BASE_URL: http://mock-sso:8080/
+      STAFF_SSO_AUTH_TOKEN: sso-token
+      WEB_CONCURRENCY: 2
+      ACTIVITY_STREAM_ACCESS_KEY_ID: some-id
+      ACTIVITY_STREAM_SECRET_ACCESS_KEY: some-secret
+      DISABLE_PAAS_IP_CHECK: 'True'
+      DATA_HUB_FRONTEND_ACCESS_KEY_ID: frontend-key-id
+      DATA_HUB_FRONTEND_SECRET_ACCESS_KEY: frontend-key
+      ADMIN_OAUTH2_ENABLED: 'False'
+      ES_APM_ENABLED: 'False'
+      RESOURCE_SERVER_INTROSPECTION_URL: http://mock-sso:8080/o/introspect # required but not used as user with token has been created in backend setup script
+      RESOURCE_SERVER_AUTH_TOKEN: sso-token
+
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+      - mi-postgres
+      - es
+      - es-apm
+      - redis
+      - celery
+      - mock-sso
+    entrypoint: dockerize -wait tcp://postgres:5432 -wait tcp://mi-postgres:5432 -wait tcp://es:9200 -wait tcp://es-apm:8200 -wait tcp://redis:6379 -timeout 2m
+    command: /app/setup-uat.sh || echo "all ood"
+
+  celery:
+    image: quay.io/uktrade/data-hub-api:develop
+    env_file: .env
+    depends_on:
+      - postgres
+      - mi-postgres
+      - es
+      - es-apm
+      - redis
+    entrypoint: dockerize -wait tcp://postgres:5432 -wait tcp://mi-postgres:5432 -wait tcp://es:9200 -wait tcp://es-apm:8200 -wait tcp://redis:6379 -timeout 2m
+    command: celery worker -A config -l info -Q celery -B
+
+  postgres:
+    image: postgres:10
+    environment:
+      POSTGRES_DB: datahub
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+  mi-postgres:
+    image: postgres:9.6
+    environment:
+      POSTGRES_DB: datahub
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.3
+    environment:
+      discovery.type: single-node
+      cluster.routing.allocation.disk.threshold_enabled: 'false'
+
+  es-apm:
+    image: docker.elastic.co/apm/apm-server:7.7.1
+    command: >
+      apm-server -e
+        -E output.elasticsearch.hosts=["es:9200"]
+    depends_on:
+      - es

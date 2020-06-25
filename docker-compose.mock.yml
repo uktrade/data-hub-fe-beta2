@@ -1,22 +1,21 @@
 version: '3'
 services:
   frontend:
-    build:
-      context: .
-    volumes:
-      - ./src:/usr/src/app/src
-    ports:
-      - 3001:3000
-      - 9230:9229
     depends_on:
-      - redis
-      - mock-backend
-    env_file: mock-stack.env
+      - mock-api
+    entrypoint: dockerize -wait tcp://mock-api:8000 -timeout 3m -wait-retry-interval 5s
+    environment:
+      API_ROOT: http://mock-api:8000
+      DATA_STORE_SERVICE_POSTCODE_TO_REGION_URL: http://mock-api:8000/api/v1/get-postcode-data/
+      HELP_CENTRE_API_FEED: http://mock-api:8000/help-centre/announcement
+      ONE_LIST_EMAIL: onelist@example.com
+      ZEN_TICKETS_URL: http://mock-api:8000/zendesk/tickets
+      # Our functional tests still make a real postcode lookup call
+      POSTCODE_KEY: ${POSTCODE_KEY}
 
-  mock-backend:
+  mock-api:
     build: ./test/sandbox
     volumes:
-      - './test/sandbox:/usr/src/app'
-
-  redis:
-    image: redis:3.2
+      - ./test/sandbox:/app
+      # Ensures that the local node_modules dir is not used in the container
+      - /app/node_modules

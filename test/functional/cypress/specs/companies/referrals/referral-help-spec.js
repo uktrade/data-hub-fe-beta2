@@ -49,11 +49,12 @@ describe('Referral help', () => {
         .next()
         .should('have.prop', 'tagName', 'P')
         .should(
-          'have.text',
-          `Forward this referral onto someone else. Paste this URL into an email: http://localhost:3000${urls.companies.referrals.details(
-            companyId,
-            '1'
-          )}`
+          'contain.text',
+          'Forward this referral onto someone else. Paste this URL into an email:'
+        )
+        .should(
+          'contain.text',
+          `${urls.companies.referrals.details(companyId, '1')}`
         )
         .next()
         .should('have.prop', 'tagName', 'A')

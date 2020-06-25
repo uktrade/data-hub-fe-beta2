@@ -45,39 +45,49 @@ and be provided with a back end server to provide the API, data storage and sear
 
 1. Clone this repo and the `data-hub-api` repo into the same parent folder. Go to the front-end project root.
 
-2. Create a `dev-stack.json`. We'll next go and get the variables from vault. To log into vault you'll need to be on the VPN and create a personal access token from the developer settings in your GitHub account. Copy the JSON from vault and run the following on the command line:
+2. Create a copy of a sample `.env` file which points to a mocked API:
 
-   (you will need to install jq - https://github.com/stedolan/jq/wiki/Installation)
-
-   `jq -r '. | to_entries[] | "\(.key)=\(.value)"' dev-stack.json > dev-stack.env`
-   `rm dev-stack.json`
-
-   **Note:** If you don't have access to vault to get the secrets you can copy the `dev-stack.sample.env` file to `dev-stack.env` and get up and running. Not everything will work right, but it should run.
+    ```bash
+    cp sample.env .env
+    ```
+    
+    Real values are available in vault. To log into vault you'll need to be on the VPN and create a personal access token from the developer settings in your GitHub account.
 
 3. Install docker if you don't have it already - https://docs.docker.com/get-docker/
 
-4. Run `docker-compose build --parallel && docker-compose -p dev up --abort-on-container-exit`. This is provided for you in the `dev-stack` file in the `.bin/sample` folder. Feel free to move it to your own `.bin` file. Alternatively, if you already have npm installed globally on your machine, you can run `npm run dev-stack`.
+4. Run `make start-dev`.
 
 5. Once the process has completed you can access the frontend at `http://localhost:3000` and the api at `http://localhost:8000`.
+
+6. You can check Docker logs by running:
+
+    ```bash
+    `make docker-dev` logs -f
+    ```
 
 #### Option 2 (the mock stack - using the sandbox api for running functional tests)
 
 1. Clone this repo and go to the project root
 
-2. Create a `mock-stack.json` We'll next go and get the variables from vault. To log into vault you'll need to be on the VPN and create a personal access token from the developer settings in your GitHub account. Copy the JSON from vault and run the following on the command line:
+2. Create a copy of a sample `.env` file which points to a mocked API:
 
-   (you will need to install jq - https://github.com/stedolan/jq/wiki/Installation)
-
-   `jq -r '. | to_entries[] | "\(.key)=\(.value)"' dev-stack.json > dev-stack.env`
-   `rm dev-stack.json`
-
-   **Note:** If you don't have access to vault to get the secrets you can copy the `dev-stack.sample.env` file to `dev-stack.env` and get up and running. Not everything will work right, but it should run.
+    ```bash
+    cp sample.env .env
+    ```
+    
+    Real values are available in vault. To log into vault you'll need to be on the VPN and create a personal access token from the developer settings in your GitHub account.
 
 3. Install docker if you don't have it already - https://docs.docker.com/get-docker/
 
-4. Run `docker-compose -p mock -f docker-compose.mock.yml up --build --abort-on-container-exit`. This is provided for you in the `mock-stack` file in the `.bin/sample` folder. Feel free to move it to your own `.bin` file. Alternatively, if you already have npm installed globally on your machine, you can run `npm run mock-stack`.
+4. Run `make start-mock`.
 
-5. You can now access the frontend at `http://localhost:3001` and the mock api at `http://localhost:8001`.
+5. You can now access the frontend at `http://localhost:3000`.
+
+6. You can check Docker logs by running:
+
+    ```bash
+    `make docker-mock` logs -f
+    ```
 
 ### Running the project natively
 
@@ -104,9 +114,7 @@ and be provided with a back end server to provide the API, data storage and sear
     cp sample.env .env
     ```
 
-    See [supported environment variables](./docs/Environment%20variables.md).
-
-5.  Start redis server:
+6.  Start redis server:
 
     ```bash
     docker run -it -p 6379:6379 redis:3.2

@@ -1,265 +1,53 @@
-version: 2 # Do not upgrade to 2.1 until CircleCI CLI supports it
-aliases:
-  - &redis_version redis:3.2.10
-  - &postgres_version postgres:10
-  - &mi_postgres_version postgres:9.6
-  - &elasticsearch_version docker.elastic.co/elasticsearch/elasticsearch:6.8.2
-  - &api_image quay.io/uktrade/data-hub-api:master
-  - &frontend_testing_image ukti/data-hub-frontend-test:3.7.0
-  - &oauth2_dit_staff_token ditStaffToken
-  - &oauth2_da_staff_token daStaffToken
-  - &oauth2_lep_staff_token lepStaffToken
-  - &es_apm docker.elastic.co/apm/apm-server:7.7.1
-
-  - &wait_for_backend
-    run:
-      name: Wait for backend
-      command: dockerize -wait ${API_ROOT}/ping.xml -timeout 300s
-
-  - &wait_for_mock_sso
-    run:
-      name: Wait for mock sso
-      command: dockerize -wait ${MOCK_SSO_ROOT}/healthcheck -timeout 60s
-
-  - &start_api_sandbox
-    run:
-      name: Start API sandbox
-      command: node ./test/sandbox/server.js
-      background: true
-
-  - &start_frontend
-    run:
-      name: Start data hub frontend
-      command: npm run start
-      background: true
-
-  - &start_frontend_coverage
-    run:
-      name: Start data hub frontend instrumenting the code
-      command: npm run start:coverage
-      background: true
-
-  - &wait_for_frontend
-    run:
-      name: Wait for data hub frontend
-      command: dockerize -wait ${QA_HOST}/healthcheck -timeout 180s
-
-  - &store_artifacts_cypress_video
-    store_artifacts:
-      path: cypress/videos
-
-  # Data hub base environment variables
-  - &data_hub_base_envs
-    NODE_ENV: development
-    WEBPACK_ENV: prod
-    API_ROOT: http://localhost:8000
-    QA_HOST: http://localhost:3000
-    REDIS_HOST: redis
-    LOG_LEVEL: debug
-    MOCK_SSO_ROOT: http://localhost:8080
-    QA_SELENIUM_HOST: 127.0.0.1
-    QA_SELENIUM_PORT: 4444
-    OAUTH2_TOKEN_FETCH_URL: http://localhost:8080/o/token
-    OAUTH2_USER_PROFILE_URL: http://localhost:8080/api/v1/user/me
-    OAUTH2_AUTH_URL: http://localhost:8080/o/authorize
-    OAUTH2_REDIRECT_URL: http://localhost:3000/oauth/callback
-    OAUTH2_LOGOUT_URL: http://localhost:8080/o/logout
-    OAUTH2_CLIENT_SECRET: youAintSeenMyRight
-    OAUTH2_CLIENT_ID: randomClientId
-    SESSION_SECRET: theStrongestAvenger
-    HELP_CENTRE_URL: https://data-services-help.trade.gov.uk/data-hub/
-    HELP_CENTRE_ANNOUNCMENTS_URL: https://data-services-help.trade.gov.uk/data-hub/updates/announcements/
-    HELP_CENTRE_API_FEED: https://data-services-help.trade.gov.uk/api/feeds/data-hub/updates
-    DATA_HUB_BACKEND_ACCESS_KEY_ID: frontend-key-id
-    DATA_HUB_BACKEND_SECRET_ACCESS_KEY: frontend-key
-    DATA_STORE_SERVICE_ACCESS_KEY_ID: data-store-service-id
-    DATA_STORE_SERVICE_SECRET_ACCESS_KEY: data-store-service-key
-    DATA_STORE_SERVICE_POSTCODE_TO_REGION_URL: http://localhost:8000/api/v1/get-postcode-data/
-    ZEN_TICKETS_URL: http://zendesk.example.com
-    ZEN_TOKEN: nobodyKnows
-    ZEN_EMAIL: zendesk@example.com
-    ONE_LIST_EMAIL: onelist@example.com
-    PERFORMANCE_DASHBOARDS_URL: http://dashboard.example.com
-    FIND_EXPORTERS_URL: http://exporters.example.com
-    ARCHIVED_DOCUMENTS_BASE_URL: http://documents.example.com
-    POSTCODE_KEY: fakeKey
-    CACHE_ASSETS: 'true'
-
-  - &data_hub_functional_envs
-    <<: *data_hub_base_envs
-    NODE_ENV: test
-    OAUTH2_DEV_TOKEN: ditStaffToken
-    OAUTH2_BYPASS_SSO: true
-    HELP_CENTRE_API_FEED: http://localhost:8000/help-centre/announcement
-    HELP_CENTRE_FEED_API_TOKEN: apiToken
-    ZEN_TICKETS_URL: http://localhost:8000/zendesk/tickets
-    ACCOUNT_PLAN_URLS: '{"000000001": "/some-test-account-plan-url", "123456789": "/some-other-test-account-plan-url"}'
-
-  # Data hub base docker container
-  - &docker_data_hub_base
-    image: *frontend_testing_image
-    environment: *data_hub_base_envs
-
-  # Data hub redis container
-  - &docker_redis
-    name: redis
-    image: *redis_version
-
-  # Data hub backend elasticsearch container
-  - &docker_elasticsearch
-    name: es
-    image: *elasticsearch_version
-
-  # Data hub backend postgres container
-  - &docker_postgres
-    image: *postgres_version
-    name: postgres
-    environment:
-      POSTGRES_DB: datahub
-      POSTGRES_PASSWORD: datahub
-
-  # Data hub mi dashboard postgres container
-  - &docker_mi_postgres
-    image: *mi_postgres_version
-    name: mi-postgres
-    environment:
-      POSTGRES_DB: mi
-      POSTGRES_PASSWORD: datahub
-
-  # Mock SSO container used by Data hub frontend
-  - &docker_mock_sso
-    image: quay.io/uktrade/mock-sso:latest
-    environment:
-      - MOCK_SSO_SCOPE: 'data-hub:internal-front-end'
-      - MOCK_SSO_TOKEN: 123
-
-  # Data hub backend Elasticsearch APM
-  - &docker_es_apm
-    image: *es_apm
-    name: es-apm
-    command: apm-server -e -E output.elasticsearch.hosts=["es:9200"]
-
-  # Data hub backend
-  - &docker_data_hub_backend_base
-    image: *api_image
-    environment:
-      AWS_DEFAULT_REGION: eu-west-2
-      AWS_ACCESS_KEY_ID: foo
-      AWS_SECRET_ACCESS_KEY: bar
-      DATABASE_URL: postgresql://postgres:datahub@postgres/datahub
-      MI_DATABASE_URL: postgresql://postgres:datahub@mi-postgres/mi
-      DEBUG: 'False'
-      DEFAULT_BUCKET: baz
-      DJANGO_SECRET_KEY: topSecret
-      DJANGO_SETTINGS_MODULE: config.settings.local
-      ENABLE_CELERY_ES_SYNC_OBJECT: 'True'
-      ES_INDEX_PREFIX: test_index
-      ES5_URL: http://es:9200
-      POSTGRES_URL: tcp://postgres:5432
-      MI_POSTGRES_URL: tcp://mi-postgres:5432
-      REDIS_BASE_URL: redis://redis:6379
-      REDIS_CACHE_DB: 5
-      REDIS_CELERY_DB: 6
-      SSO_ENABLED: 'True'
-      RESOURCE_SERVER_INTROSPECTION_URL: http://localhost:8080/o/introspect # required but not used as user with token has been created in backend setup script
-      RESOURCE_SERVER_AUTH_TOKEN: sso-token
-      STAFF_SSO_BASE_URL: http://localhost:8080/
-      STAFF_SSO_AUTH_TOKEN: sso-token
-      WEB_CONCURRENCY: 2
-      ACTIVITY_STREAM_ACCESS_KEY_ID: some-id
-      ACTIVITY_STREAM_SECRET_ACCESS_KEY: some-secret
-      DISABLE_PAAS_IP_CHECK: 'True'
-      DATA_HUB_FRONTEND_ACCESS_KEY_ID: frontend-key-id
-      DATA_HUB_FRONTEND_SECRET_ACCESS_KEY: frontend-key
-      ADMIN_OAUTH2_ENABLED: 'False'
-      ES_APM_ENABLED: 'False'
-      # Workaround for Docker/CircleCI compatibility problem with Python 3.8
-      COLUMNS: 80
-
-  - &docker_data_hub_backend_api
-    <<: *docker_data_hub_backend_base
-    command: ./setup-uat.sh
-
-  - &docker_data_hub_backend_celery
-    <<: *docker_data_hub_backend_base
-    # Note: By default Celery will default to the number of CPU cores, which can be a large number on CircleCI like 36
-    # which then ends up causing out-of-memory errors
-    command: celery worker -A config -l info -Q celery,long-running --concurrency 3
-
-  # Non master branch Common workflow config
-  - &common_workflow_config
-    filters:
-      branches:
-        ignore:
-          - master
+version: 2.1
 
 jobs:
-  # Run linting jobs
-  lint_code:
-    docker:
-      - <<: *docker_data_hub_base
+  lint:
+    machine:
+      docker_layer_caching: true
     steps:
       - checkout
-      - run: npm ci
-      - run:
-          name: Lint code
-          command: |
-            mkdir -p reports
-            npm run lint:js -- --format junit --output-file reports/eslint.xml
-            npm run lint:sass
-          when: always
+      - run_make:
+          label: Run linter
+          target: lint
       - store_test_results:
           path: reports
       - store_artifacts:
           path: reports
 
-  # Run unit tests and store results
   unit_tests:
-    docker:
-      - *docker_data_hub_base
+    machine:
+      docker_layer_caching: true
     steps:
       - checkout
-      - run: npm ci
+      - run_make:
+          label: Run unit tests
+          target: unit-tests-ci
+      - store_test_results:
+          path: junit
+      - store_artifacts:
+          path: junit
+      - store_test_results:
+          path: coverage
+      - store_artifacts:
+          path: coverage
       - run:
-          name: Run unit tests
+          name: Prepare coverage report
           command: |
-            mkdir junit
-            npm run circle:unit
-          environment:
-            MOCHA_FILE: junit/test-results.xml
-          when: always
-      - store_test_results:
-          path: junit
-      - store_artifacts:
-          path: junit
-      - store_test_results:
-          path: coverage
-      - store_artifacts:
-          path: coverage
-      - run: mkdir unit-coverage || true
-      - run: cp coverage/coverage-final.json unit-coverage/unit-coverage.json || true
+            mkdir -p unit-coverage
+            cp coverage/coverage-final.json unit-coverage/unit-coverage.json
       - persist_to_workspace:
           root: ~/
           paths:
             - 'project/unit-coverage/*'
 
-  # Run unit client tests and store results
   unit_client_tests:
-    docker:
-      - <<: *docker_data_hub_base
+    machine:
+      docker_layer_caching: true
     steps:
       - checkout
-      - run: npm ci
-      - run: npm run build
-      - run:
-          name: Run client-side unit tests
-          command: |
-            mkdir junit
-            npm run circle:unit-client
-          environment:
-            WEBPACK_ENV: develop
-            MOCHA_FILE: junit/test-results.xml
-          when: always
+      - run_make:
+          label: Run unit tests
+          target: unit-client-tests
       - store_test_results:
           path: junit
       - store_artifacts:
@@ -269,177 +57,87 @@ jobs:
       - store_artifacts:
           path: coverage
 
-  # Run functional tests
   functional_tests:
-    docker:
-      - <<: *docker_data_hub_base
-        environment: *data_hub_functional_envs
-      - *docker_redis
-      - *docker_mock_sso
+    machine:
+      docker_layer_caching: true
     parallelism: 9
     steps:
       - checkout
-      - run: npm ci
-      - run: npm run build
-      - *start_api_sandbox
-      - *wait_for_mock_sso
-      - *wait_for_backend
-      - *start_frontend_coverage
-      - *wait_for_frontend
+      - run_make:
+          label: Run functional tests
+          target: functional-tests-ci
+      - store_cypress_artifacts
       - run:
-          name: Run functional tests
-          command: npm run test:functional -- --browser chrome --config baseUrl=http://localhost:3000 --parallel --record --key $CYPRESS_DASHBOARD_KEY
-          when: always
-      - store_artifacts:
-          path: cypress/screenshots
-      - store_test_results:
-          path: cypress-coverage
-      - store_artifacts:
-          path: cypress-coverage
-      - *store_artifacts_cypress_video
-      - run: mkdir partial-coverage || true
-      - run: touch partial-coverage/.placeholder || true
-      - run: cp cypress-coverage/coverage-final.json partial-coverage/cypress-coverage-$CIRCLE_WORKFLOW_JOB_ID-index-$CIRCLE_NODE_INDEX.json || true
+          name: Prepare coverage report
+          command: |
+            mkdir -p partial-coverage
+            touch partial-coverage/.placeholder
+            cp cypress-coverage/coverage-final.json partial-coverage/cypress-coverage-$CIRCLE_WORKFLOW_JOB_ID-index-$CIRCLE_NODE_INDEX.json
       - persist_to_workspace:
           root: ~/
           paths:
             - 'project/partial-coverage/*'
 
-  # Run visual tests
   visual_tests:
-    docker:
-      - <<: *docker_data_hub_base
-        environment: *data_hub_functional_envs
-      - *docker_redis
-      - *docker_mock_sso
+    machine:
+      docker_layer_caching: true
     steps:
       - checkout
-      - run: npm ci
-      - run: npm run build
-      - *start_api_sandbox
-      - *wait_for_mock_sso
-      - *wait_for_backend
-      - *start_frontend
-      - *wait_for_frontend
-      - run:
-          name: Run visual tests
-          command: npm run test:visual
-          when: always
+      - run_make:
+          label: Run visual tests
+          target: visual-tests
       - store_artifacts:
           path: visual-screenshots
       - store_artifacts:
           path: visual-report
 
-  # Run e2e tests for DIT staff
-  dit_staff_e2e:
-    docker:
-      - <<: *docker_data_hub_base
-        environment:
-          <<: *data_hub_base_envs
-          OAUTH2_DEV_TOKEN: *oauth2_dit_staff_token
-      - *docker_redis
-      - *docker_elasticsearch
-      - *docker_es_apm
-      - *docker_postgres
-      - *docker_mi_postgres
-      - *docker_mock_sso
-      - *docker_data_hub_backend_api
-      - *docker_data_hub_backend_celery
+  e2e_tests_dit:
+    machine:
+      docker_layer_caching: true
     steps:
       - checkout
-      - run: npm ci
-      - run: npm run build
-      - *wait_for_backend
-      - *wait_for_mock_sso
-      - *start_frontend
-      - *wait_for_frontend
-      - run:
-          name: Run DIT staff e2e tests
-          command: npm run test:e2e:dit
-      - store_test_results:
-          path: cypress-coverage
-      - store_artifacts:
-          path: cypress-coverage
-      - store_artifacts:
-          path: cypress/screenshots
-      - *store_artifacts_cypress_video
+      - run_make:
+          target: e2e-tests-dit
+      - store_cypress_artifacts
 
-  # Run e2e tests for LEP staff
-  lep_staff_e2e:
-    docker:
-      - <<: *docker_data_hub_base
-        environment:
-          <<: *data_hub_base_envs
-          OAUTH2_DEV_TOKEN: *oauth2_lep_staff_token
-      - *docker_redis
-      - *docker_elasticsearch
-      - *docker_es_apm
-      - *docker_postgres
-      - *docker_mi_postgres
-      - *docker_mock_sso
-      - *docker_data_hub_backend_api
-      - *docker_data_hub_backend_celery
+  e2e_tests_da:
+    machine:
+      docker_layer_caching: true
     steps:
       - checkout
-      - run: npm ci
-      - run: npm run build
-      - *wait_for_backend
-      - *wait_for_mock_sso
-      - *start_frontend
-      - *wait_for_frontend
-      - run:
-          name: Run LEP staff e2e tests
-          command: npm run test:e2e:lep
-      - store_test_results:
-          path: cypress-coverage
-      - store_artifacts:
-          path: cypress-coverage
-      - store_artifacts:
-          path: cypress/screenshots
-      - *store_artifacts_cypress_video
+      - run_make:
+          target: e2e-tests-da
+      - store_cypress_artifacts
+  
+  e2e_tests_lep:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run_make:
+          target: e2e-tests-lep
+      - store_cypress_artifacts
 
-  # Run e2e tests for DA staff
-  da_staff_e2e:
-    docker:
-      - <<: *docker_data_hub_base
-        environment:
-          <<: *data_hub_base_envs
-          OAUTH2_DEV_TOKEN: *oauth2_da_staff_token
-      - *docker_redis
-      - *docker_elasticsearch
-      - *docker_es_apm
-      - *docker_postgres
-      - *docker_mi_postgres
-      - *docker_mock_sso
-      - *docker_data_hub_backend_api
-      - *docker_data_hub_backend_celery
-    steps:
-      - checkout
-      - run: npm ci
-      - run: npm run build
-      - *wait_for_backend
-      - *wait_for_mock_sso
-      - *start_frontend
-      - *wait_for_frontend
-      - run:
-          name: Run DA staff e2e tests
-          command: npm run test:e2e:da
-      - store_test_results:
-          path: cypress-coverage
-      - store_artifacts:
-          path: cypress-coverage
-      - store_artifacts:
-          path: cypress/screenshots
-      - *store_artifacts_cypress_video
+      # e2e_tests:
+      #   machine:
+      #     docker_layer_caching: true
+      #   parameters:
+      #     staff:
+      #       type: string
+      #   steps:
+      #     - checkout
+      #     - run_make:
+      #         target: e2e-tests-<< parameters.staff >>
+      #     - store_cypress_artifacts
 
   merge-and-publish-coverage:
     docker:
-      - <<: *docker_data_hub_base
+      - image: node
     steps:
       - checkout
       - attach_workspace:
           at: ~/
-      - run: npm install nyc --global
+      - run: npm i -g add nyc
       - run: cp unit-coverage/unit-coverage.json partial-coverage
       - run: nyc merge partial-coverage
       - run: mkdir .nyc_output || true
@@ -455,19 +153,51 @@ jobs:
           name: Publish coverage to Codecov
           command: bash <(curl -s https://codecov.io/bash)
 
-# CircleCI workflows
+commands:
+  run_make:
+    description: Run makefile target with some setup
+    parameters:
+      label:
+        type: string
+        default: Execute make << parameters.target >>
+      target:
+        type: string
+    steps:
+      - run:
+          name: Copy config
+          command: cp sample.env .env
+      - run:
+          name: << parameters.label >>
+          command: make << parameters.target >>
+  store_cypress_artifacts:
+    description: Store Cypress artifacts like screenshots and videos
+    steps:
+      - store_test_results:
+          path: cypress-coverage
+      - store_artifacts:
+          path: cypress-coverage
+      - store_artifacts:
+          path: cypress/screenshots
+      - store_artifacts:
+          path: cypress/videos
+
 workflows:
   version: 2
   datahub:
     jobs:
-      - lint_code: *common_workflow_config
-      - unit_tests: *common_workflow_config
-      - unit_client_tests: *common_workflow_config
-      - functional_tests: *common_workflow_config
-      - visual_tests: *common_workflow_config
-      - dit_staff_e2e: *common_workflow_config
-      - da_staff_e2e: *common_workflow_config
-      - lep_staff_e2e: *common_workflow_config
+      - lint
+      - unit_tests
+      - unit_client_tests
+      - functional_tests
+      - visual_tests
+      - e2e_tests_da
+      - e2e_tests_lep
+      - e2e_tests_dit
+      # - e2e_tests:
+      #     name: e2e_tests_<< matrix.staff >>
+      #     matrix:
+      #       parameters:
+      #         staff: [dit, da, lep]
       - merge-and-publish-coverage:
           requires:
             - functional_tests
