@@ -91,44 +91,17 @@ jobs:
       - store_artifacts:
           path: visual-report
 
-  e2e_tests_dit:
+  e2e_tests:
     machine:
       docker_layer_caching: true
+    parameters:
+      staff:
+        type: string
     steps:
       - checkout
       - run_make:
-          target: e2e-tests-dit
+          target: e2e-tests-<< parameters.staff >>
       - store_cypress_artifacts
-
-  e2e_tests_da:
-    machine:
-      docker_layer_caching: true
-    steps:
-      - checkout
-      - run_make:
-          target: e2e-tests-da
-      - store_cypress_artifacts
-  
-  e2e_tests_lep:
-    machine:
-      docker_layer_caching: true
-    steps:
-      - checkout
-      - run_make:
-          target: e2e-tests-lep
-      - store_cypress_artifacts
-
-      # e2e_tests:
-      #   machine:
-      #     docker_layer_caching: true
-      #   parameters:
-      #     staff:
-      #       type: string
-      #   steps:
-      #     - checkout
-      #     - run_make:
-      #         target: e2e-tests-<< parameters.staff >>
-      #     - store_cypress_artifacts
 
   merge-and-publish-coverage:
     docker:
@@ -190,14 +163,11 @@ workflows:
       - unit_client_tests
       - functional_tests
       - visual_tests
-      - e2e_tests_da
-      - e2e_tests_lep
-      - e2e_tests_dit
-      # - e2e_tests:
-      #     name: e2e_tests_<< matrix.staff >>
-      #     matrix:
-      #       parameters:
-      #         staff: [dit, da, lep]
+      - e2e_tests:
+          name: e2e_tests_<< matrix.staff >>
+          matrix:
+            parameters:
+              staff: [dit, da, lep]
       - merge-and-publish-coverage:
           requires:
             - functional_tests

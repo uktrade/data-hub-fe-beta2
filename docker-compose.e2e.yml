@@ -6,6 +6,7 @@ services:
       - mock-sso
     entrypoint: dockerize -wait tcp://api:8000 -timeout 3m -wait-retry-interval 5s
     environment:
+      API_ROOT: http://api:8000
       DATA_STORE_SERVICE_POSTCODE_TO_REGION_URL: http://api:8000/api/v1/get-postcode-data/
       MOCK_SSO_ROOT: http://mock-sso:8080
       OAUTH2_AUTH_URL: http://mock-sso:8080/o/authorize
@@ -15,36 +16,74 @@ services:
       OAUTH2_USER_PROFILE_URL: http://mock-sso:8080/api/v1/user/me
       OAUTH2_CLIENT_ID: randomClientId
       OAUTH2_CLIENT_SECRET: youAintSeenMyRight
+      NODE_ENV: development
+      WEBPACK_ENV: prod
+      LOG_LEVEL: debug
+      HELP_CENTRE_URL: https://data-services-help.trade.gov.uk/data-hub/
+      HELP_CENTRE_ANNOUNCMENTS_URL: https://data-services-help.trade.gov.uk/data-hub/updates/announcements/
+      HELP_CENTRE_API_FEED: https://data-services-help.trade.gov.uk/api/feeds/data-hub/updates
+      DATA_HUB_BACKEND_ACCESS_KEY_ID: frontend-key-id
+      DATA_HUB_BACKEND_SECRET_ACCESS_KEY: frontend-key
+      DATA_STORE_SERVICE_ACCESS_KEY_ID: data-store-service-id
+      DATA_STORE_SERVICE_SECRET_ACCESS_KEY: data-store-service-key
+      ZEN_TICKETS_URL: http://zendesk.example.com
+      ZEN_TOKEN: nobodyKnows
+      ZEN_EMAIL: zendesk@example.com
+      ONE_LIST_EMAIL: onelist@example.com
+      PERFORMANCE_DASHBOARDS_URL: http://dashboard.example.com
+      FIND_EXPORTERS_URL: http://exporters.example.com
+      ARCHIVED_DOCUMENTS_BASE_URL: http://documents.example.com
+      POSTCODE_KEY: fakeKey
+      CACHE_ASSETS: 'true'
+      HELP_CENTRE_FEED_API_TOKEN: "dummyToken"
 
   mock-sso:
     image: quay.io/uktrade/mock-sso:latest
     ports:
       - 8080:8080
     environment:
-      MOCK_SSO_SCOPE: data-hub:internal-front-end
+      MOCK_SSO_SCOPE: 'data-hub:internal-front-end'
       MOCK_SSO_TOKEN: 123
+      MOCK_SSO_USERNAME: someuser
+      COMPOSE_PROJECT_NAME: data-hub
+      MOCK_SSO_EMAIL_USER_ID: change.me@id.trade.local
 
   api:
     image: quay.io/uktrade/data-hub-api:master
     env_file: .env
     environment:
-      DEBUG: 'False'
-      ENABLE_CELERY_ES_SYNC_OBJECT: 'True'
-      REDIS_CACHE_DB: 5
-      REDIS_CELERY_DB: 6
+      DEBUG: 'True'
+      DJANGO_SECRET_KEY: changeme
+      DJANGO_SETTINGS_MODULE: config.settings.local
+      ES_INDEX_PREFIX: test_index
+      AWS_DEFAULT_REGION: eu-west-2
+      AWS_ACCESS_KEY_ID: foo
+      AWS_SECRET_ACCESS_KEY: bar
+      DEFAULT_BUCKET: baz
       SSO_ENABLED: 'True'
       STAFF_SSO_BASE_URL: http://mock-sso:8080/
       STAFF_SSO_AUTH_TOKEN: sso-token
-      WEB_CONCURRENCY: 2
+      RESOURCE_SERVER_INTROSPECTION_URL: http://mock-sso:8080/o/introspect/
+      RESOURCE_SERVER_AUTH_TOKEN: sso-token
+      DATA_SCIENCE_COMPANY_API_URL: http://dt07-reporting/
+      DATA_SCIENCE_COMPANY_API_ID: dt07-reporting-id
+      DATA_SCIENCE_COMPANY_API_KEY: dt07-reporting-id
       ACTIVITY_STREAM_ACCESS_KEY_ID: some-id
       ACTIVITY_STREAM_SECRET_ACCESS_KEY: some-secret
-      DISABLE_PAAS_IP_CHECK: 'True'
+      MARKET_ACCESS_ACCESS_KEY_ID: market-access-id
+      MARKET_ACCESS_SECRET_ACCESS_KEY: market-access-key
+      HAWK_RECEIVER_IP_WHITELIST: 1.2.3.4
+      # Determines the docker-compose project - by default, containers with the same
+      # project name share a network and are able to communicate with eachother
+      DJANGO_SUPERUSER_EMAIL: someuser
+      DJANGO_SUPERUSER_PASSWORD: foobarbaz
+      DJANGO_SUPERUSER_SSO_EMAIL_USER_ID: change.me@id.trade.local
       DATA_HUB_FRONTEND_ACCESS_KEY_ID: frontend-key-id
       DATA_HUB_FRONTEND_SECRET_ACCESS_KEY: frontend-key
-      ADMIN_OAUTH2_ENABLED: 'False'
-      ES_APM_ENABLED: 'False'
-      RESOURCE_SERVER_INTROSPECTION_URL: http://mock-sso:8080/o/introspect # required but not used as user with token has been created in backend setup script
-      RESOURCE_SERVER_AUTH_TOKEN: sso-token
+      DIT_EMAIL_DOMAINS: trade.gov.uk,digital.trade.gov.uk
+      DATA_FLOW_API_ACCESS_KEY_ID: 'data-flow-api-id'
+      DATA_FLOW_API_SECRET_ACCESS_KEY: 'data-flow-api-access-key'
+      DISABLE_PAAS_IP_CHECK: 'True'
 
     ports:
       - 8000:8000
@@ -56,11 +95,11 @@ services:
       - redis
       - celery
       - mock-sso
-    entrypoint: dockerize -wait tcp://postgres:5432 -wait tcp://mi-postgres:5432 -wait tcp://es:9200 -wait tcp://es-apm:8200 -wait tcp://redis:6379 -timeout 2m
+    entrypoint: dockerize -wait tcp://postgres:5432 -wait tcp://mi-postgres:5432 -wait tcp://es:9200 -wait tcp://es-apm:8200 -wait tcp://redis:6379 -wait tcp://mock-sso:8080 -timeout 2m
     command: /app/setup-uat.sh || echo "all ood"
 
   celery:
-    image: quay.io/uktrade/data-hub-api:develop
+    image: quay.io/uktrade/data-hub-api:master
     env_file: .env
     depends_on:
       - postgres
