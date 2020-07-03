@@ -1,0 +1,11 @@
+
+
+{% extends "_layouts/template-no-local-header.njk" %}
+
+{% block body %}
+  {% component 'react-slot', {
+    id: 'interaction-collection-list',
+    props: props
+  } %}
+
+{% endblock %}

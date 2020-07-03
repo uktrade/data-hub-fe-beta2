@@ -101,6 +101,8 @@ import investmentProjectAdminReducer from '../apps/investments/views/admin/clien
 import { ID as MANAGE_ADVISER_ID } from '../apps/companies/apps/advisers/client/state'
 import manageAdviserReducer from '../apps/companies/apps/advisers/client/reducer'
 
+import Interactions from '../apps/interactions/apps/collection/client'
+
 const sagaMiddleware = createSagaMiddleware()
 const history = createBrowserHistory({
   // The baseURI is set to the <base/> tag by the spaFallbackSpread
@@ -337,6 +339,9 @@ function App() {
         </Mount>
         <Mount selector="#delete-pipeline-item-form">
           {(props) => <DeletePipelineItemForm {...props} />}
+        </Mount>
+        <Mount selector="#interaction-collection-list">
+          {(props) => <Interactions {...props} />}
         </Mount>
       </ConnectedRouter>
     </Provider>

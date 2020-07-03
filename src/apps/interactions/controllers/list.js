@@ -135,7 +135,7 @@ async function renderInteractionList(req, res, next) {
       exportOptions
     )
 
-    res.render('_layouts/collection', {
+    res.render('interactions/apps/collection/views/list.njk', {
       selectedFilters,
       exportAction,
       filtersFields: filtersFieldsWithSelectedOptions,
