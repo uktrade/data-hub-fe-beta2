@@ -101,7 +101,9 @@ import investmentProjectAdminReducer from '../apps/investments/views/admin/clien
 import { ID as MANAGE_ADVISER_ID } from '../apps/companies/apps/advisers/client/state'
 import manageAdviserReducer from '../apps/companies/apps/advisers/client/reducer'
 
+import { ID as INTERACTIONS_LIST } from '../apps/interactions/apps/collection/client/state'
 import Interactions from '../apps/interactions/apps/collection/client'
+import interactionsListReducer from '../apps/interactions/apps/collection/client/reducer'
 
 const sagaMiddleware = createSagaMiddleware()
 const history = createBrowserHistory({
@@ -139,6 +141,7 @@ const store = createStore(
     referrerUrl: (state = {}) => state,
     [INVESTEMENT_PROJECT_ADMIN_ID]: investmentProjectAdminReducer,
     [MANAGE_ADVISER_ID]: manageAdviserReducer,
+    [INTERACTIONS_LIST]: interactionsListReducer,
   }),
   {
     referrerUrl: window.document.referrer,
