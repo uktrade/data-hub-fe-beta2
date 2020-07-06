@@ -1,8 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 import Task from '../../../../../../client/components/Task'
 import Form from '../../../../../../client/components/Form'
 import AdviserTypeahead from '../../../../../../client/components/AdviserTypeAhead'
+
+import { FormActions } from 'data-hub-components'
+
+import { Button } from 'govuk-react'
 
 import {
   ID as STATE_ID,
@@ -11,7 +16,18 @@ import {
   state2props,
 } from '../state'
 
-const Filters = ({ initialValues, params }) => {
+const StyledFilter = styled('div')`
+  > div {
+    background-color: #dee0e2;
+    padding: 8px;
+  }
+  label {
+    font-size: 16px;
+    font-weight: 600;
+  }
+`
+
+const Filters = () => {
   return (
     <Task>
       {(getTask) => {
@@ -19,21 +35,23 @@ const Filters = ({ initialValues, params }) => {
         return (
           <Form
             id={STATE_ID}
-            initialValues={initialValues}
             onSubmit={(values) => {
               getInteractions.start({
-                payload: values,
-                onSuccessDispatch: TASK_UPDATE_INTERACTIONS__COMPLETE,
+                payload: { values },
+                onSuccessDispatch: TASK_UPDATE_INTERACTIONS,
               })
             }}
-            submissionError="ahhhhh"
           >
-            <AdviserTypeahead
-              name="dit_participants"
-              label="Adviser(s)"
-              required="Select at least one adviser"
-              isMulti={true}
-            />
+            <StyledFilter>
+              <AdviserTypeahead
+                name="dit_participants"
+                label="Adviser(s)"
+                isMulti={true}
+              />
+            </StyledFilter>
+            <FormActions>
+              <Button>Submit</Button>
+            </FormActions>
           </Form>
         )
       }}
