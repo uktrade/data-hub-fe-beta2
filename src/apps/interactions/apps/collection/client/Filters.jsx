@@ -1,20 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import Task from '../../../../../../client/components/Task'
-import Form from '../../../../../../client/components/Form'
-import AdviserTypeahead from '../../../../../../client/components/AdviserTypeAhead'
+import Task from '../../../../../client/components/Task'
+import Form from '../../../../../client/components/Form'
+import AdviserTypeahead from '../../../../../client/components/AdviserTypeAhead'
 
-import { FormActions } from 'data-hub-components'
+import { FormActions, FieldCheckboxes } from 'data-hub-components'
 
 import { Button } from 'govuk-react'
 
-import {
-  ID as STATE_ID,
-  TASK_UPDATE_INTERACTIONS,
-  TASK_UPDATE_INTERACTIONS__COMPLETE,
-  state2props,
-} from '../state'
+import { ID as STATE_ID, TASK_UPDATE_INTERACTIONS, state2props } from './state'
 
 const StyledFilter = styled('div')`
   > div {
@@ -49,8 +44,23 @@ const Filters = () => {
                 isMulti={true}
               />
             </StyledFilter>
+            <StyledFilter>
+              <FieldCheckboxes
+                label="Kind"
+                name="kind"
+                options={[
+                  {
+                    label: 'Interaction',
+                    value: 'interaction',
+                  },               {
+                    label: 'Service delivery',
+                    value: 'service_delivery',
+                  },
+                ]}
+              />
+            </StyledFilter>
             <FormActions>
-              <Button>Submit</Button>
+              <Button>Refresh results</Button>
             </FormActions>
           </Form>
         )

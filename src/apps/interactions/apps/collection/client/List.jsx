@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import Task from '../../../../../client/components/Task'
-import { ID as STATE_ID, TASK_UPDATE_INTERACTIONS, state2props } from './state'
+import { ID as STATE_ID, TASK_UPDATE_INTERACTIONS, TASK_GET_INTERACTIONS, state2props } from './state'
 
 const StyledRoot = styled('div')`
   header {
@@ -47,7 +47,9 @@ const List = ({ interactions, count, advisers }) => {
       id={STATE_ID}
       progressMessage="loading interactions"
       startOnRender={{
-        payload: 'payload',
+        payload: {
+          filters: {},
+        },
         onSuccessDispatch: TASK_UPDATE_INTERACTIONS,
         STATE_ID,
       }}
@@ -94,4 +96,4 @@ const List = ({ interactions, count, advisers }) => {
   )
 }
 
-export default connect(state2props, null)(List)
+export default connect(state2props)(List)

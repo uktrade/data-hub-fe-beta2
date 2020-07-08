@@ -1,4 +1,7 @@
-import { TASK_UPDATE_INTERACTIONS } from '../../../../../client/actions'
+import {
+  TASK_UPDATE_INTERACTIONS,
+  TASK_GET_INTERACTIONS,
+} from '../../../../../client/actions'
 
 export default (
   state = {

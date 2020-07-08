@@ -41,7 +41,10 @@ import {
 } from '../apps/interactions/apps/details-form/client/state'
 import * as addInteractionFormTasks from '../apps/interactions/apps/details-form/client/tasks'
 
-import { TASK_UPDATE_INTERACTIONS } from '../apps/interactions/apps/collection/client/state'
+import {
+  TASK_UPDATE_INTERACTIONS,
+  TASK_GET_INTERACTIONS,
+} from '../apps/interactions/apps/collection/client/state'
 import * as updateInteractions from '../apps/interactions/apps/collection/client/tasks'
 
 import { TASK_UPDATE_ADVISER } from '../apps/companies/apps/advisers/client/state'
@@ -76,7 +79,8 @@ export default function* rootSaga() {
       [TASK_OPEN_CONTACT_FORM]: addInteractionFormTasks.openContactForm,
       [TASK_UPDATE_STAGE]: investmentAdminTasks.updateProjectStage,
       [TASK_UPDATE_ADVISER]: manageAdviser.updateAdviser,
-      [TASK_UPDATE_INTERACTIONS]: updateInteractions.getInteractions,
+      [TASK_UPDATE_INTERACTIONS]: updateInteractions.filterInteractions,
+      [TASK_GET_INTERACTIONS]: updateInteractions.getInteractions,
     })
   )
   yield fork(analyticsSaga)
