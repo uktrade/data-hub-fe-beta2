@@ -9,7 +9,11 @@ import { FormActions, FieldCheckboxes } from 'data-hub-components'
 
 import { Button } from 'govuk-react'
 
-import { ID as STATE_ID, TASK_UPDATE_INTERACTIONS, state2props } from './state'
+import {
+  TASK_UPDATE__INTERACTIONS,
+  INTERACTIONS__FILTERS_CHANGE,
+} from '../../../../../client/actions'
+import { ID as STATE_ID, state2props } from './state'
 
 const StyledFilter = styled('div')`
   > div {
@@ -22,20 +26,15 @@ const StyledFilter = styled('div')`
   }
 `
 
-const Filters = () => {
+const Filters = ({ onChange }) => {
   return (
     <Task>
       {(getTask) => {
-        const getInteractions = getTask(TASK_UPDATE_INTERACTIONS)
+        const getInteractions = getTask(TASK_UPDATE__INTERACTIONS, STATE_ID)
         return (
           <Form
             id={STATE_ID}
-            onSubmit={(values) => {
-              getInteractions.start({
-                payload: { values },
-                onSuccessDispatch: TASK_UPDATE_INTERACTIONS,
-              })
-            }}
+            onSubmit={onChange}
           >
             <StyledFilter>
               <AdviserTypeahead
@@ -52,7 +51,8 @@ const Filters = () => {
                   {
                     label: 'Interaction',
                     value: 'interaction',
-                  },               {
+                  },
+                  {
                     label: 'Service delivery',
                     value: 'service_delivery',
                   },
@@ -69,4 +69,11 @@ const Filters = () => {
   )
 }
 
-export default connect(state2props)(Filters)
+export default connect(state2props, (dispatch) => ({
+  onChange: (filters) => {
+    dispatch({
+      type: INTERACTIONS__FILTERS_CHANGE,
+      filters,
+    })
+  },
+}))(Filters)

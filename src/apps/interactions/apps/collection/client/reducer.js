@@ -1,23 +1,34 @@
 import {
-  TASK_UPDATE_INTERACTIONS,
-  TASK_GET_INTERACTIONS,
+  TASK_UPDATE__INTERACTIONS,
+  INTERACTIONS__FILTERS_CHANGE,
+  INTERACTIONS__PAGE_CHANGE,
 } from '../../../../../client/actions'
 
 export default (
   state = {
     interactions: [],
+    filters: {},
     count: null,
-    adviser: null,
+    page: 0,
   },
-  { type, result, payload }
+  { type, result, filters, page }
 ) => {
   switch (type) {
-    case TASK_UPDATE_INTERACTIONS:
+    case TASK_UPDATE__INTERACTIONS:
       return {
         ...state,
         interactions: result.results,
         count: result.count,
-        advisers: payload?.values?.dit_participants?.map(({ label }) => label),
+      }
+    case INTERACTIONS__FILTERS_CHANGE:
+      return {
+        ...state,
+        filters,
+      }
+    case INTERACTIONS__PAGE_CHANGE:
+      return {
+        ...state,
+        page,
       }
     default:
       return state
