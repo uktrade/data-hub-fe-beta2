@@ -24,12 +24,10 @@ services:
       DATA_STORE_SERVICE_SECRET_ACCESS_KEY: data-store-service-key
       FIND_EXPORTERS_URL: https://lookInVault.com/
       HELP_CENTRE_URL: "https://datahub-helpcentre.london.cloudapps.digital"
-      HELP_CENTRE_ANNOUNCMENTS_URL: "ttps://datahub-helpcentre.london.cloudapps.digital/updates/announcements"
+      HELP_CENTRE_ANNOUNCMENTS_URL: "https://datahub-helpcentre.london.cloudapps.digital/updates/announcements"
       HELP_CENTRE_API_FEED: "https://datahub-helpcentre.london.cloudapps.digital/api/feeds/announcements"
-      HELP_CENTRE_FEED_API_TOKEN: dummyToken
       ONE_LIST_EMAIL: look@in.vault.com
       PERFORMANCE_DASHBOARDS_URL: https://lookInVault.com/
-      POSTCODE_KEY: lookInVault
       REDIS_HOST: redis
       REDIS_URL: redis://redis:6379
       SESSION_SECRET: test
@@ -48,7 +46,7 @@ services:
     environment:
       MOCK_SSO_SCOPE: data-hub:internal-front-end
       MOCK_SSO_TOKEN: 123
-      MOCK_SSO_EMAIL_USER_ID: change.me@id.trade.local
+      MOCK_SSO_EMAIL_USER_ID: test@gov.uk
 
   api:
     image: quay.io/uktrade/data-hub-api:develop
@@ -70,23 +68,18 @@ services:
       POSTGRES_URL: tcp://postgres:5432
       MI_POSTGRES_URL: tcp://mi-postgres:5432
       REDIS_BASE_URL: redis://redis:6379
-      REDIS_CACHE_DB: 5
-      REDIS_CELERY_DB: 6
       SSO_ENABLED: 'True'
       RESOURCE_SERVER_INTROSPECTION_URL: http://mock-sso:8080/o/introspect
       RESOURCE_SERVER_AUTH_TOKEN: sso-token
       STAFF_SSO_BASE_URL: http://mock-sso:8080/
       STAFF_SSO_AUTH_TOKEN: sso-token
-      WEB_CONCURRENCY: 2
-      ACTIVITY_STREAM_ACCESS_KEY_ID: some-id
-      ACTIVITY_STREAM_SECRET_ACCESS_KEY: some-secret
       DISABLE_PAAS_IP_CHECK: 'True'
       DATA_HUB_FRONTEND_ACCESS_KEY_ID: frontend-key-id
       DATA_HUB_FRONTEND_SECRET_ACCESS_KEY: frontend-key
       ADMIN_OAUTH2_ENABLED: 'False'
       ES_APM_ENABLED: 'False'
       COLUMNS: 80
-      DJANGO_SUPERUSER_SSO_EMAIL_USER_ID: change.me@id.trade.local
+      DJANGO_SUPERUSER_SSO_EMAIL_USER_ID: test@gov.uk
     ports:
       - 8000:8000
     depends_on:
