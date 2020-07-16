@@ -7,37 +7,6 @@ services:
     entrypoint: dockerize -wait tcp://api:8000 -timeout 3m -wait-retry-interval 5s
     environment:
       DATA_STORE_SERVICE_POSTCODE_TO_REGION_URL: http://api:8000/api/v1/get-postcode-data/
-      MOCK_SSO_ROOT: http://mock-sso:8080
-      OAUTH2_AUTH_URL: http://mock-sso:8080/o/authorize
-      OAUTH2_LOGOUT_URL: http://mock-sso:8080/o/logout
-      OAUTH2_REDIRECT_URL: http://mock-sso:3000/oauth/callback
-      OAUTH2_TOKEN_FETCH_URL: http://mock-sso:8080/o/token
-      OAUTH2_USER_PROFILE_URL: http://mock-sso:8080/api/v1/user/me
-      OAUTH2_CLIENT_ID: randomClientId
-      OAUTH2_CLIENT_SECRET: youAintSeenMyRight
-      API_ROOT: http://api:8000
-      ARCHIVED_DOCUMENTS_BASE_URL: https://lookInVault.com/
-      DATA_HUB_BACKEND_ACCESS_KEY_ID: frontend-key-id
-      DATA_HUB_BACKEND_SECRET_ACCESS_KEY: frontend-key
-      DATA_STORE_SERVICE_ACCESS_KEY_ID: data-store-service-id
-      DATA_STORE_SERVICE_POSTCODE_TO_REGION_URL: https://lookInVault.com/
-      DATA_STORE_SERVICE_SECRET_ACCESS_KEY: data-store-service-key
-      FIND_EXPORTERS_URL: https://lookInVault.com/
-      HELP_CENTRE_URL: "https://datahub-helpcentre.london.cloudapps.digital"
-      HELP_CENTRE_ANNOUNCMENTS_URL: "https://datahub-helpcentre.london.cloudapps.digital/updates/announcements"
-      HELP_CENTRE_API_FEED: "https://datahub-helpcentre.london.cloudapps.digital/api/feeds/announcements"
-      ONE_LIST_EMAIL: look@in.vault.com
-      PERFORMANCE_DASHBOARDS_URL: https://lookInVault.com/
-      REDIS_HOST: redis
-      REDIS_URL: redis://redis:6379
-      SESSION_SECRET: test
-      ZEN_ANNOUNCEMENT_URL: "https://uktrade.zendesk.com/api/v2/help_center/sections/360000018069/articles.json"
-      ZEN_BROWSER: "34146805"
-      ZEN_EMAIL: "tools@digital.trade.gov.uk"
-      ZEN_IMPACT: "34023989"
-      ZEN_SERVICE: "31281329"
-      ZEN_TICKETS_URL: "https://staging-uktrade.zendesk.com/api/v2/tickets.json"
-      ZEN_TOKEN: dummyToken
 
   mock-sso:
     image: quay.io/uktrade/mock-sso:latest
@@ -52,31 +21,11 @@ services:
     image: quay.io/uktrade/data-hub-api:develop
     env_file: .env
     environment:
-      AWS_DEFAULT_REGION: eu-west-2
-      AWS_ACCESS_KEY_ID: foo
-      AWS_SECRET_ACCESS_KEY: bar
-      MI_DATABASE_URL: postgresql://user:password@mi-postgres/datahub
-      MI_POSTGRES_URL: tcp://mi-postgres:5432
-      DATABASE_URL: postgresql://user:password@postgres/datahub
       DEBUG: 'False'
-      DEFAULT_BUCKET: baz
-      DJANGO_SECRET_KEY: topSecret
-      DJANGO_SETTINGS_MODULE: config.settings.local
       ENABLE_CELERY_ES_SYNC_OBJECT: 'True'
-      ES_INDEX_PREFIX: test_index
-      ES5_URL: http://es:9200
-      POSTGRES_URL: tcp://postgres:5432
-      MI_POSTGRES_URL: tcp://mi-postgres:5432
-      REDIS_BASE_URL: redis://redis:6379
-      SSO_ENABLED: 'True'
-      RESOURCE_SERVER_INTROSPECTION_URL: http://mock-sso:8080/o/introspect
       RESOURCE_SERVER_AUTH_TOKEN: sso-token
       STAFF_SSO_BASE_URL: http://mock-sso:8080/
       STAFF_SSO_AUTH_TOKEN: sso-token
-      DISABLE_PAAS_IP_CHECK: 'True'
-      DATA_HUB_FRONTEND_ACCESS_KEY_ID: frontend-key-id
-      DATA_HUB_FRONTEND_SECRET_ACCESS_KEY: frontend-key
-      ADMIN_OAUTH2_ENABLED: 'False'
       ES_APM_ENABLED: 'False'
       COLUMNS: 80
       DJANGO_SUPERUSER_SSO_EMAIL_USER_ID: test@gov.uk

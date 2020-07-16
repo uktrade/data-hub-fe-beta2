@@ -12,7 +12,6 @@ services:
       ZEN_TICKETS_URL: http://mock-api:8000/zendesk/tickets
       # Our functional tests still make a real postcode lookup call
       POSTCODE_KEY: ${POSTCODE_KEY}
-      OAUTH2_BYPASS_SSO: 'true'
 
   mock-api:
     build: ./test/sandbox
