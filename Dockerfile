@@ -56,12 +56,12 @@ WORKDIR /app
 # Install dev packages
 COPY package.json .
 COPY package-lock.json .
-RUN npm ci
+RUN npm install
 
 COPY . .
 
 # TODO: Fix `develop` command so it won't start the node server until the manifesty file is there, for now we need to build it twice
 RUN npm run build
 
-CMD npm run start
+CMD npm run develop
 
