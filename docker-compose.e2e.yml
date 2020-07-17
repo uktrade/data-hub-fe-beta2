@@ -7,6 +7,7 @@ services:
     entrypoint: dockerize -wait tcp://api:8000 -timeout 3m -wait-retry-interval 5s
     environment:
       DATA_STORE_SERVICE_POSTCODE_TO_REGION_URL: http://api:8000/api/v1/get-postcode-data/
+      POSTCODE_KEY: ${POSTCODE_KEY}
 
   mock-sso:
     image: quay.io/uktrade/mock-sso:latest
@@ -18,11 +19,10 @@ services:
       MOCK_SSO_EMAIL_USER_ID: test@gov.uk
 
   api:
-    image: quay.io/uktrade/data-hub-api:develop
+    image: quay.io/uktrade/data-hub-api:master
     env_file: .env
     environment:
       DEBUG: 'False'
-      ENABLE_CELERY_ES_SYNC_OBJECT: 'True'
       RESOURCE_SERVER_AUTH_TOKEN: sso-token
       STAFF_SSO_BASE_URL: http://mock-sso:8080/
       STAFF_SSO_AUTH_TOKEN: sso-token
@@ -35,23 +35,21 @@ services:
       - postgres
       - mi-postgres
       - es
-      - es-apm
       - redis
       - celery
       - mock-sso
-    entrypoint: dockerize -wait tcp://postgres:5432 -wait tcp://mi-postgres:5432 -wait tcp://es:9200 -wait tcp://es-apm:8200 -wait tcp://redis:6379 -timeout 2m
+    entrypoint: dockerize -wait tcp://postgres:5432 -wait tcp://mi-postgres:5432 -wait tcp://es:9200 -wait tcp://redis:6379 -timeout 2m
     command: /app/setup-uat.sh || echo "all ood"
 
   celery:
-    image: quay.io/uktrade/data-hub-api:develop
+    image: quay.io/uktrade/data-hub-api:master
     env_file: .env
     depends_on:
       - postgres
       - mi-postgres
       - es
-      - es-apm
       - redis
-    entrypoint: dockerize -wait tcp://postgres:5432 -wait tcp://mi-postgres:5432 -wait tcp://es:9200 -wait tcp://es-apm:8200 -wait tcp://redis:6379 -timeout 2m
+    entrypoint: dockerize -wait tcp://postgres:5432 -wait tcp://mi-postgres:5432 -wait tcp://es:9200 -wait tcp://redis:6379 -timeout 2m
     command: celery worker -A config -l info -Q celery -B
 
   postgres:
@@ -73,11 +71,3 @@ services:
     environment:
       discovery.type: single-node
       cluster.routing.allocation.disk.threshold_enabled: 'false'
-
-  es-apm:
-    image: docker.elastic.co/apm/apm-server:7.7.1
-    command: >
-      apm-server -e
-        -E output.elasticsearch.hosts=["es:9200"]
-    depends_on:
-      - es
