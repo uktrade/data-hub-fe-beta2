@@ -36,7 +36,7 @@ unit-tests:
 
 unit-tests-ci:
 	$(docker-base) build
-	$(docker-base) run --no-deps --rm frontend bash -c 'npm run nyc --reporter=lcov --reporter=json --report-dir=coverage npm run test:unit --reporter mocha-circleci-reporter'
+	$(docker-base) run --no-deps --rm frontend bash -c 'npx nyc --reporter=lcov --reporter=json --report-dir=coverage npm run test:unit --reporter mocha-circleci-reporter'
 
 unit-client-tests:
 	$(docker-base) build
@@ -67,4 +67,3 @@ e2e-tests-dit:
 clean:
 	$(docker-mock) down -v --remove-orphans
 	$(docker-e2e) down -v --remove-orphans
-	
