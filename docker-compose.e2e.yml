@@ -8,6 +8,7 @@ services:
     environment:
       DATA_STORE_SERVICE_POSTCODE_TO_REGION_URL: http://api:8000/api/v1/get-postcode-data/
       POSTCODE_KEY: ${POSTCODE_KEY}
+      NODE_ENV: develop
 
   mock-sso:
     image: quay.io/uktrade/mock-sso:latest

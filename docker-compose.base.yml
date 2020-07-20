@@ -22,7 +22,7 @@ services:
       # precedence over the ENV vars in CircleCI
       BROWSERSTACK_ACCESS_KEY: ${BROWSERSTACK_ACCESS_KEY}
       BROWSERSTACK_USERNAME: ${BROWSERSTACK_USERNAME}
-    command: yarn develop
+    command: npm run develop
 
   redis:
     image: redis:3.2.10

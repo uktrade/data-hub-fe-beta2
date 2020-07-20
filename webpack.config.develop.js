@@ -4,7 +4,7 @@ const { spawn } = require('child_process')
 const StartServerAfterBuild = () => ({
   apply: (compiler) => {
     compiler.plugin('done', () => {
-      spawn('yarn watch:js:server', {
+      spawn('npm run watch:js:server', {
         stdio: 'inherit',
         shell: true,
       })
