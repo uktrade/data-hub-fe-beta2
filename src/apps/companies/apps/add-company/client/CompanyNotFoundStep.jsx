@@ -3,9 +3,10 @@
 import React from 'react'
 import { Details } from 'govuk-react'
 import PropTypes from 'prop-types'
-import { FieldInput, FieldRadios, FieldSelect, Step } from 'data-hub-components'
-import FieldAddress from 'data-hub-components/dist/forms/elements/FieldAddress'
+import { FieldInput, FieldRadios, FieldSelect } from 'data-hub-components'
 
+import Form from '../../../../../client/components/Form'
+import FieldAddress from '../../../../../client/components/Form/FieldAddress'
 import { ISO_CODE, WEBSITE_REGEX } from './constants'
 import InformationList from './InformationList'
 
@@ -26,9 +27,15 @@ const requiredWebsiteAndOrPhoneValidator = (
   return !WEBSITE_REGEX.test(website) ? 'Enter a valid website URL' : null
 }
 
-function CompanyNotFoundStep({ organisationTypes, regions, sectors, country }) {
+function CompanyNotFoundStep({
+  organisationTypes,
+  regions,
+  sectors,
+  country,
+  region = null,
+}) {
   return (
-    <Step name="unhappy" forwardButton="Add company">
+    <Form.Step name="unhappy" forwardButton="Add company">
       <Details summary="Why am I seeing this?">
         The company you want to add to Data Hub cannot be found in the external
         databases Data Hub checks. You will need to provide information about
@@ -65,6 +72,7 @@ function CompanyNotFoundStep({ organisationTypes, regions, sectors, country }) {
       />
 
       <FieldAddress
+        name="company_address"
         country={{
           id: country.key,
           name: country.label,
@@ -76,6 +84,7 @@ function CompanyNotFoundStep({ organisationTypes, regions, sectors, country }) {
         <FieldSelect
           name="uk_region"
           label="DIT region"
+          initialValue={region?.value}
           emptyOption="-- Select DIT region --"
           options={regions}
           required="Select DIT region"
@@ -106,7 +115,7 @@ function CompanyNotFoundStep({ organisationTypes, regions, sectors, country }) {
           tell you whether the information on this page has been confirmed
         </InformationList.Item>
       </InformationList>
-    </Step>
+    </Form.Step>
   )
 }
 

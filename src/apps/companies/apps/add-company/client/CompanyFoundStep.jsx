@@ -5,7 +5,9 @@ import { compact, get } from 'lodash'
 import PropTypes from 'prop-types'
 import { H3 } from '@govuk-react/heading'
 import InsetText from '@govuk-react/inset-text'
-import { Step, SummaryList, useFormContext } from 'data-hub-components'
+import { SummaryList, useFormContext } from 'data-hub-components'
+
+import Form from '../../../../../client/components/Form'
 
 function getCompanyAddress(dnbCompany) {
   if (dnbCompany) {
@@ -40,7 +42,7 @@ function CompanyFoundStep({ countryName }) {
   const companiesHouseNumber = getCompaniesHouseNumber(dnbCompany)
 
   return (
-    <Step name="companyDetails">
+    <Form.Step name="companyDetails">
       <H3>Confirm you want to add this company to Data Hub</H3>
 
       <InsetText>
@@ -65,7 +67,7 @@ function CompanyFoundStep({ countryName }) {
           ]}
         />
       </InsetText>
-    </Step>
+    </Form.Step>
   )
 }
 

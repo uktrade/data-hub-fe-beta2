@@ -8,18 +8,15 @@ import axios from 'axios'
 import { get } from 'lodash'
 import { H3 } from '@govuk-react/heading'
 
-import {
-  FieldRadios,
-  FieldSelect,
-  FormStateful,
-  Step,
-} from 'data-hub-components'
+import { FieldRadios, FieldSelect } from 'data-hub-components'
 
+import Form from '../../../../../client/components/Form'
 import CompanyFoundStep from './CompanyFoundStep'
 import CompanyNotFoundStep from './CompanyNotFoundStep'
 import CompanySearchStep from './CompanySearchStep'
 import CompanyRegionAndSector from './CompanyRegionAndSector'
 import { ISO_CODE } from './constants'
+import { ID as STATE_ID } from './state'
 
 function AddCompanyForm({
   csrfToken,
@@ -73,7 +70,8 @@ function AddCompanyForm({
   }
 
   return (
-    <FormStateful
+    <Form
+      id={STATE_ID}
       onSubmit={onSubmit}
       onExit={() => 'Changes that you made will not be saved.'}
     >
@@ -91,7 +89,7 @@ function AddCompanyForm({
 
         return (
           <>
-            <Step name="companyLocation">
+            <Form.Step name="companyLocation">
               <H3>Where is this company located?</H3>
 
               <FieldRadios
@@ -99,7 +97,7 @@ function AddCompanyForm({
                 required="Specify location of the company"
                 options={Object.values(COMPANY_LOCATION_OPTIONS)}
               />
-            </Step>
+            </Form.Step>
 
             <CompanySearchStep
               countryName={countryName}
@@ -131,7 +129,7 @@ function AddCompanyForm({
           </>
         )
       }}
-    </FormStateful>
+    </Form>
   )
 }
 

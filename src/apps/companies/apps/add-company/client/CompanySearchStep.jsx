@@ -5,12 +5,10 @@ import { Link } from 'govuk-react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
 import { H3 } from '@govuk-react/heading'
-import {
-  EntityListItem,
-  FieldDnbCompany,
-  Step,
-  useFormContext,
-} from 'data-hub-components'
+import { EntityListItem, useFormContext } from 'data-hub-components'
+
+import Form from '../../../../../client/components/Form'
+import FieldDnbCompany from '../../../../../client/components/Form/FieldDnbCompany'
 
 function DnbCompanyRenderer(props) {
   const { setFieldValue, goForward } = useFormContext()
@@ -56,7 +54,7 @@ function getDnbEntityText(companyId, isOutOfBusiness) {
 function CompanySearchStep({ countryName, countryIsoCode, csrfToken }) {
   const { setFieldValue, goForward } = useFormContext()
   return (
-    <Step name="companySearch" forwardButton={null} backButton={null}>
+    <Form.Step name="companySearch" forwardButton={null} backButton={null}>
       <H3>Find the company</H3>
 
       <FieldDnbCompany
@@ -70,7 +68,7 @@ function CompanySearchStep({ countryName, countryIsoCode, csrfToken }) {
           goForward()
         }}
       />
-    </Step>
+    </Form.Step>
   )
 }
 

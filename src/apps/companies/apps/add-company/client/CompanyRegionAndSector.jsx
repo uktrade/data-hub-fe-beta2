@@ -3,15 +3,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Step, FieldSelect } from 'data-hub-components'
+import { FieldSelect } from 'data-hub-components'
 
+import Form from '../../../../../client/components/Form'
 import Task from '../../../../../client/components/Task'
 import { ADD_COMPANY__REGION_LOADED } from '../../../../../client/actions'
 import { ID, TASK_POSTCODE_TO_REGION } from './state'
 
 function CompanyRegionAndSector({ regions, region, sectors, isUK, postcode }) {
   return (
-    <Step name="companyRegionAndSector" forwardButton="Add company">
+    <Form.Step name="companyRegionAndSector" forwardButton="Add company">
       {isUK && (
         <Task.Status
           name={TASK_POSTCODE_TO_REGION}
@@ -41,7 +42,7 @@ function CompanyRegionAndSector({ regions, region, sectors, isUK, postcode }) {
         options={sectors}
         required="Select DIT sector"
       />
-    </Step>
+    </Form.Step>
   )
 }
 
