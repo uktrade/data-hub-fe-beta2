@@ -46,7 +46,7 @@ functional-tests: start-mock
 
 functional-tests-ci: start-mock
 	$(docker-mock) exec frontend bash -c '$(wait-for-frontend) \
- 		&& npm run test:functional --parallel --record --key $(CYPRESS_DASHBOARD_KEY) --ci-build-id $(CIRCLE_BUILD_NUM)'
+ 		&& npm run test:functional --parallel --record --key $(CYPRESS_DASHBOARD_KEY) --ci-build-id $(CIRCLE_WORKFLOW_ID)'
 
 visual-tests: start-mock
 	$(docker-mock) exec frontend bash -c '$(wait-for-frontend) && npm run test:visual'
