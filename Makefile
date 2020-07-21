@@ -27,8 +27,7 @@ start-dev:
 
 lint:
 	$(docker-base) build
-	$(docker-base) run --no-deps --rm frontend bash -c 'mkdir -p reports \
-		&& npm run lint:js --format junit --output-file reports/eslint.xml && npm run lint:sass'
+	$(docker-base) run --no-deps --rm frontend bash -c 'mkdir -p reports && npm run lint'
 
 unit-tests:
 	$(docker-base) build
