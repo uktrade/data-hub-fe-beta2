@@ -17,13 +17,13 @@ docker-dev:
 	@echo $(docker-dev)
 
 start-base:
-	$(docker-base) up -d --build
+	$(docker-base) up -d --force-recreate
 start-mock:
-	$(docker-mock) up -d --build
+	$(docker-mock) up -d --force-recreate
 start-e2e:
-	$(docker-e2e) up -d --build
+	$(docker-e2e) up -d --force-recreate
 start-dev:
-	$(docker-dev) up -d --build
+	$(docker-dev) up -d --force-recreate
 
 lint:
 	$(docker-base) build
