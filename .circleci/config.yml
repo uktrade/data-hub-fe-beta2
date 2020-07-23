@@ -59,7 +59,7 @@ jobs:
 
   functional_tests:
     machine:
-      docker_layer_caching: false
+      docker_layer_caching: true
     parallelism: 9
     steps:
       - checkout
@@ -80,7 +80,7 @@ jobs:
 
   visual_tests:
     machine:
-      docker_layer_caching: false
+      docker_layer_caching: true
     steps:
       - checkout
       - run_make:
@@ -93,7 +93,7 @@ jobs:
 
   e2e_tests:
     machine:
-      docker_layer_caching: false
+      docker_layer_caching: true
     parameters:
       staff:
         type: string
