@@ -16,6 +16,6 @@ services:
   mock-api:
     build: ./test/sandbox
     volumes:
-      - ./test/sandbox:/app
+      - ./test/sandbox:/usr/src/app
       # Ensures that the local node_modules dir is not used in the container
       - /app/node_modules
