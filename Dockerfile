@@ -6,6 +6,7 @@ ENV NPM_CONFIG_UNSAFE_PERM true
 ENV TZ                     Europe/London
 ENV TERM                   xterm
 ENV LANG                   C.UTF-8
+ENV NODE_ENV               development
 
 RUN apt-get update
 
@@ -60,9 +61,6 @@ COPY package-lock.json .
 RUN npm install
 
 COPY . .
-
-# TODO: Fix `develop` command so it won't start the node server until the manifesty file is there, for now we need to build it twice
-RUN npm run build
 
 CMD npm run develop
 

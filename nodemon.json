@@ -6,9 +6,6 @@
     "public/",
     "src/**/*.js"
   ],
-  "ignore": [
-    ".build/"
-  ],
   "env": {
     "NODE_ENV": "development"
   },
