@@ -51,7 +51,7 @@ RUN apt-get install -y xvfb xdg-utils libgtk-3-0 lsb-release libappindicator3-1 
   && dpkg -i google-chrome-stable_current_amd64.deb \
   && rm google-chrome-stable_current_amd64.deb
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Install dev packages
 COPY package.json .

@@ -35,11 +35,11 @@ unit-tests:
 
 unit-tests-ci:
 	$(docker-base) build
-	$(docker-base) run --no-deps --rm frontend bash -c 'npx nyc --reporter=lcov --reporter=json --report-dir=coverage npm run test:unit --reporter mocha-circleci-reporter'
+	$(docker-base) run --no-deps --rm frontend bash -c 'npx nyc --reporter=lcov --reporter=json --report-dir=coverage npm run test:unit -- --reporter mocha-circleci-reporter'
 
 unit-client-tests:
 	$(docker-base) build
-	$(docker-base) run --no-deps --rm frontend bash -c 'npm run test:unit-client --reporter mocha-circleci-reporter'
+	$(docker-base) run --no-deps --rm frontend bash -c 'npm run test:unit-client -- --reporter mocha-circleci-reporter'
 
 functional-tests: start-mock
 	$(docker-mock) exec frontend bash -c '$(wait-for-frontend) && npm run test:functional'
