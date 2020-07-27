@@ -56,8 +56,7 @@ RUN apt-get install -y xvfb xdg-utils libgtk-3-0 lsb-release libappindicator3-1 
 WORKDIR /usr/src/app
 
 # Install dev packages
-COPY package.json .
-COPY package-lock.json .
+COPY package*.json .
 RUN npm install
 
 COPY . .
