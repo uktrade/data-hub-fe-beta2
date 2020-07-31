@@ -1,0 +1,8 @@
+.build
+.cache
+.DS_Store
+.git
+.idea
+.vscode
+.sass-cache
+node_modules
