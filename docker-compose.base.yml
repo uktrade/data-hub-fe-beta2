@@ -5,6 +5,10 @@ services:
       context: .
     depends_on:
       - redis
+    volumes:
+      - ./:/usr/src/app:delegated
+      # Ensures that the local node_modules dir is not used in the container
+      - /usr/src/app/node_modules
     ports:
       - ${PORT:-3000}:3000
       - 9229:9229
