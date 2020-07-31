@@ -12,7 +12,7 @@
     "start": "node --use-strict src/server.js",
     "start:coverage": "nyc --silent npm run start",
     "build": "npm run clean && webpack",
-    "develop": "NODE_ENV=development run-p watch:js:*",
+    "develop": "NODE_ENV=development npm run watch:js:client",
     "watch:test": "npm run test:unit -- -w",
     "watch:js:client": "webpack --watch --progress",
     "watch:js:server": "nodemon $NODE_DEBUG_OPTION --inspect --ignore 'src/**/__test__/**/*'",
