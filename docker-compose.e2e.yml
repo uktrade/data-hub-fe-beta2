@@ -8,6 +8,14 @@ services:
     environment:
       DATA_STORE_SERVICE_POSTCODE_TO_REGION_URL: http://api:8000/api/v1/get-postcode-data/
       POSTCODE_KEY: ${POSTCODE_KEY}
+      OAUTH2_TOKEN_FETCH_URL: http://mock-sso:8080/o/token
+      OAUTH2_USER_PROFILE_URL: http://mock-sso:8080/api/v1/user/me
+      OAUTH2_AUTH_URL: http://mock-sso:8080/o/authorize
+      OAUTH2_REDIRECT_URL: http://localhost:3000/oauth/callback
+      OAUTH2_LOGOUT_URL: http://mock-sso:8080/o/logout
+      OAUTH2_BYPASS_SSO: 'False'
+      OAUTH2_CLIENT_SECRET: youAintSeenMyRight
+      OAUTH2_CLIENT_ID: randomClientId
 
   mock-sso:
     image: quay.io/uktrade/mock-sso:latest
