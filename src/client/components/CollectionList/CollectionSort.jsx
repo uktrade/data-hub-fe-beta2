@@ -21,7 +21,7 @@ function CollectionSort({
       name="sortBy"
       label="Sort by"
       input={sortInput}
-      onChange={sortOnChange}
+      onChange={(event) => sortOnChange(event.target.value)}
     >
       {children}
     </Sort>
