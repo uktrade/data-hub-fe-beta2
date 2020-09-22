@@ -1,0 +1,193 @@
+version: 2.1
+
+ignore_ghpages: &ignore_ghpages
+  filters:
+    branches:
+      ignore:
+        - gh-pages
+
+jobs:
+  lint:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run_make:
+          label: Run linter
+          target: lint
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: reports
+
+  unit_tests:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run_make:
+          label: Run unit tests
+          target: unit-tests
+      - store_test_results:
+          path: junit
+      - store_artifacts:
+          path: junit
+      - store_test_results:
+          path: coverage
+      - store_artifacts:
+          path: coverage
+      - run:
+          name: Prepare coverage report
+          command: |
+            mkdir -p unit-coverage
+            cp coverage/coverage-final.json unit-coverage/unit-coverage.json
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - 'project/unit-coverage/*'
+
+  unit_client_tests:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run_make:
+          label: Run unit tests
+          target: unit-client-tests
+      - store_test_results:
+          path: junit
+      - store_artifacts:
+          path: junit
+      - store_test_results:
+          path: coverage
+      - store_artifacts:
+          path: coverage
+
+  functional_tests:
+    machine:
+      docker_layer_caching: true
+    parallelism: 7
+    steps:
+      - checkout
+      - run_make:
+          label: Run functional tests
+          target: start-mock functional-tests
+      - store_cypress_artifacts
+      - run:
+          name: Prepare coverage report
+          command: |
+            mkdir -p partial-coverage
+            touch partial-coverage/.placeholder
+            cp cypress-coverage/coverage-final.json partial-coverage/cypress-coverage-$CIRCLE_WORKFLOW_JOB_ID-index-$CIRCLE_NODE_INDEX.json
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - 'project/partial-coverage/*'
+
+  visual_tests:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run_make:
+          label: Run visual tests
+          target: start-mock visual-tests
+      - store_artifacts:
+          path: visual-screenshots
+      - store_artifacts:
+          path: visual-report
+
+  e2e_tests:
+    machine:
+      docker_layer_caching: true
+    parallelism: 3
+    parameters:
+      staff:
+        type: string
+    steps:
+      - checkout
+      - run_make:
+          label: Run e2e tests
+          target: start-e2e-<< parameters.staff >> e2e-tests-<< parameters.staff >>
+      - store_cypress_artifacts
+
+  release-storybook:
+    docker:
+      - image: node
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: Release storybook
+          command: npm run storybook:release
+
+  merge-and-publish-coverage:
+    docker:
+      - image: node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - run: npm i -g add nyc
+      - run: cp unit-coverage/unit-coverage.json partial-coverage
+      - run: nyc merge partial-coverage
+      - run: mkdir .nyc_output || true
+      - run: mv coverage.json .nyc_output/out.json
+      - run:
+          command: |
+            nyc report \
+            --reporter lcov --reporter text \
+            --reporter=html --report-dir coverage
+      - store_artifacts:
+          path: coverage
+      - run:
+          name: Publish coverage to Codecov
+          command: bash <(curl -s https://codecov.io/bash)
+
+commands:
+  run_make:
+    description: Run makefile target with some setup
+    parameters:
+      label:
+        type: string
+        default: Execute make << parameters.target >>
+      target:
+        type: string
+    steps:
+      - run:
+          name: Copy config
+          command: cp sample.env .env
+      - run:
+          name: << parameters.label >>
+          command: make << parameters.target >>
+  store_cypress_artifacts:
+    description: Store Cypress artifacts like screenshots and videos
+    steps:
+      - store_test_results:
+          path: cypress-coverage
+      - store_artifacts:
+          path: cypress-coverage
+      - store_artifacts:
+          path: cypress/screenshots
+      - store_artifacts:
+          path: cypress/videos
+
+workflows:
+  version: 2
+  datahub:
+    jobs:
+      # - lint
+      # - unit_tests
+      # - unit_client_tests
+      # - functional_tests
+      # - visual_tests
+      # - e2e_tests:
+      #     name: e2e_tests_<< matrix.staff >>
+      #     matrix:
+      #       parameters:
+      #         staff: [dit, da, lep]
+      - release-storybook: *ignore_ghpages
+      # - merge-and-publish-coverage:
+      #     requires:
+      #       - functional_tests
+      #       - unit_tests
