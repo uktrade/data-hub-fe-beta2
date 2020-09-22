@@ -105,6 +105,16 @@ jobs:
           target: start-e2e-<< parameters.staff >> e2e-tests-<< parameters.staff >>
       - store_cypress_artifacts
 
+  release-storybook:
+    docker:
+      - image: node
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: Release storybook
+          command: npm run storybook:release
+
   merge-and-publish-coverage:
     docker:
       - image: node
@@ -160,17 +170,18 @@ workflows:
   version: 2
   datahub:
     jobs:
-      - lint
-      - unit_tests
-      - unit_client_tests
-      - functional_tests
-      - visual_tests
-      - e2e_tests:
-          name: e2e_tests_<< matrix.staff >>
-          matrix:
-            parameters:
-              staff: [dit, da, lep]
-      - merge-and-publish-coverage:
-          requires:
-            - functional_tests
-            - unit_tests
+      # - lint
+      # - unit_tests
+      # - unit_client_tests
+      # - functional_tests
+      # - visual_tests
+      # - e2e_tests:
+      #     name: e2e_tests_<< matrix.staff >>
+      #     matrix:
+      #       parameters:
+      #         staff: [dit, da, lep]
+      - release-storybook
+      # - merge-and-publish-coverage:
+      #     requires:
+      #       - functional_tests
+      #       - unit_tests
