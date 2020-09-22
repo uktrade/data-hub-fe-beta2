@@ -176,18 +176,26 @@ workflows:
   version: 2
   datahub:
     jobs:
-      # - lint
-      # - unit_tests
-      # - unit_client_tests
-      # - functional_tests
-      # - visual_tests
-      # - e2e_tests:
-      #     name: e2e_tests_<< matrix.staff >>
-      #     matrix:
-      #       parameters:
-      #         staff: [dit, da, lep]
+      - lint: *ignore_ghpages
+      - unit_tests: *ignore_ghpages
+      - unit_client_tests: *ignore_ghpages
+      - functional_tests: *ignore_ghpages
+      - visual_tests: *ignore_ghpages
+      - e2e_tests:
+          name: e2e_tests_<< matrix.staff >>
+          matrix:
+            parameters:
+              staff: [dit, da, lep]
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - release-storybook: *ignore_ghpages
-      # - merge-and-publish-coverage:
-      #     requires:
-      #       - functional_tests
-      #       - unit_tests
+      - merge-and-publish-coverage:
+          requires:
+            - functional_tests
+            - unit_tests
+          filters:
+            branches:
+              ignore:
+                - gh-pages
