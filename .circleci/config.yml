@@ -97,10 +97,24 @@ jobs:
       - store_artifacts:
           path: visual-report
 
-  e2e_tests:
+  e2e_tests_dit:
     machine:
       docker_layer_caching: true
     parallelism: 3
+    parameters:
+      staff:
+        type: string
+    steps:
+      - checkout
+      - run_make:
+          label: Run e2e tests
+          target: start-e2e-<< parameters.staff >> e2e-tests-<< parameters.staff >>
+      - store_cypress_artifacts
+
+  e2e_tests:
+    machine:
+      docker_layer_caching: true
+    parallelism: 1
     parameters:
       staff:
         type: string
@@ -120,6 +134,7 @@ jobs:
       - run:
           name: Release storybook
           command: npm run storybook:release
+    
 
   merge-and-publish-coverage:
     docker:
@@ -185,11 +200,16 @@ workflows:
           name: e2e_tests_<< matrix.staff >>
           matrix:
             parameters:
-              staff: [dit, da, lep]
+              staff: [da, lep]
           filters:
             branches:
               ignore:
                 - gh-pages
+      - e2e_tests_dit:
+          name: e2e_tests_dit
+          matrix:
+            parameters:
+              staff: [dit]
       - release-storybook: *ignore_ghpages
       - merge-and-publish-coverage:
           requires:
