@@ -67,7 +67,7 @@ jobs:
     machine:
       docker_layer_caching: true
     parallelism: 7
-    resource_class: large
+    resource_class: xlarge
     steps:
       - checkout
       - run_make:
@@ -102,7 +102,7 @@ jobs:
     machine:
       docker_layer_caching: true
     parallelism: 3
-    resource_class: large
+    resource_class: xlarge
     parameters:
       staff:
         type: string
@@ -117,7 +117,7 @@ jobs:
     machine:
       docker_layer_caching: true
     parallelism: 1
-    resource_class: large
+    resource_class: xlarge
     parameters:
       staff:
         type: string
