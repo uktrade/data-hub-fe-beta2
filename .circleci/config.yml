@@ -8,10 +8,11 @@ ignore_ghpages: &ignore_ghpages
 
 jobs:
   lint:
-    machine:
-      docker_layer_caching: true
+    docker:
+      - image: node
     steps:
       - checkout
+      - setup_remote_docker
       - run_make:
           label: Run linter
           target: lint
