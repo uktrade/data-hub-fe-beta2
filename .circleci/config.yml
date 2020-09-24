@@ -8,11 +8,10 @@ ignore_ghpages: &ignore_ghpages
 
 jobs:
   lint:
-    docker:
-      - image: node
+    machine:
+      docker_layer_caching: true
     steps:
       - checkout
-      - setup_remote_docker
       - run_make:
           label: Run linter
           target: lint
@@ -68,7 +67,6 @@ jobs:
     machine:
       docker_layer_caching: true
     parallelism: 7
-    resource_class: xlarge
     steps:
       - checkout
       - run_make:
@@ -103,7 +101,6 @@ jobs:
     machine:
       docker_layer_caching: true
     parallelism: 3
-    resource_class: xlarge
     parameters:
       staff:
         type: string
@@ -118,7 +115,6 @@ jobs:
     machine:
       docker_layer_caching: true
     parallelism: 1
-    resource_class: xlarge
     parameters:
       staff:
         type: string
