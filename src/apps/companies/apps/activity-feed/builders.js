@@ -30,27 +30,32 @@ function createESFilters(
   // Add the types
   body.filter('terms', 'object.type', types)
 
+  const filters = []
   // My activity
   if (activityTypeFilter === FILTER_KEYS.myActivity) {
-    body.filter(
-      'term',
-      'object.attributedTo.id',
-      `dit:DataHubAdviser:${user.id}`
-    )
+    filters.push({
+      term: { 'object.attributedTo.id': `dit:DataHubAdviser:${user.id}` },
+    })
   }
 
   // DnB Hierarchy IDs and Data Hub Company ID
   if (dnbHierarchyIds.length) {
     const ids = dnbHierarchyIds.map((id) => `dit:DataHubCompany:${id}`)
     ids.push(`dit:DataHubCompany:${company.id}`)
-    body.filter('terms', 'object.attributedTo.id', ids)
+    filters.push({ terms: { 'object.attributedTo.id': ids } })
   } else {
-    body.filter(
-      'term',
-      'object.attributedTo.id',
-      `dit:DataHubCompany:${company.id}`
-    )
+    filters.push({
+      term: { 'object.attributedTo.id': `dit:DataHubCompany:${company.id}` },
+    })
   }
+
+  if (company.contacts) {
+    company.contacts.map((contact) => {
+      filters.push({ term: { 'object.dit:emailAddress': contact.email } })
+      filters.push({ term: { 'actor.dit:emailAddress': contact.email } })
+    })
+  }
+  body.filter('bool', 'should', filters)
 
   return body.build()
 }

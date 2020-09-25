@@ -1,0 +1,386 @@
+{
+  "took": 1,
+  "timed_out": false,
+  "_shards": {
+    "total": 5,
+    "successful": 5,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 100,
+    "max_score": null,
+    "hits": [
+      {
+        "_index": "activity-feed",
+        "_type": "doc",
+        "_id": "99",
+        "_score": null,
+        "_source": {
+          "id": 99,
+          "type": "Announce",
+          "published": "2019-08-10T09:43:40.904+01:00",
+          "generator": {
+            "name": "dit:dataHub",
+            "type": "Application"
+          },
+          "object": {
+            "id": "dit:DataHubInteraction:a066cc49-b679-4cbe-93c5-3ceba2f067ec",
+            "type": [
+              "dit:Event",
+              "dit:Interaction"
+            ],
+            "startTime": "2019-05-02T08:43:40.904649+00:00",
+            "dit:status": "complete",
+            "dit:archived": false,
+            "dit:communicationChannel": {
+              "name": "Email/Website"
+            },
+            "dit:subject": "Invited to Technology Roundtable 99",
+            "dit:service": {
+              "name": "Account Management"
+            },
+            "attributedTo": [
+              {
+                "id": "dit:DataHubCompany:a4ead59f-dfc8-e511-a5e6-e4115bead28a",
+                "dit:dunsNumber": "123456789",
+                "dit:companiesHouseNumber": "987654321",
+                "type": [
+                  "Organization",
+                  "dit:Company"
+                ],
+                "name": "Marco Test"
+              },
+              {
+                "id": "dit:DataHubContact:04cadecd-2de4-4cda-9fda-59db93495dba",
+                "type": [
+                  "Person",
+                  "dit:Contact"
+                ],
+                "dit:emailAddress": "john@example.com",
+                "name": "John Doe"
+              },
+              {
+                "id": "dit:DataHubAdviser:2dc3c098-2f51-43c5-8767-752e8e5065b5",
+                "type": [
+                  "Person",
+                  "dit:Adviser"
+                ],
+                "dit:emailAddress": "mariobros@dit.com",
+                "name": "Mario Bros",
+                "dit:team": {
+                  "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+                  "type": [
+                    "Group",
+                    "dit:Team"
+                  ],
+                  "name": "Digital Data Hub - Live Service"
+                }
+              }
+            ],
+            "url": "https://example.com/companies/a4ead59f-dfc8-e511-a5e6-e4115bead28a/interactions/a066cc49-b679-4cbe-93c5-3ceba2f067ec"
+          }
+        },
+        "sort": [
+          1565426620904
+        ]
+      },
+      {
+        "_index": "activity-feed",
+        "_type": "doc",
+        "_id": "98",
+        "_score": null,
+        "_source": {
+          "id": 98,
+          "type": "Announce",
+          "published": "2019-08-09T09:43:40.904+01:00",
+          "generator": {
+            "name": "dit:dataHub",
+            "type": "Application"
+          },
+          "object": {
+            "id": "dit:DataHubInteraction:a066cc49-b679-4cbe-93c5-3ceba2f067ec",
+            "type": [
+              "dit:Event",
+              "dit:Interaction"
+            ],
+            "startTime": "2019-05-02T08:43:40.904649+00:00",
+            "dit:status": "complete",
+            "dit:archived": false,
+            "dit:communicationChannel": {
+              "name": "Email/Website"
+            },
+            "dit:subject": "Invited to Technology Roundtable 98",
+            "dit:service": {
+              "name": "Account Management"
+            },
+            "attributedTo": [
+              {
+                "id": "dit:DataHubCompany:a4ead59f-dfc8-e511-a5e6-e4115bead28a",
+                "dit:dunsNumber": "123456789",
+                "dit:companiesHouseNumber": "987654321",
+                "type": [
+                  "Organization",
+                  "dit:Company"
+                ],
+                "name": "Marco Test"
+              },
+              {
+                "id": "dit:DataHubContact:04cadecd-2de4-4cda-9fda-59db93495dba",
+                "type": [
+                  "Person",
+                  "dit:Contact"
+                ],
+                "dit:emailAddress": "john@example.com",
+                "name": "John Doe"
+              },
+              {
+                "id": "dit:DataHubAdviser:2dc3c098-2f51-43c5-8767-752e8e5065b5",
+                "type": [
+                  "Person",
+                  "dit:Adviser"
+                ],
+                "dit:emailAddress": "mariobros@dit.com",
+                "name": "Mario Bros",
+                "dit:team": {
+                  "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+                  "type": [
+                    "Group",
+                    "dit:Team"
+                  ],
+                  "name": "Digital Data Hub - Live Service"
+                }
+              }
+            ],
+            "url": "https://example.com/companies/a4ead59f-dfc8-e511-a5e6-e4115bead28a/interactions/a066cc49-b679-4cbe-93c5-3ceba2f067ec"
+          }
+        },
+        "sort": [
+          1565340220904
+        ]
+      },
+      {
+        "_index": "activity-feed",
+        "_type": "doc",
+        "_id": "97",
+        "_score": null,
+        "_source": {
+          "id": 97,
+          "type": "Announce",
+          "published": "2019-08-08T09:43:40.904+01:00",
+          "generator": {
+            "name": "dit:dataHub",
+            "type": "Application"
+          },
+          "object": {
+            "id": "dit:DataHubInteraction:a066cc49-b679-4cbe-93c5-3ceba2f067ec",
+            "type": [
+              "dit:Event",
+              "dit:Interaction"
+            ],
+            "startTime": "2019-05-02T08:43:40.904649+00:00",
+            "dit:status": "complete",
+            "dit:archived": false,
+            "dit:communicationChannel": {
+              "name": "Email/Website"
+            },
+            "dit:subject": "Invited to Technology Roundtable 97",
+            "dit:service": {
+              "name": "Account Management"
+            },
+            "attributedTo": [
+              {
+                "id": "dit:DataHubCompany:a4ead59f-dfc8-e511-a5e6-e4115bead28a",
+                "dit:dunsNumber": "123456789",
+                "dit:companiesHouseNumber": "987654321",
+                "type": [
+                  "Organization",
+                  "dit:Company"
+                ],
+                "name": "Marco Test"
+              },
+              {
+                "id": "dit:DataHubContact:04cadecd-2de4-4cda-9fda-59db93495dba",
+                "type": [
+                  "Person",
+                  "dit:Contact"
+                ],
+                "dit:emailAddress": "john@example.com",
+                "name": "John Doe"
+              },
+              {
+                "id": "dit:DataHubAdviser:2dc3c098-2f51-43c5-8767-752e8e5065b5",
+                "type": [
+                  "Person",
+                  "dit:Adviser"
+                ],
+                "dit:emailAddress": "mariobros@dit.com",
+                "name": "Mario Bros",
+                "dit:team": {
+                  "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+                  "type": [
+                    "Group",
+                    "dit:Team"
+                  ],
+                  "name": "Digital Data Hub - Live Service"
+                }
+              }
+            ],
+            "url": "https://example.com/companies/a4ead59f-dfc8-e511-a5e6-e4115bead28a/interactions/a066cc49-b679-4cbe-93c5-3ceba2f067ec"
+          }
+        },
+        "sort": [
+          1565253820904
+        ]
+      },
+      {
+        "_index": "activity-feed",
+        "_type": "doc",
+        "_id": "96",
+        "_score": null,
+        "_source": {
+          "id": 96,
+          "type": "Announce",
+          "published": "2019-08-07T09:43:40.904+01:00",
+          "generator": {
+            "name": "dit:dataHub",
+            "type": "Application"
+          },
+          "object": {
+            "id": "dit:DataHubInteraction:a066cc49-b679-4cbe-93c5-3ceba2f067ec",
+            "type": [
+              "dit:Event",
+              "dit:Interaction"
+            ],
+            "startTime": "2019-05-02T08:43:40.904649+00:00",
+            "dit:status": "complete",
+            "dit:archived": false,
+            "dit:communicationChannel": {
+              "name": "Email/Website"
+            },
+            "dit:subject": "Invited to Technology Roundtable 96",
+            "dit:service": {
+              "name": "Account Management"
+            },
+            "attributedTo": [
+              {
+                "id": "dit:DataHubCompany:a4ead59f-dfc8-e511-a5e6-e4115bead28a",
+                "dit:dunsNumber": "123456789",
+                "dit:companiesHouseNumber": "987654321",
+                "type": [
+                  "Organization",
+                  "dit:Company"
+                ],
+                "name": "Marco Test"
+              },
+              {
+                "id": "dit:DataHubContact:04cadecd-2de4-4cda-9fda-59db93495dba",
+                "type": [
+                  "Person",
+                  "dit:Contact"
+                ],
+                "dit:emailAddress": "john@example.com",
+                "name": "John Doe"
+              },
+              {
+                "id": "dit:DataHubAdviser:2dc3c098-2f51-43c5-8767-752e8e5065b5",
+                "type": [
+                  "Person",
+                  "dit:Adviser"
+                ],
+                "dit:emailAddress": "mariobros@dit.com",
+                "name": "Mario Bros",
+                "dit:team": {
+                  "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+                  "type": [
+                    "Group",
+                    "dit:Team"
+                  ],
+                  "name": "Digital Data Hub - Live Service"
+                }
+              }
+            ],
+            "url": "https://example.com/companies/a4ead59f-dfc8-e511-a5e6-e4115bead28a/interactions/a066cc49-b679-4cbe-93c5-3ceba2f067ec"
+          }
+        },
+        "sort": [
+          1565167420904
+        ]
+      },
+      {
+        "_index": "activity-feed",
+        "_type": "doc",
+        "_id": "95",
+        "_score": null,
+        "_source": {
+          "id": 95,
+          "type": "Announce",
+          "published": "2019-08-06T09:43:40.904+01:00",
+          "generator": {
+            "name": "dit:dataHub",
+            "type": "Application"
+          },
+          "object": {
+            "id": "dit:DataHubInteraction:a066cc49-b679-4cbe-93c5-3ceba2f067ec",
+            "type": [
+              "dit:Event",
+              "dit:Interaction"
+            ],
+            "startTime": "2019-05-02T08:43:40.904649+00:00",
+            "dit:status": "complete",
+            "dit:archived": false,
+            "dit:communicationChannel": {
+              "name": "Email/Website"
+            },
+            "dit:subject": "Invited to Technology Roundtable 95",
+            "dit:service": {
+              "name": "Account Management"
+            },
+            "attributedTo": [
+              {
+                "id": "dit:DataHubCompany:a4ead59f-dfc8-e511-a5e6-e4115bead28a",
+                "dit:dunsNumber": "123456789",
+                "dit:companiesHouseNumber": "987654321",
+                "type": [
+                  "Organization",
+                  "dit:Company"
+                ],
+                "name": "Marco Test"
+              },
+              {
+                "id": "dit:DataHubContact:04cadecd-2de4-4cda-9fda-59db93495dba",
+                "type": [
+                  "Person",
+                  "dit:Contact"
+                ],
+                "dit:emailAddress": "john@example.com",
+                "name": "John Doe"
+              },
+              {
+                "id": "dit:DataHubAdviser:2dc3c098-2f51-43c5-8767-752e8e5065b5",
+                "type": [
+                  "Person",
+                  "dit:Adviser"
+                ],
+                "dit:emailAddress": "mariobros@dit.com",
+                "name": "Mario Bros",
+                "dit:team": {
+                  "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+                  "type": [
+                    "Group",
+                    "dit:Team"
+                  ],
+                  "name": "Digital Data Hub - Live Service"
+                }
+              }
+            ],
+            "url": "https://example.com/companies/a4ead59f-dfc8-e511-a5e6-e4115bead28a/interactions/a066cc49-b679-4cbe-93c5-3ceba2f067ec"
+          }
+        },
+        "sort": [
+          1565081020904
+        ]
+      }
+    ]
+  }
+}

@@ -1,8 +1,13 @@
 import React from 'react'
-import { ActivityFeed } from '../../../../../client/components/'
-import PropTypes from 'prop-types'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 
+import ActivityFeed from './ActivityFeed'
+
+/**
+ * This component is not visible in Storybook - remember to also port your changes here,
+ * as this one is going into production.
+ */
 export default class ActivityFeedApp extends React.Component {
   static propTypes = {
     actions: PropTypes.node,
@@ -115,7 +120,7 @@ export default class ActivityFeedApp extends React.Component {
     const { total, hits } = data.hits
 
     return {
-      total: total.value,
+      total,
       activities: hits.map((hit) => hit._source),
     }
   }

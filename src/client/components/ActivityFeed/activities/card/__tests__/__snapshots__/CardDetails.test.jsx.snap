@@ -1,0 +1,798 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardDetails when link provided should render the card 1`] = `
+.c0 {
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #0b0c0c;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.c2 {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 5px;
+  padding-left: 25px;
+  color: #1d70b8;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #2b8cc4;
+}
+
+.c2:focus {
+  outline: 4px solid #ffdd00;
+  outline-offset: -1px;
+  color: #0b0c0c;
+  background: #ffdd00;
+}
+
+.c2::-webkit-details-marker {
+  display: none;
+}
+
+.c2:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-clip-path: polygon(0% 0%,100% 50%,0% 100%);
+  clip-path: polygon(0% 0%,100% 50%,0% 100%);
+  border-width: 7px 0 7px 12.124px;
+  border-left-color: inherit;
+}
+
+[open] > .c2:before {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-clip-path: polygon(0% 0%,50% 100%,100% 0%);
+  clip-path: polygon(0% 0%,50% 100%,100% 0%);
+  border-width: 12.124px 7px 0 7px;
+  border-top-color: inherit;
+}
+
+.c3 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c4 {
+  padding: 15px;
+  padding-left: 20px;
+  border-left: 5px solid #bfc1c3;
+}
+
+.c4 p {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.c4 > :last-child,
+.c4 p:last-child {
+  margin-bottom: 0;
+}
+
+.c5 {
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.c5:link {
+  color: #1d70b8;
+}
+
+.c5:visited {
+  color: #4c2c92;
+}
+
+.c5:hover {
+  color: #2b8cc4;
+}
+
+.c5:active {
+  color: #2b8cc4;
+}
+
+.c5:focus {
+  color: #0b0c0c;
+}
+
+.c5:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  background-color: #ffdd00;
+}
+
+.c1 {
+  font-size: 16px;
+  margin: 10px 0 0;
+}
+
+.c1 > div {
+  padding: 5px;
+  padding-bottom: 15px;
+  margin: 5px 0 5px 4px;
+}
+
+.c1 > div > a {
+  padding: 20px 0 10px 10px;
+}
+
+@media print {
+  .c0 {
+    font-size: 14px;
+    line-height: 1.15;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c0 {
+    font-size: 19px;
+    line-height: 1.3157894736842106;
+  }
+}
+
+@media print {
+  .c0 {
+    color: #000;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c0 {
+    margin-bottom: 30px;
+  }
+}
+
+@media print {
+  .c5 {
+    font-family: sans-serif;
+  }
+}
+
+@media print {
+  .c5[href^="/"]::after,
+  .c5[href^="http://"]::after,
+  .c5[href^="https://"]::after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+    word-wrap: break-word;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c1 {
+    margin-top: -15px;
+  }
+}
+
+<details
+  className="c0 c1"
+  open={false}
+>
+  <summary
+    className="c2"
+  >
+    <span
+      className="c3"
+    >
+      View interaction details
+    </span>
+  </summary>
+  <div
+    className="c4"
+  >
+    <p>
+      children
+    </p>
+    <a
+      className="c5"
+      href="#"
+      muted={false}
+    >
+      Go to the interaction detail page
+    </a>
+  </div>
+</details>
+`;
+
+exports[`CardDetails when no link provided should still render the card 1`] = `
+.c0 {
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #0b0c0c;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.c2 {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 5px;
+  padding-left: 25px;
+  color: #1d70b8;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #2b8cc4;
+}
+
+.c2:focus {
+  outline: 4px solid #ffdd00;
+  outline-offset: -1px;
+  color: #0b0c0c;
+  background: #ffdd00;
+}
+
+.c2::-webkit-details-marker {
+  display: none;
+}
+
+.c2:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-clip-path: polygon(0% 0%,100% 50%,0% 100%);
+  clip-path: polygon(0% 0%,100% 50%,0% 100%);
+  border-width: 7px 0 7px 12.124px;
+  border-left-color: inherit;
+}
+
+[open] > .c2:before {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-clip-path: polygon(0% 0%,50% 100%,100% 0%);
+  clip-path: polygon(0% 0%,50% 100%,100% 0%);
+  border-width: 12.124px 7px 0 7px;
+  border-top-color: inherit;
+}
+
+.c3 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c4 {
+  padding: 15px;
+  padding-left: 20px;
+  border-left: 5px solid #bfc1c3;
+}
+
+.c4 p {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.c4 > :last-child,
+.c4 p:last-child {
+  margin-bottom: 0;
+}
+
+.c1 {
+  font-size: 16px;
+  margin: 10px 0 0;
+}
+
+.c1 > div {
+  padding: 5px;
+  padding-bottom: 15px;
+  margin: 5px 0 5px 4px;
+}
+
+.c1 > div > a {
+  padding: 20px 0 10px 10px;
+}
+
+@media print {
+  .c0 {
+    font-size: 14px;
+    line-height: 1.15;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c0 {
+    font-size: 19px;
+    line-height: 1.3157894736842106;
+  }
+}
+
+@media print {
+  .c0 {
+    color: #000;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c0 {
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c1 {
+    margin-top: -15px;
+  }
+}
+
+<details
+  className="c0 c1"
+  open={false}
+>
+  <summary
+    className="c2"
+  >
+    <span
+      className="c3"
+    >
+      View interaction details
+    </span>
+  </summary>
+  <div
+    className="c4"
+  >
+    <p>
+      children
+    </p>
+  </div>
+</details>
+`;
+
+exports[`CardDetails when the details for all activities are hidden should open the card details 1`] = `
+.c0 {
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #0b0c0c;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.c2 {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 5px;
+  padding-left: 25px;
+  color: #1d70b8;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #2b8cc4;
+}
+
+.c2:focus {
+  outline: 4px solid #ffdd00;
+  outline-offset: -1px;
+  color: #0b0c0c;
+  background: #ffdd00;
+}
+
+.c2::-webkit-details-marker {
+  display: none;
+}
+
+.c2:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-clip-path: polygon(0% 0%,100% 50%,0% 100%);
+  clip-path: polygon(0% 0%,100% 50%,0% 100%);
+  border-width: 7px 0 7px 12.124px;
+  border-left-color: inherit;
+}
+
+[open] > .c2:before {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-clip-path: polygon(0% 0%,50% 100%,100% 0%);
+  clip-path: polygon(0% 0%,50% 100%,100% 0%);
+  border-width: 12.124px 7px 0 7px;
+  border-top-color: inherit;
+}
+
+.c3 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c4 {
+  padding: 15px;
+  padding-left: 20px;
+  border-left: 5px solid #bfc1c3;
+}
+
+.c4 p {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.c4 > :last-child,
+.c4 p:last-child {
+  margin-bottom: 0;
+}
+
+.c5 {
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.c5:link {
+  color: #1d70b8;
+}
+
+.c5:visited {
+  color: #4c2c92;
+}
+
+.c5:hover {
+  color: #2b8cc4;
+}
+
+.c5:active {
+  color: #2b8cc4;
+}
+
+.c5:focus {
+  color: #0b0c0c;
+}
+
+.c5:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  background-color: #ffdd00;
+}
+
+.c1 {
+  font-size: 16px;
+  margin: 10px 0 0;
+}
+
+.c1 > div {
+  padding: 5px;
+  padding-bottom: 15px;
+  margin: 5px 0 5px 4px;
+}
+
+.c1 > div > a {
+  padding: 20px 0 10px 10px;
+}
+
+@media print {
+  .c0 {
+    font-size: 14px;
+    line-height: 1.15;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c0 {
+    font-size: 19px;
+    line-height: 1.3157894736842106;
+  }
+}
+
+@media print {
+  .c0 {
+    color: #000;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c0 {
+    margin-bottom: 30px;
+  }
+}
+
+@media print {
+  .c5 {
+    font-family: sans-serif;
+  }
+}
+
+@media print {
+  .c5[href^="/"]::after,
+  .c5[href^="http://"]::after,
+  .c5[href^="https://"]::after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+    word-wrap: break-word;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c1 {
+    margin-top: -15px;
+  }
+}
+
+<details
+  className="c0 c1"
+  open={false}
+>
+  <summary
+    className="c2"
+  >
+    <span
+      className="c3"
+    >
+      View interaction details
+    </span>
+  </summary>
+  <div
+    className="c4"
+  >
+    <p>
+      children
+    </p>
+    <a
+      className="c5"
+      href="#"
+      muted={false}
+    >
+      Go to the interaction detail page
+    </a>
+  </div>
+</details>
+`;
+
+exports[`CardDetails when the details for all activities are shown should open the card details 1`] = `
+.c0 {
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #0b0c0c;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.c2 {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 5px;
+  padding-left: 25px;
+  color: #1d70b8;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #2b8cc4;
+}
+
+.c2:focus {
+  outline: 4px solid #ffdd00;
+  outline-offset: -1px;
+  color: #0b0c0c;
+  background: #ffdd00;
+}
+
+.c2::-webkit-details-marker {
+  display: none;
+}
+
+.c2:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-clip-path: polygon(0% 0%,100% 50%,0% 100%);
+  clip-path: polygon(0% 0%,100% 50%,0% 100%);
+  border-width: 7px 0 7px 12.124px;
+  border-left-color: inherit;
+}
+
+[open] > .c2:before {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-clip-path: polygon(0% 0%,50% 100%,100% 0%);
+  clip-path: polygon(0% 0%,50% 100%,100% 0%);
+  border-width: 12.124px 7px 0 7px;
+  border-top-color: inherit;
+}
+
+.c3 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c4 {
+  padding: 15px;
+  padding-left: 20px;
+  border-left: 5px solid #bfc1c3;
+}
+
+.c4 p {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.c4 > :last-child,
+.c4 p:last-child {
+  margin-bottom: 0;
+}
+
+.c5 {
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.c5:link {
+  color: #1d70b8;
+}
+
+.c5:visited {
+  color: #4c2c92;
+}
+
+.c5:hover {
+  color: #2b8cc4;
+}
+
+.c5:active {
+  color: #2b8cc4;
+}
+
+.c5:focus {
+  color: #0b0c0c;
+}
+
+.c5:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  background-color: #ffdd00;
+}
+
+.c1 {
+  font-size: 16px;
+  margin: 10px 0 0;
+}
+
+.c1 > div {
+  padding: 5px;
+  padding-bottom: 15px;
+  margin: 5px 0 5px 4px;
+}
+
+.c1 > div > a {
+  padding: 20px 0 10px 10px;
+}
+
+@media print {
+  .c0 {
+    font-size: 14px;
+    line-height: 1.15;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c0 {
+    font-size: 19px;
+    line-height: 1.3157894736842106;
+  }
+}
+
+@media print {
+  .c0 {
+    color: #000;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c0 {
+    margin-bottom: 30px;
+  }
+}
+
+@media print {
+  .c5 {
+    font-family: sans-serif;
+  }
+}
+
+@media print {
+  .c5[href^="/"]::after,
+  .c5[href^="http://"]::after,
+  .c5[href^="https://"]::after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+    word-wrap: break-word;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .c1 {
+    margin-top: -15px;
+  }
+}
+
+<details
+  className="c0 c1"
+  open={true}
+>
+  <summary
+    className="c2"
+  >
+    <span
+      className="c3"
+    >
+      View interaction details
+    </span>
+  </summary>
+  <div
+    className="c4"
+  >
+    <p>
+      children
+    </p>
+    <a
+      className="c5"
+      href="#"
+      muted={false}
+    >
+      Go to the interaction detail page
+    </a>
+  </div>
+</details>
+`;

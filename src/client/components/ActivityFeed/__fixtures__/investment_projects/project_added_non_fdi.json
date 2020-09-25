@@ -1,0 +1,53 @@
+{
+  "type": "Add",
+  "published": "2017-10-03T15:49:31.319603Z",
+  "id": "dit:DataHubInvestmentProject:ff4005e5-f769-43cb-a46f-a483ec20eda7:Add",
+  "object": {
+    "attributedTo": [
+      {
+        "dit:companiesHouseNumber": null,
+        "dit:dunsNumber": null,
+        "id": "dit:DataHubCompany:0fb3379c-341c-4da4-b825-bf8d47b26baa",
+        "name": "Lambda plc",
+        "type": [
+          "Organization",
+          "dit:Company"
+        ]
+      },
+      {
+        "dit:jobTitle": "Some job title",
+        "dit:emailAddress": "Ruthie.Cole@example.com",
+        "id": "dit:DataHubContact:889dc0e6-a60c-4368-822c-e6b644bfcbf7",
+        "url": "https://www.datahub.dev.uktrade.io/contacts/889dc0e6-a60c-4368-822c-e6b644bfcbf7/details",
+        "name": "Ruthie Cole",
+        "type": [
+          "Person",
+          "dit:Contact"
+        ]
+      }
+    ],
+    "dit:estimatedLandDate": "2018-12-01",
+    "dit:investmentType": {
+      "name": "Non-FDI"
+    },
+    "id": "dit:DataHubInvestmentProject:ff4005e5-f769-43cb-a46f-a483ec20eda7",
+    "name": "Refined Rubber Chicken",
+    "type": [
+      "dit:InvestmentProject"
+    ],
+    "url": "https://www.datahub.dev.uktrade.io/investments/projects/ff4005e5-f769-43cb-a46f-a483ec20eda7"
+  },
+  "actor": {
+    "dit:emailAddress": "cmuuser1test@mobile.ukti.gov.uk",
+    "id": "dit:DataHubAdviser:8036f207-ae3e-e611-8d53-e4115bed50dc",
+    "name": "Test CMU 1",
+    "type": [
+      "Person",
+      "dit:Adviser"
+    ]
+  },
+  "generator": {
+    "name": "dit:dataHub",
+    "type": "Application"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "id": "dit:DataHubServiceDelivery:73dc04e1-a63e-4854-a52e-07e56958bd9d:Announce",
+  "type": "Announce",
+  "published": "2019-05-03T08:43:40.904649+00:00",
+
+  "generator": {
+    "name": "dit:dataHub",
+    "type": "Application"
+  },
+
+  "object": {
+    "id": "dit:DataHubServiceDelivery:73dc04e1-a63e-4854-a52e-07e56958bd9d",
+    "type": [
+      "Event",
+      "dit:ServiceDelivery"
+    ],
+    "startTime": "2019-05-16T08:43:40.904649+00:00",
+
+    "dit:status": "complete",
+    "dit:archived": false,
+    "dit:subject": "Attended test",
+    "dit:service": {
+      "name": "Account Management: Northern Powerhouse"
+    },
+
+    "attributedTo": [
+      {
+        "id": "dit:DataHubCompany:a4ead59f-dfc8-e511-a5e6-e4115bead28a",
+        "dit:dunsNumber": "123456789",
+        "dit:companiesHouseNumber": "987654321",
+        "type": [
+          "Organization",
+          "dit:Company"
+        ],
+        "name": "Marco Test"
+      },
+      {
+        "id": "dit:DataHubContact:04cadecd-2de4-4cda-9fda-59db93495dba",
+        "type": [
+          "Person",
+          "dit:Contact"
+        ],
+        "dit:emailAddress": "john@example.com",
+        "name": "John Doe"
+      },
+      {
+        "id": "dit:DataHubAdviser:2dc3c098-2f51-43c5-8767-752e8e5065b5",
+        "type": [
+          "Person",
+          "dit:Adviser"
+        ],
+        "dit:emailAddress": "mariobros@dit.com",
+        "name": "Mario Bros",
+        "dit:team": {
+          "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+          "type": [
+            "Group",
+            "dit:Team"
+          ],
+          "name": "Digital Data Hub - Live Service"
+        }
+      }
+    ],
+    "url": "https://example.com/companies/a4ead59f-dfc8-e511-a5e6-e4115bead28a/interactions/73dc04e1-a63e-4854-a52e-07e56958bd9d",
+
+    "context": [
+      {
+        "id": "DataHubEvent:d5acfd89-6ab5-4ada-a08d-28f712b8cba3",
+        "type": "Event",
+        "dit:eventType": {
+          "name": "Exhibition"
+        },
+        "name": "Bitcon blockchained",
+        "startTime": "2019-05-16T08:43:40.904649+00:00",
+        "endTime": "2019-05-017T08:43:40.904649+00:00",
+        "dit:team": {
+          "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+          "type": [
+            "Group",
+            "dit:Team"
+          ],
+          "name": "Digital Data Hub - Live Service"
+        },
+        "url": "https://example.com/events/d5acfd89-6ab5-4ada-a08d-28f712b8cba3/details"
+      }
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "id": "dit:DataHubInteraction:a28de688-addc-4d14-adb8-41ed46fb5cc8:Announce",
+  "type": "Announce",
+  "published": "2019-05-03T08:43:40.904649+00:00",
+
+  "generator": {
+    "name": "dit:dataHub",
+    "type": "Application"
+  },
+
+  "object": {
+    "id": "dit:DataHubInteraction:a28de688-addc-4d14-adb8-41ed46fb5cc8",
+    "type": [
+      "Event",
+      "dit:Interaction"
+    ],
+    "startTime": "2018-05-09T08:43:40.904649+00:00",
+
+    "dit:status": "complete",
+    "dit:archived": false,
+    "dit:communicationChannel": {
+      "name": "Email/Website"
+    },
+    "dit:subject": "Opportunities in Cat World",
+    "dit:service": {
+      "name": "Investment - Services"
+    },
+
+    "attributedTo": [
+      {
+        "id": "dit:DataHubCompany:6cb433cd-a098-e211-a939-e4115bead28a",
+        "dit:dunsNumber": "123456789",
+        "dit:companiesHouseNumber": "987654321",
+        "type": [
+          "Organization",
+          "dit:Company"
+        ],
+        "name": "Shamsung Electronics Europe EHQ (Chertsey) EU HQ"
+      },
+      {
+        "id": "dit:DataHubContact:04cadecd-2de4-4cda-9fda-59db93495dba",
+        "type": [
+          "Person",
+          "dit:Contact"
+        ],
+        "dit:emailAddress": "john@example.com",
+        "name": "John Doe",
+        "url": "https://www.datahub.dev.uktrade.io/contacts/04cadecd-2de4-4cda-9fda-59db93495dba"
+      },
+      {
+        "id": "dit:DataHubAdviser:2dc3c098-2f51-43c5-8767-752e8e5065b5",
+        "type": [
+          "Person",
+          "dit:Adviser"
+        ],
+        "dit:emailAddress": "mariobros@dit.com",
+        "name": "Mario Bros",
+        "dit:team": {
+          "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+          "type": [
+            "Group",
+            "dit:Team"
+          ],
+          "name": "Digital Data Hub - Live Service"
+        }
+      }
+    ],
+    "url": "https://example.com/investments/projects/8f2662e9-0691-435f-8edd-7fb9df9d8936/interactions/a28de688-addc-4d14-adb8-41ed46fb5cc8",
+
+    "context": [
+      {
+        "id": "dit:DataHubInvestmentProject:8f2662e9-0691-435f-8edd-7fb9df9d8936",
+        "type": "dit:InvestmentProject",
+
+        "name": "Aphrodite Mcdonald",
+        "url": "https://example.com/investments/projects/8f2662e9-0691-435f-8edd-7fb9df9d8936/details"
+      }
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "dit:Deadline:DataHubOrder:53260d3b-15ea-4f04-b44b-33ded9c4518e:Announce",
+  "type": "dit:Announce",
+
+  "generator": {
+    "name": "dit:dataHub",
+    "type": "Application"
+  },
+
+  "object": {
+    "id": "dit:Deadline:DataHubInvestmentProject:8f2662e9-0691-435f-8edd-7fb9df9d8936",
+    "type": "dit:Deadline",
+    "dit:deadlineDate": "2019-05-03T08:43:40.904649+00:00",
+    "dit:deadlineType": "deliveryOfWork"
+  },
+
+  "context": {
+    "id": "dit:DataHubOrder:53260d3b-15ea-4f04-b44b-33ded9c4518e",
+    "type": "dit:Order",
+    "name": "MYV641/19",
+
+    "url": "https://example.com/omis/53260d3b-15ea-4f04-b44b-33ded9c4518e/work-order",
+
+    "dit:country": {
+      "name": "Italy"
+    },
+
+    "dit:ukRegion": {
+      "name": "East Midlands"
+    },
+
+    "dit:totalCost": 100000,
+    "dit:deliveryDate": "2019-05-03T08:43:40.904649+00:00",
+
+    "attributedTo": [
+      {
+        "id": "dit:DataHubCompany:a4ead59f-dfc8-e511-a5e6-e4115bead28a",
+        "dit:dunsNumber": "123456789",
+        "dit:companiesHouseNumber": "987654321",
+        "type": [
+          "Organization",
+          "dit:Company"
+        ],
+        "name": "Marco Test"
+      },
+      {
+        "id": "dit:DataHubContact:04cadecd-2de4-4cda-9fda-59db93495dba",
+        "type": [
+          "Person",
+          "dit:Contact"
+        ],
+        "dit:emailAddress": "john@example.com",
+        "name": "John Doe"
+      },
+      {
+        "id": "dit:DataHubAdviser:2dc3c098-2f51-43c5-8767-752e8e5065b5",
+        "type": [
+          "Person",
+          "dit:Adviser"
+        ],
+        "dit:emailAddress": "mariobros@dit.com",
+        "dit:role": "lead",
+        "name": "Mario Bros",
+        "dit:team": {
+          "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+          "type": [
+            "Group",
+            "dit:Team"
+          ],
+          "name": "Digital Data Hub - Live Service"
+        }
+      }
+    ]
+  }
+}

@@ -1,3 +1,4 @@
+export { default as ActivityFeed } from './ActivityFeed'
 export { default as CompanyLocalHeader } from './CompanyLocalHeader'
 export { default as Badge } from './Badge'
 export { default as ButtonLink } from './ButtonLink'

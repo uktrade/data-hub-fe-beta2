@@ -1,0 +1,31 @@
+{
+  "dit:dataSource": {
+    "id": "companies_house.accounts",
+    "name": "Companies House (Accounts)"
+  },
+  "generator": {
+    "name": "dit:dataScienceLab",
+    "type": "Application"
+  },
+  "id": "dit:DataScienceExport:5d39ab9ac0d4899610cd65e4:Announce",
+  "object": {
+    "dit:balanceSheetDate": "2019-07-27",
+    "dit:companiesHouseRegisteredNumber": 5603,
+    "dit:companyStatus": "Dormant",
+    "dit:entityCurrentLegalName": "ENJOLA",
+    "dit:netAssetsLiabilitiesIncludingPensionAssetLiability": 1,
+    "dit:periodEnd": "2019-07-27",
+    "dit:periodStart": "2019-07-27",
+    "dit:shareholderFunds": 1,
+    "dit:taxonomy": "http://some.url/with/stuff/2019-07-27",
+    "id": "dit:externalSources:companies_house.accounts:5d39ab9ac0d4899610cd65e4",
+    "startTime": "2020-12-13T01:11:18",
+    "type": [
+      "Event",
+      "dit:Accounts"
+    ]
+  },
+  "published": "2020-12-13T01:11:18",
+  "summary": "Company officially incorporated in Companies House.",
+  "type": "Announce"
+}

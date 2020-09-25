@@ -1,0 +1,97 @@
+{
+  "id": "dit:DataHubCompanyReferral:74755dbd-c394-4c09-885b-1ca90ace5fdf:Announce",
+  "type": "Announce",
+  "published": "2020-01-11T15:52:58.713214Z",
+  "generator": {
+    "name": "dit:dataHub",
+    "type": "Application"
+  },
+  "object": {
+    "type": [
+      "Referral",
+      "dit:CompanyReferral"
+    ],
+    "id": "dit:DataHubCompanyReferral:74755dbd-c394-4c09-885b-1ca90ace5fcf",
+    "startTime": "2020-02-15T15:52:58.713189Z",
+    "dit:subject": "An outstanding referral",
+    "dit:status": "outstanding",
+    "attributedTo": [
+      {
+        "id": "dit:DataHubCompany:08d11412-67b2-4b86-87e2-2cb0ef71f5c6",
+        "dit:dunsNumber": null,
+        "dit:companiesHouseNumber": null,
+        "type": [
+          "Organization",
+          "dit:Company"
+        ],
+        "name": "Griffiths, Gibson and Wright"
+      },
+      {
+        "id": "dit:DataHubAdviser:b6e21a56-8c18-4b46-b1e3-07441b600e87",
+        "type": [
+          "Person",
+          "dit:Adviser"
+        ],
+        "dit:emailAddress": "pjones@yahoo.com",
+        "name": "Peter Jones",
+        "dit:team": {
+          "id": "dit:DataHubTeam:23ce332d-ae6e-4287-9f9f-3be1fcc617f7",
+          "type": [
+            "Group",
+            "dit:Team"
+          ],
+          "name": "Team 12"
+        },
+        "dit:DataHubCompanyReferral:role": "sender"
+      },
+      {
+        "id": "dit:DataHubAdviser:a8c35bd5-8f8b-4c1d-8c40-ee1a73c60b26",
+        "type": [
+          "Person",
+          "dit:Adviser"
+        ],
+        "dit:emailAddress": "richardsonlinda@baker.com",
+        "name": "David Parry",
+        "dit:team": {
+          "id": "dit:DataHubTeam:3e5f1379-f2f3-4e9e-91a2-59e2366b3069",
+          "type": [
+            "Group",
+            "dit:Team"
+          ],
+          "name": "Team 11"
+        },
+        "dit:DataHubCompanyReferral:role": "recipient"
+      },
+      {
+        "id": "dit:DataHubAdviser:ba002bda-2fd2-46de-ac41-bfe56e707a7c",
+        "type": [
+          "Person",
+          "dit:Adviser"
+        ],
+        "dit:emailAddress": "hilarybaker@parkinson-schofield.com",
+        "name": "Mohammad Wong",
+        "dit:team": {
+          "id": "dit:DataHubTeam:9ce99567-3699-4bc7-964b-275b6d9ca02c",
+          "type": [
+            "Group",
+            "dit:Team"
+          ],
+          "name": "name 13"
+        },
+        "dit:DataHubCompanyReferral:role": "completer"
+      },
+      {
+        "id": "dit:DataHubContact:8c2dbca0-80a3-41f2-8d75-6b545397bae6",
+        "type": [
+          "Person",
+          "dit:Contact"
+        ],
+        "url": "https://www.datahub.trade.gov.uk/contacts/8c2dbca0-80a3-41f2-8d75-6b545397bae6",
+        "dit:emailAddress": "foo@bar.com",
+        "dit:jobTitle": "Artist",
+        "name": "Jonathan Jones"
+      }
+    ],
+    "url": "https://www.datahub.trade.gov.uk/company-referrals/74755dbd-c394-4c09-885b-1ca90ace5fcf"
+  }
+}

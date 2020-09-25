@@ -1,0 +1,47 @@
+{
+  "dit:dataSource": {
+    "id": "hmrc.exporters",
+    "name": "HMRC (Exporters)"
+  },
+  "generator": {
+    "name": "dit:dataScienceLab",
+    "type": "Application"
+  },
+  "id": "dit:DataScienceExport:5d39b0c9a2b09a36f9f243bf:Announce",
+  "published": "1879-01-05T06:53:47",
+  "summary": "The Water Company officially did action number 5.",
+  "type": "Announce",
+  "object": {
+    "id": "dit:externalSources:hmrc.exporters:5d39b0c9a2b09a36f9f243bf",
+    "startTime": "1879-01-05T06:53:47",
+    "type": [
+      "Event",
+      "dit:Export"
+    ],
+    "dit:exportItemCodes": [
+      2803406,
+      7252793,
+      5163497,
+      6477617,
+      3158924,
+      5735446,
+      4517493
+    ],
+    "dit:datetime": "1879-01-05T06:53:47",
+    "attributedTo": [
+      {
+        "id": "dit:DataScienceCompany:5d39b0c9a2b09a36f9f243bf",
+        "type": [
+          "Organization",
+          "dit:Company"
+        ],
+        "name": "The Water Company",
+        "location": {
+          "dit:address": "179 Henry Street, Shawmut",
+          "dit:postcode": 475481
+        },
+        "dit:companiesHouseNumber": 7581
+      }
+    ]
+  }
+}

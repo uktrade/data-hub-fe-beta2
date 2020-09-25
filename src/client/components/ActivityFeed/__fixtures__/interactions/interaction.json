@@ -1,0 +1,125 @@
+{
+  "id": "dit:DataHubInteraction:a066cc49-b679-4cbe-93c5-3ceba2f067ec:Announce",
+  "type": "Announce",
+  "published": "2019-05-03T08:43:40.904649+00:00",
+
+  "generator": {
+    "name": "dit:dataHub",
+    "type": "Application"
+  },
+
+  "object": {
+    "id": "dit:DataHubInteraction:a066cc49-b679-4cbe-93c5-3ceba2f067ec",
+    "type": [
+      "Event",
+      "dit:Interaction"
+    ],
+    "startTime": "2019-05-02T08:43:40.904649+00:00",
+
+    "dit:status": "complete",
+    "dit:archived": false,
+    "dit:communicationChannel": {
+      "name": "Email/Website"
+    },
+    "dit:subject": "Invited to Technology Roundtable",
+    "dit:service": {
+      "name": "Account Management"
+    },
+
+    "attributedTo": [
+      {
+        "id": "dit:DataHubCompany:a4ead59f-dfc8-e511-a5e6-e4115bead28a",
+        "dit:dunsNumber": "123456789",
+        "dit:companiesHouseNumber": "987654321",
+        "type": [
+          "Organization",
+          "dit:Company"
+        ],
+        "name": "Marco Test"
+      },
+      {
+        "id": "dit:DataHubContact:04cadecd-2de4-4cda-9fda-59db93495dba",
+        "type": [
+          "Person",
+          "dit:Contact"
+        ],
+        "dit:emailAddress": "john@example.com",
+        "name": "John Doe",
+        "url": "https://www.datahub.dev.uktrade.io/contacts/04cadecd-2de4-4cda-9fda-59db93495dba"
+      },
+      {
+        "id": "dit:DataHubContact:c7327882-86f2-40e9-b1bd-81daa28f1603",
+        "type": [
+          "Person",
+          "dit:Contact"
+        ],
+        "dit:emailAddress": "john.smith@dit.com",
+        "name": "John Smith",
+        "url": "https://www.datahub.dev.uktrade.io/contacts/c7327882-86f2-40e9-b1bd-81daa28f1603/details"
+      },
+      {
+        "id": "dit:DataHubContact:04cadecd-2de4-4cda-9fda-59db73495dbc",
+        "type": [
+          "Person",
+          "dit:Contact"
+        ],
+        "dit:emailAddress": "lucy.bryant@dit.com",
+        "dit:jobTitle": "Director",
+        "name": "Lucy Bryant",
+        "url": "https://www.datahub.dev.uktrade.io/contacts/8733fec0-531b-e611-9bdc-e4115bead28a/details"
+      },
+      {
+        "id": "dit:DataHubAdviser:2dc3c098-2f51-43c5-8767-752e8e5065b5",
+        "type": [
+          "Person",
+          "dit:Adviser"
+        ],
+        "dit:emailAddress": "mariobros@dit.com",
+        "name": "Mario Bros",
+        "dit:team": {
+          "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+          "type": [
+            "Group",
+            "dit:Team"
+          ],
+          "name": "Digital Data Hub - Live Service"
+        }
+      },
+      {
+        "id": "dit:DataHubAdviser:2dc3c098-2f51-43c5-8767-752e8e5065c5",
+        "type": [
+          "Person",
+          "dit:Adviser"
+        ],
+        "dit:emailAddress": "john.hammond@dit.com",
+        "name": "John Hammond",
+        "dit:team": {
+          "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+          "type": [
+            "Group",
+            "dit:Team"
+          ],
+          "name": "Digital Data Hub - Live Service"
+        }
+      },
+      {
+        "id": "dit:DataHubAdviser:2dc3c098-2f51-43c5-8767-752e8e5065d5",
+        "type": [
+          "Person",
+          "dit:Adviser"
+        ],
+        "dit:emailAddress": "luke.moon@dit.com",
+        "name": "Luke Moon",
+        "dit:team": {
+          "id": "dit:DataHubTeam:3a48318c-9698-e211-a939-e4115bead28a",
+          "type": [
+            "Group",
+            "dit:Team"
+          ],
+          "name": "Digital Data Hub - Live Service"
+        }
+      }
+    ],
+    "url": "https://example.com/companies/a4ead59f-dfc8-e511-a5e6-e4115bead28a/interactions/a066cc49-b679-4cbe-93c5-3ceba2f067ec"
+  }
+}
