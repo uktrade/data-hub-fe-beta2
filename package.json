@@ -131,6 +131,7 @@
     "qs": "^6.9.4",
     "raven": "^2.6.2",
     "react": "^16.13.1",
+    "react-accessible-accordion": "^3.3.3",
     "react-app-polyfill": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
