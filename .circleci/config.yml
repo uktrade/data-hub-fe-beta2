@@ -200,25 +200,20 @@ workflows:
       - functional_tests: *ignore_ghpages
       - visual_tests: *ignore_ghpages
       - e2e_tests:
+          <<: *ignore_ghpages
           name: e2e_tests_<< matrix.staff >>
           matrix:
             parameters:
               staff: [da, lep]
-          filters:
-            branches:
-              ignore:
-                - gh-pages
       - e2e_tests_dit:
+          <<: *ignore_ghpages
           name: e2e_tests_dit
           matrix:
             parameters:
               staff: [dit]
       - release-storybook: *ignore_ghpages
       - merge-and-publish-coverage:
+          <<: *ignore_ghpages
           requires:
             - functional_tests
             - unit_tests
-          filters:
-            branches:
-              ignore:
-                - gh-pages
