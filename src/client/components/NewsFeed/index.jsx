@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { GREEN } from 'govuk-colours'
+import dateFns from 'date-fns'
+import { Spinner } from 'govuk-react'
 
-import NewsCard from './NewsCard'
-import NewsHeader from './NewsHeader'
+import { apiProxyAxios } from '../../../client/components/Task/utils'
+import { Tag } from '../../../client/components'
+
+import NewsFeedHeader from './NewsFeedHeader'
+
 import {
   Accordion,
   AccordionItem,
@@ -25,6 +29,30 @@ const StyledAccordionItemButton = styled(AccordionItemButton)`
 
 const StyledAccordionItem = styled(AccordionItem)`
   padding: 1px;
+  transition: all 1s ease-out;
+`
+
+const StyledAccordionItemPanel = styled(AccordionItemPanel)`
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  animation: fadein 0.35s ease-in;
+
+  padding: 10px;
+  margin-bottom: 10px;
+
+  &:nth-child(2) {
+    margin-top: 10px;
+  }
+
+  &:last-child {
+    margin-bottom: 20px;
+  }
 `
 
 const Title = styled('span')`
@@ -32,9 +60,6 @@ const Title = styled('span')`
 `
 
 const Count = styled('span')`
-  background-color: #f8f8f8;
-  border: 2px solid ${GREEN};
-  border-radius: 20%;
   padding: 2px 3px;
   font-size: 14px;
 `
@@ -44,49 +69,189 @@ const StyledAccordion = styled(Accordion)`
   font-size: 16px;
 `
 
+const InteractionTitle = styled('div')`
+  font-weight: bold;
+  font-size: 16px;
+`
+const InteractionDate = styled('div')`
+  font-size: 14px;
+  margin: 10px 0;
+`
+const InteractionKind = styled('div')`
+  font-size: 14px;
+  margin: 5px 0;
+`
+
+const InvestmentProjectTitle = styled('div')`
+  font-weight: bold;
+  font-size: 16px;
+`
+const InvestmentProjectModifiedDate = styled('div')`
+  font-size: 14px;
+  margin: 5px 0;
+`
+const InvestmentProjectStatus = styled('div')`
+  font-size: 14px;
+  margin: 5px 0;
+`
+
+const StyledSpinner = styled(Spinner)`
+  width: 20px;
+  height: 20px;
+`
+
+const NewsHeader = ({ title, number }) => (
+  <AccordionItemHeading>
+    <StyledAccordionItemButton>
+      <Title>{title}</Title>
+      {number ? (
+        <Tag colour="green">
+          <Count>{number}</Count>
+        </Tag>
+      ) : (
+        <StyledSpinner />
+      )}
+    </StyledAccordionItemButton>
+  </AccordionItemHeading>
+)
+
 const NewsFeed = () => {
+  const [interactions, setInteractions] = useState([])
+  const [investments, setInvestments] = useState([])
+  const [omis, setOmis] = useState([])
+
+  const transformInteraction = ({ data }) => {
+    return data.results
+      .filter(
+        (data) =>
+          data.kind === 'interaction' || data.kind === 'service_delivery'
+      )
+      .map((interaction) => {
+        return {
+          name: interaction.company.name,
+          date: interaction.date,
+          kind: interaction.kind,
+          id: interaction.id,
+        }
+      })
+  }
+
+  const transformInvestments = ({ data }) => {
+    return data.results.map((investment) => {
+      return {
+        name: investment.name,
+        id: investment.id,
+        status: investment.status,
+        updated: investment.modified_on,
+      }
+    })
+  }
+
+  const transformOrders = ({ data }) => {
+    return data.results.map((order) => {
+      return {
+        orderNumber: order.reference,
+        companyName: order.company.name,
+        updated: order.modified_on,
+        status: order.status,
+        id: order.id,
+      }
+    })
+  }
+
+  useEffect(() => {
+    const fetchInteractionData = async () => {
+      const interactionResponse = await apiProxyAxios.post(
+        'v4/search/export-country-history',
+        {
+          country: '9f5f66a0-5d95-e211-a939-e4115bead28a',
+        }
+      )
+      const investmentsResponse = await apiProxyAxios.post(
+        'v3/search/investment_project',
+        {
+          country_investment_originates_from:
+            '9f5f66a0-5d95-e211-a939-e4115bead28a',
+        }
+      )
+
+      const omisResponse = await apiProxyAxios.post('v3/search/order', {
+        primary_market: '9f5f66a0-5d95-e211-a939-e4115bead28a',
+      })
+
+      setInvestments(transformInvestments(investmentsResponse))
+      setInteractions(transformInteraction(interactionResponse))
+      setOmis(transformOrders(omisResponse))
+    }
+    fetchInteractionData()
+  }, [])
+
   return (
     <>
-      <NewsHeader />
+      <NewsFeedHeader />
       <StyledAccordion allowZeroExpanded preExpanded={['a']}>
-        <StyledAccordionItem uuid='a'>
-          <AccordionItemHeading>
-            <StyledAccordionItemButton>
-              <Title>Interactions tagged</Title>
-              <Count>10</Count>
-            </StyledAccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel>
-            <NewsCard />
-          </AccordionItemPanel>
+        <StyledAccordionItem uuid="a">
+          <NewsHeader
+            title="Interactions tagged"
+            number={interactions.length}
+          />
+          {interactions.map((interaction) => (
+            <StyledAccordionItemPanel key={interaction.id}>
+              <InteractionTitle>
+                <a href={`/interactions/${interaction.id}`}>
+                  {interaction.name}
+                </a>
+              </InteractionTitle>
+              <InteractionDate>
+                Created: {dateFns.format(interaction.date, 'D MMM YYYY')}
+              </InteractionDate>
+              <Tag colour="grey">
+                <InteractionKind>
+                  {interaction.kind.replace('_', ' ')}
+                </InteractionKind>
+              </Tag>
+            </StyledAccordionItemPanel>
+          ))}
         </StyledAccordionItem>
         <StyledAccordionItem>
-          <AccordionItemHeading>
-            <StyledAccordionItemButton>
-              <Title>Investment projects</Title>
-              <Count>5</Count>
-            </StyledAccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel>
-            <NewsCard />
-          </AccordionItemPanel>
+          <NewsHeader title="Investment projects" number={investments.length} />
+          {investments.map((investment) => (
+            <StyledAccordionItemPanel key={investment.id}>
+              <InvestmentProjectTitle>
+                <a href={`/investments/projects/${investment.id}`}>
+                  {investment.name}
+                </a>
+              </InvestmentProjectTitle>
+              <InvestmentProjectModifiedDate>
+                Modified: {dateFns.format(investment.updated, 'D MMM YYYY')}
+              </InvestmentProjectModifiedDate>
+              <Tag colour={investment.status === 'ongoing' ? 'blue' : 'orange'}>
+                <InvestmentProjectStatus>
+                  {investment.status}
+                </InvestmentProjectStatus>
+              </Tag>
+            </StyledAccordionItemPanel>
+          ))}
         </StyledAccordionItem>
         <StyledAccordionItem>
-          <AccordionItemHeading>
-            <StyledAccordionItemButton>
-              <Title>OMIS orders</Title>
-              <Count>2</Count>
-            </StyledAccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel>
-            <NewsCard />
-          </AccordionItemPanel>
+          <NewsHeader title="Omis orders" number={omis.length} />
+          {omis.map((omis) => (
+            <StyledAccordionItemPanel key={omis.id}>
+              <InvestmentProjectTitle>
+                <a href={`/omis/${omis.id}/work-order`}>{omis.orderNumber}</a>
+              </InvestmentProjectTitle>
+              <InvestmentProjectModifiedDate>
+                Modified: {dateFns.format(omis.updated, 'D MMM YYYY')}
+              </InvestmentProjectModifiedDate>
+              <Tag colour={omis.status === 'ongoing' ? 'blue' : 'orange'}>
+                <InvestmentProjectStatus>{omis.status}</InvestmentProjectStatus>
+              </Tag>
+            </StyledAccordionItemPanel>
+          ))}
         </StyledAccordionItem>
       </StyledAccordion>
     </>
   )
 }
-
-
 
 export default NewsFeed

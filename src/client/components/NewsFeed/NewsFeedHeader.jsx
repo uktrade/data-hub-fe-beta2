@@ -8,8 +8,8 @@ const StyledHeader = styled('h2')`
   margin: 5px 0 5px;
 `
 
-const NewsHeader = () => {
-  return <StyledHeader>Newsfeed - Belgium</StyledHeader>
+const NewsFeedHeader = () => {
+  return <StyledHeader>Newsfeed - Australia</StyledHeader>
 }
 
-export default NewsHeader
+export default NewsFeedHeader
