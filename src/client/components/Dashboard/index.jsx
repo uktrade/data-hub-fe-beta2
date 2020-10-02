@@ -10,6 +10,7 @@ import ReferralList from '../../components/ReferralList'
 import Pipeline from '../../components/Pipeline'
 import TabNav from '../../components/TabNav'
 import NewsFeed from '../../components/NewsFeed'
+import D3Experiment from '../../components/D3Experiment'
 
 const StyledDiv = styled('div')`
   border-top: 4px solid ${GREY_2};
@@ -41,6 +42,7 @@ const Dashboard = ({ id }) => (
         />
       </GridCol>
       <GridCol setWidth="one-third">
+        <D3Experiment />
         <NewsFeed />
       </GridCol>
     </GridRow>
