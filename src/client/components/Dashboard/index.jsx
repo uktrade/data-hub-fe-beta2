@@ -9,6 +9,8 @@ import ReferralList from '../../components/ReferralList'
 import Pipeline from '../../components/Pipeline'
 import TabNav from '../../components/TabNav'
 
+import D3Experiment from '../../components/D3Experiment'
+
 const StyledDiv = styled('div')`
   border-top: 4px solid ${GREY_2};
   padding-top: 16px;
@@ -16,6 +18,7 @@ const StyledDiv = styled('div')`
 
 const Dashboard = ({ id }) => (
   <StyledDiv>
+    <D3Experiment />
     <TabNav
       id={`${id}.TabNav`}
       label="Dashboard"
