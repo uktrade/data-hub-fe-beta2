@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as d3 from 'd3'
+import axios from 'axios'
 
 // based on: https://codesandbox.io/s/r5wp0v08xq?file=/src/PieSVG.js
 const Arc = ({ data, index, createArc, colors, format }) => (
@@ -20,7 +21,7 @@ const Arc = ({ data, index, createArc, colors, format }) => (
 const Pie = ({ innerRadius, outerRadius, width, height, dataset }) => {
   const createPie = d3
     .pie()
-    .value((d) => d.value)
+    .value((data) => data[1].percent)
     .sort(null)
   const createArc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius)
   const colors = d3.scaleOrdinal(d3.schemeCategory10)
@@ -46,11 +47,13 @@ const Pie = ({ innerRadius, outerRadius, width, height, dataset }) => {
 }
 
 const D3Experiment = () => {
-  const [dataset, setDataset] = useState(() => [
-    { label: 'one', value: 20 },
-    { label: 'two', value: 50 },
-    { label: 'three', value: 30 },
-  ])
+  const [dataset, setDataset] = useState([])
+
+  React.useEffect(() => {
+    axios.get('/api-proxy/v3/omis/order/status').then(({ data }) => {
+      setDataset(Object.entries(data))
+    })
+  }, [])
 
   return (
     <svg
