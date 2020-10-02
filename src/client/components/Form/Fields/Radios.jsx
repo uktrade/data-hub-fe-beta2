@@ -2,8 +2,10 @@ import React from 'react'
 import MultiChoice from '@govuk-react/multi-choice'
 import { GREY_2 } from 'govuk-colours'
 import Radio from '@govuk-react/radio'
-
 import styled from 'styled-components'
+
+import { RADIOS_FIELD__SET_VALUE } from '../../../actions'
+import multiInstance from '../../../utils/multiinstance'
 
 const StyledSubOption = styled.div({
   marginLeft: 15,
@@ -18,6 +20,7 @@ const Radios = ({
   defaultValue,
   name,
   onChange,
+  setValue,
   ...props
 }) => (
   <MultiChoice {...props} meta={{ touched: true, error }}>
@@ -25,7 +28,10 @@ const Radios = ({
       <React.Fragment key={label}>
         <Radio
           name={name}
-          onChange={onChange}
+          onChange={(e) => {
+            setValue(e.target.value)
+            onChange(e)
+          }}
           value={v}
           defaultChecked={v === defaultValue}
         >
@@ -37,4 +43,12 @@ const Radios = ({
   </MultiChoice>
 )
 
-export default Radios
+export default multiInstance({
+  name: 'RadiosField',
+  reducer: (state, { value }) => ({ value }),
+  actionPattern: RADIOS_FIELD__SET_VALUE,
+  dispatchToProps: (dispatch) => ({
+    setValue: (value) => dispatch({ type: RADIOS_FIELD__SET_VALUE, value }),
+  }),
+  component: Radios,
+})

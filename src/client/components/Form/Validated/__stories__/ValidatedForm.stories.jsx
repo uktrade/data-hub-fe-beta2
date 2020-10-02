@@ -28,45 +28,42 @@ storiesOf('ValidatedForm')
       }}
       onSubmit={submitToAlert}
     >
-      {(field, x) => (
-        <div style={{ display: 'flex' }}>
-          <div>
-            <Input
-              {...field('inputField')}
-              label="Input field"
-              defaultValue="fooo"
-            />
-            <Textarea
-              {...field('textareaField')}
-              label="Textarea field"
-              defaultValue="blah"
-            />
-            <Select
-              {...field('selectField')}
-              label="Select field"
-              defaultValue="bar"
-              options={{
-                Foo: 'foo',
-                Bar: 'bar',
-                Baz: 'baz',
-                Invalid: 'invalid',
-              }}
-            />
-            <Radios
-              {...field('radioField')}
-              label="Radio field"
-              defaultValue="bar"
-              options={{
-                Foo: { value: 'foo' },
-                Bar: { value: 'bar' },
-                Baz: { value: 'baz' },
-                Invalid: { value: 'invalid' },
-              }}
-            />
-            <Checkbox name="checkboxField">Checkbox field</Checkbox>
-          </div>
-          <pre style={{ padding: '2rem' }}>{JSON.stringify(x, null, 2)}</pre>
-        </div>
+      {(field) => (
+        <>
+          <Input
+            {...field('inputField')}
+            label="Input field"
+            defaultValue="fooo"
+          />
+          <Textarea
+            {...field('textareaField')}
+            label="Textarea field"
+            defaultValue="blah"
+          />
+          <Select
+            {...field('selectField')}
+            label="Select field"
+            defaultValue="bar"
+            options={{
+              Foo: 'foo',
+              Bar: 'bar',
+              Baz: 'baz',
+              Invalid: 'invalid',
+            }}
+          />
+          <Radios
+            {...field('radioField')}
+            label="Radio field"
+            defaultValue="bar"
+            options={{
+              Foo: { value: 'foo' },
+              Bar: { value: 'bar' },
+              Baz: { value: 'baz' },
+              Invalid: { value: 'invalid' },
+            }}
+          />
+          <Checkbox name="checkboxField">Checkbox field</Checkbox>
+        </>
       )}
     </ValidatedForm>
   ))
@@ -81,11 +78,12 @@ storiesOf('ValidatedForm')
       }}
       onSubmit={submitToAlert}
     >
-      {(field, x) => (
+      {(field) => (
         <>
           <Input {...field('foo')} label="Foo" />
           <Radios
             {...field('bar')}
+            id="bar"
             label="Bar"
             options={{
               Foo: { value: 'foo' },
@@ -96,7 +94,6 @@ storiesOf('ValidatedForm')
               Invalid: { value: 'baz' },
             }}
           />
-          <pre>{JSON.stringify(x, null, 2)}</pre>
         </>
       )}
     </ValidatedForm>
