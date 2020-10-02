@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import _ from 'lodash'
+import React, { useRef, useEffect } from 'react'
 import { FormActions } from 'data-hub-components'
 import Button from '@govuk-react/button'
 import ErrorSummary from '@govuk-react/error-summary'
@@ -26,39 +27,51 @@ const ValidatedForm = ({
   submitLabel = 'Submit',
   secondaryActions = [],
   errors = {},
-  values = {},
+  // values = {},
+  submitted,
   onSubmit,
   onFieldChange,
   ...props
 }) => {
   const ref = useRef()
+
+  useEffect(() => {
+    submitted &&
+      !_.isEmpty(errors) &&
+      ref.current.querySelector('[data-error-summary')?.focus()
+  }, [submitted, errors])
+
   return (
     <StyledForm
       {...props}
       ref={ref}
       onSubmit={(e) => {
-        const formDataEntries = new FormData(e.target).entries()
-        const values = Object.fromEntries(formDataEntries)
-        const combined = { ...validators, ...values }
-        const errors = Object.entries(combined).reduce((a, [name, value]) => {
-          const error = validators[name]?.(
-            typeof value === 'function' ? undefined : value,
-            values
-          )
-          return name in combined && error ? { ...a, [name]: error } : a
-        }, {})
+        const formData = Object.fromEntries(new FormData(e.target).entries())
+        const errors = Object.entries({ ...validators, ...formData }).reduce(
+          (a, [name, value]) => {
+            const error = validators[name]?.(
+              typeof value === 'function' ? undefined : value,
+              formData
+            )
+            return name in formData && error instanceof Error
+              ? { ...a, [name]: error.message }
+              : a
+          },
+          {}
+        )
 
-        validate({ values, errors })
+        validate(errors)
 
         if (Object.keys(errors).length) {
           e.preventDefault()
         } else if (onSubmit) {
-          onSubmit(e, values)
+          onSubmit(e, formData)
         }
       }}
     >
       {!!Object.keys(errors).length && (
         <ErrorSummary
+          data-error-summary={true}
           heading="Errors"
           onHandleErrorClick={(targetName) => {
             const $el = ref.current.querySelector(`[name=${targetName}]`)
@@ -71,17 +84,15 @@ const ValidatedForm = ({
           }))}
         />
       )}
-      {children({
-        errors,
-        values,
-        getField: (name) => ({
+      {children(
+        (name) => ({
           name,
           key: name,
           error: errors[name],
-          defaultValue: values[name],
           onChange: (e) => onFieldChange(name, e.target.value),
         }),
-      })}
+        errors
+      )}
       <FormActions>
         <Button>{submitLabel}</Button>
         {secondaryActions.map((props, i) => (
@@ -103,11 +114,13 @@ export default multiInstance({
   name: 'ValidatedForm',
   reducer,
   component: ValidatedForm,
+  actionPattern: 'VALIDATED_FORM__',
+  componentStateToProps: (state) => ({ errors: state }),
   dispatchToProps: (dispatch) => ({
-    validate: (payload) =>
+    validate: (errors) =>
       dispatch({
         type: VALIDATED_FORM__VALIDATE,
-        ...payload,
+        errors,
       }),
     onFieldChange: (name, value) =>
       dispatch({

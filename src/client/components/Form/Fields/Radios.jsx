@@ -11,26 +11,30 @@ const StyledSubOption = styled.div({
   borderLeft: `10px solid ${GREY_2}`,
 })
 
-const RadioField = ({
+const Radios = ({
   error,
   options,
+  value,
   defaultValue,
   name,
   onChange,
   ...props
 }) => (
   <MultiChoice {...props} meta={{ touched: true, error }}>
-    {Object.entries(options).map(([label, { value, inset }]) => (
+    {Object.entries(options).map(([label, { value: v, inset }]) => (
       <React.Fragment key={label}>
-        <Radio name={name} onChange={onChange} value={value}>
+        <Radio
+          name={name}
+          onChange={onChange}
+          value={v}
+          defaultChecked={v === defaultValue}
+        >
           {label}
         </Radio>
-        {inset && value === defaultValue && (
-          <StyledSubOption>{inset}</StyledSubOption>
-        )}
+        {inset && v === value && <StyledSubOption>{inset}</StyledSubOption>}
       </React.Fragment>
     ))}
   </MultiChoice>
 )
 
-export default RadioField
+export default Radios
