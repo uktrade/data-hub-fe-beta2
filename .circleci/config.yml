@@ -20,15 +20,6 @@ jobs:
       - store_artifacts:
           path: reports
 
-  pa11y_tests:
-    machine:
-      docker_layer_caching: true
-    steps:
-      - checkout
-      - run_make:
-          label: Run pa11y tests
-          target: pa11y-tests
-
   unit_tests:
     machine:
       docker_layer_caching: true
@@ -146,7 +137,7 @@ jobs:
       - run:
           name: Release storybook
           command: npm run storybook:release
-
+    
 
   merge-and-publish-coverage:
     docker:
@@ -204,7 +195,6 @@ workflows:
   datahub:
     jobs:
       - lint: *ignore_ghpages
-      - pa11y_tests: *ignore_ghpages
       - unit_tests: *ignore_ghpages
       - unit_client_tests: *ignore_ghpages
       - functional_tests: *ignore_ghpages
