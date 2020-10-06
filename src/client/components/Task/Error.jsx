@@ -37,17 +37,37 @@ const StyledSecondaryButton = styled(SecondaryButton)({
   marginBottom: 0,
 })
 
-const Err = ({ errorMessage, retry, noun }) => (
-  <StyledRoot>
-    <H2 size="MEDIUM">Could not load {noun}</H2>
+const StyledButtonGroup = styled('div')({
+  display: 'flex',
+  margin: '-0.5rem',
+  '& > *': {
+    margin: '0.5rem',
+  },
+})
+
+const Err = ({
+  errorMessage,
+  retry,
+  noun,
+  headline = `Could not load ${noun}`,
+  dismissError,
+  ...props
+}) => (
+  <StyledRoot {...props}>
+    <H2 size="MEDIUM">{headline}</H2>
     <p>Error: {errorMessage}</p>
-    <StyledSecondaryButton onClick={retry}>Retry</StyledSecondaryButton>
+    <StyledButtonGroup>
+      <StyledSecondaryButton onClick={retry}>Retry</StyledSecondaryButton>
+      <StyledSecondaryButton onClick={dismissError}>
+        Dismiss
+      </StyledSecondaryButton>
+    </StyledButtonGroup>
   </StyledRoot>
 )
 
 Err.propTypes = {
   noun: PropTypes.string.isRequired,
-  error: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired,
   retry: PropTypes.func.isRequired,
   clear: PropTypes.func.isRequired,
 }

@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import React, { useRef, useEffect } from 'react'
-import { FormActions } from 'data-hub-components'
 import Button from '@govuk-react/button'
 import ErrorSummary from '@govuk-react/error-summary'
 import styled from 'styled-components'
@@ -9,6 +8,7 @@ import {
   VALIDATED_FORM__VALIDATE,
   VALIDATED_FORM__FIELD_CHANGE,
 } from '../../../actions'
+import { FormActions } from '../..'
 import SecondaryButton from '../../SecondaryButton'
 import multiInstance from '../../../utils/multiinstance'
 
@@ -26,13 +26,16 @@ const ValidatedForm = ({
   validators,
   submitLabel = 'Submit',
   secondaryActions = [],
-  errors = {},
-  // values = {},
+  defaultErrors = {},
+  errors = defaultErrors,
+  touched = {},
   submitted,
+  onValidSubmit,
   onSubmit,
   onFieldChange,
   ...props
 }) => {
+  const allErrors = { ...defaultErrors, ...errors }
   const ref = useRef()
 
   useEffect(() => {
@@ -53,9 +56,7 @@ const ValidatedForm = ({
               typeof value === 'function' ? undefined : value,
               formData
             )
-            return name in formData && error instanceof Error
-              ? { ...a, [name]: error.message }
-              : a
+            return error instanceof Error ? { ...a, [name]: error.message } : a
           },
           {}
         )
@@ -64,12 +65,14 @@ const ValidatedForm = ({
 
         if (Object.keys(errors).length) {
           e.preventDefault()
-        } else if (onSubmit) {
-          onSubmit(e, formData)
+        } else if (onValidSubmit) {
+          onValidSubmit(e, formData)
         }
+
+        onSubmit(e)
       }}
     >
-      {!!Object.keys(errors).length && (
+      {!!Object.keys(allErrors).length && (
         <ErrorSummary
           data-error-summary={true}
           heading="Errors"
@@ -78,7 +81,7 @@ const ValidatedForm = ({
             $el.scrollIntoView()
             $el.focus()
           }}
-          errors={Object.entries(errors).map(([name, error]) => ({
+          errors={Object.entries(allErrors).map(([name, error]) => ({
             targetName: name,
             text: error,
           }))}
@@ -88,7 +91,7 @@ const ValidatedForm = ({
         (name) => ({
           name,
           key: name,
-          error: errors[name],
+          error: !touched[name] && allErrors[name],
           onChange: (e) => onFieldChange(name, e.target.value),
         }),
         errors
@@ -115,7 +118,6 @@ export default multiInstance({
   reducer,
   component: ValidatedForm,
   actionPattern: 'VALIDATED_FORM__',
-  componentStateToProps: (state) => ({ errors: state }),
   dispatchToProps: (dispatch) => ({
     validate: (errors) =>
       dispatch({

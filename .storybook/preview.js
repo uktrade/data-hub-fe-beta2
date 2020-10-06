@@ -9,7 +9,7 @@ const req = require.context('../src', true, /.*\.stories\.(js|jsx)$/)
 import DataHubProvider from '../src/client/provider'
 import referralsTask from '../src/client/components/ReferralList/tasks/dummy/spread'
 import companyListsTasks from '../src/client/components/CompanyLists/tasks/dummy/spread'
-import taskStoriesTasks from '../src/client/components/Task/__stories__/tasks.js'
+import taskStoriesTasks from '../src/client/components/Task/__stories__/tasks'
 
 const GlobalStyle = createGlobalStyle`
   body {

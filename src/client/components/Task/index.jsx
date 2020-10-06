@@ -7,6 +7,7 @@ import { get } from 'lodash'
 import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import LoadingBox from '@govuk-react/loading-box'
 
 import { TASK__START, TASK__DISMISS_ERROR, TASK__CANCEL } from '../../actions'
 import Err from './Error'
@@ -136,7 +137,8 @@ const Task = connect(
     return {
       ...taskState,
       progress: taskState.status === 'progress',
-      error: taskState.status === 'error',
+      // FIXME: Rename errorMessages to error
+      error: taskState.errorMessage,
       start: (options) => start(name, id, options),
       cancel: () => cancel(name, id),
       retry: () => start(name, id, taskState),
@@ -216,7 +218,7 @@ Task.Status = ({
   noun = name,
   startOnRender,
   progressMessage,
-  renderError = Err,
+  renderError: RenderError = Err,
   renderProgress = ProgressIndicator,
   children = () => null,
 }) => (
@@ -230,6 +232,7 @@ Task.Status = ({
         payload,
         errorMessage,
         onSuccessDispatch,
+        dismissError,
       } = getTask(name, id)
       return (
         <>
@@ -237,12 +240,14 @@ Task.Status = ({
             <Task.StartOnRender {...startOnRender} {...{ name, id }} />
           )}
           {progress && renderProgress({ message: progressMessage })}
-          {error &&
-            renderError({
-              noun,
-              errorMessage,
-              retry: () => start({ payload, onSuccessDispatch }),
-            })}
+          {error && (
+            <RenderError
+              noun={noun}
+              errorMessage={errorMessage}
+              retry={() => start({ payload, onSuccessDispatch })}
+              dismissError={dismissError}
+            />
+          )}
           {!status && children()}
         </>
       )
@@ -258,5 +263,23 @@ Task.Status.propTypes = {
   renderProgress: PropTypes.elementType,
   renderError: PropTypes.elementType,
 }
+
+Task.LoadingBox = ({ name, id, children }) => (
+  <Task>
+    {(getTask) => {
+      const task = getTask(name, id)
+      return (
+        <div>
+          <LoadingBox loading={task.progress || task.error}>
+            {children}
+          </LoadingBox>
+          <div style={{ display: 'flex' }}>
+            <Task.Status name={name} id={id} />
+          </div>
+        </div>
+      )
+    }}
+  </Task>
+)
 
 export default Task

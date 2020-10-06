@@ -1,9 +1,19 @@
 import React from 'react'
 import GovukSelect from '@govuk-react/select'
 
-const Select = ({ error, options, defaultValue, containerProps, ...props }) => (
+const Select = ({
+  error,
+  options = {},
+  defaultValue,
+  containerProps,
+  label,
+  hint,
+  ...props
+}) => (
   <GovukSelect
     {...containerProps}
+    hint={hint}
+    label={label}
     meta={{ touched: true, error }}
     input={{ ...props, defaultValue }}
   >

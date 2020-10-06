@@ -20,6 +20,7 @@ storiesOf('ValidatedForm')
   .add('All field types', () => (
     <ValidatedForm
       id="foo"
+      defaultErrors={{ inputField: 'hehe', selectField: 'haha' }}
       validators={{
         inputField: (v) => v?.length > 3 || Error('Too short'),
         selectField: (v) => v === 'invalid' && Error('Must be a valid choice'),
@@ -81,6 +82,7 @@ storiesOf('ValidatedForm')
       {(field) => (
         <>
           <Input {...field('foo')} label="Foo" />
+          <pre>{JSON.stringify(field('bar'), null, 2)}</pre>
           <Radios
             {...field('bar')}
             id="bar"
