@@ -8,13 +8,18 @@ export default {
         payload.reject || payload
       )
     ),
-  'Dummy form task': ({ resolveOrReject, rejectValue, resolveValue, delay }) =>
+  'Dummy form task': ({
+    resolveOrReject,
+    rejectValue,
+    resolveValue,
+    delay = 1000,
+  }) =>
     new Promise((resolve, reject) => {
       const shouldReject = resolveOrReject === 'reject'
       setTimeout(
         shouldReject ? reject : resolve,
-        parseInt(delay, 10) || 1000,
-        shouldReject ? JSON.parse(rejectValue) : resolveValue
+        delay,
+        shouldReject ? rejectValue : resolveValue
       )
     }),
 }

@@ -51,6 +51,11 @@ storiesOf('Task', module)
       id="task-form-demo"
       taskErrorToErrors={(e) => e}
       onSuccessDispatch="DUMMY_FORM_TASK_SUCCESS"
+      valuesToPayload={({ rejectValue, delay, ...values }) => ({
+        ...values,
+        rejectValue: JSON.parse(rejectValue),
+        delay: parseInt(delay, 10),
+      })}
       validators={{
         foo: (v) => v.length > 3 || Error('Foo must be at least 4 characters'),
         bar: (v) =>

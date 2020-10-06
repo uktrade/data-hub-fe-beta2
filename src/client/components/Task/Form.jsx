@@ -35,6 +35,7 @@ const TaskForm = ({
   onSuccessDispatch,
   taskErrorToErrors,
   children,
+  valuesToPayload = (x) => x,
   ...props
 }) => (
   <Task>
@@ -68,7 +69,7 @@ const TaskForm = ({
               onValidSubmit={(e, values) => {
                 e.preventDefault()
                 task.start({
-                  payload: values,
+                  payload: valuesToPayload(values),
                   onSuccessDispatch,
                 })
               }}
