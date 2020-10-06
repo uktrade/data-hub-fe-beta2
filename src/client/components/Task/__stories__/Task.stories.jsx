@@ -50,10 +50,11 @@ storiesOf('Task', module)
       name="Dummy form task"
       id="task-form-demo"
       taskErrorToErrors={(e) => e}
-      onSuccessDispatch="DUMMY_FORM_TASK_SUCCESS"
+      // onSuccessDispatch="DUMMY_FORM_TASK_SUCCESS"
+      onSuccess={(result) => alert(`Success:\n${JSON.stringify(result)}`)}
       valuesToPayload={({ rejectValue, delay, ...values }) => ({
         ...values,
-        rejectValue: JSON.parse(rejectValue),
+        rejectValue: rejectValue && JSON.parse(rejectValue),
         delay: parseInt(delay, 10),
       })}
       validators={{

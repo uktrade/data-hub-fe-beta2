@@ -97,6 +97,7 @@ import CreateUKInvestmentOpportunity from './components/CreateUKInvestmentOpport
 import RoutedInput from './components/RoutedInput'
 
 import ValidatedForm from './components/Form/Validated'
+import TaskForm from './components/Task/Form'
 
 import RadiosField from './components/Form/Fields/Radios'
 
@@ -139,6 +140,7 @@ const store = createStore(
     ...CreateUKInvestmentOpportunity.reducerSpread,
     ...ValidatedForm.reducerSpread,
     ...RadiosField.reducerSpread,
+    ...TaskForm.reducerSpread,
     // A reducer is required to be able to set a preloadedState parameter
     referrerUrl: (state = {}) => state,
     [INVESTEMENT_PROJECT_ADMIN_ID]: investmentProjectAdminReducer,
