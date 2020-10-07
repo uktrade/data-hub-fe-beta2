@@ -113,7 +113,7 @@
     "hmpo-form-wizard": "^11.8.0",
     "html5shiv": "^3.7.3",
     "http-proxy-middleware": "^1.0.3",
-    "image-webpack-loader": "^7.0.1",
+    "image-webpack-loader": "^6.0.0",
     "lodash": "^4.17.20",
     "markdown-it": "^11.0.0",
     "mini-css-extract-plugin": "^0.11.3",
