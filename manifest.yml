@@ -1,7 +1,7 @@
 ---
 applications:
   - buildpacks:
-    - https://github.com/cloudfoundry/nodejs-buildpack.git#v1.7.30
+    - https://github.com/cloudfoundry/nodejs-buildpack.git#v1.7.22
     health-check-type: http
     health-check-http-endpoint: /healthcheck
     memory: 2G
