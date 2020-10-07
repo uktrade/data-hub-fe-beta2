@@ -9,7 +9,7 @@
   {% if props %}
     <nav class="{{ 'c-local-nav' | applyClassModifiers(props.modifier) }}" aria-label="local navigation">
       {% for item in props.items %}
-        <a class="{{ 'c-local-nav__link' | applyClassModifiers(props.modifier) }} {{ 'is-active' if item.isActive }}" href="{{item.url}}" 
+        <a class="{{ 'c-local-nav__link' | applyClassModifiers(props.modifier) }} {{ 'is-active' if item.isActive }}" href="{{item.url}}"
           {% if item.ariaDescription %} aria-label="{{ item.ariaDescription }}" {% endif %}
         >{{ item.label }}</a>
       {% endfor %}
