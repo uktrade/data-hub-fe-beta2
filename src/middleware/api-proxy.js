@@ -27,6 +27,7 @@ const ALLOWLIST = [
   '/v4/large-investor-profile',
   '/v3/search/investment_project',
   '/v3/search/order',
+  '/v3/omis/order/status',
 ]
 
 module.exports = (app) => {
