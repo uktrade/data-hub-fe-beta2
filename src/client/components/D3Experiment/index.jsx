@@ -44,17 +44,18 @@ const StyledAccordionItemPanel = styled(AccordionItemPanel)`
   }
 
   &:last-child {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 `
 
 const Widget = styled('div')`
   margin: 0 0 20px;
+  padding: 0 0 10px;
   border-bottom: 1px solid #bfc1c3;
 `
 
 const Panel = styled('div')`
-  margin: 10px 0 20px;
+  margin: 10px 0 10px;
 `
 
 const PanelTitle = styled('a')`
@@ -215,35 +216,37 @@ const D3Experiment = () => {
     selectedArc == index ? setSelectedArc(null) : setSelectedArc(index)
 
   return (
-    <Widget>
+    <>
       {quotes && <Quotes quotes={quotes} />}
-      <StyledHeader>My Orders</StyledHeader>
-      <svg viewBox="0 0 150 150">
-        <Pie
-          innerRadius="30"
-          outerRadius="70"
-          width="300"
-          height="150"
-          dataset={dataset}
-          onSelectSegment={onSelectSegment}
-        />
-      </svg>
-      <Accordion allowZeroExpanded="true">
-        {dataset.map(
-          (d, i) =>
-            d[1] && (
-              <Key
-                data={d[1]}
-                key={`pie-button-${i}`}
-                colour={d3.schemeCategory10[i]}
-                selectedArc={selectedArc == i}
-                onSelectSegment={onSelectSegment}
-                index={i}
-              />
-            )
-        )}
-      </Accordion>
-    </Widget>
+      <Widget>
+        <StyledHeader>My Orders</StyledHeader>
+        <svg viewBox="0 0 150 150">
+          <Pie
+            innerRadius="30"
+            outerRadius="70"
+            width="300"
+            height="150"
+            dataset={dataset}
+            onSelectSegment={onSelectSegment}
+          />
+        </svg>
+        <Accordion allowZeroExpanded="true">
+          {dataset.map(
+            (d, i) =>
+              d[1] && (
+                <Key
+                  data={d[1]}
+                  key={`pie-button-${i}`}
+                  colour={d3.schemeCategory10[i]}
+                  selectedArc={selectedArc == i}
+                  onSelectSegment={onSelectSegment}
+                  index={i}
+                />
+              )
+          )}
+        </Accordion>
+      </Widget>
+    </>
   )
 }
 
