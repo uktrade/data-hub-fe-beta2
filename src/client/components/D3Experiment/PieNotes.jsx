@@ -48,6 +48,8 @@ const PanelDetail = styled('div')`
   margin: 10px 0;
 `
 
+const isExpired = (quote) => new Date(quote.expires_on) < new Date()
+
 const Key = ({ data, colour, selectedArc, onSelectSegment, index }) =>
   data.count > 0 && (
     <StyledAccordionItem dangerouslySetExpanded={selectedArc}>
@@ -78,8 +80,15 @@ const Key = ({ data, colour, selectedArc, onSelectSegment, index }) =>
             <PanelDetail>Company: {d.company_name}</PanelDetail>
             {d.quote && (
               <PanelDetail>
-                Quote Expires:{' '}
-                {dateFns.format(d.quote.expires_on, 'D MMM YYYY')}
+                {isExpired(d.quote)
+                  ? `Quote Expired: ${dateFns.format(
+                      d.quote.expires_on,
+                      'D MMM YYYY'
+                    )}`
+                  : `Quote Expires: ${dateFns.format(
+                      d.quote.expires_on,
+                      'D MMM YYYY'
+                    )}`}
               </PanelDetail>
             )}
           </>
