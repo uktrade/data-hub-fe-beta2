@@ -211,7 +211,12 @@ workflows:
           matrix:
             parameters:
               staff: [dit]
-      - release-storybook: *ignore_ghpages
+      - release-storybook:
+          <<: *ignore_ghpages
+          filters:
+            branches:
+              only:
+                - master
       - merge-and-publish-coverage:
           <<: *ignore_ghpages
           requires:
