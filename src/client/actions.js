@@ -18,7 +18,9 @@ export const REFERRAL_DETAILS = 'REFERRAL_DETAILS'
 
 export const TASK__START = 'TASK__START'
 export const TASK__PROGRESS = 'TASK__PROGRESS'
+export const TASK__CANCEL = 'TASK__CANCEL'
 export const TASK__ERROR = 'TASK__ERROR'
+export const TASK__DISMISS_ERROR = 'TASK__DISMISS_ERROR'
 export const TASK__CLEAR = 'TASK__CLEAR'
 
 export const EXPORTS_HISTORY__LOADED = 'EXPORTS_HISTORY__LOADED'
