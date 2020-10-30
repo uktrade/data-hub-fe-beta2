@@ -35,6 +35,10 @@ addDecorator(s =>
       ...referralsTask(),
       ...companyListsTasks(),
       ...taskStoriesTasks,
+      'Task cancellation demo': (payload) => {
+        console.log('payload', payload)
+        return new Promise(resolve => setTimeout(resolve, 3000, payload))
+      }
     }}>
       {s()}
     </DataHubProvider>

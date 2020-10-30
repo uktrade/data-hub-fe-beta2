@@ -1,13 +1,7 @@
-import _ from 'lodash'
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import Task from '..'
-import TaskForm from '../Form'
-import Input from '../../Form/Fields/Input'
-import Radios from '../../Form/Fields/Radios'
-import Select from '../../Form/Fields/Select'
-import Textarea from '../../Form/Fields/Textarea'
 
 storiesOf('Task', module)
   .add('Cancellation', () => (
