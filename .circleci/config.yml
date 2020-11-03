@@ -98,6 +98,19 @@ jobs:
       - store_artifacts:
           path: visual-report
 
+  visual_component_tests:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run_make:
+          label: Run visual tests
+          target: start-storybook visual-component-tests
+      - store_artifacts:
+          path: cypress-visual-screenshots
+      - store_artifacts:
+          path: cypress-visual-report
+
   e2e_tests_dit:
     machine:
       docker_layer_caching: true
@@ -199,6 +212,7 @@ workflows:
       - unit_client_tests: *ignore_ghpages
       - functional_tests: *ignore_ghpages
       - visual_tests: *ignore_ghpages
+      - visual_component_tests: *ignore_ghpages
       - e2e_tests:
           <<: *ignore_ghpages
           name: e2e_tests_<< matrix.staff >>
