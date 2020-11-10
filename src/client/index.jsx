@@ -87,6 +87,9 @@ import { TASK_GET_PROFILES_LIST } from '../apps/investments/client/state'
 import * as investmentProfilesTasks from '../apps/investments/client/tasks'
 import Footer from '../client/components/Footer'
 
+import { TASK_GET_MY_ACTIVITY } from '../client/components/Dashboard/MyActivity/state'
+import * as getMyActivitytasks from '../client/components/Dashboard/MyActivity/tasks'
+
 function parseProps(domNode) {
   return 'props' in domNode.dataset ? JSON.parse(domNode.dataset.props) : {}
 }
@@ -144,6 +147,7 @@ function App() {
         [DNB__CHECK_PENDING_REQUEST]: dnbCheck.checkIfPendingRequest,
         [TASK_GET_PROFILES_LIST]:
           investmentProfilesTasks.getLargeCapitalProfiles,
+        [TASK_GET_MY_ACTIVITY]: getMyActivitytasks.getMyActivity,
       }}
     >
       <Mount selector="#add-company-form">

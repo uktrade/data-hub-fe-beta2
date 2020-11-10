@@ -9,6 +9,7 @@ import CompanyLists from '../../components/CompanyLists'
 import ReferralList from '../../components/ReferralList'
 import Pipeline from '../../components/Pipeline'
 import TabNav from '../../components/TabNav'
+import MyActivity from '../../components/Dashboard/MyActivity'
 
 const StyledDiv = styled('div')`
   border-top: 4px solid ${GREY_2};
@@ -40,7 +41,7 @@ const Dashboard = ({ id }) => (
         />
       </GridCol>
       <GridCol setWidth="one-third">
-        <p>TO DO: add new modules here</p>
+        <MyActivity />
       </GridCol>
     </GridRow>
   </StyledDiv>
