@@ -4,9 +4,8 @@ import {
 } from '../../../../client/actions'
 
 const initialState = {
-  activity: {
-    interactions: [],
-  },
+  interactions: [],
+  serviceDeliveries: [],
 }
 
 export default (state = initialState, { type, result }) => {
@@ -14,9 +13,13 @@ export default (state = initialState, { type, result }) => {
     case MY_ACTIVITY:
       return {
         ...state,
-        activity: {
-          interactions: result?.interactions,
-        },
+        referrals: result.referralsSent.length,
+        serviceDeliveries: result.interactions.filter(
+          ({ kind }) => kind === 'service_delivery'
+        ),
+        interactions: result.interactions.filter(
+          ({ kind }) => kind === 'interaction'
+        ),
         isComplete: true,
       }
     case MY_ACTIVITY_DATE_CHANGED:

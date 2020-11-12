@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { H1, H2 } from 'govuk-react'
+import { H1, H2, GridRow, GridCol } from 'govuk-react'
 import Select from '@govuk-react/select'
 import format from 'date-fns/format'
 import subDays from 'date-fns/sub_days'
@@ -31,17 +31,37 @@ const Header = styled('header')`
   }
 `
 
+const StyledGridCol = styled(GridCol)`
+  background-color: pink;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  box-sizing: border-box;
+`
+
+const ActivityCell = styled('div')`
+  border: 1px solid black;
+  text-align: center;
+  span {
+    display: block;
+  }
+`
+
 const MyActivity = ({
   isComplete,
   onChange,
-  startDate = format(subDays(new Date(), 7), 'YYYY-MM-DD'),
-  activity: { interactions },
+  startDate = format(subDays(new Date(), 14), 'YYYY-MM-DD'),
+  interactions,
+  serviceDeliveries,
+  referrals,
 }) => {
   return (
     <>
       <Header>
         <H2>My activity</H2>
         <Select name="days" onChange={onChange}>
+        <option value={format(subDays(new Date(), 14), 'YYYY-MM-DD')}>
+            Last 2 weeks
+          </option>
           <option value={format(subDays(new Date(), 7), 'YYYY-MM-DD')}>
             Last 7 days
           </option>
@@ -64,8 +84,38 @@ const MyActivity = ({
         {() =>
           isComplete && (
             <>
-              <span>{interactions.length}</span>
-              <span>Interactions</span>
+              <GridRow>
+                <StyledGridCol setWidth="one-half">
+                  <ActivityCell>
+                    <span>{interactions.length}</span>
+                    <span> Interactions</span>
+                  </ActivityCell>
+                </StyledGridCol>
+                <StyledGridCol setWidth="one-half">
+                  <ActivityCell>
+                    <span>2</span>
+                    <span> Export wins</span>
+                  </ActivityCell>
+                </StyledGridCol>
+              </GridRow>
+              <GridRow>
+                <StyledGridCol setWidth="one-half">
+                  <ActivityCell>
+                    <span>{serviceDeliveries.length}</span>
+                    <span> Service delivery</span>
+                  </ActivityCell>
+                </StyledGridCol>
+                <StyledGridCol setWidth="one-half">
+                  <ActivityCell>
+                    <span>{referrals}</span>
+                    <span> Referrals sent</span>
+                  </ActivityCell>
+                  <ActivityCell>
+                    <span>2</span>
+                    <span> Export wins</span>
+                  </ActivityCell>
+                </StyledGridCol>
+              </GridRow>
             </>
           )
         }
