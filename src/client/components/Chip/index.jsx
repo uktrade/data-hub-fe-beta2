@@ -14,6 +14,7 @@ const StyledButton = styled('button')`
   vertical-align: middle;
   cursor: pointer;
   span {
+    pointer-events: none;
     display: table-cell;
     font-size: ${FONT_SIZE.SIZE_16};
   }
