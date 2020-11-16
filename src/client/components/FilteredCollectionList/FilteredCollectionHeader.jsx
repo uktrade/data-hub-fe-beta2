@@ -6,8 +6,14 @@ import pluralize from 'pluralize'
 import { H2 } from '@govuk-react/heading'
 import { BLACK, GREY_3 } from 'govuk-colours'
 import { HEADING_SIZES, SPACING } from '@govuk-react/constants'
-import { CollectionHeaderRow, FilterReset } from '../../components'
-import { AdviserFilterChips, Chip, OptionFilterChips } from '../../components'
+
+import {
+  CollectionHeaderRow,
+  RoutedAdviserFilterChips,
+  Chip,
+  OptionFilterChips,
+  FilterReset,
+} from '../../components'
 
 import { decimal } from '../../utils/number-utils'
 
@@ -89,7 +95,10 @@ function FilteredCollectionHeader({
       </CollectionHeaderRow>
       {hasFilters && (
         <CollectionHeaderRow>
-          <AdviserFilterChips selectedAdvisers={selectedAdvisers} />
+          <RoutedAdviserFilterChips
+            selectedAdvisers={selectedAdvisers}
+            qsParamName="adviser"
+          />
         </CollectionHeaderRow>
       )}
       {hasOptions && (
