@@ -1,5 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 
 import Chip from '../'
 import exampleReadme from '../example.md'
@@ -13,20 +14,19 @@ storiesOf('Chips', module)
       sidebar: usageReadme,
     },
   })
-  .add('Single', () => {
+  .add('Default', () => {
     return (
       <div>
-        <Chip>Apple</Chip>
+        <Chip value="apple">Apple</Chip>
       </div>
     )
   })
-  .add('Multiple', () => {
+  .add('Clickable', () => {
     return (
       <div>
-        <Chip>Apple</Chip>
-        <Chip>Pear</Chip>
-        <Chip>Orange</Chip>
-        <Chip>Banana</Chip>
+        <Chip value="apple" onClick={action('Clicked')}>
+          Apple
+        </Chip>
       </div>
     )
   })
