@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { GREY_3, BLACK } from 'govuk-colours'
-import { SPACING, FONT_SIZE } from '@govuk-react/constants'
+import { SPACING, FONT_SIZE, FONT_WEIGHTS } from '@govuk-react/constants'
 
 const StyledButton = styled('button')`
   display: inline-table;
@@ -21,7 +21,7 @@ const StyledButton = styled('button')`
   span:first-child {
     text-transform: ${({ onClick }) => onClick && `uppercase`};
     padding-right: ${({ onClick }) => onClick && `8px`};
-    font-weight: ${({ onClick }) => onClick && `700`};
+    font-weight: ${({ onClick }) => onClick && FONT_WEIGHTS.bold};
   }
 `
 
