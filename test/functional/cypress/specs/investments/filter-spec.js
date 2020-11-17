@@ -1,17 +1,65 @@
-// const selectors = require('../../../../selectors')
+const selectTypeahead = (fieldName, input) =>
+  cy.get(fieldName).within(() => {
+    cy.server()
+    cy.route('/api-proxy/adviser/?*').as('adviserResults')
+    cy.get('div').eq(0).type(input)
+    cy.wait('@adviserResults')
+    cy.get('[class*="menu"] > div').click()
+  })
 
-// describe('Investments Collections Filter', () => {
-//   before(() => {
-//     cy.visit('/investments')
-//     cy.get(selectors.entityCollection.entities)
-//       .children()
-//       .should('have.length', 10)
-//   })
+describe('Investments Collections Filter', () => {
+  let filterIndicators
+  beforeEach(() => {
+    cy.get('aside button').next().as('adviserTypeaheadFilter')
+    filterIndicators = () =>
+      cy.get('main article button').as('filterIndicators')
+  })
+  context('when the url contains no state', () => {
+    before(() => {
+      cy.visit('/investments')
+    })
 
-//   beforeEach(() => {
-//     cy.server()
-//     cy.route('/investments/projects?*').as('filterResults')
-//   })
+    it('should filter by advisers', () => {
+      cy.get('@adviserTypeaheadFilter')
+        .should('contain', 'Search advisers')
+        .find('label')
+        .should('have.text', 'Advisers')
+
+      selectTypeahead('#field-advisers', 'puck').should('contain', 'Puck Head')
+
+      cy.url().should('contain', 'adviser')
+
+      filterIndicators().should((el) => {
+        expect(el).to.have.length(1)
+        expect(el.text()).to.contain('Puck Head')
+      })
+    })
+
+    it('should remove the filter advisers', () => {
+      filterIndicators().click()
+      filterIndicators().should((el) => {
+        expect(el).to.have.length(0)
+      })
+      cy.get('@adviserTypeaheadFilter').should('contain', 'Search advisers')
+    })
+  })
+
+  context('when the url is contains state', () => {
+    before(() => {
+      cy.visit(
+        '/investments/projects/?adviser=e83a608e-84a4-11e6-ae22-56b6b6499611'
+      )
+      cy.get('aside button').next().as('adviserTypeaheadFilter')
+    })
+    it('should set the selected adviser filter', () => {
+      cy.get('@adviserTypeaheadFilter').should('contain', 'Puck Head')
+      filterIndicators().should((el) => {
+        expect(el).to.have.length(1)
+        expect(el.text()).to.contain('Puck Head')
+      })
+    })
+  })
+})
 
 //   it('should filter by sector', () => {
 //     const sector = selectors.filter.investments.sector
