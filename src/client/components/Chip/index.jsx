@@ -9,7 +9,7 @@ const StyledButton = styled('button')`
   padding: 12px;
   margin: 4px;
   background-color: ${GREY_3};
-  border-radius: ${SPACING.SCALE_2};
+  border-radius: ${SPACING.SCALE_1};
   border: 1px solid ${BLACK};
   vertical-align: middle;
   cursor: pointer;
@@ -21,12 +21,13 @@ const StyledButton = styled('button')`
   span:first-child {
     text-transform: ${({ onClick }) => onClick && `uppercase`};
     padding-right: ${({ onClick }) => onClick && `8px`};
+    font-weight: ${({ onClick }) => onClick && `700`};
   }
 `
 
 const Chip = ({ children, value, onClick = null }) => (
   <StyledButton onClick={onClick} data-value={value}>
-    {onClick && <span>x</span>}
+    {onClick && <span>✕</span>}
     <span>{children}</span>
   </StyledButton>
 )
