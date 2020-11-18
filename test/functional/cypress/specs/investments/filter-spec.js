@@ -24,7 +24,7 @@ describe('Investments Collections Filter', () => {
         .find('label')
         .should('have.text', 'Advisers')
 
-      selectTypeahead('#field-advisers', 'p')
+      selectTypeahead('#field-advisers', 'puc')
       cy.get('@adviserTypeaheadFilter').should('contain', 'Puck Head')
 
       cy.url().should('contain', 'adviser')
@@ -44,7 +44,7 @@ describe('Investments Collections Filter', () => {
     })
   })
 
-  context('when the url is contains state', () => {
+  context('when the url contains state', () => {
     before(() => {
       cy.visit(
         '/investments/projects/?adviser=e83a608e-84a4-11e6-ae22-56b6b6499611'
