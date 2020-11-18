@@ -187,7 +187,7 @@ describe('Company Collections Filter', () => {
       .get(typeahead(leadIta).textInput)
       .type('Shawn Cohen')
       .get(typeahead(leadIta).options)
-      .should('have.length', 63)
+      .should('have.length', 64)
 
     cy.get(typeahead(leadIta).selectedOption).type('{enter}').type('{esc}')
 
