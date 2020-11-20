@@ -7,7 +7,7 @@ const selectTypeahead = (fieldName, input) =>
     cy.get('[class*="menu"] > div').click()
   })
 
-const filterIndicatior = () => cy.get('main article button')
+const filterIndicatior = () => cy.get('main article div + div button')
 
 describe('Investments Collections Filter', () => {
   beforeEach(() => {
