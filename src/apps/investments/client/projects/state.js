@@ -15,10 +15,14 @@ const searchParamProps = ({
   // snake-case as comes from the query
   sector_descends = false,
   sortby = 'created_on:desc',
+  estimated_land_date_before = null,
+  estimated_land_date_after = null,
   page = 1,
 }) => ({
   adviser: parseVariablePropType(adviser),
   sector_descends: parseVariablePropType(sector_descends),
+  estimated_land_date_before,
+  estimated_land_date_after,
   sortby,
   page,
 })
@@ -29,10 +33,16 @@ const collectionListPayload = (paramProps) => {
   )
 }
 
-const getOptionMetadata = ({ sector_descends }) => ({
+const getOptionMetadata = ({
+  sector_descends,
+  estimated_land_date_before,
+  estimated_land_date_after,
+}) => ({
   sectors: sector_descends
     ? sectorOptions.filter((option) => sector_descends.includes(option.value))
     : [],
+  estimated_land_date_before,
+  estimated_land_date_after,
 })
 
 export const state2props = ({ router, ...state }) => {

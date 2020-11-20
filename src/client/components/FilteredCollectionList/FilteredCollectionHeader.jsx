@@ -7,7 +7,8 @@ import { H2 } from '@govuk-react/heading'
 import { BLACK, GREY_3 } from 'govuk-colours'
 import { HEADING_SIZES, SPACING } from '@govuk-react/constants'
 import { CollectionHeaderRow, FilterReset } from '../../components'
-import { AdviserFilterChips, OptionFilterChips } from '../../components'
+import { AdviserFilterChips, Chip, OptionFilterChips } from '../../components'
+
 import { decimal } from '../../utils/number-utils'
 
 const StyledHeaderText = styled(H2)`
@@ -57,12 +58,13 @@ function FilteredCollectionHeader({
   addItemUrl = null,
   selectedAdvisers,
   selectedSectors,
+  estimatedLandDateBefore,
+  estimatedLandDateAfter,
 }) {
   const formattedTotal = decimal(totalItems)
   const counterSuffix = pluralize(collectionName, totalItems)
-  const hasFilters = selectedAdvisers.length > 0
+  const hasFilters = selectedAdvisers && selectedAdvisers.length > 0
   const hasOptions = selectedSectors.length > 0
-
   const actions = addItemUrl && (
     <Button
       as={StyledLink}
@@ -93,6 +95,20 @@ function FilteredCollectionHeader({
       {hasOptions && (
         <CollectionHeaderRow>
           <OptionFilterChips selectedOptions={selectedSectors} />
+        </CollectionHeaderRow>
+      )}
+      {estimatedLandDateBefore && (
+        <CollectionHeaderRow>
+          <Chip key={estimatedLandDateBefore}>
+            Estimated Land Date Before: {estimatedLandDateBefore}
+          </Chip>
+        </CollectionHeaderRow>
+      )}
+      {estimatedLandDateAfter && (
+        <CollectionHeaderRow>
+          <Chip key={estimatedLandDateAfter}>
+            Estimated Land Date After: {estimatedLandDateAfter}
+          </Chip>
         </CollectionHeaderRow>
       )}
     </CollectionHeaderRowContainer>
