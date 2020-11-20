@@ -11,31 +11,24 @@ const RoutedAdviserFilterChips = ({
   selectedAdvisers,
   ...props
 }) => {
+  const removeFilterChip = (qsParams, queryParam, targetValue = null) =>
+    Object.entries(qsParams)
+      .map(([key]) => {
+        if (key === queryParam) {
+          return Array.isArray(qsParams[key])
+            ? {
+                ...qsParams,
+                [key]: qsParams[key].filter((x) => x !== targetValue),
+              }
+            : omit(qsParams, queryParam)
+        }
+      })
+      .filter(Boolean)[0]
+
   return (
     <Route>
       {({ location, history }) => {
         const qsParams = qs.parse(location.search.slice(1))
-        const filterSearchParams = (
-          qsParams,
-          queryParam,
-          targetValue = null
-        ) => {
-          const [filteredResult] = Object.entries(qsParams)
-            .map(([key]) =>
-              key === queryParam
-                ? Array.isArray(qsParams[key])
-                  ? {
-                      ...qsParams,
-                      ...{
-                        [key]: qsParams[key].filter((x) => x !== targetValue),
-                      },
-                    }
-                  : omit(qsParams, queryParam)
-                : null
-            )
-            .filter(Boolean)
-          return filteredResult
-        }
         return selectedAdvisers.map(({ advisers: { name, id } }) => (
           <Chip
             key={id}
@@ -43,7 +36,7 @@ const RoutedAdviserFilterChips = ({
             onClick={(e) => {
               history.push({
                 search: qs.stringify({
-                  ...filterSearchParams(
+                  ...removeFilterChip(
                     qsParams,
                     qsParamName,
                     e.target.getAttribute('data-value')
