@@ -22,9 +22,12 @@ import {
   INVESTMENTS__PROJECTS_SELECTED_ADVISERS,
 } from '../../../../client/actions'
 
-import { sortOptions, sectorOptions } from './labels'
-
-const ProjectsCollection = ({ payload, optionMetadata, ...props }) => {
+const ProjectsCollection = ({
+  payload,
+  optionMetadata,
+  selectedFilters,
+  ...props
+}) => {
   const collectionListTask = {
     name: TASK_GET_PROJECTS_LIST,
     id: ID,
@@ -47,11 +50,9 @@ const ProjectsCollection = ({ payload, optionMetadata, ...props }) => {
     <FilteredCollectionList
       {...props}
       collectionName="Project"
-      sortOptions={sortOptions}
+      sortOptions={optionMetadata.sortOptions}
       taskProps={collectionListTask}
-      selectedSectors={optionMetadata.sectors}
-      estimatedLandDateBefore={optionMetadata.estimated_land_date_before}
-      estimatedLandDateAfter={optionMetadata.estimated_land_date_after}
+      selectedFilters={selectedFilters}
     >
       <CollectionFilters>
         <ToggleSection
@@ -74,8 +75,8 @@ const ProjectsCollection = ({ payload, optionMetadata, ...props }) => {
             label="Sector"
             name="sector"
             placeholder="Search sectors..."
-            selectedSectors={optionMetadata.sectors}
-            options={sectorOptions}
+            selectedSectors={selectedFilters.selectedSectors}
+            options={optionMetadata.sectorOptions}
           />
           <RoutedDateField
             label="Estimated land date before"

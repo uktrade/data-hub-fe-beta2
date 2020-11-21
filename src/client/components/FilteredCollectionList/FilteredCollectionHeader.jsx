@@ -11,7 +11,8 @@ import {
   CollectionHeaderRow,
   RoutedAdviserFilterChips,
   Chip,
-  OptionFilterChips,
+  RoutedOptionFilterChips,
+  RoutedDateFilterChips,
   FilterReset,
 } from '../../components'
 
@@ -63,14 +64,15 @@ function FilteredCollectionHeader({
   collectionName = 'result',
   addItemUrl = null,
   selectedAdvisers,
-  selectedSectors,
+  selectedSectors = [],
   estimatedLandDateBefore,
   estimatedLandDateAfter,
+  selectedFilters,
 }) {
   const formattedTotal = decimal(totalItems)
   const counterSuffix = pluralize(collectionName, totalItems)
-  const hasFilters = selectedAdvisers && selectedAdvisers.length > 0
-  const hasOptions = selectedSectors.length > 0
+  // const hasFilters = selectedAdvisers && selectedAdvisers.length > 0
+  // const hasOptions = selectedSectors.length > 0
   const actions = addItemUrl && (
     <Button
       as={StyledLink}
@@ -93,26 +95,28 @@ function FilteredCollectionHeader({
           <FilterReset>Remove all filters</FilterReset>
         </StyledDiv>
       </CollectionHeaderRow>
-      {hasFilters && (
-        <CollectionHeaderRow>
-          <RoutedAdviserFilterChips
-            selectedAdvisers={selectedAdvisers}
-            qsParamName="adviser"
-          />
-        </CollectionHeaderRow>
-      )}
-      {hasOptions && (
-        <CollectionHeaderRow>
-          <OptionFilterChips selectedOptions={selectedSectors} />
-        </CollectionHeaderRow>
-      )}
-      {estimatedLandDateBefore && (
-        <CollectionHeaderRow>
-          <Chip key={estimatedLandDateBefore}>
+
+      <CollectionHeaderRow>
+        <RoutedAdviserFilterChips
+          selectedAdvisers={selectedAdvisers}
+          qsParamName="adviser"
+        />
+        <RoutedOptionFilterChips
+          selectedOptions={selectedFilters.selectedSectors}
+          qsParamName="sector_descends"
+        />
+      </CollectionHeaderRow>
+
+      <CollectionHeaderRow>
+        <RoutedDateFilterChips
+          selectedOptions={selectedFilters.selectedEstimatedLandDatesBefore}
+          qsParamName="estimated_land_date_before"
+        />
+        {/* <Chip key={estimatedLandDateBefore}>
             Estimated Land Date Before: {estimatedLandDateBefore}
-          </Chip>
-        </CollectionHeaderRow>
-      )}
+          </Chip> */}
+      </CollectionHeaderRow>
+
       {estimatedLandDateAfter && (
         <CollectionHeaderRow>
           <Chip key={estimatedLandDateAfter}>

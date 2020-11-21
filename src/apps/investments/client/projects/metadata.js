@@ -1,3 +1,6 @@
+export const estimatedLandDateBefore = 'Estimated land date before'
+export const estimatedLandDateAfter = 'Estimated land date after'
+
 export const sortOptions = [
   {
     name: 'Most recently created',
