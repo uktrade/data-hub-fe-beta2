@@ -65,6 +65,12 @@ export const state2props = ({ router, ...state }) => {
         value: estimated_land_date_before,
       },
     ],
+    selectedEstimatedLandDatesAfter: [
+      {
+        label: estimatedLandDateAfter,
+        value: estimated_land_date_after,
+      },
+    ],
   }
 
   return {

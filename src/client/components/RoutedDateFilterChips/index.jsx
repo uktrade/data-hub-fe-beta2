@@ -11,7 +11,6 @@ const RoutedOptionFilterChips = ({
   selectedOptions,
   ...props
 }) => {
-  console.log('mooooooooo', selectedOptions)
   const removeFilterChip = (qsParams, queryParam, targetValue = null) =>
     Object.entries(qsParams)
       .map(([key]) => {
@@ -47,7 +46,7 @@ const RoutedOptionFilterChips = ({
             }}
             {...props}
           >
-            {label}
+            {`${label} ${value}`}
           </Chip>
         ))
       }}

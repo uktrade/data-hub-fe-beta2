@@ -10,7 +10,6 @@ import { HEADING_SIZES, SPACING } from '@govuk-react/constants'
 import {
   CollectionHeaderRow,
   RoutedAdviserFilterChips,
-  Chip,
   RoutedOptionFilterChips,
   RoutedDateFilterChips,
   FilterReset,
@@ -64,15 +63,10 @@ function FilteredCollectionHeader({
   collectionName = 'result',
   addItemUrl = null,
   selectedAdvisers,
-  selectedSectors = [],
-  estimatedLandDateBefore,
-  estimatedLandDateAfter,
   selectedFilters,
 }) {
   const formattedTotal = decimal(totalItems)
   const counterSuffix = pluralize(collectionName, totalItems)
-  // const hasFilters = selectedAdvisers && selectedAdvisers.length > 0
-  // const hasOptions = selectedSectors.length > 0
   const actions = addItemUrl && (
     <Button
       as={StyledLink}
@@ -105,25 +99,19 @@ function FilteredCollectionHeader({
           selectedOptions={selectedFilters.selectedSectors}
           qsParamName="sector_descends"
         />
+        {selectedFilters.selectedEstimatedLandDatesBefore[0].value && (
+          <RoutedDateFilterChips
+            selectedOptions={selectedFilters.selectedEstimatedLandDatesBefore}
+            qsParamName="estimated_land_date_before"
+          />
+        )}
+        {selectedFilters.selectedEstimatedLandDatesAfter[0].value && (
+          <RoutedDateFilterChips
+            selectedOptions={selectedFilters.selectedEstimatedLandDatesAfter}
+            qsParamName="estimated_land_date_before"
+          />
+        )}
       </CollectionHeaderRow>
-
-      <CollectionHeaderRow>
-        <RoutedDateFilterChips
-          selectedOptions={selectedFilters.selectedEstimatedLandDatesBefore}
-          qsParamName="estimated_land_date_before"
-        />
-        {/* <Chip key={estimatedLandDateBefore}>
-            Estimated Land Date Before: {estimatedLandDateBefore}
-          </Chip> */}
-      </CollectionHeaderRow>
-
-      {estimatedLandDateAfter && (
-        <CollectionHeaderRow>
-          <Chip key={estimatedLandDateAfter}>
-            Estimated Land Date After: {estimatedLandDateAfter}
-          </Chip>
-        </CollectionHeaderRow>
-      )}
     </CollectionHeaderRowContainer>
   )
 }
