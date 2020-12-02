@@ -101,6 +101,7 @@ jobs:
   visual_component_tests:
     machine:
       docker_layer_caching: true
+    resource_class: large
     steps:
       - checkout
       - run_make:
@@ -150,7 +151,7 @@ jobs:
       - run:
           name: Release storybook
           command: npm run storybook:release
-    
+
 
   merge-and-publish-coverage:
     docker:
