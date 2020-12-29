@@ -38,4 +38,16 @@ function getAdviserNames(adviser) {
     )
 }
 
-export { getProjects, getAdviserNames }
+function getMetadata(metadataOptions) {
+  metadataOptions.map(({ stage, sector }) => {
+    return {
+      stage: axios.get(stage).then(({ data }) => console.log(data)),
+      sector: axios.get(sector).then(({ data }) => console.log(data)),
+    }
+  })
+  // axios
+  //   .get(urls.metadata.investmentProjectStage())
+  //   .then(({ data }) => console.log(data))
+}
+
+export { getProjects, getAdviserNames, getMetadata }

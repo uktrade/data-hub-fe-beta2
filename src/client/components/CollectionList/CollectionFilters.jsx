@@ -1,10 +1,13 @@
 import React from 'react'
 import { GridCol } from 'govuk-react'
+import Task from '../../../client/components/Task'
 
-const CollectionFilters = ({ children }) => {
+const CollectionFilters = ({ children, taskProps }) => {
   return (
     <GridCol setWidth="one-third">
-      <aside>{children}</aside>
+      <Task.Status {...taskProps}>
+        {() => <aside>{children}</aside>}
+      </Task.Status>
     </GridCol>
   )
 }
