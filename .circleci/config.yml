@@ -101,7 +101,7 @@ jobs:
   visual_component_tests:
     machine:
       docker_layer_caching: true
-    resource_class: large
+    resource_class: xlarge
     steps:
       - checkout
       - run_make:
@@ -144,10 +144,10 @@ jobs:
 
   release-storybook:
     docker:
-      - image: node
+      - image: node:12.18.0
     steps:
       - checkout
-      - run: npm ci
+      - run: npm install storybook
       - run:
           name: Release storybook
           command: npm run storybook:release
@@ -228,10 +228,10 @@ workflows:
               staff: [dit]
       - release-storybook:
           <<: *ignore_ghpages
-          filters:
-            branches:
-              only:
-                - master
+          # filters:
+          #   branches:
+          #     only:
+          #       - master
       - merge-and-publish-coverage:
           <<: *ignore_ghpages
           requires:
