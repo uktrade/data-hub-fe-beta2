@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+const API_PROXY_BASE_URL = process.env.GATSBY_API_PROXY_BASE_URL
+
 function handleError(error) {
   const message = error.response.data.detail
   return Promise.reject({
@@ -12,7 +14,7 @@ function getProjects({ limit = 10, page, ...rest }) {
   let offset = limit * (parseInt(page, 10) - 1) || 0
 
   return axios
-    .post('/api-proxy/v3/search/investment_project', {
+    .post(`${API_PROXY_BASE_URL}/api-proxy/v3/search/investment_project`, {
       limit,
       offset,
       ...rest,
@@ -25,7 +27,7 @@ function getProjects({ limit = 10, page, ...rest }) {
  */
 function getMetadataOptions(url) {
   return axios
-    .get(url)
+    .get(`${API_PROXY_BASE_URL}${url}`)
     .then(({ data }) =>
       data.map(({ id, name }) => ({ value: id, label: name }))
     )
@@ -39,7 +41,7 @@ function getMetadataOptions(url) {
  */
 function getSectorOptions(url, searchString) {
   return axios
-    .get(url, {
+    .get(`${API_PROXY_BASE_URL}${url}`, {
       params: searchString ? { autocomplete: searchString } : {},
     })
     .then(({ data }) =>
@@ -57,7 +59,11 @@ function getAdviserNames(adviser) {
   const advisers = Array.isArray(adviser) ? adviser : [adviser]
 
   return axios
-    .all(advisers.map((adviser) => axios.get(`/api-proxy/adviser/${adviser}/`)))
+    .all(
+      advisers.map((adviser) =>
+        axios.get(`${API_PROXY_BASE_URL}/api-proxy/adviser/${adviser}/`)
+      )
+    )
     .then(
       axios.spread((...responses) =>
         responses.map(({ data }) => ({
