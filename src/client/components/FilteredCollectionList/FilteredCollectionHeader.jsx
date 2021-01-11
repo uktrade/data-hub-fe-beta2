@@ -7,11 +7,9 @@ import { H2 } from '@govuk-react/heading'
 import { BLACK, GREY_3 } from 'govuk-colours'
 import { HEADING_SIZES, SPACING } from '@govuk-react/constants'
 
-import {
-  CollectionHeaderRow,
-  RoutedFilterChips,
-  FilterReset,
-} from '../../components'
+import CollectionHeaderRow from '../CollectionList/CollectionHeaderRow'
+import RoutedFilterChips from '../RoutedFilterChips'
+import FilterReset from '../FilterReset'
 
 import { decimal } from '../../utils/number-utils'
 

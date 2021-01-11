@@ -5,7 +5,7 @@ import Table from '@govuk-react/table'
 import styled from 'styled-components'
 import { SPACING, MEDIA_QUERIES } from '@govuk-react/constants'
 
-import { ReadMore } from '../../../../components'
+import ReadMore from '../../../ReadMore'
 
 const GovUkTable = styled(Table)`
   ${MEDIA_QUERIES.TABLET} {

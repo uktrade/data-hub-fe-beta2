@@ -9,7 +9,8 @@ import url from 'url'
 import { ID as STATE_ID } from './state'
 
 import SecondaryButton from '../../../../../../client/components/SecondaryButton'
-import { SummaryTable, FormActions } from '../../../../../../client/components/'
+import FormActions from '../../../../../../client/components/Form/elements/FormActions'
+import SummaryTable from '../../../../../../client/components/SummaryTable'
 import Task from '../../../../../../client/components/Task'
 import { format } from '../../../../../../client/utils/date-utils'
 

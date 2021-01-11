@@ -6,7 +6,8 @@ import styled from 'styled-components'
 
 import { FONT_WEIGHTS } from '@govuk-react/constants'
 
-import { FieldWrapper, Typeahead } from '..'
+import FieldWrapper from '../Form/elements/FieldWrapper/'
+import Typeahead from '../Typeahead'
 
 const StyledFieldWrapper = styled(FieldWrapper)`
   label {

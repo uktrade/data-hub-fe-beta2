@@ -4,17 +4,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { GridRow, GridCol } from 'govuk-react'
+import GridCol from '@govuk-react/grid-col'
+import GridRow from '@govuk-react/grid-row'
 
 import Task from '../Task'
 
-import {
-  CollectionSort,
-  CollectionItem,
-  RoutedDownloadDataHeader,
-  RoutedPagination,
-  FilteredCollectionHeader,
-} from '../../components'
+import CollectionSort from '../CollectionList/CollectionSort'
+import CollectionItem from '../CollectionList/CollectionItem'
+import RoutedDownloadDataHeader from '../RoutedDownloadDataHeader'
+import RoutedPagination from '../RoutedPagination'
+
+import FilteredCollectionHeader from './FilteredCollectionHeader'
 
 const FilteredCollectionList = ({
   results = [],

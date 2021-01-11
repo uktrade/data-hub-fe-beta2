@@ -4,7 +4,7 @@ import qs from 'qs'
 import { Route } from 'react-router-dom'
 import { omit } from 'lodash'
 
-import { Chip } from '..'
+import Chip from '../Chip'
 
 /**
  * Removes the targetParam with targetValue from qsParams

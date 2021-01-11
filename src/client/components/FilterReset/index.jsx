@@ -8,7 +8,7 @@ const StyledButtonLink = styled(ButtonLink)`
   font-size: ${FONT_SIZE.SIZE_16};
 `
 
-import { ButtonLink } from '../../components'
+import ButtonLink from '../../components/ButtonLink'
 
 const FilterReset = ({ children, ...props }) => (
   <Route>
