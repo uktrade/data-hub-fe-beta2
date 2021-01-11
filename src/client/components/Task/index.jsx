@@ -187,7 +187,7 @@ Task.StartOnRender.propTypes = {
  * @param {() => ReactNode} [props.children] - A function whose return value
  * will be rendered if the task is not in progress or error
  * @example
- * <Task.Status
+ * <TaskStatus
  *   name="foo"
  *   id="foo"
  *   noun="Something"
@@ -195,7 +195,7 @@ Task.StartOnRender.propTypes = {
  *   startOnRender={{ payload: 123, onSuccessDispatch: 'FOO'}}
  * />
  */
-Task.Status = ({
+export const TaskStatus = ({
   name,
   id,
   noun = name,

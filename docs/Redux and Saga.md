@@ -76,7 +76,7 @@ You can find more in-depth documentation on how the `Task` component works in `s
 import { TASK_GET_PIPELINE_LIST, ID } from '../state'
 import { PIPELINE__LIST_LOADED } from '../../../../../../client/actions'
 
-<Task.Status
+<TaskStatus
     name={TASK_GET_PIPELINE_LIST}
     id={ID}
     progressMessage="loading projects"

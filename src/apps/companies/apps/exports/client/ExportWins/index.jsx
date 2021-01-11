@@ -4,7 +4,7 @@ import { SPACING } from '@govuk-react/constants'
 import { CollectionList } from '../../../../../../client/components/'
 
 import { connect } from 'react-redux'
-import Task from '../../../../../../client/components/Task/index.jsx'
+import { TaskStatus } from '../../../../../../client/components/Task/index.jsx'
 import { state2props, NOT_IMPLEMENTED } from './state'
 import {
   EXPORT_WINS__LOADED,
@@ -31,7 +31,7 @@ function ExportWins(state) {
 
   return (
     <Wrapper>
-      <Task.Status
+      <TaskStatus
         name="Export wins"
         id="exportWins"
         progressMessage="Loading Exports Wins..."
@@ -49,7 +49,7 @@ function ExportWins(state) {
             activePage={activePage}
           />
         )}
-      </Task.Status>
+      </TaskStatus>
     </Wrapper>
   )
 }

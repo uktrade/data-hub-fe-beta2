@@ -4,7 +4,7 @@ import { Button, Link } from 'govuk-react'
 import { ERROR_COLOUR } from 'govuk-colours'
 import styled from 'styled-components'
 
-import Task from '../../../../../../client/components/Task'
+import Task, { TaskStatus } from '../../../../../../client/components/Task'
 import { EXPORT_COUNTRIES_EDIT__SAVE } from '../../../../../../client/actions'
 import {
   state2props,
@@ -83,7 +83,7 @@ function ExportCountriesEdit(state) {
               return acc
             }, {})}
         >
-          <Task.Status
+          <TaskStatus
             name={TASK_NAME}
             id={TASK_ID}
             renderProgress={() => null}

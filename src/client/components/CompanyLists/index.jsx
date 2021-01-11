@@ -9,7 +9,7 @@ import {
 } from '../../actions'
 import SpacedSectionBreak from '../SpacedSectionBreak'
 import ContentWithHeading from '../ContentWithHeading'
-import Task from '../Task'
+import { TaskStatus } from '../Task'
 import Filters, { ALPHABETICAL, LEAST_RECENT, RECENT } from './Filters'
 import Header from './Header'
 import ListHeader from './ListHeader'
@@ -39,7 +39,7 @@ const CompanyList = connect((state) => {
     <Header />
     <SpacedSectionBreak />
     <ListHeader id={id} name={name} />
-    <Task.Status
+    <TaskStatus
       name="Company list"
       id={id}
       progressMessage="loading companies"
@@ -63,7 +63,7 @@ const CompanyList = connect((state) => {
           </HintText>
         )
       }
-    </Task.Status>
+    </TaskStatus>
   </section>
 ))
 
@@ -86,7 +86,7 @@ export default connect(state2props)(({ lists }) =>
       <EmptyState />
     )
   ) : (
-    <Task.Status
+    <TaskStatus
       name="Company lists"
       id="dashboard"
       progressMessage="Loading my companies lists"

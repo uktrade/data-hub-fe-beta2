@@ -42,7 +42,7 @@ import {
 
 import { ADD_INTERACTION__GET_ACTIVE_EVENTS } from '../../../../../client/actions'
 import { ID, TASK_GET_ACTIVE_EVENTS } from './state'
-import Task from '../../../../../client/components/Task'
+import { TaskStatus } from '../../../../../client/components/Task'
 
 import urls from '../../../../../lib/urls'
 
@@ -304,7 +304,7 @@ const StepInteractionDetails = ({
             required="Answer if this was an event"
           />
           {values.is_event === OPTION_YES && (
-            <Task.Status
+            <TaskStatus
               id={ID}
               name={TASK_GET_ACTIVE_EVENTS}
               startOnRender={{
@@ -321,7 +321,7 @@ const StepInteractionDetails = ({
                   options={activeEvents}
                 />
               )}
-            </Task.Status>
+            </TaskStatus>
           )}
         </>
       )}

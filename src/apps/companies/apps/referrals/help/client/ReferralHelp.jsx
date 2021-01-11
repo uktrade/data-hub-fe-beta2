@@ -6,7 +6,7 @@ import { LEVEL_SIZE } from '@govuk-react/constants'
 import { NewWindowLink } from '../../../../../../client/components/'
 import urls from '../../../../../../lib/urls'
 
-import Task from '../../../../../../client/components/Task'
+import { TaskStatus } from '../../../../../../client/components/Task'
 import { state2props } from './state'
 
 import { REFERRAL_DETAILS } from '../../../../../../client/actions'
@@ -35,7 +35,7 @@ export default connect(state2props)(
       referralId
     )}`
     return (
-      <Task.Status
+      <TaskStatus
         name="Referral details"
         id="referralDetails"
         progressMessage="loading referral details"
@@ -69,7 +69,7 @@ export default connect(state2props)(
             </>
           )
         }
-      </Task.Status>
+      </TaskStatus>
     )
   }
 )

@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import ContentWithHeading from '../ContentWithHeading'
 import StyledOrderedList from '../StyledOrderedList'
-import Task from '../Task'
+import { TaskStatus } from '../Task'
 import Referral from './Referral'
 import {
   REFERRAL_LIST__LOADED,
@@ -41,7 +41,7 @@ export default multiInstance({
   }),
   actionPattern: 'REFERRAL_LIST__',
   component: ({ id, referrals, onFilterChange, filter }) => (
-    <Task.Status
+    <TaskStatus
       name="Referrals"
       id={id}
       progressMessage="Loading referrals"
@@ -99,6 +99,6 @@ export default multiInstance({
           )
         }
       }}
-    </Task.Status>
+    </TaskStatus>
   ),
 })

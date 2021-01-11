@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { ERROR_COLOUR } from 'govuk-colours'
 
 import LocalHeader from '../../../../../client/components/LocalHeader/LocalHeader'
-import Task from '../../../../../client/components/Task'
+import Task, { TaskStatus } from '../../../../../client/components/Task'
 import { companies, dashboard } from '../../../../../lib/urls'
 import { EDIT_ONE_LIST_DETAILS__SUBMIT } from '../../../../../client/actions'
 import {
@@ -98,7 +98,7 @@ function EditOneListForm(state) {
                 ]}
               />
               <Main>
-                <Task.Status
+                <TaskStatus
                   name={TASK_SAVE_ONE_LIST_DETAILS}
                   id={STATE_ID}
                   renderError={ErrorHandler}

@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { FONT_WEIGHTS } from '@govuk-react/constants'
 
 import { Typeahead, FieldWrapper } from '../../../../components'
-import Task from '../../../../components/Task'
+import { TaskStatus } from '../../../../components/Task'
 
 import { parseAdviserData } from '../../../../../common/formatAdviser'
 
@@ -47,7 +47,7 @@ const FilterAdvisersTypeAhead = ({
 }) => {
   return (
     <StyledFieldWrapper label={label} name={name} hint={hint}>
-      <Task.Status {...taskProps}>
+      <TaskStatus {...taskProps}>
         {() => (
           <Typeahead
             name={name}
@@ -62,7 +62,7 @@ const FilterAdvisersTypeAhead = ({
             value={selectedAdvisers}
           />
         )}
-      </Task.Status>
+      </TaskStatus>
     </StyledFieldWrapper>
   )
 }

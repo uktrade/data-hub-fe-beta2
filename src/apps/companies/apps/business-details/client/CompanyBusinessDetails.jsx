@@ -20,7 +20,7 @@ import { StatusMessage } from '../../../../../client/components/'
 
 import { ID as CHECK_PENDING_REQUEST_ID, state2props } from './state'
 import { DNB__CHECK_PENDING_REQUEST } from '../../../../../client/actions'
-import Task from '../../../../../client/components/Task'
+import { TaskStatus } from '../../../../../client/components/Task'
 import { format } from '../../../../../client/utils/date-utils'
 
 const StyledRoot = styled('div')`
@@ -85,7 +85,7 @@ const CompanyBusinessDetails = ({
           </p>
         </StatusMessage>
       )}
-      <Task.Status
+      <TaskStatus
         name={DNB__CHECK_PENDING_REQUEST}
         id={CHECK_PENDING_REQUEST_ID}
         progressMessage="Checking for pending change requests"
@@ -104,7 +104,7 @@ const CompanyBusinessDetails = ({
             </>
           )
         }
-      </Task.Status>
+      </TaskStatus>
       {isDnbCompany && (
         <Details
           summary="Are these business details right?"

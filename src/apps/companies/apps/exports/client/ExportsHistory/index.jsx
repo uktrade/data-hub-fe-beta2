@@ -6,7 +6,7 @@ import InsetText from '@govuk-react/inset-text'
 import { CollectionList } from '../../../../../../client/components/'
 import { connect } from 'react-redux'
 
-import Task from '../../../../../../client/components/Task/index.jsx'
+import { TaskStatus } from '../../../../../../client/components/Task/index.jsx'
 import { state2props } from './state'
 import {
   EXPORTS_HISTORY__LOADED,
@@ -28,7 +28,7 @@ function ExportsHistory({
 }) {
   return (
     <Wrapper>
-      <Task.Status
+      <TaskStatus
         name="Exports history"
         id="exportsHistory"
         progressMessage="loading Exports History"
@@ -53,7 +53,7 @@ function ExportsHistory({
             />
           </>
         )}
-      </Task.Status>
+      </TaskStatus>
     </Wrapper>
   )
 }

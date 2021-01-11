@@ -10,7 +10,7 @@ import { ID as STATE_ID } from './state'
 
 import SecondaryButton from '../../../../../../client/components/SecondaryButton'
 import { SummaryTable, FormActions } from '../../../../../../client/components/'
-import Task from '../../../../../../client/components/Task'
+import { TaskStatus } from '../../../../../../client/components/Task'
 import { format } from '../../../../../../client/utils/date-utils'
 
 import { REFERRAL_DETAILS } from '../../../../../../client/actions'
@@ -54,7 +54,7 @@ export default connect(({ referrerUrl, ...state }) => ({
       url.parse(referrerUrl).pathname === urls.companies.referrals.list()
 
     return (
-      <Task.Status
+      <TaskStatus
         name="Referral details"
         id="referralDetails"
         progressMessage="loading referral details"
@@ -146,7 +146,7 @@ export default connect(({ referrerUrl, ...state }) => ({
             </>
           )
         }
-      </Task.Status>
+      </TaskStatus>
     )
   }
 )

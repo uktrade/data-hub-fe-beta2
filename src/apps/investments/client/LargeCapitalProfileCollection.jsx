@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { CollectionList } from '../../../client/components/'
-import Task from '../../../client/components/Task/index.jsx'
+import { TaskStatus } from '../../../client/components/Task/index'
 import { TASK_GET_PROFILES_LIST, ID, state2props } from './state'
 import {
   INVESTMENTS__PROFILES_LOADED,
@@ -17,7 +17,7 @@ const LargeCapitalProfileCollection = ({
   isComplete,
 }) => {
   return (
-    <Task.Status
+    <TaskStatus
       name={TASK_GET_PROFILES_LIST}
       id={ID}
       progressMessage="loading profiles..."
@@ -37,7 +37,7 @@ const LargeCapitalProfileCollection = ({
           />
         )
       }
-    </Task.Status>
+    </TaskStatus>
   )
 }
 

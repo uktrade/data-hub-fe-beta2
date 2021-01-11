@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { Step, FieldSelect } from '../../../../../client/components'
-import Task from '../../../../../client/components/Task'
+import { TaskStatus } from '../../../../../client/components/Task'
 import { ADD_COMPANY__REGION_LOADED } from '../../../../../client/actions'
 import { ID, TASK_POSTCODE_TO_REGION } from './state'
 
@@ -13,7 +13,7 @@ function CompanyRegionAndSector({ regions, region, sectors, isUK, postcode }) {
   return (
     <Step name="companyRegionAndSector" forwardButton="Add company">
       {isUK && (
-        <Task.Status
+        <TaskStatus
           name={TASK_POSTCODE_TO_REGION}
           id={ID}
           startOnRender={{
@@ -32,7 +32,7 @@ function CompanyRegionAndSector({ regions, region, sectors, isUK, postcode }) {
               required="Select DIT region"
             />
           )}
-        </Task.Status>
+        </TaskStatus>
       )}
 
       <FieldSelect
