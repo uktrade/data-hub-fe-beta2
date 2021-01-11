@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 import { TEXT_COLOUR, ERROR_COLOUR, FOCUS_COLOUR } from 'govuk-colours'
@@ -36,7 +35,15 @@ const StyledSecondaryButton = styled(SecondaryButton)({
   marginBottom: 0,
 })
 
-const Err = ({ errorMessage, retry, noun }) => (
+type ErrorProps = {
+  errorMessage: React.ReactNode,
+  noun: React.ReactNode,
+  retry: () => any,
+}
+
+type ErrorView = (props: ErrorProps) => React.ReactNode
+
+const Err: ErrorView = ({ errorMessage, retry, noun }) => (
   <StyledRoot>
     <H2 size="MEDIUM">Could not load {noun}</H2>
     <p>Error: {errorMessage}</p>
@@ -44,11 +51,11 @@ const Err = ({ errorMessage, retry, noun }) => (
   </StyledRoot>
 )
 
-Err.propTypes = {
-  noun: PropTypes.string.isRequired,
-  error: PropTypes.string.isRequired,
-  retry: PropTypes.func.isRequired,
-  clear: PropTypes.func.isRequired,
-}
+// Err.propTypes = {
+//   noun: PropTypes.string.isRequired,
+//   error: PropTypes.string.isRequired,
+//   retry: PropTypes.func.isRequired,
+//   clear: PropTypes.func.isRequired,
+// }
 
 export default Err
