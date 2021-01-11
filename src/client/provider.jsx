@@ -12,7 +12,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import createSagaMiddleware from 'redux-saga'
 
-import { MultiInstanceForm } from './components'
+import MultiInstanceForm from './components/Form/MultiInstanceForm'
 import DropdownMenu from './components/DropdownMenu/ConnectedDropdownMenu'
 import tasks from './components/Task/reducer'
 import rootSaga from './root-saga'
