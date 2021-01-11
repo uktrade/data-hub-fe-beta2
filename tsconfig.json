@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["node_modules", "**/node_modules/*", "/test/**/*"]
+}

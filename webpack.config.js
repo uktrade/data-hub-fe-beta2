@@ -67,7 +67,7 @@ module.exports = (env) => ({
     alias: {
       vue$: 'vue/dist/vue.common.js',
     },
-    extensions: ['*', '.js', '.jsx', '.vue', '.json'],
+    extensions: ['*', '.tsx', '.ts', '.js', '.jsx', '.vue', '.json'],
   },
   module: {
     rules: [
@@ -80,6 +80,11 @@ module.exports = (env) => ({
         options: {
           cacheDirectory: './babel_cache',
         },
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.vue$/,
