@@ -6,6 +6,20 @@ const config = {
   PORT: process.env.SANDBOX_PORT || 8000,
 }
 
+/**
+ * Generate an OPTIONS API response with the given allowed options
+ */
+const allowedOptions = (allowedOptions) =>
+  function (req, res) {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', `${allowedOptions},OPTIONS`)
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Content-Type, Authorization, Content-Length, X-Requested-With'
+    )
+    res.send(200)
+  }
+
 const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -344,10 +358,13 @@ app.post('/v3/search/company', v3SearchCompany.companies)
 app.post('/v3/search/contact', v3SearchContact.contacts)
 app.post('/v3/search/event', v3SearchEvent.events)
 app.post('/v3/search/order', v3SearchOrder.order)
+
 app.post(
   '/v3/search/investment_project',
   v3SearchInvestmentProject.investmentProjects
 )
+app.options('/v3/search/investment_project', allowedOptions('POST'))
+
 app.post(
   '/v3/search/investment_project/export',
   v3SearchInvestmentProject.export

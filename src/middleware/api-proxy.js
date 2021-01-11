@@ -57,6 +57,9 @@ module.exports = (app) => {
           proxyReq.write(bodyData)
         }
       },
+      onProxyRes: (proxyRes, req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', '*')
+      },
     })
   )
 }
