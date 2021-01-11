@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { Button } from 'govuk-react'
+import Button from '@govuk-react/button'
 import { SPACING_POINTS } from '@govuk-react/constants'
 
 import { decimal } from '../../utils/number-utils'

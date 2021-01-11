@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Details, Paragraph, WarningText } from 'govuk-react'
+import Button from '@govuk-react/button'
+import Details from '@govuk-react/details'
+import Paragraph from '@govuk-react/paragraph'
+import WarningText from '@govuk-react/warning-text'
 import { BLACK } from 'govuk-colours'
 import styled from 'styled-components'
 

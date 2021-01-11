@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
 
 import React from 'react'
-import { Link } from 'govuk-react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
 import { H3 } from '@govuk-react/heading'
+import Link from '@govuk-react/link'
 
 import EntityListItem from '../../../../../client/components/EntityList/EntityListItem'
 import { useFormContext } from '../../../../../client/components/Form/hooks'

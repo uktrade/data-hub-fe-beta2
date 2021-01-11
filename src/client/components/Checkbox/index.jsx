@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Checkbox as GovCheckbox } from 'govuk-react'
+import GovCheckbox from '@govuk-react/checkbox'
 import { BODY_SIZES } from '@govuk-react/constants'
 
 const StyledGovCheckbox = styled(GovCheckbox)`

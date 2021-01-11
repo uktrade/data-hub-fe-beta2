@@ -1,5 +1,7 @@
 import React from 'react'
-import { H3, UnorderedList, ListItem } from 'govuk-react'
+import { H3 } from '@govuk-react/heading'
+import UnorderedList from '@govuk-react/unordered-list'
+import ListItem from '@govuk-react/list-item'
 import { SPACING } from '@govuk-react/constants'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'

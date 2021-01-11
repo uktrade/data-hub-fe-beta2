@@ -1,15 +1,15 @@
 import React from 'react'
-import { Link } from 'govuk-react'
+import Link from '@govuk-react/link'
 import { SPACING, FONT_SIZE } from '@govuk-react/constants'
 import { BLUE, GREEN } from 'govuk-colours'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import { AdviserDetails } from '../../../apps/companies/apps/referrals/details/client/ReferralDetails'
 import { CardHeader } from '../ActivityFeed/activities/card'
 import { Card } from '../ActivityFeed/activities/card'
 import SummaryList from '../../components/SummaryList'
 import { format } from '../../utils/date-utils'
-import styled from 'styled-components'
 import urls from '../../../lib/urls'
 
 const StyledSummaryListWrapper = styled.div({

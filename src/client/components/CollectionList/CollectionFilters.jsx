@@ -1,6 +1,6 @@
 import React from 'react'
-import { GridCol } from 'govuk-react'
-import Task from '../../../client/components/Task'
+import GridCol from '@govuk-react/grid-col'
+import Task from '../Task'
 
 const CollectionFilters = ({ children, taskProps }) => {
   return (

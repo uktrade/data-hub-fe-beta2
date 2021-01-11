@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { isEmpty } from 'lodash'
-import { ErrorSummary } from 'govuk-react'
+import ErrorSummary from '@govuk-react/error-summary'
 import { useFormContext } from './hooks'
 import Step from './elements/Step'
 

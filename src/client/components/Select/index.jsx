@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-import { Select as GovSelect } from 'govuk-react'
+import GovSelect from '@govuk-react/select'
 import { MEDIA_QUERIES } from '@govuk-react/constants'
 import { spacing } from '@govuk-react/lib'
 

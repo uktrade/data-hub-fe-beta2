@@ -1,4 +1,4 @@
-import { SectionBreak } from 'govuk-react'
+import SectionBreak from '@govuk-react/section-break'
 import { SPACING } from '@govuk-react/constants'
 import styled from 'styled-components'
 

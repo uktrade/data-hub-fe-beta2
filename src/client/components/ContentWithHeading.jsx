@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { H3 } from 'govuk-react'
+import { H3 } from '@govuk-react/heading'
 import styled from 'styled-components'
 
 import SpacedSectionBreak from './SpacedSectionBreak'
