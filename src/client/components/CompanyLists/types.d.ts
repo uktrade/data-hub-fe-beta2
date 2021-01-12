@@ -5,7 +5,7 @@ import {
   COMPANY_LISTS__FILTER,
   COMPANY_LISTS__ORDER,
 } from '../../actions'
-import {Task, TaskSuccessAction} from '../Task'
+import {Task, TaskSuccessAction} from '../Task/types'
 import { ALPHABETICAL, LEAST_RECENT, RECENT } from './Filters'
 
 type ListId = string

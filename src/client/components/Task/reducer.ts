@@ -6,7 +6,20 @@ import {
   TASK__CANCEL,
 } from '../../actions'
 
-const setTaskState = (state, { name, id, ...action }, status) => {
+import {
+  Reducer,
+  State,
+  Status,
+  TaskProgressAction,
+  TaskErrorAction,
+  TaskAction,
+} from './types'
+
+const setTaskState = (
+  state: State,
+  { name, id, ...action }: TaskProgressAction | TaskErrorAction,
+  status: Status
+) => {
   const currentTaskGroup = state[name] || {}
   const currentTask = currentTaskGroup[id]
   return {
@@ -22,7 +35,7 @@ const setTaskState = (state, { name, id, ...action }, status) => {
   }
 }
 
-const remove = (state, { name, id }) => {
+const remove = (state: State, { name, id }: TaskAction) => {
   const taskState = state[name]
   return taskState
     ? _.omit(
@@ -32,8 +45,8 @@ const remove = (state, { name, id }) => {
     : state
 }
 
-export default (state = {}, { type, ...action }) => {
-  switch (type) {
+const reducer: Reducer = (state = {}, action) => {
+  switch (action.type) {
     case TASK__PROGRESS:
       return setTaskState(state, action, 'progress')
     case TASK__ERROR:
@@ -46,3 +59,5 @@ export default (state = {}, { type, ...action }) => {
       return state
   }
 }
+
+export default reducer

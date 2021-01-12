@@ -3,51 +3,48 @@
  * PLEASE update the docs - https://github.com/uktrade/data-hub-frontend/tree/master/docs/Redux%20and%20Saga.md
  **/
 
-import { get } from 'lodash'
-import PropTypes from 'prop-types'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import { TASK__START, TASK__DISMISS_ERROR, TASK__CANCEL } from '../../actions'
-import Err from './Error'
 import ProgressIndicator from '../ProgressIndicator'
+import {GlobalState} from '../types'
 
-const nameIdPropTypes = {
-  name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+import Err from './Error'
+import StartOnRender, {OwnProps as StartOnRenderProps} from './StartOnRender'
+import {TaskStartAction, TaskCancelAction, TaskDismissErrorAction, State, Status, TaskInstanceState} from './types'
+export interface StartOptions {
+  // TODO: Change to an exhaustive union type of task success action types
+  onSuccessDispatch?: string
+  // TODO: Make it a concrete union type
+  payload?: any
 }
 
-const startOnRenderPropTypes = {
-  payload: PropTypes.any,
-  onSuccessDispatch: PropTypes.string,
+export interface StateProps {
+  state: State
+}
+export interface DispatchProps {
+  start(name: string, id: string, startOptions: StartOptions): void
+  cancel(name: string, id: string): void
+  dismissError(name: string, id: string): void
 }
 
-/**
- * @typedef SuccessAction
- * @property {string} type - The value of the {onSuccessDispatch} option
- * @property {string} name - The _task_ name
- * @property {string} id - The _task_ id
- * @property {any} payload - The payload with which the _task_ was started
- * @property {any} result - The result with which the _task_ succeeded
- */
+export interface TaskInstance extends TaskInstanceState {
+  progress: boolean
+  error: boolean
+  start(options: StartOptions): void
+  cancel(): void
+  retry(): void
+  dismissError(): void
+}
 
-/**
- * Task start options
- * @typedef StartOptions
- * @property {string} [onSuccessDispatch=] - This is a mechanism to process the
- * result of a _tasks_ success. If set, a {SuccessAction} with this value
- * as its `type` will be dispatched when the _task_ succeeds, but before the
- * _task_ is _cleared_.
- */
+export type GetTask = (name: string, id: string) => TaskInstance
 
-/**
- * The shape of the object returned by `getTask` in the `Task` component
- * @typedef Task
- * @property {'progress' | 'error'} status - The current status of the task
- * @property {Boolean} progress - Whether the task is in progress
- * @property {Boolean} error - Whether the task is in error state
- * @property {(name, id, StartOptions) => void} start - Starts a task.
- */
+export interface OwnProps {
+  children(getTask: GetTask): React.ReactNode
+}
+
+export interface Props extends OwnProps, DispatchProps, StateProps {}
 
 /**
  * Enables starting and reading states of _registered tasks_. A _task_ is a
@@ -71,8 +68,8 @@ const startOnRenderPropTypes = {
  * promise, you can start the action with the `onSuccessDispatch` option, which
  * will be used as the type of the {SuccessAction}, which you can then subscribe
  * to in a reducer to store its {result} to the state.
- * @param {Object} props
- * @param {(name, id) => Task} props.children - Accepts a function as a single
+ * @param {OwnProps} props
+ * @param {OwnProps['children']} props.children - Accepts a function as a single
  * child, which will receive a `getTask` function as its only argument.
  * The `getTask` function takes a _task_ name and ID and returns the {Task}
  * object representing the _task_.
@@ -106,11 +103,11 @@ const startOnRenderPropTypes = {
  *   result: 49,
  * }
  */
-const Task = connect(
-  (state) => state.tasks,
+const Task = connect<StateProps, DispatchProps, OwnProps, GlobalState>(
+  (state) => ({state: state.tasks}),
   (dispatch) => ({
     start: (name, id, { payload, onSuccessDispatch }) =>
-      dispatch({
+      dispatch<TaskStartAction>({
         type: TASK__START,
         payload,
         id,
@@ -118,71 +115,47 @@ const Task = connect(
         onSuccessDispatch,
       }),
     cancel: (name, id) =>
-      dispatch({
+      dispatch<TaskCancelAction>({
         type: TASK__CANCEL,
         id,
         name,
       }),
     dismissError: (name, id) =>
-      dispatch({
+      dispatch<TaskDismissErrorAction>({
         type: TASK__DISMISS_ERROR,
         id,
         name,
       }),
   })
-)(function Task({ start, cancel, dismissError, children, ...props }) {
+)(({ start, cancel, dismissError, children, state }: Props) => {
   return children((name, id) => {
-    const taskState = get(props, [name, id], {})
+    const taskInstanceState = state[name]?.[id]
     return {
-      ...taskState,
-      progress: taskState.status === 'progress',
-      error: taskState.status === 'error',
+      ...taskInstanceState,
+      progress: taskInstanceState?.status === 'progress',
+      error: taskInstanceState?.status === 'error',
       start: (options) => start(name, id, options),
       cancel: () => cancel(name, id),
-      retry: () => start(name, id, taskState),
+      retry: () => start(name, id, taskInstanceState),
       dismissError: () => dismissError(name, id),
     }
-  })
+  // We need to cast to any here because of a bug in the React.FunctionalComponent
+  // type, which only allows returning ReactElement<any, any> from a functional
+  // component instead of a ReactNode e.g. string or number
+  }) as any
 })
 
-Task.propTypes = {
-  children: PropTypes.func.isRequired,
+interface TaskStatusProps {
+  name: string
+  id: string
+  noun?: React.ReactNode
+  progressMessage?: React.ReactNode
+  startOnRender?: StartOptions
+  renderError?: typeof Err
+  renderProgress?: typeof ProgressIndicator
+  children?: () => React.ReactNode
 }
 
-/**
- * Starts a task, if not in _progress_ or _error_ state when the component is
- * renderded.
- * @param {Object} props
- * @param {string} props.name - The _task_ name
- * @param {string} props.id - The _task_ id
- * @param {any} [props.payload=] - The payload start the _task_ with
- * @param {string} [props.onSuccessDispatch=] - If set, a {SuccessAction} with
- * this value as its {type} will be dispatched
- * @example
- * <Task.StartOnRender name="foo" id="a" payload={123} onSuccessDispatch="FOO"/>
- */
-Task.StartOnRender = connect(
-  (state, { name, id }) => get(state, ['tasks', name, id], {}),
-  (dispatch, { id, name }) => ({
-    start: (options) =>
-      dispatch({
-        ...options,
-        type: TASK__START,
-        id,
-        name,
-      }),
-  })
-)(({ start, name, id, payload, onSuccessDispatch, status }) => {
-  useEffect(() => {
-    status || start({ payload, onSuccessDispatch })
-  }, [name, id, JSON.stringify(payload), onSuccessDispatch])
-  return null
-})
-
-Task.StartOnRender.propTypes = {
-  ...nameIdPropTypes,
-  ...startOnRenderPropTypes,
-}
 
 /**
  * Renders the progress or error states of a _task_ or nothing
@@ -219,7 +192,7 @@ export const TaskStatus = ({
   renderError = Err,
   renderProgress = ProgressIndicator,
   children = () => null,
-}) => (
+}: TaskStatusProps) => (
   <Task>
     {(getTask) => {
       const {
@@ -234,7 +207,7 @@ export const TaskStatus = ({
       return (
         <>
           {!!startOnRender && (
-            <Task.StartOnRender {...startOnRender} {...{ name, id }} />
+            <StartOnRender {...startOnRender} {...{ name, id }} />
           )}
           {progress && renderProgress({ message: progressMessage })}
           {error &&
@@ -249,14 +222,5 @@ export const TaskStatus = ({
     }}
   </Task>
 )
-
-Task.Status.propTypes = {
-  ...nameIdPropTypes,
-  noun: PropTypes.string,
-  progressMessage: PropTypes.string,
-  startOnRender: PropTypes.shape(startOnRenderPropTypes),
-  renderProgress: PropTypes.elementType,
-  renderError: PropTypes.elementType,
-}
 
 export default Task
