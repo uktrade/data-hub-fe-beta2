@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { TASK__START } from '../../actions'
+import { TASK__START, TASK__DISMISS_ERROR, TASK__CANCEL } from '../../actions'
 import Err from './Error'
 import ProgressIndicator from '../ProgressIndicator'
 
@@ -117,8 +117,20 @@ const Task = connect(
         name,
         onSuccessDispatch,
       }),
+    cancel: (name, id) =>
+      dispatch({
+        type: TASK__CANCEL,
+        id,
+        name,
+      }),
+    dismissError: (name, id) =>
+      dispatch({
+        type: TASK__DISMISS_ERROR,
+        id,
+        name,
+      }),
   })
-)(function Task({ start, children, ...props }) {
+)(function Task({ start, cancel, dismissError, children, ...props }) {
   return children((name, id) => {
     const taskState = get(props, [name, id], {})
     return {
@@ -126,6 +138,9 @@ const Task = connect(
       progress: taskState.status === 'progress',
       error: taskState.status === 'error',
       start: (options) => start(name, id, options),
+      cancel: () => cancel(name, id),
+      retry: () => start(name, id, taskState),
+      dismissError: () => dismissError(name, id),
     }
   })
 })
