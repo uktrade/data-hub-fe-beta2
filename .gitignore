@@ -9,6 +9,8 @@
 
 # Ignore the build directory
 /.build
+# and Gatsby build directory
+/public
 
 # Ignore cache
 /.sass-cache
