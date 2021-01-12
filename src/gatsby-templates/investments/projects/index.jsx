@@ -74,7 +74,10 @@ const ProjectsCollection = ({
   const myProjectsOption = { label: 'My Projects', value: currentAdviserId }
 
   return (
-    <BaseTemplate id="investment-projects-collection">
+    <BaseTemplate
+      id="investment-projects-collection"
+      title="Projects - Investments - DIT Data Hub"
+    >
       <FilteredCollectionList
         {...props}
         collectionName="Project"

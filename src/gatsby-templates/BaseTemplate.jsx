@@ -27,32 +27,32 @@ const BaseTemplate = ({
       <link
         rel="shortcut icon"
         sizes="16x16 32x32 48x48"
-        href={`${assetPath}/images/favicon.ico`}
+        href={`${assetPath}/assets/images/favicon.ico`}
         type="image/x-icon"
       />
       <link
         rel="mask-icon"
-        href={`${assetPath}/images/govuk-mask-icon.svg`}
+        href={`${assetPath}/assets/images/govuk-mask-icon.svg`}
         color="#0b0c0c"
       />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
-        href={`${assetPath}/images/govuk-apple-touch-icon-180x180.png`}
+        href={`${assetPath}/assets/images/govuk-apple-touch-icon-180x180.png`}
       />
       <link
         rel="apple-touch-icon"
         sizes="167x167"
-        href={`${assetPath}/images/govuk-apple-touch-icon-167x167.png`}
+        href={`${assetPath}/assets/images/govuk-apple-touch-icon-167x167.png`}
       />
       <link
         rel="apple-touch-icon"
         sizes="152x152"
-        href={`${assetPath}/images/govuk-apple-touch-icon-152x152.png`}
+        href={`${assetPath}/assets/images/govuk-apple-touch-icon-152x152.png`}
       />
       <link
         rel="apple-touch-icon"
-        href={`${assetPath}/images/govuk-apple-touch-icon.png`}
+        href={`${assetPath}/assets/images/govuk-apple-touch-icon.png`}
       />
 
       <link
@@ -78,7 +78,9 @@ const BaseTemplate = ({
               <div className="govuk-grid-column-full">
                 <TabNav
                   routed={true}
-                  selectedIndex="bar"
+                  id="tab-nav"
+                  label="Tab Navigation"
+                  selectedIndex="projects"
                   tabs={{
                     projects: { label: 'Projects' },
                     profiles: { label: 'Investor profiles' },

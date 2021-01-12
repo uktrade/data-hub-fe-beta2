@@ -22,12 +22,15 @@ const AdviserTypeAhead = ({
       loadOptions={throttle(
         (searchString) =>
           axios
-            .get('/api-proxy/adviser/', {
-              params: {
-                autocomplete: searchString,
-                is_active: onlyShowActiveAdvisers,
-              },
-            })
+            .get(
+              `${process.env.GATSBY_API_PROXY_BASE_URL}/api-proxy/adviser/`,
+              {
+                params: {
+                  autocomplete: searchString,
+                  is_active: onlyShowActiveAdvisers,
+                },
+              }
+            )
             .then(({ data: { results } }) => parseAdviserData(results)),
         500
       )}

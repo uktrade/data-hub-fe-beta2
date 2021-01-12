@@ -13,7 +13,7 @@ const fetchAdvisers = (onlyShowActiveAdvisers) => {
   return throttle(
     (searchString) =>
       axios
-        .get('/api-proxy/adviser/', {
+        .get(`${process.env.GATSBY_API_PROXY_BASE_URL}/api-proxy/adviser/`, {
           params: {
             autocomplete: searchString,
             is_active: onlyShowActiveAdvisers,
