@@ -1,5 +1,8 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { curry, identity } from 'lodash'
+import { Task } from './types'
+
+axios.get('foo').then(x => x)
 
 /**
  * A curried function which Decorates a task so, that it's progress will take
@@ -12,15 +15,15 @@ import { curry, identity } from 'lodash'
  * const slowTask = delay(10000)(task) // Will take 10 seconds to resolve
  * const fastTask = delay(100)(task) // Will take 5 seconds to resolve
  */
-export const delay = curry((duration, task, payload) =>
+export const delay = curry((duration: number, task: Task, payload: any) =>
   Promise.all([
     task(payload),
     new Promise((resolve) => setTimeout(resolve, duration)),
   ]).then(([result]) => result)
 )
 
-export const catchApiError = ({ response: { data } }) =>
-  Promise.reject(data.detail || data)
+export const catchApiError = ({ response }: AxiosError) =>
+  Promise.reject(response?.data.detail || response?.data)
 
 /**
  * A custom Axios instance for easy access to the `/api-proxy` endpoint.
@@ -32,7 +35,7 @@ export const catchApiError = ({ response: { data } }) =>
 export const apiProxyAxios = axios.create()
 apiProxyAxios.interceptors.request.use(({ url, ...config }) => ({
   ...config,
-  url: url.startsWith('/api-proxy') ? url : url.replace(/^\/?/, '/api-proxy/'),
+  url: url?.startsWith('/api-proxy') ? url : url?.replace(/^\/?/, '/api-proxy/'),
 }))
 apiProxyAxios.interceptors.response.use(identity, ({ response }) =>
   Promise.reject(response.data.detail || response.statusText)

@@ -13,12 +13,13 @@ import {Reducer} from '../types'
 interface State {
   orderBy: OrderBy,
   query?: string,
-  lists?: Record<string, {name: string, companies?: CompanyList}>,
+  lists: Record<string, {name: string, companies?: CompanyList}>,
   selectedId?: string,
 }
 
 const initialState: State = {
   orderBy: RECENT,
+  lists: {},
 }
 
 type CompanyListReducer = Reducer<State, CompanyListAction>

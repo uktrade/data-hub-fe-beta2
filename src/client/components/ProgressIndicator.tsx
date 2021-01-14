@@ -10,7 +10,11 @@ const StyledLoadingBox = styled(LoadingBox)({
   height: '30px',
 })
 
-const ProgressIndicator = ({ message }) => (
+export interface Props {
+  message: React.ReactNode
+}
+
+const ProgressIndicator: React.FunctionComponent<Props> = ({ message }) => (
   <StyledRoot>
     <StyledLoadingBox loading={true} />
     {message && <p>{message}</p>}

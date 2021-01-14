@@ -1,7 +1,7 @@
 import { TASK__CLEAR, TASK__ERROR, TASK__PROGRESS, TASK__START, TASK__CANCEL, TASK__DISMISS_ERROR } from "../../actions"
 import componentTypes from '../types'
 
-export type Task<P, R> = (payload: P) => Promise<R>
+export type Task<P = any, R = any> = (payload: P) => Promise<R>
 
 export interface TaskActionBase {
   id: string
@@ -43,10 +43,12 @@ export type TaskAction
   | TaskCancelAction
   | TaskDismissErrorAction
 
-export interface TaskSuccessAction<T, R, P = any> {
+export interface TaskSuccessAction<T extends string = any, R = any, P = any> {
   type: T
   result: R
   payload: P
+  name: string
+  id: string
 }
 
 export type Status = 'progress' | 'error'
@@ -67,3 +69,7 @@ interface State {
 }
 
 export type Reducer = componentTypes.Reducer<State, TaskAction>
+
+export type Registry = {
+  [k: string]: Task
+}

@@ -22,7 +22,7 @@ export const fetchCompanyList: CompanyListTask = (id) =>
       id,
       name,
       ...pick(latest_interaction, ['date', 'subject']),
-      interactionId: get(latest_interaction, 'id'),
+      interactionId: latest_interaction.id,
       ditParticipants: latest_interaction
         ?.dit_participants
         .map(({adviser, team}) => ({

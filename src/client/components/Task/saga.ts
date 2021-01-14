@@ -1,4 +1,3 @@
-import { get } from 'lodash'
 import {
   take,
   put,
@@ -18,18 +17,32 @@ import {
   TASK__CANCEL,
 } from '../../actions'
 
+import {GlobalState} from '../types'
+import {
+  Registry,
+  TaskStartAction,
+  TaskProgressAction,
+  TaskDismissErrorAction,
+  Status,
+  Task,
+  TaskSuccessAction,
+  TaskClearAction,
+  TaskErrorAction,
+  TaskCancelAction,
+} from './types'
+
 /**
  * Starts a task and waits for its resolution or rejection
  * @param {Task} task - the task function
  * @param {TaskStartAction} action - the `TASK__START` action
  */
-function* startTask(task, action) {
-  yield put({ ...action, type: TASK__PROGRESS })
+function* startTask(task: Task, action: TaskStartAction) {
+  yield put<TaskProgressAction>({ ...action, type: TASK__PROGRESS })
   try {
     const result = yield call(task, action.payload)
     const { id, name, payload, onSuccessDispatch } = action
     if (onSuccessDispatch) {
-      yield put({
+      yield put<TaskSuccessAction>({
         type: onSuccessDispatch,
         name,
         id,
@@ -37,13 +50,13 @@ function* startTask(task, action) {
         result,
       })
     }
-    yield put({ type: TASK__CLEAR, id, name })
+    yield put<TaskClearAction>({ type: TASK__CLEAR, id, name })
   } catch (error) {
     if (error instanceof Error) {
       throw error
     } else {
       const { id, name } = action
-      yield put({
+      yield put<TaskErrorAction>({
         type: TASK__ERROR,
         id,
         name,
@@ -58,11 +71,12 @@ function* startTask(task, action) {
  * @param {Task} task - the task function
  * @param {TaskStartAction} action - the `TASK__START` action
  */
-function* manageTask(task, action) {
+function* manageTask(task: Task, action: TaskStartAction) {
   const s = yield fork(startTask, task, action)
   while (true) {
-    yield take(
-      ({ type, name, id }) =>
+    // We have to pass the any type here because of a bug in redux-saga typings
+    yield take<any>(
+      ({ type, name, id }: TaskCancelAction) =>
         type === TASK__CANCEL && name === action.name && id === action.id
     )
     yield cancel(s)
@@ -75,31 +89,31 @@ function* manageTask(task, action) {
  */
 function* subscribeToDismiss() {
   while (true) {
-    const { id, name } = yield take(TASK__DISMISS_ERROR)
+    const { id, name } = (yield take(TASK__DISMISS_ERROR)) as TaskDismissErrorAction
     const inError = yield select(
-      (state) => get(state, ['tasks', name, id, 'status']) === 'error'
+      (state: GlobalState) => state.tasks[name]?.[id]?.status === 'error'
     )
 
     if (inError) {
-      yield put({ type: TASK__CLEAR, id, name })
+      yield put<TaskClearAction>({ type: TASK__CLEAR, id, name })
     }
   }
 }
 
 /**
  * Subscribes to `TASK__START` actions and starts managing the given task
- * @param {Record<string, Task>} registry - A registry of tasks
+ * @param {Registry} registry - A registry of tasks
  */
-function* subscribeToStart(registry) {
+function* subscribeToStart(registry: Registry) {
   while (true) {
-    const action = yield take(TASK__START)
+    const action = (yield take(TASK__START)) as TaskStartAction
     const { name, id } = action
     const task = registry[action.name]
     if (!task) {
       throw Error(`Task "${name}" is not registered!`)
     }
-    const status = yield select((state) =>
-      get(state, ['tasks', name, id, 'status'])
+    const status: Status = yield select((state: GlobalState) =>
+      state.tasks[name]?.[id]?.status
     )
     if (status === 'progress') {
       throw Error(
@@ -112,11 +126,11 @@ function* subscribeToStart(registry) {
 
 /**
  * Creates the saga required for the `Task` component
- * @param {Object} registry - An object mapping _tasks_ to names.
+ * @param {Registry} registry - An object mapping _tasks_ to names.
  * A task is a function which takes a payload and returns a {Promise}.
  * @returns {Generator} - The saga
  */
-export default (registry) =>
+export default (registry: Registry) =>
   function* () {
     yield spawn(subscribeToStart, registry)
     yield spawn(subscribeToDismiss)

@@ -23,7 +23,7 @@ export interface CompanyListItem {
     trading_names: string[],
   },
   created_on: string
-  latest_interaction?: {
+  latest_interaction: {
     id: string,
     date: string,
     created_on: string,
