@@ -1,6 +1,6 @@
 {% extends "_layouts/template.njk" %}
 {# For the accessibility work, the search bar has been amended to have hint text and placeholder text.
-It seems to be that the label and hint are coupled up somewhere, so a label is required to show a hint. 
+It seems to be that the label and hint are coupled up somewhere, so a label is required to show a hint.
 As nunjucks is on it's way out, a label of an empty space has been used as a work around for this issue. #}
 {% block local_header %}
   {% call LocalHeader({ modifier: 'dark-banner' }) %}
@@ -34,6 +34,16 @@ As nunjucks is on it's way out, a label of an empty space has been used as a wor
       } %}
   </div>
 {% endif %}
+</div>
+
+{# Just putting the project summary totals in as a placeholder until we have a chart component #}
+<div class="grid-row dashboard">
+  <h2>Project Summaries</h2>
+  <ul>
+    {% for name, item in investmentProjectsSummary %}
+      <li><strong>{{ name }}:</strong> {{ item }}</li>
+    {% endfor %}
+  </ul>
 </div>
 
 {% endblock %}
