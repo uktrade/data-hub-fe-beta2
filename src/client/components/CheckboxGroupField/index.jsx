@@ -9,13 +9,14 @@ import FieldWrapper from '../Form/elements/FieldWrapper'
 const StyledFieldWrapper = styled(FieldWrapper)`
   label {
     font-weight: normal;
+    margin-bottom: 4px;
   }
   label:not(:first-child) {
     padding-left: 20px;
   }
   input {
-    left: -10px;
-    top: -2px;
+    /* left: -10px;
+    top: -2px; */
     + span {
       padding: 10px 15px 5px;
       &::before {
