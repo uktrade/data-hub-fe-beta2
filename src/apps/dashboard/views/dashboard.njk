@@ -17,6 +17,26 @@ As nunjucks is on it's way out, a label of an empty space has been used as a wor
 {% endblock %}
 
 {% block body_main_content %}
+
+{# Just putting the project summary totals in as a placeholder until we have a chart component #}
+<div class="grid-row dashboard">
+  <h2>Project Summaries</h2>
+
+  <h3>Current Year</h3>
+  <ul>
+    {% for name, item in investmentProjectsSummary.currentYear %}
+      <li><strong>{{ name }}:</strong> {{ item }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Previous Year</h3>
+  <ul>
+    {% for name, item in investmentProjectsSummary.previousYear %}
+      <li><strong>{{ name }}:</strong> {{ item }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
 <div class="grid-row dashboard">
     <section class="govuk-grid-column-full">
       {% component 'info-feed', {
@@ -36,14 +56,5 @@ As nunjucks is on it's way out, a label of an empty space has been used as a wor
 {% endif %}
 </div>
 
-{# Just putting the project summary totals in as a placeholder until we have a chart component #}
-<div class="grid-row dashboard">
-  <h2>Project Summaries</h2>
-  <ul>
-    {% for name, item in investmentProjectsSummary %}
-      <li><strong>{{ name }}:</strong> {{ item }}</li>
-    {% endfor %}
-  </ul>
-</div>
 
 {% endblock %}

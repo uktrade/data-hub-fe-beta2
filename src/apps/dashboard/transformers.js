@@ -22,7 +22,7 @@ const summariseProjectStages = ({
   investmentProjects = [],
   initialTotals = {
     prospect: 0,
-    assigned: 0,
+    assignPm: 0,
     active: 0,
     verifyWin: 0,
     won: 0,
