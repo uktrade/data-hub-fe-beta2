@@ -37,7 +37,7 @@ const ProjectsCollection = ({
   const collectionListTask = {
     name: TASK_GET_PROJECTS_LIST,
     id: ID,
-    progressMessage: 'loading projects...',
+    progressMessage: 'loading projects',
     startOnRender: {
       payload,
       onSuccessDispatch: INVESTMENTS__PROJECTS_LOADED,
@@ -46,7 +46,7 @@ const ProjectsCollection = ({
   const adviserListTask = {
     name: TASK_GET_ADVISER_NAME,
     id: ID,
-    progressMessage: 'loading advisers...',
+    progressMessage: 'loading advisers',
     startOnRender: {
       payload: payload.adviser,
       onSuccessDispatch: INVESTMENTS__PROJECTS_SELECTED_ADVISERS,
@@ -55,7 +55,7 @@ const ProjectsCollection = ({
   const collectionListMetadataTask = {
     name: TASK_GET_INVESTMENTS_PROJECTS_METADATA,
     id: ID,
-    progressMessage: 'loading metadata...',
+    progressMessage: 'loading metadata',
     startOnRender: {
       payload: {
         projectStageOptions: urls.metadata.investmentProjectStage(),
@@ -105,7 +105,7 @@ const ProjectsCollection = ({
           legend="Advisers"
           name="adviser"
           qsParam="adviser"
-          placeholder="Search advisers..."
+          placeholder="Search advisers"
           noOptionsMessage={() => <>No advisers found</>}
           selectedOptions={selectedFilters.selectedAdvisers}
           data-test="adviser-filter"
@@ -115,7 +115,7 @@ const ProjectsCollection = ({
           legend="Sector"
           name="sector"
           qsParam="sector_descends"
-          placeholder="Search sectors..."
+          placeholder="Search sectors"
           options={optionMetadata.sectorOptions}
           selectedOptions={selectedFilters.selectedSectors}
           data-test="sector-filter"
@@ -125,7 +125,7 @@ const ProjectsCollection = ({
           legend="Country of origin"
           name="country"
           qsParam="country"
-          placeholder="Search countries..."
+          placeholder="Search countries"
           options={optionMetadata.countryOptions}
           selectedOptions={selectedFilters.selectedCountries}
           data-test="country-filter"
@@ -135,7 +135,7 @@ const ProjectsCollection = ({
           legend="UK Region"
           name="uk_region"
           qsParam="uk_region"
-          placeholder="Search UK regions..."
+          placeholder="Search UK regions"
           options={optionMetadata.ukRegionOptions}
           selectedOptions={selectedFilters.selectedUkRegions}
           data-test="uk-region-filter"
