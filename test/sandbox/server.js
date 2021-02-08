@@ -47,6 +47,7 @@ var v4Company = require('./routes/v4/company/company.js')
 var v4CompanyList = require('./routes/v4/company-list/companyList.js')
 var v4Dnb = require('./routes/v4/dnb/index.js')
 var v4Metadata = require('./routes/v4/metadata/index.js')
+var v4Proposition = require('./routes/v4/proposition/index.js')
 var v4SearchCompany = require('./routes/v4/search/company.js')
 var v4SearchCompanyWithCountry = require('./routes/v4/search/company/autocomplete.js')
 var v4SearchLargeInvestorProfiles = require('./routes/v4/search/large-investor-profile/results.js')
@@ -422,6 +423,7 @@ app.patch(
   v4Company.largeInvestorProfilePatched
 )
 app.post('/v4/large-investor-profile', v4Company.largeInvestorProfilePostCreate)
+app.get('/v4/proposition', v4Proposition.propositions)
 
 // V4 Search
 app.post('/v4/search/company', v4SearchCompany.companies)

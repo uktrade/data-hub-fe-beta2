@@ -1,0 +1,77 @@
+{
+    "count": 8,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": "74a7eafa-4582-4304-8027-022a75df4948",
+            "investment_project": {
+                "name": "New restaurant",
+                "project_code": "DHP-00000004",
+                "id": "18750b26-a8c3-41b2-8d3a-fb0b930c2270",
+                "proposal_deadline": "2020-12-01"
+            },
+            "adviser_id": "5a644146-5298-4741-91f3-d5d7558adf47",
+            "deadline": "2020-10-01",
+            "status": "ongoing",
+            "name": "Superb prospect",
+            "scope": "Everything"
+        },
+        {
+            "id": "74a7eafa-4582-4304-8027-022a75df4948",
+            "investment_project": {
+                "name": "University buildings",
+                "project_code": "DHP-00000005",
+                "id": "18750b26-a8c3-41b2-8d3a-fb0b930c2271",
+                "proposal_deadline": "2021-01-01"
+            },
+            "adviser_id": "5a644146-5298-4741-91f3-d5d7558adf47",
+            "deadline": null,
+            "status": "ongoing",
+            "name": "University prospect",
+            "scope": "Everything"
+        },
+        {
+            "id": "74a7eafa-4582-4304-8027-022a75df4948",
+            "investment_project": {
+                "name": "Fireworks",
+                "project_code": "DHP-00000006",
+                "id": "18750b26-a8c3-41b2-8d3a-fb0b930c2272",
+                "proposal_deadline": null
+            },
+            "adviser_id": "5a644146-5298-4741-91f3-d5d7558adf47",
+            "deadline": "2021-02-01",
+            "status": "ongoing",
+            "name": "Fireworks prospect",
+            "scope": "Everything"
+        },
+        {
+            "id": "74a7eafa-4582-4304-8027-022a75df4948",
+            "investment_project": {
+                "name": "Investments into UK",
+                "project_code": "DHP-00000007",
+                "id": "18750b26-a8c3-41b2-8d3a-fb0b930c2273",
+                "proposal_deadline": "2021-03-01"
+            },
+            "adviser_id": "5a644146-5298-4741-91f3-d5d7558adf47",
+            "deadline": "2021-03-01",
+            "status": "ongoing",
+            "name": "UK Investments prospect",
+            "scope": "Everything"
+        },
+        {
+            "id": "74a7eafa-4582-4304-8027-022a75df4948",
+            "investment_project": {
+                "name": "Nest Labs, Inc. Investment into UK",
+                "project_code": "DHP-00000004",
+                "id": "18750b26-a8c3-41b2-8d3a-fb0b930c2274",
+                "proposal_deadline": "2020-03-04"
+            },
+            "adviser_id": "5a644146-5298-4741-91f3-d5d7558adf47",
+            "deadline": "2021-03-04",
+            "status": "ongoing",
+            "name": "Labs prospect",
+            "scope": "Everything"
+        }
+    ]
+}
