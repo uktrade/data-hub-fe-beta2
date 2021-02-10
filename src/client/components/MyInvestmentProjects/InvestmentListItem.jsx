@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { Details } from 'govuk-react'
 
 import InvestmentEstimatedLandDate from './InvestmentEstimatedLandDate'
-import InvestmentTimeline from './InvestmentTimeline'
+import { Timeline } from '../../../client/components'
+
+
 
 const InvestmentListItem = ({
   name,
@@ -15,7 +17,10 @@ const InvestmentListItem = ({
     <li>
       <Details summary={name} open={showDetails}>
         <div>+ Add Interaction...</div>
-        <InvestmentTimeline stage={stage} />
+        <Timeline
+          stages={['Prospect', 'Assign PM', 'Active', 'Verify win', 'Won']}
+          currentStage={stage.name}
+        />
         <InvestmentEstimatedLandDate estimatedLandDate={estimated_land_date} />
       </Details>
     </li>
