@@ -10,17 +10,17 @@ const InvestmentProjectSummary = () => {
         {
           key: 'Prospect',
           param: 1,
-          value: 7,
+          value: 2,
         },
         {
           key: 'Assigned',
           param: 2,
-          value: 20,
+          value: 3,
         },
         {
           key: 'Active',
           param: 3,
-          value: 5,
+          value: 2,
         },
         {
           key: 'Verfiy win',
@@ -30,7 +30,7 @@ const InvestmentProjectSummary = () => {
         {
           key: 'Won',
           param: 5,
-          value: 15,
+          value: 2,
         },
       ],
     },
@@ -60,7 +60,7 @@ const InvestmentProjectSummary = () => {
         {
           key: 'Won',
           param: 5,
-          value: 0,
+          value: 10,
         },
       ],
     },
