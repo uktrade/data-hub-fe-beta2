@@ -117,6 +117,28 @@ describe('Investor profiles filters', () => {
     ],
   })
 
+  typeaheadFilterTestCases({
+    filterName: 'Investor type',
+    selector: 'investor-type-filter',
+    cases: [
+      {
+        expectedNumberOfResults: 10,
+      },
+      {
+        options: ['Fund of funds'],
+        expectedNumberOfResults: 1,
+      },
+      {
+        options: ['Family office'],
+        expectedNumberOfResults: 1,
+      },
+      {
+        options: ['Fund of funds', 'Family office'],
+        expectedNumberOfResults: 2,
+      },
+    ],
+  })
+
   inputFilterTestCases({
     filterName: 'Company name',
     placeholder: 'Search company name',

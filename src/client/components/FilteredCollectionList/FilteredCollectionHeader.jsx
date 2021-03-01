@@ -162,6 +162,10 @@ function FilteredCollectionHeader({
           qsParamName="level_of_involvement_simplified"
           showCategoryLabels={true}
         />
+        <RoutedFilterChips
+          selectedOptions={selectedFilters.selectedInvestorTypes}
+          qsParamName="investor_type"
+        />
       </CollectionHeaderRow>
     </CollectionHeaderRowContainer>
   )

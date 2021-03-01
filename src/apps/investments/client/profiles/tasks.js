@@ -6,6 +6,7 @@ export function getLargeCapitalProfiles({
   countryOfOrigin,
   assetClassesOfInterest,
   investorCompanyName,
+  investorTypes,
 }) {
   let offset = limit * (parseInt(page, 10) - 1) || 0
   return apiProxyAxios
@@ -13,6 +14,7 @@ export function getLargeCapitalProfiles({
       limit,
       offset,
       country_of_origin: countryOfOrigin,
+      investor_type: investorTypes,
       asset_classes_of_interest: assetClassesOfInterest,
       ...(investorCompanyName
         ? { investor_company_name: investorCompanyName }
@@ -29,7 +31,11 @@ export const loadFilterOptions = () =>
   Promise.all([
     apiProxyAxios.get('/v4/metadata/country'),
     apiProxyAxios.get('/v4/metadata/capital-investment/asset-class-interest'),
-  ]).then(([{ data: countries }, { data: classes }]) => ({
-    countries: countries.map(idName2valueLabel),
-    assetClassesOfInterest: classes.map(idName2valueLabel),
-  }))
+    apiProxyAxios.get('/v4/metadata/capital-investment/investor-type'),
+  ]).then(
+    ([{ data: countries }, { data: classes }, { data: investorTypes }]) => ({
+      countries: countries.map(idName2valueLabel),
+      assetClassesOfInterest: classes.map(idName2valueLabel),
+      investorTypes: investorTypes.map(idName2valueLabel),
+    })
+  )

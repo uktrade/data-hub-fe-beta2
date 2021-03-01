@@ -16,6 +16,7 @@ const QS_PARAMS = {
   countryOfOrigin: 'country_of_origin',
   assetClassesOfInterest: 'asset_classes_of_interest',
   investorCompanyName: 'investor_company_name',
+  investorTypes: 'investor_type',
 }
 
 const resolveSelectedOptions = (values = [], options = []) =>
@@ -40,6 +41,10 @@ const LargeCapitalProfileCollection = ({
         qsParams[QS_PARAMS.assetClassesOfInterest],
         filterOptions.assetClassesOfInterest
       )
+      const selectedInvestorTypes = resolveSelectedOptions(
+        qsParams[QS_PARAMS.investorTypes],
+        filterOptions.investorTypes
+      )
 
       const resolveSelectedInvestorCompanyName = () => {
         const companyName = qsParams[QS_PARAMS.investorCompanyName]
@@ -60,6 +65,7 @@ const LargeCapitalProfileCollection = ({
               payload: {
                 page: parseInt(qsParams.page, 10),
                 countryOfOrigin: qsParams[QS_PARAMS.countryOfOrigin],
+                investorTypes: qsParams[QS_PARAMS.investorTypes],
                 assetClassesOfInterest:
                   qsParams[QS_PARAMS.assetClassesOfInterest],
                 investorCompanyName: qsParams[QS_PARAMS.investorCompanyName],
@@ -73,11 +79,12 @@ const LargeCapitalProfileCollection = ({
             selectedCountryOfOrigin: selectedCountries,
             selectedAssetClassesOfInterest,
             selectedInvestorCompanyName: resolveSelectedInvestorCompanyName(),
+            selectedInvestorTypes,
           }}
         >
           <CollectionFilters
             taskProps={{
-              name: 'Large investment profiles',
+              name: 'Large investment profiles filters',
               id: 'investments/profiles',
               startOnRender: {
                 onSuccessDispatch:
@@ -111,6 +118,16 @@ const LargeCapitalProfileCollection = ({
               name="investor-company-name"
               label="Company name"
               placeholder="Search company name"
+            />
+            <RoutedTypeahead
+              isMulti={true}
+              legend="Investor type"
+              name="investor-type"
+              qsParam={QS_PARAMS.investorTypes}
+              placeholder="Search investor type"
+              options={filterOptions.investorTypes}
+              selectedOptions={selectedInvestorTypes}
+              data-test="investor-type-filter"
             />
           </CollectionFilters>
         </FilteredCollectionList>
