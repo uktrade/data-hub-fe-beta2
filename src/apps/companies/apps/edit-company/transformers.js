@@ -54,6 +54,7 @@ const transformCompanyToForm = (company) => {
       ...pick(company, whitelistedFields),
       address1: get(company, 'address.line_1'),
       address2: get(company, 'address.line_2'),
+      area: get(company, 'address.area.id'),
       city: get(company, 'address.town'),
       county: get(company, 'address.county'),
       postcode: get(company, 'address.postcode'),
@@ -89,6 +90,7 @@ const transformFormToApi = (company, formValues) => {
         town: formValues.city,
         county: formValues.county || '',
         postcode: formValues.postcode,
+        area: formValues.area,
       },
     },
     (fieldValue, fieldName) =>

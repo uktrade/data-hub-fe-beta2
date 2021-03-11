@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { BLACK, GREY_3 } from 'govuk-colours'
 import { Search } from '@govuk-react/icons'
@@ -16,8 +16,15 @@ import FieldInput from '../FieldInput'
 import FieldUneditable from '../FieldUneditable'
 import FieldWrapper from '../FieldWrapper'
 import StatusMessage from '../../../StatusMessage'
+import axios from 'axios'
+import { transformObjectToOption } from '../../../../../apps/transformers'
+import FieldSelect from '../FieldSelect'
 
 const UNITED_KINGDOM = 'United Kingdom'
+const UNITED_STATES = 'United States'
+const UNITED_STATES_ID = '81756b9a-5d95-e211-a939-e4115bead28a'
+const CANADA = 'Canada'
+const CANADA_ID = '5daf72a6-5d95-e211-a939-e4115bead28a'
 
 const StyledFieldPostcode = styled(FieldInput)`
   ${MEDIA_QUERIES.TABLET} {
@@ -44,9 +51,38 @@ const FieldAddress = ({
     setIsLoading,
   } = useFormContext()
 
+  const [usStates, setUsStates] = useState([])
+  const [canadaProvinces, setCanadaProvinces] = useState([])
   useEffect(() => setIsLoading(isSubmitting), [isSubmitting])
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios('/api-proxy/v4/metadata/administrative-area')
+
+      setUsStates(
+        result.data
+          .filter(
+            (administrativeAreas) =>
+              administrativeAreas.country.id === UNITED_STATES_ID
+          )
+          .map((states) => transformObjectToOption(states))
+      )
+
+      setCanadaProvinces(
+        result.data
+          .filter(
+            (administrativeAreas) =>
+              administrativeAreas.country.id === CANADA_ID
+          )
+          .map((states) => transformObjectToOption(states))
+      )
+    }
+
+    fetchData()
+  }, [])
 
   const isUK = country.name === UNITED_KINGDOM
+  const isUS = country.name === UNITED_STATES
+  const isCanada = country.name === CANADA
 
   function onSearchClick(e) {
     e.preventDefault()
@@ -69,9 +105,32 @@ const FieldAddress = ({
     setFieldValue('city', address.city)
     setFieldValue('county', address.county)
     setFieldValue('country', country.id)
+    setFieldValue('area', address.area)
+    setFieldValue('country', country.id)
 
     if (onSelectUKAddress) {
       onSelectUKAddress(address)
+    }
+  }
+
+  const renderUsStateField = () => {
+    if (isUS && usStates.length > 0) {
+      return (
+        <FieldSelect type="text" name="area" label="State" options={usStates} />
+      )
+    }
+  }
+
+  const renderCanadaProvinceField = () => {
+    if (isCanada && canadaProvinces?.length > 0) {
+      return (
+        <FieldSelect
+          type="text"
+          name="area"
+          label="Province"
+          options={canadaProvinces}
+        />
+      )
     }
   }
 
@@ -143,8 +202,9 @@ const FieldAddress = ({
         label="Town or city"
         required="Enter town or city"
       />
+      {renderUsStateField()}
+      {renderCanadaProvinceField()}
       <FieldInput type="text" name="county" label="County (optional)" />
-
       <FieldUneditable name="country" label="Country">
         {country.name}
       </FieldUneditable>
