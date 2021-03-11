@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { BLACK, GREY_3 } from 'govuk-colours'
 import { Search } from '@govuk-react/icons'
@@ -16,8 +16,12 @@ import FieldInput from '../FieldInput'
 import FieldUneditable from '../FieldUneditable'
 import FieldWrapper from '../FieldWrapper'
 import StatusMessage from '../../../StatusMessage'
+import axios from 'axios'
+import { transformObjectToOption } from '../../../../../apps/transformers'
+import FieldSelect from '../FieldSelect'
 
 const UNITED_KINGDOM = 'United Kingdom'
+const UNITED_STATES = 'United States'
 
 const StyledFieldPostcode = styled(FieldInput)`
   ${MEDIA_QUERIES.TABLET} {
@@ -48,9 +52,28 @@ const FieldAddress = ({
     setIsLoading,
   } = useFormContext()
 
+  const [usStates, setUsStates] = useState([])
   useEffect(() => setIsLoading(isSubmitting), [isSubmitting])
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios('/api-proxy/v4/metadata/administrative-area')
+
+      setUsStates(
+        result.data
+          .filter(
+            (administrativeAreas) =>
+              administrativeAreas.country.id ==
+              '81756b9a-5d95-e211-a939-e4115bead28a'
+          )
+          .map((states) => transformObjectToOption(states))
+      )
+    }
+
+    fetchData()
+  }, [])
 
   const isUK = country.name === UNITED_KINGDOM
+  const isUS = country.name === UNITED_STATES
 
   function onSearchClick(e) {
     e.preventDefault()
@@ -147,8 +170,15 @@ const FieldAddress = ({
         label="Town or city"
         required="Enter town or city"
       />
+      {isUS && (
+        <FieldSelect
+          type="text"
+          name="state"
+          label="State"
+          options={usStates}
+        />
+      )}
       <FieldInput type="text" name="county" label="County (optional)" />
-
       <FieldUneditable name="country" label="Country">
         {country.name}
       </FieldUneditable>
