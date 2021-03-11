@@ -1,23 +1,12 @@
 const router = require('express').Router()
 
-const { APP_PERMISSIONS } = require('./constants')
+const { renderOpportunitiesView } = require('./controllers/opportunities')
+const setInvestmentTabItems = require('./middleware/investments-tab-items')
 
-const setLocalNavigation = require('./middleware/local-navigation')
-const {
-  redirectToFirstNavItem,
-  handleRoutePermissions,
-} = require('../middleware')
-const { shared } = require('./middleware')
-
-const { details } = require('./controllers')
-
-router.use(handleRoutePermissions(APP_PERMISSIONS))
-
-router.use('/:investmentId', setLocalNavigation)
-router.param('investmentId', shared.getInvestmentDetails)
-router.param('companyId', shared.getCompanyDetails)
-
-router.get('/:investmentId', redirectToFirstNavItem)
-router.get('/:investmentId/details', details.detailsGetHandler)
+router.get(
+  '/:opportunityId/details',
+  setInvestmentTabItems,
+  renderOpportunitiesView
+)
 
 module.exports = router

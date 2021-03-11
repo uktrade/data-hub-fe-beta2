@@ -1,0 +1,10 @@
+{% extends "_layouts/collection.njk" %}
+
+{% block content %}
+
+  {% component 'react-slot', {
+    id: 'opportunities',
+    props: props
+  } %}
+
+{% endblock %}
