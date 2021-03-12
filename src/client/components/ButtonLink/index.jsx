@@ -12,6 +12,7 @@ const ButtonLink = styled(Button).attrs((props) => props)`
     color: ${LINK_COLOUR};
     cursor: pointer;
     text-decoration: underline;
+    ${(props) => props.float && `float: ${props.float};`}
     ${(props) =>
       props.inline &&
       `
