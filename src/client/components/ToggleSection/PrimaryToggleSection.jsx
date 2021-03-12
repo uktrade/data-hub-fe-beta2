@@ -66,12 +66,30 @@ const BadgeContainer = styled('span')`
   margin-left: ${SPACING.SCALE_1};
 `
 
+const StyledLabel = styled('label')`
+  display: inline-table;
+  background: transparent;
+  border: none;
+  font-size: 19px;
+  float: right;
+  margin: 5px;
+  color: red;
+`
+
+const renderRequiredFields = (requiredFieldFlag, fieldCount) => {
+  if (requiredFieldFlag) {
+    return <StyledLabel>{fieldCount} fields required</StyledLabel>
+  }
+}
+
 const PrimaryToggleSection = ({
   label,
   badge = null,
   open,
   isOpen = false,
   children,
+  showRequiredField = false,
+  fieldCount = 0,
   ...props
 }) => (
   <ToggleContainer {...props}>
@@ -85,6 +103,7 @@ const PrimaryToggleSection = ({
           {label}
         </ButtonContent>
       </StyledButton>
+      {renderRequiredFields(showRequiredField, fieldCount)}
       {badge && <BadgeContainer>{badge}</BadgeContainer>}
     </StyledHeader>
     <StyledContent isOpen={isOpen}>{children}</StyledContent>
