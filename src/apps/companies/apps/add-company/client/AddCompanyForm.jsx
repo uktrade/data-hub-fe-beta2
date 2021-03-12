@@ -27,6 +27,7 @@ function AddCompanyForm({
   organisationTypes,
   regions,
   sectors,
+  features,
 }) {
   const optionCountryUK = countries.find(({ value }) => value === ISO_CODE.UK)
   const overseasCountries = countries.filter(
@@ -125,6 +126,7 @@ function AddCompanyForm({
               <CompanyNotFoundStep
                 organisationTypes={organisationTypes}
                 country={country}
+                features={features}
               />
             )}
             {values.cannotFind && (

@@ -55,7 +55,7 @@ const nameValidator = (value) => {
     ? 'Enter a valid name'
     : null
 }
-function CompanyNotFoundStep({ organisationTypes, country }) {
+function CompanyNotFoundStep({ organisationTypes, country, features }) {
   return (
     <Step name="unhappy">
       <Details summary="Why am I seeing this?">
@@ -99,6 +99,7 @@ function CompanyNotFoundStep({ organisationTypes, country }) {
           name: country.label,
         }}
         apiEndpoint="/api/postcodelookup"
+        features={features}
       />
     </Step>
   )

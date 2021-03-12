@@ -37,6 +37,7 @@ const FieldAddress = ({
   country,
   apiEndpoint,
   onSelectUKAddress,
+  features,
 }) => {
   const findAddress = usePostcodeLookup(apiEndpoint)
   const {
@@ -99,6 +100,19 @@ const FieldAddress = ({
 
     if (onSelectUKAddress) {
       onSelectUKAddress(address)
+    }
+  }
+
+  const renderUsStateField = () => {
+    if (isUS && features.addressStateField) {
+      return (
+        <FieldSelect
+          type="text"
+          name="state"
+          label="State"
+          options={usStates}
+        />
+      )
     }
   }
 
@@ -170,14 +184,7 @@ const FieldAddress = ({
         label="Town or city"
         required="Enter town or city"
       />
-      {isUS && (
-        <FieldSelect
-          type="text"
-          name="state"
-          label="State"
-          options={usStates}
-        />
-      )}
+      {renderUsStateField()}
       <FieldInput type="text" name="county" label="County (optional)" />
       <FieldUneditable name="country" label="Country">
         {country.name}
