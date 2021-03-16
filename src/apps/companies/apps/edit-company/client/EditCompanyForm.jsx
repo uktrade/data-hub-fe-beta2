@@ -24,6 +24,7 @@ function EditCompanyForm({
   headquarterTypes,
   oneListEmail,
   isOnOneList,
+  features,
 }) {
   async function onSubmit(values, isPristine) {
     if (isPristine) {
@@ -70,6 +71,7 @@ function EditCompanyForm({
               oneListEmail={oneListEmail}
               sectors={sectors}
               turnoverRanges={turnoverRanges}
+              features={features}
             />
           )}
 

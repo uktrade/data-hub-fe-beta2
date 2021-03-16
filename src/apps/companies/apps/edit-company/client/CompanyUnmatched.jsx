@@ -18,9 +18,10 @@ const CompanyUnmatched = ({
   isOnOneList,
   turnoverRanges,
   employeeRanges,
+  features,
 }) => (
   <>
-    <CommonFields company={company} regions={regions} />
+    <CommonFields company={company} regions={regions} features={features} />
 
     <FieldRadios
       label="Annual turnover (optional)"

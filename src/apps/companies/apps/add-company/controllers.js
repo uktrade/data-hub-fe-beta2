@@ -26,7 +26,7 @@ async function renderAddCompanyForm(req, res, next) {
       getOptions(req, 'sector'),
     ])
 
-    const features = res.locals.features
+    // const features = res.locals.features
 
     res
       .breadcrumb('Add company')
@@ -36,7 +36,6 @@ async function renderAddCompanyForm(req, res, next) {
           organisationTypes,
           regions,
           sectors,
-          features,
         },
       })
   } catch (error) {

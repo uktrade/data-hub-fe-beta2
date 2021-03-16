@@ -14,7 +14,7 @@ import { export_segments, export_sub_segments } from './constants'
 const websiteValidator = (value) =>
   value && !WEBSITE_REGEX.test(value) ? 'Enter a valid website URL' : null
 
-const CommonFields = ({ company, regions }) => (
+const CommonFields = ({ company, regions, features }) => (
   <>
     <FieldInput
       label="Trading name (optional)"
@@ -61,6 +61,7 @@ const CommonFields = ({ company, regions }) => (
           address, please add a new company record to Data Hub."
       country={company?.address?.country ?? {}}
       apiEndpoint="/api/postcodelookup"
+      features={features}
     />
 
     {company.registered_address && (

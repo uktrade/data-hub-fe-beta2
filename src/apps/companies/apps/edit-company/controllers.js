@@ -30,6 +30,8 @@ async function renderEditCompanyForm(req, res, next) {
       getHeadquarterOptions(req),
     ])
 
+    const features = res.locals.features
+
     res
       .breadcrumb(company.name, urls.companies.detail(company.id))
       .breadcrumb(
@@ -49,6 +51,7 @@ async function renderEditCompanyForm(req, res, next) {
           regions,
           sectors,
           headquarterTypes,
+          features,
         },
       })
   } catch (error) {
