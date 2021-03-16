@@ -106,12 +106,7 @@ const FieldAddress = ({
   const renderUsStateField = () => {
     if (isUS && features.addressStateField) {
       return (
-        <FieldSelect
-          type="text"
-          name="state"
-          label="State"
-          options={usStates}
-        />
+        <FieldSelect type="text" name="area" label="State" options={usStates} />
       )
     }
   }
