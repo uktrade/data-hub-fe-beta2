@@ -2,33 +2,44 @@ import React from 'react'
 
 import TabNav from '../../../../client/components/TabNav'
 import ToggleSection from '../../../../client/components/ToggleSection'
-import SummaryList from '../../../../client/components/SummaryList'
-import ButtonLink from '../../../../client/components/ButtonLink'
+import SummaryTable from '../../../../client/components/SummaryTable'
 
-const rows = [
-  { label: 'Some Label 1', value: 'Example Ltd' },
-  { label: 'Some Label 2', value: 'Incomplete' },
+import styled from 'styled-components'
+import { HIGHLIGHT_COLOUR } from 'govuk-colours'
+import Link from '@govuk-react/link'
+
+const StyledSpan = styled('span')`
+  background: ${HIGHLIGHT_COLOUR};
+`
+
+const detailsRows = [
+  { label: 'Opportunity description', value: 'Example Ltd' },
+  { label: 'UK location', value: 'Incomplete' },
+  { label: 'Promoters', value: 'Incomplete' },
+  {
+    label: 'Has this opportunity cleared the required checks?',
+    value: 'Incomplete',
+  },
+  { label: 'Lead DIT relationship manager', value: 'Incomplete' },
+  { label: 'Asset classes', value: 'Incomplete' },
+  { label: 'Value', value: 'Incomplete' },
+  { label: 'Construction risk', value: 'Incomplete' },
 ]
 
-class WipButton extends React.Component {
-  onButtonPress = () => {
-    this.setState({
-      isOpen: true,
-    })
-  }
+const requirementsRows = [
+  { label: 'Total investment sought', value: 'Example Ltd' },
+  { label: 'Investment secured so far', value: 'Secured Ltd' },
+  { label: 'Types of investment', value: 'Investment Ltd' },
+  { label: 'Estimated return rate', value: 'Rate Ltd' },
+  { label: 'Timescales', value: 'Timescales Ltd' },
+]
 
-  render() {
-    return (
-      <ButtonLink onClick={this.onButtonPress} float="right">
-        Open All
-      </ButtonLink>
-    )
-  }
+const incompleteRowsCount = (rows) => {
+  return rows.filter(({ value }) => value === 'Incomplete').length
 }
 
 const Opportunities = () => (
   <>
-    <WipButton />
     <TabNav
       id="TabNav"
       label="Dashboard"
@@ -41,24 +52,59 @@ const Opportunities = () => (
               <ToggleSection
                 label="Opportunity details"
                 id="toggle_details"
-                fieldCount={rows.length}
+                fieldCount={incompleteRowsCount(detailsRows)}
                 showRequiredField={true}
               >
-                <SummaryList rows={rows} />
+                <SummaryTable
+                  actions={
+                    <Link key="details" href="https://example.com">
+                      Edit
+                    </Link>
+                  }
+                >
+                  {detailsRows.map(({ label, value }) => (
+                    <SummaryTable.Row key={label} heading={label}>
+                      {value}
+                    </SummaryTable.Row>
+                  ))}
+                </SummaryTable>
               </ToggleSection>
               <ToggleSection
                 label="Opportunity requirements"
                 id="toggle_requirements"
-                fieldCount={rows.length}
+                fieldCount={incompleteRowsCount(requirementsRows)}
                 showRequiredField={true}
               >
-                <SummaryList rows={rows} />
+                <SummaryTable
+                  actions={
+                    <Link key="requirements" href="https://example.com">
+                      Edit
+                    </Link>
+                  }
+                >
+                  {requirementsRows.map(({ label, value }) => (
+                    <SummaryTable.Row key={label} heading={label}>
+                      {value}
+                    </SummaryTable.Row>
+                  ))}
+                </SummaryTable>
               </ToggleSection>
             </>
           ),
         },
       }}
     />
+    &nbsp;
+    <ToggleSection
+      label="Need to delete this opportunity?"
+      id="toggle_delete"
+      isStatic={true}
+    >
+      <StyledSpan>
+        To delete this opportunity, email{' '}
+        <Link>capitalinvestment@trade.gov.uk</Link>
+      </StyledSpan>
+    </ToggleSection>
   </>
 )
 
