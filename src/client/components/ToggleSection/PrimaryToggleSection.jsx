@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { BLUE, GREY_3, RED } from 'govuk-colours'
+import { BLUE, GREY_3, RED, GREEN } from 'govuk-colours'
 import { FONT_SIZE, FONT_WEIGHTS, SPACING } from '@govuk-react/constants'
 
 import icon from './assets/caret.svg'
@@ -35,7 +35,7 @@ const StyledButton = styled('button')`
     align-items: center;
     background: transparent;
     border: none;
-    font-size: ${FONT_SIZE.SIZE_19};
+    font-size: ${({ isStatic }) => (isStatic ? `${FONT_SIZE.SIZE_14}` : `${FONT_SIZE.SIZE_19}`)};
     color: ${BLUE};
     cursor: pointer;
     font-weight: ${FONT_WEIGHTS.regular};
@@ -73,12 +73,15 @@ const StyledLabel = styled('label')`
   font-size: 19px;
   float: right;
   margin: 5px;
-  color: red;
+  color: ${(props) => props.color};
 `
 
 const renderRequiredFields = (requiredFieldFlag, fieldCount) => {
   if (requiredFieldFlag) {
-    return <StyledLabel>{fieldCount} fields required</StyledLabel>
+    if (fieldCount == 0) {
+      return <StyledLabel color={GREEN}>Completed</StyledLabel>
+    }
+    return <StyledLabel color={RED}>{fieldCount} fields required</StyledLabel>
   }
 }
 
@@ -90,6 +93,7 @@ const PrimaryToggleSection = ({
   children,
   showRequiredField = false,
   fieldCount = 0,
+  isStatic = false,
   ...props
 }) => (
   <ToggleContainer {...props}>
