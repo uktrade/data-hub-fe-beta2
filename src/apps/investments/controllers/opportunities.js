@@ -1,4 +1,4 @@
-const renderOpportunitiesView = async (req, res, next) => {
+const renderOpportunitiesView = (req, res, next) => {
   try {
     res
       .breadcrumb('UK Opportunities')

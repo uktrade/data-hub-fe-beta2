@@ -12,6 +12,8 @@ const StyledSpan = styled('span')`
   background: ${HIGHLIGHT_COLOUR};
 `
 
+// This is dummy data that will be removed once we hook up the API.
+// Data structure will most likely change.
 const detailsRows = [
   { label: 'Opportunity description', value: 'Example Ltd' },
   { label: 'UK location', value: 'Incomplete' },
@@ -26,6 +28,8 @@ const detailsRows = [
   { label: 'Construction risk', value: 'Incomplete' },
 ]
 
+// This is dummy data that will be removed once we hook up the API.
+// Data structure will most likely change.
 const requirementsRows = [
   { label: 'Total investment sought', value: 'Example Ltd' },
   { label: 'Investment secured so far', value: 'Secured Ltd' },
@@ -41,7 +45,7 @@ const incompleteRowsCount = (rows) => {
 const Opportunities = () => (
   <>
     <TabNav
-      id="TabNav"
+      id="Opportunity.tabnav"
       label="Dashboard"
       selectedIndex={'details'}
       tabs={{
@@ -51,7 +55,7 @@ const Opportunities = () => (
             <>
               <ToggleSection
                 label="Opportunity details"
-                id="toggle_details"
+                id="Opportunity.details.toggle"
                 fieldCount={incompleteRowsCount(detailsRows)}
                 showRequiredField={true}
               >
@@ -71,7 +75,7 @@ const Opportunities = () => (
               </ToggleSection>
               <ToggleSection
                 label="Opportunity requirements"
-                id="toggle_requirements"
+                id="Opportunity.requirements.toggle"
                 fieldCount={incompleteRowsCount(requirementsRows)}
                 showRequiredField={true}
               >
@@ -94,7 +98,6 @@ const Opportunities = () => (
         },
       }}
     />
-    &nbsp;
     <ToggleSection
       label="Need to delete this opportunity?"
       id="toggle_delete"
