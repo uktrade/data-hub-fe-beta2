@@ -5,11 +5,23 @@ import ToggleSection from '../../../../client/components/ToggleSection'
 import SummaryTable from '../../../../client/components/SummaryTable'
 
 import styled from 'styled-components'
-import { HIGHLIGHT_COLOUR } from 'govuk-colours'
+import { HIGHLIGHT_COLOUR, RED, GREEN } from 'govuk-colours'
 import Link from '@govuk-react/link'
+
+import { VARIANTS } from '../../../../common/constants'
 
 const StyledSpan = styled('span')`
   background: ${HIGHLIGHT_COLOUR};
+`
+
+const StyledLabel = styled('label')`
+  display: inline-table;
+  background: transparent;
+  border: none;
+  font-size: 19px;
+  float: right;
+  margin: 5px;
+  color: ${(props) => props.color};
 `
 
 // This is dummy data that will be removed once we hook up the API.
@@ -42,6 +54,13 @@ const incompleteRowsCount = (rows) => {
   return rows.filter(({ value }) => value === 'Incomplete').length
 }
 
+const renderRequiredFields = (fieldCount) => {
+  if (fieldCount == 0) {
+    return <StyledLabel color={GREEN}>Completed</StyledLabel>
+  }
+  return <StyledLabel color={RED}>{fieldCount} fields required</StyledLabel>
+}
+
 const Opportunities = () => (
   <>
     <TabNav
@@ -53,11 +72,11 @@ const Opportunities = () => (
           label: 'Details',
           content: (
             <>
+              {renderRequiredFields(incompleteRowsCount(detailsRows))}
               <ToggleSection
+                variant={VARIANTS.SECONDARY}
                 label="Opportunity details"
                 id="Opportunity.details.toggle"
-                fieldCount={incompleteRowsCount(detailsRows)}
-                showRequiredField={true}
               >
                 <SummaryTable
                   actions={
@@ -73,11 +92,11 @@ const Opportunities = () => (
                   ))}
                 </SummaryTable>
               </ToggleSection>
+              {renderRequiredFields(incompleteRowsCount(requirementsRows))}
               <ToggleSection
+                variant={VARIANTS.SECONDARY}
                 label="Opportunity requirements"
                 id="Opportunity.requirements.toggle"
-                fieldCount={incompleteRowsCount(requirementsRows)}
-                showRequiredField={true}
               >
                 <SummaryTable
                   actions={
@@ -99,9 +118,9 @@ const Opportunities = () => (
       }}
     />
     <ToggleSection
+      variant={VARIANTS.SECONDARY}
       label="Need to delete this opportunity?"
       id="toggle_delete"
-      isStatic={true}
     >
       <StyledSpan>
         To delete this opportunity, email{' '}
