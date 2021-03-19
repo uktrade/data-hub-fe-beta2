@@ -76,7 +76,7 @@ const Opportunities = () => (
               <ToggleSection
                 variant={VARIANTS.SECONDARY}
                 label="Opportunity details"
-                id="Opportunity.details.toggle"
+                id="opportunity_details_toggle"
               >
                 <SummaryTable
                   actions={
@@ -96,7 +96,7 @@ const Opportunities = () => (
               <ToggleSection
                 variant={VARIANTS.SECONDARY}
                 label="Opportunity requirements"
-                id="Opportunity.requirements.toggle"
+                id="opportunity_requirements_toggle"
               >
                 <SummaryTable
                   actions={
@@ -120,7 +120,7 @@ const Opportunities = () => (
     <ToggleSection
       variant={VARIANTS.SECONDARY}
       label="Need to delete this opportunity?"
-      id="toggle_delete"
+      id="opportunity_delete_toggle"
     >
       <StyledSpan>
         To delete this opportunity, email{' '}
