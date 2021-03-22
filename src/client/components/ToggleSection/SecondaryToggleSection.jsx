@@ -72,6 +72,7 @@ const SecondaryToggleSection = ({
         data-test="toggle-section-button"
         onClick={() => open(!isOpen)}
         isOpen={isOpen}
+        {...props}
       >
         <ButtonContent data-test="toggle-section-button-content">
           {label}

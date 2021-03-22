@@ -3,6 +3,7 @@ import React from 'react'
 import TabNav from '../../../../client/components/TabNav'
 import ToggleSection from '../../../../client/components/ToggleSection'
 import SummaryTable from '../../../../client/components/SummaryTable'
+import { FONT_SIZE, SPACING } from '@govuk-react/constants'
 
 import styled from 'styled-components'
 import { HIGHLIGHT_COLOUR, RED, GREEN } from 'govuk-colours'
@@ -12,6 +13,11 @@ import { VARIANTS } from '../../../../common/constants'
 
 const StyledSpan = styled('span')`
   background: ${HIGHLIGHT_COLOUR};
+`
+
+const StyledToggle = styled(ToggleSection)`
+  font-size: ${FONT_SIZE.SIZE_14};
+  margin-top: ${SPACING.SCALE_4};
 `
 
 const StyledLabel = styled('label')`
@@ -117,16 +123,17 @@ const Opportunities = () => (
         },
       }}
     />
-    <ToggleSection
+    <StyledToggle
       variant={VARIANTS.SECONDARY}
       label="Need to delete this opportunity?"
       id="opportunity_delete_toggle"
+      fontSize={FONT_SIZE.SIZE_14}
     >
       <StyledSpan>
         To delete this opportunity, email{' '}
         <Link>capitalinvestment@trade.gov.uk</Link>
       </StyledSpan>
-    </ToggleSection>
+    </StyledToggle>
   </>
 )
 
