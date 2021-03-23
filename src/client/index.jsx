@@ -90,6 +90,9 @@ import * as dnbCheck from '../apps/companies/apps/business-details/client/tasks'
 import { TASK_GET_PROFILES_LIST } from '../apps/investments/client/profiles/state'
 import * as investmentProfilesTasks from '../apps/investments/client/profiles/tasks'
 
+import { TASK_GET_OPPORTUNITY_DETAILS } from '../apps/investments/client/opportunities/state'
+import * as investmentOpportunitiesTasks from '../apps/investments/client/opportunities/tasks'
+
 import {
   TASK_GET_PROJECTS_LIST,
   TASK_GET_ADVISER_NAME,
@@ -162,6 +165,8 @@ function App() {
         [TASK_OPEN_CONTACT_FORM]: addInteractionFormTasks.openContactForm,
         [TASK_UPDATE_STAGE]: investmentAdminTasks.updateProjectStage,
         [TASK_UPDATE_ADVISER]: manageAdviser.updateAdviser,
+        [TASK_GET_OPPORTUNITY_DETAILS]:
+          investmentOpportunitiesTasks.getOpportunityDetail,
         [DNB__CHECK_PENDING_REQUEST]: dnbCheck.checkIfPendingRequest,
         [TASK_GET_PROFILES_LIST]:
           investmentProfilesTasks.getLargeCapitalProfiles,
