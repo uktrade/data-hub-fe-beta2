@@ -27,7 +27,7 @@ storiesOf('ValidatedForm')
         textareaField: (v) => v || Error('Must not be empty'),
         radioField: (v) => v === 'invalid' && Error('Must be a valid choice'),
       }}
-      onSubmit={submitToAlert}
+      onValidSubmit={submitToAlert}
     >
       {(field) => (
         <>
@@ -54,6 +54,7 @@ storiesOf('ValidatedForm')
           />
           <Radios
             {...field('radioField')}
+            id="foo.radioField"
             label="Radio field"
             defaultValue="bar"
             options={{
@@ -77,7 +78,7 @@ storiesOf('ValidatedForm')
         baz: (v, { bar }) =>
           bar === 'bar' && (v?.length === 3 || Error('Must be 3 characters')),
       }}
-      onSubmit={submitToAlert}
+      onValidSubmit={submitToAlert}
     >
       {(field) => (
         <>

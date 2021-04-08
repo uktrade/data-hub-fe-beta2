@@ -11,6 +11,7 @@ import {
 import { FormActions } from '../..'
 import SecondaryButton from '../../SecondaryButton'
 import multiInstance from '../../../utils/multiinstance'
+import { FormActions } from '../..'
 
 import reducer from './reducer'
 
@@ -38,11 +39,16 @@ const ValidatedForm = ({
   const allErrors = { ...defaultErrors, ...errors }
   const ref = useRef()
 
+  const focusErrorSummary = () =>
+    ref.current.querySelector('[data-error-summary')?.focus()
+
   useEffect(() => {
-    submitted &&
-      !_.isEmpty(errors) &&
-      ref.current.querySelector('[data-error-summary')?.focus()
+    submitted && !_.isEmpty(errors) && focusErrorSummary()
   }, [submitted, errors])
+
+  useEffect(() => {
+    !_.isEmpty(defaultErrors) && focusErrorSummary()
+  }, [defaultErrors])
 
   return (
     <StyledForm
@@ -68,8 +74,6 @@ const ValidatedForm = ({
         } else if (onValidSubmit) {
           onValidSubmit(e, formData)
         }
-
-        onSubmit(e)
       }}
     >
       {!!Object.keys(allErrors).length && (
