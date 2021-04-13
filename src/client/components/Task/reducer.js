@@ -1,4 +1,6 @@
 import _ from 'lodash'
+
+import deepOmit from '../../utils/deepOmit'
 import {
   TASK__PROGRESS,
   TASK__ERROR,
@@ -6,7 +8,7 @@ import {
   TASK__CANCEL,
 } from '../../actions'
 
-const setTaskState = (state, { name, id, ...action }, status) => {
+const setTaskState = (state, { name, id, ...action }, status, omitArgs) => {
   const currentTaskGroup = state[name] || {}
   const currentTask = currentTaskGroup[id]
   return {
@@ -14,7 +16,7 @@ const setTaskState = (state, { name, id, ...action }, status) => {
     [name]: {
       ...currentTaskGroup,
       [id]: {
-        ...currentTask,
+        ..._.omit(currentTask, omitArgs),
         ...action,
         status,
       },
@@ -24,18 +26,20 @@ const setTaskState = (state, { name, id, ...action }, status) => {
 
 const remove = (state, { name, id }) => {
   const taskState = state[name]
+
   return taskState
-    ? _.omit(
-        state,
-        _.isEqual(_.keys(taskState), [name]) ? name : `${name}.${id}`
-      )
+    ? deepOmit(state, [
+        name,
+        // If this is the last task in the group, remove the whole group
+        ...(Object.keys(taskState).length === 1 ? [] : [id]),
+      ])
     : state
 }
 
 export default (state = {}, { type, ...action }) => {
   switch (type) {
     case TASK__PROGRESS:
-      return setTaskState(state, action, 'progress')
+      return setTaskState(state, action, 'progress', 'errorMessage')
     case TASK__ERROR:
       return setTaskState(state, action, 'error')
     case TASK__CANCEL:
