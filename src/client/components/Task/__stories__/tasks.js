@@ -10,16 +10,25 @@ export default {
     ),
   'Dummy form task': ({
     resolveOrReject,
-    rejectValue,
+    rejectWithFieldErrorsValue,
+    rejectWithErrorStringValue,
     resolveValue,
     delay = 1000,
   }) =>
     new Promise((resolve, reject) => {
-      const shouldReject = resolveOrReject === 'reject'
+      // TODO: Remove the rejectWithFieldErrors logic
+      const shouldReject = [
+        'rejectWithFieldErrors',
+        'rejectWithErrorString',
+      ].includes(resolveOrReject)
       setTimeout(
         shouldReject ? reject : resolve,
         delay,
-        shouldReject ? rejectValue : resolveValue
+        shouldReject
+          ? resolveOrReject === 'rejectWithErrorString'
+            ? rejectWithErrorStringValue
+            : rejectWithFieldErrorsValue
+          : resolveValue
       )
     }),
 }
