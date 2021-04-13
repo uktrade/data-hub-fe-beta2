@@ -31,7 +31,7 @@ const remove = (state, { name, id }) => {
     ? deepOmit(state, [
         name,
         // If this is the last task in the group, remove the whole group
-        ...(Object.keys(taskState).length === 1 ? [] : [id]),
+        ...(_.isEqual(Object.keys(taskState), [name]) ? [] : [id]),
       ])
     : state
 }
