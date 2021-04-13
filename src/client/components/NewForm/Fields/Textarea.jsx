@@ -6,3 +6,5 @@ export default ({ label, labelProps, error, ...props }) => (
     {label}
   </Textarea>
 )
+
+// TODO: Add propTypes

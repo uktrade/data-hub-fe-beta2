@@ -96,10 +96,12 @@ import CreateUKInvestmentOpportunity from './components/CreateUKInvestmentOpport
 
 import RoutedInput from './components/RoutedInput'
 
-import ValidatedForm from './components/Form/Validated'
 import TaskForm from './components/Task/Form'
 
-import RadiosField from './components/Form/Fields/Radios'
+import RadiosField from './components/NewForm/Fields/Radios'
+import SelectField from './components/NewForm/Fields/Select'
+
+import MultiStepForm from './components/NewForm/MultiStep'
 
 const sagaMiddleware = createSagaMiddleware()
 const history = createBrowserHistory({
@@ -138,9 +140,10 @@ const store = createStore(
     ...ToggleSection.reducerSpread,
     ...RoutedInput.reducerSpread,
     ...CreateUKInvestmentOpportunity.reducerSpread,
-    ...ValidatedForm.reducerSpread,
     ...RadiosField.reducerSpread,
+    ...SelectField.reducerSpread,
     ...TaskForm.reducerSpread,
+    ...MultiStepForm.reducerSpread,
     // A reducer is required to be able to set a preloadedState parameter
     referrerUrl: (state = {}) => state,
     [INVESTEMENT_PROJECT_ADMIN_ID]: investmentProjectAdminReducer,

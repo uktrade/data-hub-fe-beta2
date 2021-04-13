@@ -16,11 +16,12 @@ const StyledSubOption = styled.div({
 const Radios = ({
   error,
   options,
-  value,
   defaultValue,
   name,
   onChange,
   setValue,
+  // State props
+  value,
   ...props
 }) => (
   <MultiChoice {...props} meta={{ touched: true, error }}>
@@ -42,6 +43,8 @@ const Radios = ({
     ))}
   </MultiChoice>
 )
+
+// TODO: Add propTypes
 
 export default multiInstance({
   name: 'RadiosField',
