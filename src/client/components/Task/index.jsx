@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import { TASK__START, TASK__DISMISS_ERROR, TASK__CANCEL } from '../../actions'
 import Err from './Error'
 import ProgressIndicator from '../ProgressIndicator'
+import FocusMe from '../FocusMe'
 
 const nameIdPropTypes = {
   name: PropTypes.string.isRequired,
@@ -136,7 +137,7 @@ const Task = connect(
     return {
       ...taskState,
       progress: taskState.status === 'progress',
-      // FIXME: Rename errorMessages to error
+      // FIXME: Rename errorMessages to error, because it doesn't need to be just a string
       error: taskState.errorMessage,
       start: (options) => start(name, id, options),
       cancel: () => cancel(name, id),
@@ -240,12 +241,15 @@ Task.Status = ({
           )}
           {progress && renderProgress({ message: progressMessage })}
           {error && (
-            <RenderError
-              noun={noun}
-              errorMessage={errorMessage}
-              retry={() => start({ payload, onSuccessDispatch })}
-              dismissError={dismissError}
-            />
+            <FocusMe when={true}>
+              <RenderError
+                tabIndex={0}
+                noun={noun}
+                errorMessage={errorMessage}
+                retry={() => start({ payload, onSuccessDispatch })}
+                dismissError={dismissError}
+              />
+            </FocusMe>
           )}
           {!status && children()}
         </>
