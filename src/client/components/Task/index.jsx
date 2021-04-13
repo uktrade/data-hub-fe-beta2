@@ -7,7 +7,6 @@ import { get } from 'lodash'
 import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import LoadingBox from '@govuk-react/loading-box'
 
 import { TASK__START, TASK__DISMISS_ERROR, TASK__CANCEL } from '../../actions'
 import Err from './Error'
@@ -263,23 +262,5 @@ Task.Status.propTypes = {
   renderProgress: PropTypes.elementType,
   renderError: PropTypes.elementType,
 }
-
-Task.LoadingBox = ({ name, id, children }) => (
-  <Task>
-    {(getTask) => {
-      const task = getTask(name, id)
-      return (
-        <div>
-          <LoadingBox loading={task.progress || task.error}>
-            {children}
-          </LoadingBox>
-          <div style={{ display: 'flex' }}>
-            <Task.Status name={name} id={id} />
-          </div>
-        </div>
-      )
-    }}
-  </Task>
-)
 
 export default Task

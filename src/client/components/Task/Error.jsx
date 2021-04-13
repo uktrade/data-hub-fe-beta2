@@ -55,7 +55,12 @@ const Err = ({
 }) => (
   <StyledRoot {...props}>
     <H2 size="MEDIUM">{headline}</H2>
-    <p>Error: {errorMessage}</p>
+    <p>
+      Error:{' '}
+      {typeof errorMessage === 'string'
+        ? errorMessage
+        : JSON.stringify(errorMessage)}
+    </p>
     <StyledButtonGroup>
       <StyledSecondaryButton onClick={retry}>Retry</StyledSecondaryButton>
       <StyledSecondaryButton onClick={dismissError}>

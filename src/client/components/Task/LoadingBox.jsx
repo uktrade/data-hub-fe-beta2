@@ -30,21 +30,35 @@ const StyledErrorOverlay = styled.div({
  * @param {Object} props
  * @param {string} props.name - The _task_ name
  * @param {string} props.id - The _task_ id
- * @param {any} props.when - The overlay will also be rendered if this prop is
- * truthy.
+ * @param {any} [props.renderErrorUnless] - If truthy the error state won't be
+ * rendered
+ * @param {any} [props.alsoRenderOverlayIf] - If truthy, the overlay will also
+ * be rendered on states other than _loading_.
  * @example
- * <TaskLoadingBox name="dummy-task" id="foo" when={taskSucceeded}>
+ * <TaskLoadingBox
+ *    name="dummy-task"
+ *    id="foo"
+ *    alsoRenderOverlayIf={taskSucceeded}
+ *    renderErrorUnless={dontShowErrorForSomeReason}
+ * >
  *   contents
  * </TaskLoadingBox>
  */
-export default ({ name, id, when, children, ...props }) => (
+export default ({
+  name,
+  id,
+  alsoRenderOverlayIf,
+  renderErrorUnless,
+  children,
+  ...props
+}) => (
   <Task>
     {(t) => {
       const task = t(name, id)
       return (
-        <LoadingBox loading={task.progress || when}>
+        <LoadingBox loading={task.progress || alsoRenderOverlayIf}>
           <StyledContentWrapper>
-            {task.error ? (
+            {!renderErrorUnless && task.error ? (
               <>
                 {children}
                 <StyledErrorOverlay>
