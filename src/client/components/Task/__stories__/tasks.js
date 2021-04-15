@@ -8,27 +8,8 @@ export default {
         payload.reject || payload
       )
     ),
-  'Dummy form task': ({
-    resolveOrReject,
-    rejectWithFieldErrorsValue,
-    rejectWithErrorStringValue,
-    resolveValue,
-    delay = 1000,
-  }) =>
-    new Promise((resolve, reject) => {
-      // TODO: Remove the rejectWithFieldErrors logic
-      const shouldReject = [
-        'rejectWithFieldErrors',
-        'rejectWithErrorString',
-      ].includes(resolveOrReject)
-      setTimeout(
-        shouldReject ? reject : resolve,
-        delay,
-        shouldReject
-          ? resolveOrReject === 'rejectWithErrorString'
-            ? rejectWithErrorStringValue
-            : rejectWithFieldErrorsValue
-          : resolveValue
-      )
-    }),
+  'Dummy form task': ({ resolveOrReject, value, delay = 1000 }) =>
+    new Promise((resolve, reject) =>
+      setTimeout(resolveOrReject === 'reject' ? reject : resolve, delay, value)
+    ),
 }

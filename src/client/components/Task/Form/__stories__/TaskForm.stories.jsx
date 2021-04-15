@@ -2,95 +2,195 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import TaskForm from '..'
-import Input from '../../../NewForm/Fields/Input'
-import Radios from '../../../NewForm/Fields/Radios'
-import Select from '../../../NewForm/Fields/Select'
-import Textarea from '../../../NewForm/Fields/Textarea'
+import Input from '../../../ValidatedForm/Fields/Input'
+import Radios from '../../../ValidatedForm/Fields/Radios'
 
-storiesOf('Task/Form', module).add('TaskFormAlt multi step', () => (
-  <TaskForm
-    name="Dummy form task"
-    id="TaskFormAlt-multi-step-example"
-    taskErrorToErrors={(e) => e}
-    // onSuccessDispatch="DUMMY_FORM_TASK_SUCCESS"
-    // onSuccessRender={<h1>Form was submitted successfully</h1>}
-    onSuccess={(result) => alert(`Success:\n${JSON.stringify(result)}`)}
-    valuesToPayload={({ rejectWithFieldErrorsValue, delay, ...values }) => ({
-      ...values,
-      rejectWithFieldErrorsValue:
-        rejectWithFieldErrorsValue && JSON.parse(rejectWithFieldErrorsValue),
-      delay: parseInt(delay, 10),
-    })}
-    validators={{
-      foo: (v) => v?.length > 3 || Error('Foo must be at least 4 characters'),
-      bar: (v) =>
-        v === 'invalid' && Error('Bar must not be the "invalid" option'),
-      delay: (v) =>
-        isNaN(parseInt(v, 10)) && Error('Delay must be a valid number'),
-      resolveOrReject: (v) => v || Error('Choose success or error'),
-      resolveValue: () => {},
-      rejectWithErrorStringValue: () => {},
-    }}
-  >
-    {[
-      (field) => (
-        <>
+const mustBeInteger = (x) => x?.match(/^\d+$/) || Error('Must be an integer')
+
+const mustChooseOne = (x) => x || Error('Choose one option')
+
+const mustBeLongerThan = (n) => (x) =>
+  x?.length > n || Error(`Value must be at least ${n + 1} characters`)
+
+const VALIDATORS = {
+  resolveOrReject: mustChooseOne,
+  value: mustBeLongerThan(2),
+  delay: mustBeInteger,
+}
+
+storiesOf('Task/Form', module)
+  .add('Render success message', () => {
+    const id = 'Task/Form-example'
+    return (
+      <>
+        <p>
+          Example of a TaskForm which renders a success message when the task
+          resolves.
+        </p>
+        <TaskForm
+          name="Dummy form task"
+          id={id}
+          taskErrorToErrors={(e) => e}
+          validators={VALIDATORS}
+          resultToSuccessMessage={({ result }) =>
+            `The task resolved with the value "${result}"`
+          }
+        >
+          {(field) => (
+            <>
+              <Radios
+                label="Should the task resolve or reject?"
+                id={`${id}.resolveOrReject`}
+                hint={['name="resolveOrReject"']}
+                options={{
+                  Resolve: { value: 'resolve' },
+                  Reject: { value: 'reject' },
+                }}
+                {...field('resolveOrReject')}
+              />
+              <Input
+                defaultValue="1000"
+                label="Task delay in milliseconds"
+                hint={['name="delay"']}
+                {...field('delay')}
+              />
+              <Input
+                label="The value to rejecte or resolve with"
+                hint={['name="value"']}
+                {...field('value')}
+              />
+            </>
+          )}
+        </TaskForm>
+      </>
+    )
+  })
+  .add('The onSuccessDispatch prop', () => {
+    const id = 'Task/Form.onSuccessDispatch-example'
+    const successActionType = 'FOOOOOO'
+    return (
+      <>
+        <p>
+          Example of a TaskForm which dispatches the "{successActionType}" when
+          the task resolves.
+        </p>
+        <TaskForm
+          name="Dummy form task"
+          id={id}
+          validators={VALIDATORS}
+          taskErrorToErrors={(e) => e}
+          onSuccessDispatch={successActionType}
+        >
+          {(field) => (
+            <>
+              <Radios
+                label="Should the task resolve or reject?"
+                id={`${id}.resolveOrReject`}
+                hint={['name="resolveOrReject"']}
+                options={{
+                  Resolve: { value: 'resolve' },
+                  Reject: { value: 'reject' },
+                }}
+                {...field('resolveOrReject')}
+              />
+              <Input
+                defaultValue="1000"
+                label="Task delay in milliseconds"
+                hint={['name="delay"']}
+                {...field('delay')}
+              />
+              <Input
+                label="The value to rejecte or resolve with"
+                hint={['name="value"']}
+                {...field('value')}
+              />
+            </>
+          )}
+        </TaskForm>
+      </>
+    )
+  })
+  .add('Three steps', () => {
+    const id = 'Task/Form.three-steps-example'
+    return (
+      <TaskForm name="Dummy form task" id={id} validators={VALIDATORS}>
+        {(field) => (
           <Radios
+            label="Should the task resolve or reject?"
+            id={`${id}.resolveOrReject`}
             hint={['name="resolveOrReject"']}
-            label="Should the task succeed or fail?"
-            id="TaskFormAlt.multi-step-example.resolveOrReject"
             options={{
-              Succeed: {
-                value: 'resolve',
-                inset: (
-                  <Textarea
-                    {...field('resolveValue')}
-                    label="Resolve value"
-                    defaultValue="Foo"
-                  />
-                ),
-              },
-              Reject: {
-                value: 'rejectWithErrorString',
-                inset: (
-                  <Textarea
-                    {...field('rejectWithErrorStringValue')}
-                    label="Reject value"
-                    defaultValue="Something went wrong"
-                  />
-                ),
-              },
+              Resolve: { value: 'resolve' },
+              Reject: { value: 'reject' },
             }}
             {...field('resolveOrReject')}
           />
+        )}
+        {(field) => (
           <Input
             defaultValue="1000"
             label="Task delay in milliseconds"
             hint={['name="delay"']}
             {...field('delay')}
           />
-        </>
-      ),
-      (field) => (
-        <>
+        )}
+        {(field) => (
           <Input
-            label="Foo"
-            hint={['name="foo"']}
-            defaultValue="fooooo"
-            {...field('foo')}
+            label="The value to rejecte or resolve with"
+            hint={['name="value"']}
+            {...field('value')}
           />
-          <Select
-            label="Bar"
-            hint={['name="bar"']}
-            options={{
-              Bar: 'bar',
-              Bing: 'bing',
-              Invalid: 'invalid',
-            }}
-            {...field('bar')}
-          />
-        </>
-      ),
-    ]}
-  </TaskForm>
-))
+        )}
+      </TaskForm>
+    )
+  })
+  .add('The onSuccessRender prop', () => {
+    const id = 'Task/Form.onSuccessRender-example'
+    return (
+      <>
+        <p>
+          Example of a TaskForm which renders the component passed to its
+          "onSuccessRender" prop, The component will be passed the resolved
+          value as a "result" prop.
+        </p>
+        <TaskForm
+          name="Dummy form task"
+          id={id}
+          validators={VALIDATORS}
+          taskErrorToErrors={(e) => e}
+          onSuccessRender={({ result }) => (
+            <>
+              <h1>Form was submitted successfully</h1>
+              <p>Task resolved with: "{result}"</p>
+            </>
+          )}
+        >
+          {(field) => (
+            <>
+              <Radios
+                label="Should the task resolve or reject?"
+                id={`${id}.resolveOrReject`}
+                hint={['name="resolveOrReject"']}
+                options={{
+                  Resolve: { value: 'resolve' },
+                  Reject: { value: 'reject' },
+                }}
+                {...field('resolveOrReject')}
+              />
+              <Input
+                defaultValue="1000"
+                label="Task delay in milliseconds"
+                hint={['name="delay"']}
+                {...field('delay')}
+              />
+              <Input
+                label="The value to rejecte or resolve with"
+                hint={['name="value"']}
+                {...field('value')}
+              />
+            </>
+          )}
+        </TaskForm>
+      </>
+    )
+  })

@@ -98,10 +98,10 @@ import RoutedInput from './components/RoutedInput'
 
 import TaskForm from './components/Task/Form'
 
-import RadiosField from './components/NewForm/Fields/Radios'
-import SelectField from './components/NewForm/Fields/Select'
+import RadiosField from './components/ValidatedForm/Fields/Radios'
+import SelectField from './components/ValidatedForm/Fields/Select'
 
-import MultiStepForm from './components/NewForm/MultiStep'
+import ValidatedForm from './components/ValidatedForm'
 
 const sagaMiddleware = createSagaMiddleware()
 const history = createBrowserHistory({
@@ -143,7 +143,7 @@ const store = createStore(
     ...RadiosField.reducerSpread,
     ...SelectField.reducerSpread,
     ...TaskForm.reducerSpread,
-    ...MultiStepForm.reducerSpread,
+    ...ValidatedForm.reducerSpread,
     // A reducer is required to be able to set a preloadedState parameter
     referrerUrl: (state = {}) => state,
     [INVESTEMENT_PROJECT_ADMIN_ID]: investmentProjectAdminReducer,

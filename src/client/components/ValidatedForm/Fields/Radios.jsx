@@ -21,7 +21,7 @@ const Radios = ({
   onChange,
   setValue,
   // State props
-  value,
+  value = defaultValue,
   ...props
 }) => (
   <MultiChoice {...props} meta={{ touched: true, error }}>
@@ -34,7 +34,7 @@ const Radios = ({
             onChange(e)
           }}
           value={v}
-          defaultChecked={v === defaultValue}
+          checked={v === value}
         >
           {label}
         </Radio>
