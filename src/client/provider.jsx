@@ -96,6 +96,10 @@ import CreateUKInvestmentOpportunity from './components/CreateUKInvestmentOpport
 
 import RoutedInput from './components/RoutedInput'
 
+import RadiosField from './components/ValidatedForm/Fields/Radios'
+import SelectField from './components/ValidatedForm/Fields/Select'
+import ValidatedForm from './components/ValidatedForm'
+
 const sagaMiddleware = createSagaMiddleware()
 const history = createBrowserHistory({
   // The baseURI is set to the <base/> tag by the spaFallbackSpread
@@ -133,6 +137,9 @@ const store = createStore(
     ...ToggleSection.reducerSpread,
     ...RoutedInput.reducerSpread,
     ...CreateUKInvestmentOpportunity.reducerSpread,
+    ...ValidatedForm.reducerSpread,
+    ...RadiosField.reducerSpread,
+    ...SelectField.reducerSpread,
     // A reducer is required to be able to set a preloadedState parameter
     referrerUrl: (state = {}) => state,
     [INVESTEMENT_PROJECT_ADMIN_ID]: investmentProjectAdminReducer,
