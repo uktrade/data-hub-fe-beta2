@@ -10,7 +10,7 @@ import Textarea from '../Fields/Textarea'
 
 const VALIDATORS = {
   inputField: (x) =>
-    x.length === 3 || Error('Must be exactly 3 characters long'),
+    x?.length === 3 || Error('Must be exactly 3 characters long'),
   textareaField: (x) =>
     x
       ? x.match(/\n/) || Error('Must be multiline')

@@ -75,9 +75,6 @@ export const ValidatedForm = ({
             ? {}
             : { defaultValue }
           : { defaultValue: accumulatedValues[name] }),
-        // This is here to identify all validated inputs when the form is submitted
-        // Not all inputs are available in the onSubmit event e.g. unchecked radios.
-        'data-validator-name': name,
       }
     }, errors)
   )
@@ -97,6 +94,7 @@ export const ValidatedForm = ({
   }
 
   const isLastStep = currentStep === steps.length - 1
+  const currentFieldNames = fieldNamesByStep[currentStep]
   const currentErrors = _.pick(errors, fieldNamesByStep[currentStep])
 
   return (
@@ -104,12 +102,20 @@ export const ValidatedForm = ({
       {...props}
       ref={ref}
       onSubmit={(e) => {
-        const allFields = Object.fromEntries(new FormData(e.target).entries())
-        const validatedFields = Object.fromEntries(
-          [...e.target.querySelectorAll('[data-validator-name]')].map((el) => [
-            el.dataset.validatorName,
-            e.target[el.dataset.validatorName].value,
-          ])
+        const allFields = [...new FormData(ref.current).entries()].reduce(
+          (a, [k, v]) => ({
+            ...a,
+            [k]: a[k] ? [...[].concat(a[k]), v] : v,
+          }),
+          {}
+        )
+
+        const validatedFields = currentFieldNames.reduce(
+          (a, k) => ({
+            ...a,
+            [k]: allFields[k],
+          }),
+          {}
         )
 
         const errors = Object.entries(validatedFields).reduce(
@@ -126,7 +132,7 @@ export const ValidatedForm = ({
         dispatch({
           type: VALIDATED_FORM__NEXT,
           errors,
-          values: allFields,
+          values: _.pick(allFields, currentFieldNames),
           okFields: _.difference(_.keys(allFields), _.keys(errors)),
           isLastStep,
         })
