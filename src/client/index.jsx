@@ -92,7 +92,11 @@ import * as dnbCheck from '../apps/companies/apps/business-details/client/tasks'
 import { TASK_GET_PROFILES_LIST } from '../apps/investments/client/profiles/state'
 import * as investmentProfilesTasks from '../apps/investments/client/profiles/tasks'
 
-import { TASK_GET_OPPORTUNITY_DETAILS } from '../apps/investments/client/opportunities/state'
+import {
+  TASK_GET_OPPORTUNITY_DETAILS,
+  TASK_GET_OPPORTUNITY_DETAILS_METADATA,
+  TASK_GET_OPPORTUNITY_REQUIREMENTS_METADATA,
+} from '../apps/investments/client/opportunities/state'
 import * as investmentOpportunitiesTasks from '../apps/investments/client/opportunities/tasks'
 
 import {
@@ -172,6 +176,10 @@ function App() {
         [TASK_UPDATE_ADVISER]: manageAdviser.updateAdviser,
         [TASK_GET_OPPORTUNITY_DETAILS]:
           investmentOpportunitiesTasks.getOpportunityDetail,
+        [TASK_GET_OPPORTUNITY_DETAILS_METADATA]:
+          investmentOpportunitiesTasks.getDetailsMetadata,
+        [TASK_GET_OPPORTUNITY_REQUIREMENTS_METADATA]:
+          investmentOpportunitiesTasks.getRequirementsMetadata,
         [DNB__CHECK_PENDING_REQUEST]: dnbCheck.checkIfPendingRequest,
         [TASK_GET_PROFILES_LIST]:
           investmentProfilesTasks.getLargeCapitalProfiles,

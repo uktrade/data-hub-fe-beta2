@@ -27,7 +27,7 @@ const OpportunityRequirements = ({ details }) => {
       />
       <SummaryTable.TextRow
         heading="Estimated return rate"
-        value={returnRate}
+        value={returnRate.label}
       />
       <SummaryTable.ListRow heading="Timescales" value={timeHorizons} />
     </>

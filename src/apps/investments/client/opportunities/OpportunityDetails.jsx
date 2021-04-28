@@ -36,7 +36,7 @@ const OpportunityDetails = ({ details }) => {
           <ul>
             {promoters.map((v, i) => (
               <li key={`Promoters-${i}`}>
-                <Link href={`/companies/${v.id}`}>{v.name}</Link>
+                <Link href={`/companies/${v.value}`}>{v.label}</Link>
               </li>
             ))}
           </ul>
@@ -46,11 +46,11 @@ const OpportunityDetails = ({ details }) => {
       </SummaryTable.Row>
       <SummaryTable.TextRow
         heading="Has this opportunity cleared the required checks?"
-        value={requiredChecks}
+        value={requiredChecks.label}
       />
       <SummaryTable.TextRow
         heading="Lead DIT relationship manager"
-        value={leadRelationshipManager}
+        value={leadRelationshipManager.label}
       />
       <SummaryTable.ListRow heading="Asset classes" value={assetClasses} />
       <SummaryTable.CurrencyRow

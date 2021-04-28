@@ -3,7 +3,11 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { TASK_GET_OPPORTUNITY_DETAILS, ID, state2props } from './state'
-import { INVESTMENT_OPPORTUNITY_DETAILS__LOADED } from '../../../../client/actions'
+import {
+  INVESTMENT_OPPORTUNITY_DETAILS__LOADED,
+  INVESTMENT_OPPORTUNITY__EDIT_DETAILS,
+  INVESTMENT_OPPORTUNITY__EDIT_REQUIREMENTS,
+} from '../../../../client/actions'
 
 import OpportunityDetails from './OpportunityDetails'
 import OpportunityRequirements from './OpportunityRequirements'
@@ -16,9 +20,11 @@ import { FONT_SIZE, SPACING } from '@govuk-react/constants'
 
 import styled from 'styled-components'
 import { HIGHLIGHT_COLOUR, RED, GREEN } from 'govuk-colours'
+import Button from '@govuk-react/button'
 import Link from '@govuk-react/link'
 
 import { VARIANTS } from '../../../../common/constants'
+import OpportunityDetailForm from './OpportunityDetailsForm'
 
 const StyledSpan = styled('span')`
   background: ${HIGHLIGHT_COLOUR};
@@ -49,28 +55,49 @@ const RequiredFields = (fieldCount) => {
 const OpportunitySection = ({
   incompleteFields,
   toggleName,
-  toggleId,
+  idPrefix,
   children,
+  form,
+  isEditing,
+  onEdit,
+  formEnabled, // TODO: remove when there is a Requirements Form
 }) => (
   <>
     {RequiredFields(incompleteFields)}
     <ToggleSection
       variant={VARIANTS.SECONDARY}
       label={toggleName}
-      id={toggleId}
+      id={`${idPrefix}_toggle`}
     >
-      {/* TODO: add an 'isEditing' conditional to display forms */}
-      <SummaryTable>{children}</SummaryTable>
+      {isEditing ? (
+        <>{form}</>
+      ) : (
+        <>
+          <SummaryTable>{children}</SummaryTable>
+          {formEnabled ? (
+            <Button onClick={onEdit} dataTest={`${idPrefix}_button`}>
+              Edit
+            </Button>
+          ) : null}
+        </>
+      )}
     </ToggleSection>
   </>
 )
 
-const Opportunities = ({ opportunityId, details }) => {
+const Opportunities = ({
+  opportunityId,
+  details,
+  onDetailsEdit,
+  onRequirementsEdit,
+}) => {
   const {
     detailsFields,
     requirementsFields,
     incompleteDetailsFields,
     incompleteRequirementsFields,
+    isEditingDetails,
+    isEditingRequirements,
   } = details
   return (
     <Task.Status
@@ -95,16 +122,25 @@ const Opportunities = ({ opportunityId, details }) => {
                     <OpportunitySection
                       incompleteFields={incompleteDetailsFields}
                       children={<OpportunityDetails details={detailsFields} />}
+                      form={
+                        <OpportunityDetailForm opportunityId={opportunityId} />
+                      }
                       toggleName="Opportunity details"
-                      toggleId="opportunity_details_toggle"
+                      idPrefix="opportunity_details"
+                      isEditing={isEditingDetails}
+                      onEdit={onDetailsEdit}
+                      formEnabled={true} // TODO: remove this conditional when Requirements form added
                     />
                     <OpportunitySection
                       incompleteFields={incompleteRequirementsFields}
                       children={
                         <OpportunityRequirements details={requirementsFields} />
                       }
+                      form={<div>This will be a form</div>}
                       toggleName="Opportunity requirements"
-                      toggleId="opportunity_requirements_toggle"
+                      idPrefix="opportunity_requirements"
+                      isEditing={isEditingRequirements}
+                      onEdit={onRequirementsEdit}
                     />
                   </>
                 ),
@@ -131,4 +167,15 @@ const Opportunities = ({ opportunityId, details }) => {
 Opportunities.propTypes = {
   opportunityId: PropTypes.string.isRequired,
 }
-export default connect(state2props)(Opportunities)
+export default connect(state2props, (dispatch) => ({
+  onDetailsEdit: () => {
+    dispatch({
+      type: INVESTMENT_OPPORTUNITY__EDIT_DETAILS,
+    })
+  },
+  onRequirementsEdit: () => {
+    dispatch({
+      type: INVESTMENT_OPPORTUNITY__EDIT_REQUIREMENTS,
+    })
+  },
+}))(Opportunities)
