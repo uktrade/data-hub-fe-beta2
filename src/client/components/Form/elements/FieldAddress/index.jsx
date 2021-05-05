@@ -22,6 +22,7 @@ import FieldSelect from '../FieldSelect'
 
 const UNITED_KINGDOM = 'United Kingdom'
 const UNITED_STATES = 'United States'
+const CANADA = 'Canada'
 
 const StyledFieldPostcode = styled(FieldInput)`
   ${MEDIA_QUERIES.TABLET} {
@@ -54,6 +55,8 @@ const FieldAddress = ({
   } = useFormContext()
 
   const [usStates, setUsStates] = useState([])
+  const [canadaProvinces, setCanadaProvinces] = useState([])
+
   useEffect(() => setIsLoading(isSubmitting), [isSubmitting])
   useEffect(() => {
     const fetchData = async () => {
@@ -68,6 +71,16 @@ const FieldAddress = ({
           )
           .map((states) => transformObjectToOption(states))
       )
+
+      setCanadaProvinces(
+        result.data
+          .filter(
+            (administrativeAreas) =>
+              administrativeAreas.country.id ==
+              '5daf72a6-5d95-e211-a939-e4115bead28a'
+          )
+          .map((states) => transformObjectToOption(states))
+      )
     }
 
     fetchData()
@@ -75,6 +88,7 @@ const FieldAddress = ({
 
   const isUK = country.name === UNITED_KINGDOM
   const isUS = country.name === UNITED_STATES
+  const isCanada = country.name === CANADA
 
   function onSearchClick(e) {
     e.preventDefault()
@@ -96,8 +110,8 @@ const FieldAddress = ({
     setFieldValue('address2', address.address2)
     setFieldValue('city', address.city)
     setFieldValue('county', address.county)
-    setFieldValue('country', country.id)
     setFieldValue('area', address.area)
+    setFieldValue('country', country.id)
 
     if (onSelectUKAddress) {
       onSelectUKAddress(address)
@@ -108,6 +122,23 @@ const FieldAddress = ({
     if (isUS && features && features.addressStateField) {
       return (
         <FieldSelect type="text" name="area" label="State" options={usStates} />
+      )
+    }
+  }
+
+  const renderCanadaProvinceField = () => {
+    if (
+      isCanada &&
+      canadaProvinces?.length > 0 &&
+      /*features.?addressStateField*/ true
+    ) {
+      return (
+        <FieldSelect
+          type="text"
+          name="area"
+          label="Province"
+          options={canadaProvinces}
+        />
       )
     }
   }
@@ -181,7 +212,9 @@ const FieldAddress = ({
         required="Enter town or city"
       />
       {renderUsStateField()}
+      {renderCanadaProvinceField()}
       <FieldInput type="text" name="county" label="County (optional)" />
+
       <FieldUneditable name="country" label="Country">
         {country.name}
       </FieldUneditable>

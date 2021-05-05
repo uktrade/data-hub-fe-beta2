@@ -23,6 +23,9 @@ const FieldSelect = ({
     required,
     initialValue,
   })
+
+  //console.log("FIELDSELECT VALUE")
+  //console.log(JSON.stringify(value))
   return (
     <FieldWrapper {...{ name, label, legend, hint, error }}>
       <Select
@@ -33,6 +36,7 @@ const FieldSelect = ({
         input={{
           id: name,
           defaultValue: value,
+          //value,
           ...rest,
         }}
       >
