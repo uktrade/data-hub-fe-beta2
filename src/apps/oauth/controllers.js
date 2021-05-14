@@ -1,27 +1,29 @@
-const request = require('request-promise')
 const queryString = require('qs')
 const { v4: uuid } = require('uuid')
 
 const { get, set, isUndefined } = require('lodash')
 
 const { saveSession } = require('../../lib/session-helper')
+const request = require('../../lib/request')
 const config = require('../../config')
 
-function getAccessToken(code) {
+async function getAccessToken(code) {
   const options = {
     method: 'POST',
     url: config.oauth.tokenFetchUrl,
-    formData: {
+    data: {
       code,
       grant_type: 'authorization_code',
       client_id: config.oauth.clientId,
       client_secret: config.oauth.clientSecret,
       redirect_uri: config.oauth.redirectUri,
     },
-    json: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   }
-
-  return request(options)
+  const { data } = await request(options)
+  return data.access_token
 }
 
 function handleMissingState(req, res, next) {
@@ -77,10 +79,10 @@ async function callbackOAuth(req, res, next) {
   }
 
   try {
-    const data = await getAccessToken(req.query.code)
-    const userProfile = await getSSOUserProfile(data.access_token)
+    const accessToken = await getAccessToken(req.query.code)
+    const userProfile = await getSSOUserProfile(accessToken)
 
-    set(req, 'session.token', data.access_token)
+    set(req, 'session.token', accessToken)
     set(req, 'session.userProfile', userProfile)
     return res.redirect(req.session.returnTo || '/')
   } catch (error) {
