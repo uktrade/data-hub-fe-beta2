@@ -103,9 +103,9 @@ jobs:
           label: Run visual tests
           target: start-mock visual-tests
       - store_artifacts:
-          path: visual-screenshots
+          path: cypress-visual-screenshots
       - store_artifacts:
-          path: visual-report
+          path: cypress-visual-report
 
   visual_component_tests:
     machine:
