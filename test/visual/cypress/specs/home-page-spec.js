@@ -13,6 +13,8 @@ describe('home page', () => {
   })
 
   it('search bar', () => {
-    cy.get('.govuk-grid-column-full').compareSnapshot('homePageSearchBar')
+    cy.get('.govuk-grid-column-full')
+      .first()
+      .compareSnapshot('homePageSearchBar')
   })
 })
