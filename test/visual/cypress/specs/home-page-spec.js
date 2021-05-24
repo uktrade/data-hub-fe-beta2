@@ -5,6 +5,7 @@ describe('home page', () => {
 
   it('content', () => {
     cy.get('.dashboard-section__info-feed-date').hideElement()
+    cy.get('[for="company-name"]').should('be.visible')
     cy.get('.grid-row').compareSnapshot('homePageContent')
   })
 
