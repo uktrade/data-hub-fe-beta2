@@ -85,6 +85,15 @@ jobs:
           paths:
             - 'project/partial-coverage/*'
 
+  a11y_tests:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run_make:
+          label: Run a11y tests
+          target: start-mock a11y-tests
+
   visual_tests:
     machine:
       docker_layer_caching: true
@@ -212,6 +221,7 @@ workflows:
       - unit_tests: *ignore_ghpages
       - unit_client_tests: *ignore_ghpages
       - functional_tests: *ignore_ghpages
+      - a11y_tests: *ignore_ghpages
       - visual_tests: *ignore_ghpages
       - visual_component_tests: *ignore_ghpages
       - e2e_tests:
