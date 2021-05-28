@@ -136,15 +136,11 @@ to ensure consistency between builds.
 Screenshots will be stored in the root of the project. We commit the baselines and ignore the comparison diff images. If we need to update the baseline screenshot we need to delete the old baseline and rerun the test (it will then copy the new screenshot saved in comparison folder into the baseline folder)
 
 ```
-- visual-screenshots
+- cypress-visual-screenshots
   - baseline
   - comparison
   - diff
 ```
-
-### Browserstack environment variables
-
-Copy `sample.env` to `.env` and add `BROWSERSTACK_ACCESS_KEY` and `BROWSERSTACK_USERNAME` which can be found in Rattic.
 
 ### Running the tests
 
