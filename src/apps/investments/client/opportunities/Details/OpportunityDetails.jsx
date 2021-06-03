@@ -16,7 +16,7 @@ const OpportunityDetails = ({ details }) => {
     description,
     ukRegions,
     promoters,
-    requiredChecks,
+    requiredChecksConducted,
     leadRelationshipManager,
     assetClasses,
     opportunityValue,
@@ -46,7 +46,7 @@ const OpportunityDetails = ({ details }) => {
       </SummaryTable.Row>
       <SummaryTable.TextRow
         heading="Has this opportunity cleared the required checks?"
-        value={requiredChecks.label}
+        value={requiredChecksConducted.label}
       />
       <SummaryTable.TextRow
         heading="Lead DIT relationship manager"

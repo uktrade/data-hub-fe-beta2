@@ -19,7 +19,7 @@ import SummaryTable from '../../../../../client/components/SummaryTable'
 import { FONT_SIZE, SPACING } from '@govuk-react/constants'
 
 import styled from 'styled-components'
-import { HIGHLIGHT_COLOUR, RED, GREEN } from 'govuk-colours'
+import { HIGHLIGHT_COLOUR, RED } from 'govuk-colours'
 import Button from '@govuk-react/button'
 import Link from '@govuk-react/link'
 
@@ -44,9 +44,9 @@ const StyledLabel = styled('label')`
 
 const RequiredFields = (fieldCount) => {
   if (fieldCount == 0) {
-    return <StyledLabel color={GREEN}>Completed</StyledLabel>
+    return <StyledLabel color={RED}>Complete</StyledLabel>
   }
-  return <StyledLabel color={RED}>{fieldCount} fields required</StyledLabel>
+  return <StyledLabel color={RED}>{fieldCount} fields incomplete</StyledLabel>
 }
 
 const OpportunitySection = ({

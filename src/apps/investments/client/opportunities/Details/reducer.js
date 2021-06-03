@@ -20,8 +20,11 @@ const initialState = {
       description: '',
       ukRegions: [],
       promoters: [],
-      requiredChecks: {},
+      requiredChecksConducted: [],
+      requiredChecksConductedOn: 0,
+      requiredChecksConductedBy: {},
       leadRelationshipManager: {},
+      otherDitContacts: [],
       assetClasses: [],
       opportunityValue: {
         label: 'Opportunity value',
@@ -39,6 +42,8 @@ const initialState = {
   },
   metadata: {
     ukRegions: [],
+    promoters: [],
+    advisers: [],
     requiredChecks: [],
     classesOfInterest: [],
     constructionRisks: [],
@@ -61,9 +66,11 @@ export default (state = initialState, { type, result }) => {
         metadata: {
           ...state.metadata,
           ukRegions: result.ukRegions,
-          requiredChecks: result.requiredChecks,
+          requiredChecksConducted: result.requiredChecksConducted,
           classesOfInterest: result.classesOfInterest,
           constructionRisks: result.constructionRisks,
+          promoters: result.promoters,
+          advisers: result.advisers,
         },
       }
     case INVESTMENT_OPPORTUNITY__REQUIREMENTS_METADATA_LOADED:

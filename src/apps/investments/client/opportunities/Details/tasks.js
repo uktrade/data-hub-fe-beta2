@@ -1,4 +1,5 @@
 import { apiProxyAxios } from '../../../../../client/components/Task/utils'
+import { transformValueForApi } from '../../../../../common/date'
 
 import { transformInvestmentOpportunityDetails } from './transformers'
 
@@ -17,17 +18,23 @@ export const getDetailsMetadata = () =>
     ),
     apiProxyAxios.get('/v4/metadata/capital-investment/asset-class-interest'),
     apiProxyAxios.get('/v4/metadata/capital-investment/construction-risk'),
+    apiProxyAxios.get('/v4/company'),
+    apiProxyAxios.get('/adviser/'),
   ]).then(
     ([
       { data: ukRegions },
-      { data: requiredChecks },
+      { data: requiredChecksConducted },
       { data: classes },
       { data: constructionRisks },
+      { data: promoters },
+      { data: advisers },
     ]) => ({
       ukRegions: ukRegions.map(idNameToValueLabel),
-      requiredChecks: requiredChecks.map(idNameToValueLabel),
+      requiredChecksConducted: requiredChecksConducted.map(idNameToValueLabel),
       classesOfInterest: classes.map(idNameToValueLabel),
       constructionRisks: constructionRisks.map(idNameToValueLabel),
+      promoters: promoters.results.map(idNameToValueLabel),
+      advisers: advisers.results.map(idNameToValueLabel),
     })
   )
 
@@ -55,7 +62,19 @@ export function saveOpportunityDetails({ values, opportunityId }) {
     .patch(`v4/large-capital-opportunity/${opportunityId}`, {
       name: values.name,
       description: values.description,
+      uk_region_locations: values.ukRegions.map(({ value }) => value),
+      promoters: values.promoters.map(({ value }) => value),
+      required_checks_conducted: values.requiredChecksConducted,
+      required_checks_conducted_by: values.requiredChecksConductedBy?.value,
+      required_checks_conducted_on: values.requiredChecksConductedOn
+        ? transformValueForApi(values.requiredChecksConductedOn)
+        : undefined,
+      lead_dit_relationship_manager: values.leadRelationshipManager.value,
+      other_dit_contacts: values.otherDitContacts?.map(({ value }) => value),
+      asset_classes: values.assetClasses?.map(({ value }) => value),
       opportunity_value: values.opportunityValue,
+      construction_risks: [values.constructionRisks],
+      // TODO: refactor this to not be in an array once the API is fixed.
     })
     .then(({ data }) => {
       return data
