@@ -7,7 +7,11 @@ import { SPACING } from '@govuk-react/constants'
 import exampleReadme from './example.md'
 import usageReadme from './usage.md'
 
-import lgCapOpps from '../../../../../test/sandbox/fixtures/v4/investment/large-capital-opportunity-incomplete.json'
+import { formatWithTime } from '../../../utils/date-utils'
+import { currencyGBP } from '../../../utils/number-utils'
+
+import lgCapOpps from '../../../../../test/sandbox/fixtures/v4/investment/large-capital-opportunity-complete.json'
+import { transformInvestmentOpportunityDetails } from '../../../../apps/investments/client/opportunities/Details/transformers'
 
 const StyledHeaderDetails = styled('div')`
   padding-bottom: ${SPACING.SCALE_5};
@@ -23,12 +27,27 @@ const StyledHeaderListLabel = styled('label')`
   color: #6f777b;
 `
 
+const { detailsFields, incompleteDetailsFields } = transformInvestmentOpportunityDetails(lgCapOpps)
+const {
+  createdOn,
+  ukRegions,
+  assetClasses,
+  opportunityValue,
+} = detailsFields
+
+const statusLabel = incompleteDetailsFields > 0 ? 'Unassigned' : 'Seeking investment'
+const oppsValue = opportunityValue.value == null ? 'Not yet valued' : `${currencyGBP(opportunityValue.value)}`;
+const ukLocation = ukRegions.length == 0 ? 'Not yet defined' :
+                      ukRegions.length > 1 ? 'Multiple' : `${ukRegions.map(v => v.label)}`;
+const assetClass = assetClasses.length == 0 ? 'Not yet defined' : 
+                      assetClasses.length > 1 ? 'Multiple' : `${assetClasses.map(c => c.label)}`;
+
 const items = {
-  'Status': [{'label': 'Unassigned', 'value': 'someHttpKeys'}],
-  'Value': 'Not yet valued',
-  'UK location': 'Not yet defined',
-  'Asset value': 'Not yet defined',
-  'Created on': '16 Jan 2019, 1:35pm',
+  'Status': [{'label': `${statusLabel}`, 'value': ''}],
+  'Value': `${oppsValue}`,
+  'UK location': `${ukLocation}`,
+  'Asset value': `${assetClass}`,
+  'Created on': `${formatWithTime(createdOn)}`,
 }
 
 storiesOf('Local Header Details', module)

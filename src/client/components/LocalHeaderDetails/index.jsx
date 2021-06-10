@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { GREY_4 } from 'govuk-colours'
 import { SPACING } from '@govuk-react/constants'
@@ -18,17 +19,13 @@ const StyledHeaderListLabel = styled('label')`
 color: #6f777b;
 `
 
-const LocalHeaderDetails = (items) => {
-  let items = {
-    'Status': [{'label': 'Unassigned', 'value': 'someHttpKeys'}],
-    'Value': 'Not yet valued',
-    'UK location': 'Not yet defined',
-    'Asset value': 'Not yet defined',
-    'Created on': '16 Jan 2019, 1:35pm',
-  }
-
+const LocalHeaderDetails = ({ items }) => {
   return (
-    <StyledHeaderDetails>
+    <StyledHeaderDetails
+      aria-label="local header details"
+      data-auto-id="localHeaderDetails"
+      role="region"
+    >
       { Object.entries(items).map(item => {
         return (
           <StyledHeaderList key={item[0]}>
@@ -47,7 +44,9 @@ const LocalHeaderDetails = (items) => {
 }
 
 LocalHeaderDetails.propTypes = {
-  items: PropTypes.object.isRequired,
+  items: PropTypes.shape({
+    Status: PropTypes.array.isRequired
+  }).isRequired
 }
 
 export default LocalHeaderDetails
