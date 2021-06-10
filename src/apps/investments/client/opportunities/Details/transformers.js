@@ -9,6 +9,7 @@ const idNameToValueLabel = ({ id, name }) => ({ value: id, label: name })
 export const transformInvestmentOpportunityDetails = ({
   incomplete_details_fields,
   incomplete_requirements_fields,
+  created_on,
   name,
   description,
   uk_region_locations,
@@ -30,6 +31,7 @@ export const transformInvestmentOpportunityDetails = ({
   isEditingDetails: false,
   isEditingRequirements: false,
   detailsFields: {
+    createdOn: created_on,
     name,
     description,
     ukRegions: uk_region_locations.map(idNameToValueLabel),
