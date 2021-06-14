@@ -1,5 +1,16 @@
 /* eslint camelcase: 0 */
-const moment = require('moment')
+const { formatDistanceToNowStrict, parseISO } = require('date-fns')
+
+const formatDate = (date) => {
+  const formattedDate = formatDistanceToNowStrict(parseISO(date), {
+    addSuffix: true,
+  })
+  if (formattedDate == '1 day ago') {
+    return 'a day ago'
+  } else {
+    return formattedDate
+  }
+}
 
 const formatHelpCentreAnnouncements = ({ data = {} }) => {
   const { articles = [] } = data
@@ -8,7 +19,7 @@ const formatHelpCentreAnnouncements = ({ data = {} }) => {
       return {
         heading: item.title,
         link: item.html_url,
-        date: moment(item.created_at).fromNow(),
+        date: formatDate(item.created_at),
       }
     }
   })

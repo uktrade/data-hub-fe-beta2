@@ -1,0 +1,3742 @@
+[
+    {
+        "id": "b5d03d97-fef5-4da6-9117-98a4d633b581",
+        "name": "Acre",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "539aacb1-9778-4db9-b992-7be49b7503d7",
+        "name": "Adygea",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "efaeb97e-4b71-4856-9590-45cb4f8eba8c",
+        "name": "Aguascalientes",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8ad3f33a-ace8-40ec-bd2c-638fdc3024ea",
+        "name": "Alabama",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "AL"
+    },
+    {
+        "id": "6523317b-d02f-4725-b5f1-cc4184f69397",
+        "name": "Alagoas",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "68338f52-88ff-437d-93ef-790ec9505321",
+        "name": "Alaska",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "AK"
+    },
+    {
+        "id": "75e337c3-23c9-4294-8085-6b1e8c43eb07",
+        "name": "Alberta",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "AB"
+    },
+    {
+        "id": "fcb2edca-91b0-4c5d-8dde-d2245c54a20b",
+        "name": "Altai Krai",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "d91f2ed5-026d-4094-ac19-a085844da820",
+        "name": "Altai Republic",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "d79ca3c2-9ffe-4a43-bb73-5f3b81a524fe",
+        "name": "Amapa",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5e59a4f0-d618-4d7e-90b6-1f0d2e204cbd",
+        "name": "Amazonas",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "98aef82c-e813-4ccb-b55b-806d4c410f22",
+        "name": "Amazonas",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f4142b7a-f034-4e1e-97a3-fe4ae7873b5e",
+        "name": "Amazonas",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "11100824-13d0-4c49-9f51-097ac9a9c3a0",
+        "name": "Amur Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "82c7ccec-d654-4d82-8917-2de097a1bad0",
+        "name": "Ancash",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "2f811d77-5c02-46a8-a24f-277bb765b047",
+        "name": "Andaman and Nicobar Islands",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1ce5548a-1293-4288-84e4-ae7f9118633a",
+        "name": "Andhra Pradesh",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5dad1164-2bd0-4187-a471-7d588cb5af35",
+        "name": "Anhui",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "d579fe02-feb7-41fe-8cd7-946e96b0e440",
+        "name": "Antioquia",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3227e965-b3a0-4214-aadc-98045a60d671",
+        "name": "Antofagasta",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f226fa09-3977-49c9-bd7a-5d764ade1a9f",
+        "name": "Apurimac",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "aa1d6ff2-57d7-4cce-9c57-50e95a302013",
+        "name": "Arauca",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c27fea64-64fd-45e9-8598-b693b542f947",
+        "name": "Araucania",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1ab8ced7-576d-4dc8-bb3b-c399f0f59299",
+        "name": "Arequipa",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "395916cf-5cad-4536-87fc-78f5daf60953",
+        "name": "Arica and Parinacota",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3d963d27-1d03-4ebd-a3be-e22eba06a9e6",
+        "name": "Arizona",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "AZ"
+    },
+    {
+        "id": "2f0ebf4a-9306-4af4-b0de-206caaa2ed9e",
+        "name": "Arkansas",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "AR"
+    },
+    {
+        "id": "8a1dfdce-6190-483c-9c84-28d3a3fc5477",
+        "name": "Arkhangelsk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "09c0db0a-dabf-42c7-b282-0aa983140022",
+        "name": "Arunachal Pradesh",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "18659fce-69b7-4fb2-bcc1-32284aa97261",
+        "name": "Assam",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "80b78ddb-d0c6-47af-916b-713500c701ce",
+        "name": "Astrakhan Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "91d8b71c-430d-4e4a-afd0-7147578f41d9",
+        "name": "Atacama",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "40708d6e-6929-4a3b-8b5e-a7f054395626",
+        "name": "Atlantico",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3abbe10a-206b-45b8-a9c7-92b1db253a9e",
+        "name": "Ayacucho",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "b4a5774f-d21c-418f-b312-77c7658e6feb",
+        "name": "Aysen",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5b76e167-a548-4aca-8d49-39c19e646425",
+        "name": "Bahia",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "ddd20660-47d2-4899-a83e-73968e292b6b",
+        "name": "Baja California",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "d7395937-96f9-4d35-a1f6-c446fa805373",
+        "name": "Baja California Sur",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "283be0c1-39bd-4826-b18a-ca7650e832da",
+        "name": "Bashkortostan",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "56f5f425-e3e3-4c9a-b886-ecb671b81503",
+        "name": "Beijing",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c310ef86-9c3c-4e34-b179-6bc47624fb6b",
+        "name": "Belgorod Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "104201ad-fc9a-42ae-97cb-0aa974f42bf7",
+        "name": "Bihar",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "322545fd-9b3d-42de-9654-9bbb30451de3",
+        "name": "Biobio",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a92d2863-58c8-4f59-909a-99d06740571f",
+        "name": "Bogota (Capital District of)",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e20730a4-cfe3-45b0-a554-39bdd72b75e5",
+        "name": "Bolivar",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "28af5502-d197-4de2-b979-5c6120530f6c",
+        "name": "Boyaca",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1cc60a33-5ca4-4f93-886c-c6c6189bded7",
+        "name": "Brasilia (Federal District of)",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "351410eb-81b5-4a55-a76d-790b31a833fa",
+        "name": "British Columbia",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "BC"
+    },
+    {
+        "id": "bc2812c2-4ec0-4376-a9c8-23c2420219d7",
+        "name": "Bryansk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "225e6d3c-6b84-4d5d-9d28-7d0aed7f2317",
+        "name": "Buenos Aires",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "b9587f59-4f8d-4e7e-8841-3902ed27a630",
+        "name": "Buryatia",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3de01b6a-032d-4050-8619-266be59adfd4",
+        "name": "Cajamarca",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c991adad-3b3e-4d9e-86b3-fabc3c8917ac",
+        "name": "Caldas",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a88512e0-62d4-4808-95dc-d3beab05d0e9",
+        "name": "California",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "CA"
+    },
+    {
+        "id": "5736a877-6f11-41a1-8a51-5d4ed3b7c1ca",
+        "name": "Callao",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "25b0d4b3-79f1-4ae9-a878-d57fd3b5b3d2",
+        "name": "Campeche",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "ab57d0e3-6989-42a6-aeba-4e6178716f0d",
+        "name": "Caqueta",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a817af37-db82-4eee-9dc0-86b55c6f6614",
+        "name": "Casanare",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "b55f1666-40ff-4270-8dbe-110d0f7c51c3",
+        "name": "Catamarca",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a1dc0093-8783-480c-9fbf-748c0cab1dd7",
+        "name": "Cauca",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "b0dd060f-4627-499a-a298-7289c5abb89b",
+        "name": "Ceara",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8ee8e9b7-b420-4b3a-89bd-0120c9928b42",
+        "name": "Cesar",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6de7a857-c802-4ef8-a519-db8e560c6f4e",
+        "name": "Chaco",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "84f3e645-0aa2-4bcf-ba1c-6dd654e17f3c",
+        "name": "Chandigarh",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "220b0daa-bf98-40fd-be78-99cd42ba1adf",
+        "name": "Chechnya",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a3b90614-92dd-41a2-9f7a-6c27e2083d82",
+        "name": "Chelyabinsk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8a43f055-e70e-469b-8124-a682a52b90ce",
+        "name": "Chhattisgarh",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "735c1174-4cd0-4f50-9913-56e95d424c71",
+        "name": "Chiapas",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "19968a03-683e-4cd6-a652-b45e435a530b",
+        "name": "Chihuahua",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "62cd2112-20cc-4944-ae32-7467c1137006",
+        "name": "Choco",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5c48e9e3-d82c-475d-86bc-b739daf5137c",
+        "name": "Chongqing",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1ab227e2-2790-47f8-aa6c-383fda1e2c69",
+        "name": "Chubut",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8d0c2b17-9415-49f8-8d65-a47f48d7cecf",
+        "name": "Chuvashia",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "2a6d390d-a2b2-4fb2-a109-76645266511b",
+        "name": "City of Buenos Aires",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "72c462f7-3542-479d-a5d9-d7d4e15f192d",
+        "name": "Coahuila",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "934ef3a4-7379-41b4-aefd-6a265cf41b7a",
+        "name": "Colima",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6bf2c096-da79-4e5e-8685-2aef87fe8697",
+        "name": "Colorado",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "CO"
+    },
+    {
+        "id": "94e14d2d-bf07-49c9-bcb7-7401af5fbc2e",
+        "name": "Connecticut",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "CT"
+    },
+    {
+        "id": "6abfe0d6-464e-4a79-82a0-b58b0a6c939c",
+        "name": "Coquimbo",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "2be86663-5e61-4316-9653-786ce1b41f05",
+        "name": "Cordoba",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3382ed2c-b0c4-46f6-864e-5763db4632c9",
+        "name": "Cordoba",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a9a0fed4-6bca-4468-8183-9ab16b824701",
+        "name": "Corrientes",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c94f226e-ad2a-4ca3-a112-5ce0bfff6162",
+        "name": "Crimea",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3076d152-e322-44c3-8d56-768e7e0201dc",
+        "name": "Cundinamarca",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "03691e9d-b3a7-4803-93b4-a78cacad4117",
+        "name": "Cusco",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c99047a9-5f0f-4a65-9d26-eda7795b7520",
+        "name": "Dadra and Nagar Haveli",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "94210fa1-494e-4568-a6e1-a2371a3e4c51",
+        "name": "Dagestan",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e967a758-dff1-49c6-ae7d-a604930934e3",
+        "name": "Daman & Diu",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c81bda87-2ffa-471d-a894-9f40b7356dfd",
+        "name": "Delaware",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "DE"
+    },
+    {
+        "id": "cec98fb1-54c8-47f2-a170-5c89b653ee1e",
+        "name": "District of Columbia",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "DC"
+    },
+    {
+        "id": "9f1c85c0-6ac2-49ef-b637-0815a7ae2ff7",
+        "name": "Durango",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8fb4735f-a413-4352-81fd-0b78e9a73b90",
+        "name": "Entre Rios",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "82b76fb1-a7fe-4b47-b42a-70868a7bc7af",
+        "name": "Espirito Santo",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "aa259876-25fb-4813-b1de-bbacc2fa0fb0",
+        "name": "Florida",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "FL"
+    },
+    {
+        "id": "6907e6a4-dd55-4dbf-8b8f-e822dcd5aea7",
+        "name": "Formosa",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a85a8f0a-dfa4-433d-968f-de444ca38930",
+        "name": "Fujian",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e9ce57e1-c615-45ed-ae79-2e42e13e43c3",
+        "name": "Gansu",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "b92720ec-8ed6-4c8d-a2b5-7f6b01dd33e2",
+        "name": "Georgia",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "GA"
+    },
+    {
+        "id": "8aca5a9b-94c2-461f-b1a9-fc1d053f6c9b",
+        "name": "Goa",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6cff3ba8-da5b-4713-b13d-897d4de1c8b8",
+        "name": "Goias",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8313911c-9520-4b3e-862b-66b5f36f2eb4",
+        "name": "Guainia",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "36922a15-9afa-46e7-add7-7a677277d3d2",
+        "name": "Guanajuato",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3f7ed5e4-de21-4509-ac41-f8a601bca113",
+        "name": "Guangdong",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e5a9be13-2c5d-4aed-ac91-732dc736b2b4",
+        "name": "Guangxi",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "27781726-74f8-4ae1-a2de-c955accd3a23",
+        "name": "Guaviare",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "594f9527-93f8-4390-9627-f78b298c6a2d",
+        "name": "Guerrero",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6d138bd2-1ae2-4f23-956f-57f68dcaef7e",
+        "name": "Guizhou",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5b00344b-26d7-4d2b-9af4-a1a132cb4855",
+        "name": "Gujarat",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c24bf7bd-5692-4b21-a600-c00b4ce7cdfe",
+        "name": "Hainan",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "513b99da-a22a-48f9-8dc1-0a75b4bc61e1",
+        "name": "Haryana",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "25a2fa8c-a1a6-4622-8eb5-4f475b3f8bdc",
+        "name": "Hawaii",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "HI"
+    },
+    {
+        "id": "01f98f67-6298-4bc2-8a86-b450c7daa45c",
+        "name": "Hebei",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a87adc9c-0fa3-46ec-8617-57dc91748641",
+        "name": "Heilongjiang",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e4ce720b-5bf5-452f-856d-d20baf54204a",
+        "name": "Henan",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1736ca2e-1d30-4ed9-9ed3-ca81e5ea0633",
+        "name": "Hidalgo",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6273f548-97a1-4bbc-ae03-a12408e4d6db",
+        "name": "Himachal Pradesh",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "bf7d43d8-fdab-4923-86cc-72ba37b989d1",
+        "name": "Huancavelica",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "be3d892d-06c5-46ef-8c84-57f79ed763a9",
+        "name": "Huanuco",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "ffff8040-abd9-470a-9156-cbe91d195cd7",
+        "name": "Hubei",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "dcc1a45c-3cd6-4fdb-8ec3-e1bc8927e687",
+        "name": "Huila",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "b11748e8-4cba-4056-b761-8acf66c76c2a",
+        "name": "Hunan",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1671e7f2-39f7-4e92-a7ec-1cf751ae918a",
+        "name": "Ica",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "70263e61-f866-44cd-89d0-dda4db637246",
+        "name": "Idaho",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "ID"
+    },
+    {
+        "id": "42662516-faf3-4bb0-abec-03167acce431",
+        "name": "Illinois",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "IL"
+    },
+    {
+        "id": "87c3dffc-12b7-4dc2-b71c-5a96c08d80ad",
+        "name": "Indiana",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "IN"
+    },
+    {
+        "id": "ebe1ebf0-c414-49b9-9297-c8272fa66071",
+        "name": "Ingushetia",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "73461b17-21f6-47b6-be53-ac3defc65673",
+        "name": "Inner Mongolia",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "480f86a9-19c1-495b-8f00-323a7164d1a7",
+        "name": "Iowa",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "IA"
+    },
+    {
+        "id": "6cc9631a-92e9-461d-95ff-8ceaba062072",
+        "name": "Irkutsk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "4bab3d57-9e22-4b52-a1d9-2ca67867bced",
+        "name": "Ivanovo Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "397383a7-6520-4222-b317-b61149cb84e0",
+        "name": "Jalisco",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1cde9bf3-d627-47e8-a60c-7e549df28254",
+        "name": "Jammu & Kashmir",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "cebec24a-0718-4f20-9229-f2067b9cbef2",
+        "name": "Jharkhand",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e8922446-9241-4f33-9d16-d54d0b272773",
+        "name": "Jiangsu",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f334e3bb-7932-4673-b386-e60cb46da96b",
+        "name": "Jiangxi",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "ebfb18b5-6894-495a-bfec-bfbe015ffdd4",
+        "name": "Jilin",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "845c2a80-2378-40d6-a9bb-4a599b347b25",
+        "name": "Jujuy",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "9b433a96-94ac-4cd5-8aeb-2d80ee15660d",
+        "name": "Junin",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f4106ce7-20f3-42d7-a548-d60bd3af9f0f",
+        "name": "Kabardino-Balkaria",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f9ee3b1a-4dbf-4fb5-b665-f98e1c85d214",
+        "name": "Kaliningrad Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3c1610ef-cbb2-41b1-a18e-c616d9e02c7e",
+        "name": "Kalmykia",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "338a310f-4d54-488c-a09e-0c68c8763572",
+        "name": "Kaluga Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "9430a880-d00b-4e52-9b54-43cd751d9cd1",
+        "name": "Kamchatka Krai",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c8debb6d-a15c-4a77-a20c-5ab60a8c873b",
+        "name": "Kansas",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "KS"
+    },
+    {
+        "id": "620964ae-b0e6-473e-99c7-a9e38a629f0a",
+        "name": "Karachay-Cherkessia",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "519bd3ce-a364-4c78-8211-491de4e1d7f4",
+        "name": "Karelia",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "39c6f417-9384-47e4-aeeb-0873f184fed5",
+        "name": "Karnataka",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6bbef06a-68ac-4979-913c-b88fac47cd3a",
+        "name": "Kemerovo Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "65e05b38-d4eb-4358-a485-5693fab3668b",
+        "name": "Kentucky",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "KY"
+    },
+    {
+        "id": "0600ee21-d525-492f-b660-e4361adde13c",
+        "name": "Kerala",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5bcacc1a-5ba6-4f88-8fd4-a166ac293f64",
+        "name": "Khabarovsk Krai",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "23d56a11-d0a7-4169-9f5d-d98bfad90d5c",
+        "name": "Khakassia",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "9735c9e0-430f-43e9-854b-4d7133b051be",
+        "name": "Kirov Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "0064eafd-57b0-4c95-9065-4d80fb439f13",
+        "name": "Komi Republic",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "7a23e51c-670c-4320-a99a-c30c6c9487f1",
+        "name": "Kostroma Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "0da1a086-2700-49cf-a4c0-7185e2687558",
+        "name": "Krasnodar Krai",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5295e058-ca5f-46a2-a04f-18558953eb1e",
+        "name": "Krasnoyarsk Krai",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "37952d97-d6f7-4ba7-a2ec-4165e7292c01",
+        "name": "Kurgan Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c5457ef9-4837-4b9f-af55-7065b31c6b17",
+        "name": "Kursk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "7eac8ff9-06a4-491f-bdf8-55f35ce59f73",
+        "name": "La Guajira",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "506bd7b5-9eb9-4d6f-a410-2137c7886b37",
+        "name": "Lakshadweep",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "86b143b1-8bee-4e9a-8ffe-419c7e2c95a1",
+        "name": "La Libertad",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1d6518c6-2b37-4494-bc21-30dbc3026c07",
+        "name": "Lambayeque",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "0c23c8c8-fa9d-4712-9010-ac902a91d4b6",
+        "name": "La Pampa",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5da9a694-18fd-47ef-b1ef-e95b2e606d94",
+        "name": "La Rioja",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8a685926-c002-4d4f-9ce7-b80a9925c93e",
+        "name": "Leningrad Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "842f2f51-cb81-47f5-98b0-a9abc3b05f7e",
+        "name": "Liaoning",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "d03f5fdb-26af-449a-9286-7930827f1922",
+        "name": "Lima",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "4afdc0b2-7ed2-4de4-b0f7-df3a31f5239e",
+        "name": "Lipetsk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f6aa56c4-a7c2-49de-8cbf-f6a62f4dc299",
+        "name": "Los Lagos",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "af8b5925-a7f4-422f-981d-788351a8d27f",
+        "name": "Los Rios",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3472bbfc-fa50-4a97-a198-8bd83087c399",
+        "name": "Louisiana",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "LA"
+    },
+    {
+        "id": "7e961eb5-7cda-4349-b5b3-f1a8967d01c5",
+        "name": "Madhya Pradesh",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "99f96e7c-0655-4562-8500-8015b7fc5418",
+        "name": "Madre de Dios",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "af54a565-45e6-49c5-a235-72ccf78f725d",
+        "name": "Magadan Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "84699c34-b663-45d8-89c1-db0f04310d0e",
+        "name": "Magallanes",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a5690ea5-c9f7-4cf0-815f-321db2b8a451",
+        "name": "Magdalena",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "64187574-70de-421e-9c19-d4b4c6474138",
+        "name": "Maharashtra",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "35940b3c-4fec-4b35-9220-3319bf3e22f3",
+        "name": "Maine",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "ME"
+    },
+    {
+        "id": "73ef4f49-c3db-42c9-a741-314118d1829f",
+        "name": "Manipur",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "070ccb13-a9be-4993-8c4d-354399cc9959",
+        "name": "Manitoba",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "MB"
+    },
+    {
+        "id": "3d7127e9-742a-4abb-a095-14323345de24",
+        "name": "Maranhao",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "685c15f7-d3ca-4c03-ae91-c8ef22a00b5e",
+        "name": "Mari El",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "88ec9fc2-f480-4b0a-b505-c8e1a87a9d04",
+        "name": "Maryland",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "MD"
+    },
+    {
+        "id": "fed8f33a-724e-423a-ae4a-af24446ed455",
+        "name": "Massachusetts",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "MA"
+    },
+    {
+        "id": "b9a5e822-369c-4c5d-b625-440851266b93",
+        "name": "Mato Grosso",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e25a4b92-5046-4baf-aa65-2d424f5b4013",
+        "name": "Mato Grosso do Sul",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "489b356a-de2e-422d-a0f3-846adf49f2ec",
+        "name": "Maule",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "b5ea03d3-f353-49eb-83ba-dce114722f3c",
+        "name": "Meghalaya",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5da7f724-af30-4397-987a-84de9a5002d1",
+        "name": "Mendoza",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1005383f-0334-4022-b697-6edd45c24f15",
+        "name": "Meta",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "bc6de65c-5126-4607-b3d2-4035b8d0d7ad",
+        "name": "Mexico",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "d7c63efc-6937-433f-8a7b-57165091bcac",
+        "name": "Mexico City (Federal entity of)",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5531c86b-a271-45b0-afb0-a40e10331305",
+        "name": "Michigan",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "MI"
+    },
+    {
+        "id": "a0b80cfb-d3db-4043-843b-c189ba0a2c48",
+        "name": "Michoacan",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "85cd6777-c6e3-464c-a168-6e926656e6ef",
+        "name": "Minas Gerais",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "013754d5-3bee-4c72-bb2a-de41d7f3c1ca",
+        "name": "Minnesota",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "MN"
+    },
+    {
+        "id": "0d6aeb15-f011-4008-8006-3065802170ec",
+        "name": "Misiones",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "060a9924-9d54-4a35-aec1-d1675c19ba0b",
+        "name": "Mississippi",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "MS"
+    },
+    {
+        "id": "b94b4ce3-cecc-41d1-8d7f-bf7ae21bb44d",
+        "name": "Missouri",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "MO"
+    },
+    {
+        "id": "504bb3e1-7c46-4022-a736-9104e67ca50f",
+        "name": "Mizoram",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "29a9e9f8-290e-4c24-8316-5771c53e2aa1",
+        "name": "Montana",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "MT"
+    },
+    {
+        "id": "b0e4df2b-2294-459f-96c8-9066462a9213",
+        "name": "Moquegua",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "be4221b9-fbd8-4297-81a5-a9e3a8a583e6",
+        "name": "Mordovia",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "70801613-5096-4463-8b66-86f533a708b9",
+        "name": "Morelos",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "2384702f-01e9-4792-857b-026b2623f2fa",
+        "name": "Moscow",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c50cd960-252e-4378-8e60-3f2c9f19aef5",
+        "name": "Moscow Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c0e97f6a-28c2-4e92-8333-4e563cf6e91d",
+        "name": "Murmansk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "d8e72571-097d-4e0a-aa48-dee1e6021bd3",
+        "name": "Nagaland",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f4a3ef1f-4998-4f1b-bf63-e9754adb1cf0",
+        "name": "Narino",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1db85179-908c-44a6-894e-c817a051eb5a",
+        "name": "Nayarit",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "23f4663c-d16c-45c5-b156-7bac9ef2fea3",
+        "name": "Nebraska",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NE"
+    },
+    {
+        "id": "ae7aba10-e5d2-422a-9d89-50b03bde0da7",
+        "name": "Neuquen",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f8fea76d-68bf-41ab-9c6b-f5f623a3de70",
+        "name": "Nevada",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NV"
+    },
+    {
+        "id": "6db6bc19-e365-4291-a5c2-b6b74a8493d7",
+        "name": "New Brunswick",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NB"
+    },
+    {
+        "id": "c3d34e5f-8c4a-4ea0-bd8c-b663147b4f63",
+        "name": "Newfoundland and Labrador",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NL"
+    },
+    {
+        "id": "7aadceb0-6c56-435f-ad35-8b679aea7f21",
+        "name": "New Hampshire",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NH"
+    },
+    {
+        "id": "6bd63a2b-2192-4fda-955f-c8a41e15e85f",
+        "name": "New Jersey",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NJ"
+    },
+    {
+        "id": "86d8319e-18c2-48ec-bc63-96a24dd88fd5",
+        "name": "New Mexico",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NM"
+    },
+    {
+        "id": "70d79bbd-118d-45dd-9262-41c3fa2f0d89",
+        "name": "New South Wales",
+        "disabled_on": null,
+        "country": {
+            "name": "Australia",
+            "id": "9f5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "aa65b701-244a-41fc-bd31-0a546303106a",
+        "name": "New York",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NY"
+    },
+    {
+        "id": "e48d7d5e-0d0f-4224-b908-a7b5effc4697",
+        "name": "Ningxia",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "df683dd1-329c-414e-9499-744c63a6c300",
+        "name": "Nizhny Novgorod Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "b9d50960-28a5-4c5d-9fa8-fd0ea7b9dd8e",
+        "name": "Norte de Santander",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "76f340c5-5abf-41d8-8ce1-794fe7be4fa3",
+        "name": "North Carolina",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NC"
+    },
+    {
+        "id": "8c3ab69e-2e97-4cdf-a315-e817df5778d1",
+        "name": "North Dakota",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "ND"
+    },
+    {
+        "id": "b5e0bb64-a637-4b61-9224-b976afa1c59a",
+        "name": "North Ossetia-Alania",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "07e3b467-6119-4c64-a55b-55317dec9cf4",
+        "name": "Northwest Territories",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NT"
+    },
+    {
+        "id": "a7874ee1-5fec-44bc-895a-c991ee596f29",
+        "name": "Nova Scotia",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NS"
+    },
+    {
+        "id": "fced06a0-5c2e-4510-ae32-696812612894",
+        "name": "Novgorod Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "ded0baad-990a-4f58-bc26-9944ff648bc8",
+        "name": "Novosibirsk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a5a2d421-5274-49ca-9c33-ea3282f5c618",
+        "name": "Nuble",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f4e076be-1a72-4ad5-a3cb-d4dd2ef3b0f8",
+        "name": "Nuevo Leon",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "fc42583c-1595-436d-a41a-42fb9143c2d9",
+        "name": "Nunavut",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "NU"
+    },
+    {
+        "id": "8e1c7145-7893-4c7d-834e-09f9c069fcc1",
+        "name": "Oaxaca",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "4301abfb-2d1a-44a2-997c-0166be6153b6",
+        "name": "Odisha",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "dfb83eda-bb42-40e5-b31f-a8bdd5f7b709",
+        "name": "O’Higgins",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "4a285f68-bc5c-4cf9-b4fb-ff81b2354a36",
+        "name": "Ohio",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "OH"
+    },
+    {
+        "id": "6ac31850-a5c6-4219-8cb5-3f7f38a51d6c",
+        "name": "Oklahoma",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "OK"
+    },
+    {
+        "id": "a130fdc4-1158-4ede-a17b-cf466e40d9b4",
+        "name": "Omsk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e6377674-055e-4833-a382-c9dd73b2e4cf",
+        "name": "Ontario",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "ON"
+    },
+    {
+        "id": "4a46fce8-0304-4cb6-8109-36f6b6751f08",
+        "name": "Oregon",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "OR"
+    },
+    {
+        "id": "7c9f9666-4433-4418-b08e-02bc11557556",
+        "name": "Orenburg Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "17cf6ac5-64c8-4fea-b951-e020e4267acd",
+        "name": "Oryol Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "695439a8-5b46-4be9-987c-c72aca543ced",
+        "name": "Para",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f3404989-19f3-49dd-bc57-a4bc631506b2",
+        "name": "Paraiba",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "4f90b4b9-36f3-49dd-aefe-8bea99565c4e",
+        "name": "Parana",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "4a90300e-8e64-4c76-84e2-338b1ebeabe3",
+        "name": "Pasco",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "4da43433-ba09-4559-9860-0f5cc25dfc70",
+        "name": "Pennsylvania",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "PA"
+    },
+    {
+        "id": "52f465a7-907d-49e3-bda8-025f92cc0525",
+        "name": "Penza Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f7a5f05e-5b46-4bcc-8e0a-b23db2930455",
+        "name": "Perm Krai",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "272ea717-9905-4d91-bc1f-959c11e020f2",
+        "name": "Pernambuco",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "98774975-2159-402a-950d-98cd59fee648",
+        "name": "Piaul",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a070e39d-b8fd-4dd6-afac-fe925ab5c69e",
+        "name": "Piura",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "b23ca60f-0065-40dd-848f-7ecfd34621de",
+        "name": "Primorsky Krai",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "02bb0397-950b-4338-8193-35c69ee0c31c",
+        "name": "Prince Edward Island",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "PE"
+    },
+    {
+        "id": "c56384f0-d094-49a1-bade-abab5c91b009",
+        "name": "Psvok Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "54739fc0-c9b8-49ee-98b3-bb3575c10208",
+        "name": "Puducherry",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "2e9e930b-05c6-4bd2-aa7f-3fbe52485010",
+        "name": "Puebla",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "4a6f5211-9e54-42e9-ba25-7c67be785d1a",
+        "name": "Puerto Rico",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "PR"
+    },
+    {
+        "id": "84515d9a-836c-4249-a290-debf64817c35",
+        "name": "Punjab",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "ada02a5f-4043-4ceb-830b-c97ee25aae33",
+        "name": "Puno",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "71f031b4-9280-42c6-a819-4dc16fe54866",
+        "name": "Putumayo",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "cf2b415f-eb85-4710-8fe1-de39bee0b6f5",
+        "name": "Qinghai",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5fc4ea61-75fe-415d-8ff0-2a2034ff6c86",
+        "name": "Quebec",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "QC"
+    },
+    {
+        "id": "422f09d4-6e73-44f8-b3a5-14a2fd34461d",
+        "name": "Queensland",
+        "disabled_on": null,
+        "country": {
+            "name": "Australia",
+            "id": "9f5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1c5dc891-d46f-4931-81c2-3672e6914d57",
+        "name": "Queretaro",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "d9999710-286e-4c75-8f40-84ca8d9a7f27",
+        "name": "Quindio",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3567a2a6-878a-4ec6-9cb8-03e1b9ed6df5",
+        "name": "Quintana Roo",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "eac2bbf5-18dc-4ed5-ab18-e9f3a6b416de",
+        "name": "Rajasthan",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "df23e1bd-255b-4626-aa31-07d94279ecfb",
+        "name": "Rhode Island",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "RI"
+    },
+    {
+        "id": "3d4f0b93-b16e-4f61-98e8-006a2c290f95",
+        "name": "Rio de Janeiro",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "44f0bf32-0175-41d6-a4bc-4a15536d6d51",
+        "name": "Rio Grande do Norte",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "585d5d41-38de-460c-a2c2-4abe262aea7e",
+        "name": "Rio Grande do Sul",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6ef6be70-2d72-4ba3-abdd-0be518152283",
+        "name": "Rio Negro",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "051d2da3-487c-4c44-9fbf-1a9ae8e8fc23",
+        "name": "Risaralda",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "4e5391c8-5feb-49c2-83b7-ca9c7f193144",
+        "name": "Rondonia",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8da3c5d8-8aeb-4259-a41f-fe512e60e8bf",
+        "name": "Roraima",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "42f0137c-00c7-4efd-a4dd-9bafaf5f6943",
+        "name": "Rostov Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8aa4b2a8-519b-443f-a5c9-0da61318b6e7",
+        "name": "Ryazan Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a28a4c36-863b-423e-bae9-b0dc9ca2b7f9",
+        "name": "Saint Petersburg",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "cd804d48-48b7-4647-a1cc-2072dc1e7485",
+        "name": "Sakhalin Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "be031449-684e-4f32-ac87-d32e30cad4c8",
+        "name": "Salta",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a71b67aa-4ab1-4f07-800d-f886c6e06dd4",
+        "name": "Samara Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "cd305431-d63f-4874-9402-9570c1081153",
+        "name": "San Andreas and Providencia",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "86b1d913-4a4f-4458-8189-1e3df0b74faf",
+        "name": "San Juan",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "48c84d65-0760-409d-8577-287b1a8282f8",
+        "name": "San Luis",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f742f8ab-5cec-4396-a79a-7de7de099e76",
+        "name": "San Luis Potosi",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e4856e73-2fa6-41a6-9819-d7f550be1de3",
+        "name": "San Martin",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "5a3e6f78-e2e2-4bdd-a1d9-e049cf102343",
+        "name": "Santa Catarina",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a92a23ac-20e5-470f-9ba8-25a5abd2a850",
+        "name": "Santa Cruz",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "aefa92a6-aced-4019-8eb4-a005a9802b5c",
+        "name": "Santa Fe",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "f527ceda-fb39-4c1c-9ee2-ce08f2188fca",
+        "name": "Santander",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "61fd2d47-e424-4714-9c26-a5e1be544e2e",
+        "name": "Santiago",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "d21ea723-13cf-4cba-a36c-2577b2f2e309",
+        "name": "Santiago",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "71f66703-64eb-4e00-85db-4644b9f10be8",
+        "name": "Sao Paulo",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e15db609-22da-49b1-a1bf-c95b042d543a",
+        "name": "Saratov Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "9fa70673-02d0-42c3-b57b-111422812915",
+        "name": "Saskatchewan",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "SK"
+    },
+    {
+        "id": "0b2c3b04-f69f-4a51-bd15-f2cf498e8dcd",
+        "name": "Sergipe",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8c02e8a2-1dc4-49ca-a1ea-087a64a207b3",
+        "name": "Sevastop",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3fc95ec8-91ef-4e7b-93fc-2301561f405f",
+        "name": "Shaanxi",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "dd7e4126-0a0f-47d0-805e-c4afb8ffbe2c",
+        "name": "Shandong",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6cf359e0-7ad8-4916-a6b0-793504e1489a",
+        "name": "Shanghai",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8aabd11c-542b-431f-8889-9ae17c078f2d",
+        "name": "Shanxi",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e831c1dc-251e-4ce6-b1ae-0bb515294972",
+        "name": "Sichuan",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "223c17d5-0375-44ef-94f7-60140f02777c",
+        "name": "Sikkim",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e1a7ca7b-7d6b-45ec-ac9b-42c437c8e7db",
+        "name": "Sinaloa",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "821b2e70-fbf8-406d-86c7-b0a57edda5e6",
+        "name": "Smolensk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "14a25126-d2a0-44c5-9690-575d7602f077",
+        "name": "Sonora",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "88f26277-ca6a-43f4-b076-ca93d1ef7a6b",
+        "name": "South Australia",
+        "disabled_on": null,
+        "country": {
+            "name": "Australia",
+            "id": "9f5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "fc27c16e-bec6-469f-91d6-b7dc455033c3",
+        "name": "South Carolina",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "SC"
+    },
+    {
+        "id": "66ee92f7-d762-4fa0-8bea-7331f402c4d2",
+        "name": "South Dakota",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "SD"
+    },
+    {
+        "id": "ac8548eb-ef13-4a92-8c84-56c983a334d0",
+        "name": "Stavropol Krai",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e880806d-b5a5-4131-bc77-2249a3ac356e",
+        "name": "Sucre",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e47318f8-0f60-4be6-932a-2a7ceac92acc",
+        "name": "Sverdlovsk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "d1793bb9-0147-4ddf-affd-d719fffcd606",
+        "name": "Tabasco",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "26256919-805b-468d-babe-9998820b21f3",
+        "name": "Tacna",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "07057716-dc4b-4c4b-98e5-71c03298865b",
+        "name": "Tamaulipas",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6e5ea9d1-99fe-499a-8825-ff07b142a5de",
+        "name": "Tambov Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "422d3db2-d9e1-408a-925d-10809fedf617",
+        "name": "Tamil Nadu",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "b2890555-64de-43fb-b990-d2141c661aea",
+        "name": "Tarapaca",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6d75d8e3-b67a-4e27-8dd3-e09c877e827e",
+        "name": "Tasmania",
+        "disabled_on": null,
+        "country": {
+            "name": "Australia",
+            "id": "9f5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "c7f23e8b-62f4-46e6-8eab-7944362bd43d",
+        "name": "Tatarstan",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a1ed69a1-b43d-491a-bc2d-2aedfaaf1899",
+        "name": "Telangana",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "4df9092d-d289-4b98-8352-01023d0fce52",
+        "name": "Tennessee",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "TN"
+    },
+    {
+        "id": "c35c119a-bc4d-4e48-9ace-167dbe8cb695",
+        "name": "Texas",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "TX"
+    },
+    {
+        "id": "e5c36c67-cfb3-4ef6-8659-5573b9ee2426",
+        "name": "The Government of NCT of Delhi",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "419013b8-bc72-467b-b0c8-1475b800cf06",
+        "name": "Tianjin",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "202dad82-769e-438d-b68c-c049e82e3e8f",
+        "name": "Tibet",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "451d4085-647a-48ba-b30d-3951a17cf43a",
+        "name": "Tierra del Fuego",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3942afe0-0731-4034-b356-71b806e839d8",
+        "name": "Tlaxcala",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "b4054507-6e99-4023-bc53-f0a8f562580d",
+        "name": "Tocantins",
+        "disabled_on": null,
+        "country": {
+            "name": "Brazil",
+            "id": "b05f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "53fbe778-eaeb-409e-b0e0-0c71948b8948",
+        "name": "Tolima",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "be696ad4-c9ea-456f-877f-24a9519c4169",
+        "name": "Tomsk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a0bfabe1-7ddc-47e3-b0d9-e6dadc73b953",
+        "name": "Tripura",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "d7eaedb4-ea8b-43f3-b95d-33af88338a7c",
+        "name": "Tucuman",
+        "disabled_on": null,
+        "country": {
+            "name": "Argentina",
+            "id": "9c5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "dc4f064a-6d3e-4888-be37-f0d6c4a2298e",
+        "name": "Tula Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "296ac414-7aed-4248-9d52-d053c52a5607",
+        "name": "Tumbes",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "7424c619-b407-4e95-ba17-a15671f82fa2",
+        "name": "Tuva",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3b7ad605-3cc8-4227-b970-feb6bede4ad9",
+        "name": "Tver Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "cfe05430-1943-4fbc-b52e-581b7f4421c8",
+        "name": "Tyumen Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "ba27fc7d-fe8c-44e1-b9ba-3c731a6e349b",
+        "name": "Ucayali",
+        "disabled_on": null,
+        "country": {
+            "name": "Peru",
+            "id": "5061b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "ad3bd9a9-df0c-4319-97a1-41bff12e146b",
+        "name": "Udmurtia",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6ff6f889-a146-45b6-bc14-a899be98929f",
+        "name": "Ulyanovsk Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e848b258-c71f-4489-a745-1008e945d832",
+        "name": "Utah",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "UT"
+    },
+    {
+        "id": "33fc0ffc-448a-4700-b4a3-9f675b41b80f",
+        "name": "Uttarakhand",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "488648bb-498e-45f1-855b-252c3ea4df07",
+        "name": "Uttar Pradesh",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "e13cdb10-c02d-4d78-b2ae-7f6c05045b3e",
+        "name": "Valle del Cauca",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "6463947c-0da7-4032-bf07-a21e756eb11c",
+        "name": "Valparaiso",
+        "disabled_on": null,
+        "country": {
+            "name": "Chile",
+            "id": "62af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "ef729bab-9c8d-4a87-b7eb-096d21656df8",
+        "name": "Vaupes",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a5eb0e69-a567-48e7-975b-a1307d87ce99",
+        "name": "Veracruz",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "cf1cf255-0984-40a1-b9fc-54b6b0cfadd2",
+        "name": "Vermont",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "VT"
+    },
+    {
+        "id": "4abdb998-17c0-4073-9466-0e47dfdc4b71",
+        "name": "Vichada",
+        "disabled_on": null,
+        "country": {
+            "name": "Colombia",
+            "id": "66af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "8caa0806-786b-4f41-83c1-fbf132e87fb7",
+        "name": "Victoria",
+        "disabled_on": null,
+        "country": {
+            "name": "Australia",
+            "id": "9f5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "85a05f4b-c064-48a0-b1b9-624acdbeb46d",
+        "name": "Virginia",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "VA"
+    },
+    {
+        "id": "f217a910-0962-46f9-9370-d295ebd9fce4",
+        "name": "Vladimir Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "3f8520a5-ec7d-4068-89e5-558d5968bc05",
+        "name": "Volgograd Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "ffea2ba8-0880-487a-8077-39913fc2ac10",
+        "name": "Vologda Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "2f9a63ab-4001-4c24-98a8-47d7daeca969",
+        "name": "Voronezh Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "ad6db3f6-52f7-4d7f-b989-ed559f6922df",
+        "name": "Washington",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "WA"
+    },
+    {
+        "id": "80b93b3e-f658-4653-b419-6c014e6bb2e9",
+        "name": "West Bengal",
+        "disabled_on": null,
+        "country": {
+            "name": "India",
+            "id": "6f6a9ab2-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a623710a-3985-4d9a-a3d7-0744d984e178",
+        "name": "Western Australia",
+        "disabled_on": null,
+        "country": {
+            "name": "Australia",
+            "id": "9f5f66a0-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "51c1ec10-15e7-4fb8-a73b-46ecffcc689e",
+        "name": "West Virginia",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "WV"
+    },
+    {
+        "id": "4f02dad0-08f0-4c6a-8b4c-089aca1697c1",
+        "name": "Wisconsin",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "WI"
+    },
+    {
+        "id": "6de9750c-5191-44f1-b39b-fd87cdba506f",
+        "name": "Wyoming",
+        "disabled_on": null,
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "WY"
+    },
+    {
+        "id": "fddef0a6-6fb3-4286-a392-0be20dbebd3a",
+        "name": "Xinjiang",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "36abca6f-33f6-4732-aa80-5bf875d28bcc",
+        "name": "Yakutia",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "61d8fb02-05ef-4ca9-b81d-6235bf12e201",
+        "name": "Yaroslavl Oblast",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1dd1bfc7-45fd-4726-a35d-5c9b522d7cf7",
+        "name": "Yucatan",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1141a776-df37-44e2-8513-2386fd5995c8",
+        "name": "Yukon",
+        "disabled_on": null,
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "YT"
+    },
+    {
+        "id": "76ec5121-41a4-4184-b0b4-dcdca4883cbb",
+        "name": "Yunnan",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "646a6a1c-02d2-49f4-ab36-91dd4407f246",
+        "name": "Zabaykalsky Krai",
+        "disabled_on": null,
+        "country": {
+            "name": "Russia",
+            "id": "5961b8be-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "a9b9b429-8eda-4808-b2c7-c06b5ca78f05",
+        "name": "Zacatecas",
+        "disabled_on": null,
+        "country": {
+            "name": "Mexico",
+            "id": "0e50bdb8-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    },
+    {
+        "id": "1cd4716f-4d2a-4adf-93a3-63175deeb778",
+        "name": "Zhejiang",
+        "disabled_on": null,
+        "country": {
+            "name": "China",
+            "id": "63af72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": ""
+    }
+]

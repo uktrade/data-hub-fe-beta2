@@ -5,14 +5,12 @@ import {
   assertCheckboxGroupNoneSelected,
   assertChipExists,
   assertElementsInOrder,
-  assertTypeaheadHints,
-  assertTypeaheadOptionSelected,
 } from '../../support/assertions'
 import {
   selectFirstAdvisersTypeaheadOption,
   clickCheckboxGroupOption,
-  selectFirstTypeaheadOption,
 } from '../../support/actions'
+import { testTypeahead, testRemoveChip } from '../../support/tests'
 
 const PROSPECT_STAGE_ID = '8a320cc9-ae2e-443e-9d26-2f36452c2ced'
 const MY_ADVISER_ID = '7d19d407-9aec-4d06-b190-d3f404627f21'
@@ -23,30 +21,6 @@ const PROJECT_STATUS_ABANDONED = 'abandoned'
 const FDI_INVESTMENT_TYPE_ID = '3e143372-496c-4d1e-8278-6fdd3da9b48b'
 const MEDIUM_LIKELIHOOD_TO_LAND_ID = '683ca57b-bd69-462c-852f-d2177e35b2eb'
 const INVOLVEMENT_LEVEL_UNSPECIFIED = 'unspecified'
-
-/**
- * Tests that a typeahead functions correctly by inputing a value and selecting
- */
-const testTypeahead = ({
-  element,
-  legend,
-  placeholder,
-  input,
-  expectedOption,
-}) => {
-  assertTypeaheadHints({ element, legend, placeholder })
-  selectFirstTypeaheadOption({ element, input })
-  assertTypeaheadOptionSelected({ element, expectedOption })
-}
-
-/**
- * Tests that clicking the first indicator button clears a filter element
- */
-const testRemoveChip = ({ element, placeholder = null }) => {
-  cy.get('#filter-chips').as('filterChips').find('button').click()
-  cy.get('@filterChips').should('be.empty')
-  placeholder && cy.get(element).should('contain', placeholder)
-}
 
 describe('Investments Collections Filter', () => {
   beforeEach(() => {

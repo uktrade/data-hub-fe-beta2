@@ -2,13 +2,11 @@
 
 {% block main_grid_left_column %}{% endblock %}
 {% block main_grid_right_column %}
-    {% if features.relatedTradeAgreements %}
         <p data-test="trade-agreement-text">
             If your Event is set up to focus on a Trade Agreement or contributes to implementing a Trade Agreement then select that the event relates to a Trade Agreement and the relevant Agreement(s)
         </p>
         <a href="https://data-services-help.trade.gov.uk/data-hub/how-articles/trade-agreement-activity/recording-trade-agreement-activity/" target="_blank" aria-label="opens in a new tab" data-test="trade-agreement-link">
             See more guidance
         </a>
-    {% endif %}
     {{ Form(eventForm) }}
 {% endblock %}

@@ -1,19 +1,19 @@
-const moment = require('moment')
+const { endOfToday, format, subMonths } = require('date-fns')
 const { QUERY_FIELDS_MAP } = require('../constants')
 
 const QUERY_PARAM = QUERY_FIELDS_MAP.lastInteractionDate
 const START_DATE_PARAM = 'latest_interaction_date_before'
 const END_DATE_PARAM = 'latest_interaction_date_after'
-const DATE_FORMAT = 'YYYY-MM-DD'
+const DATE_FORMAT = 'y-MM-d'
 
 function getTimestamp(offset) {
-  const date = moment()
+  const date = endOfToday()
 
   if (offset > 0) {
-    date.subtract(offset, 'month')
+    subMonths(date, offset)
   }
 
-  return date.utc().format(DATE_FORMAT)
+  return format(date, DATE_FORMAT)
 }
 
 module.exports = (req, res, next) => {

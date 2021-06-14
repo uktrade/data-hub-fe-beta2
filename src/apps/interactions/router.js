@@ -1,5 +1,7 @@
 const router = require('express').Router()
 
+const urls = require('../../lib/urls')
+
 const {
   DEFAULT_COLLECTION_QUERY,
   APP_PERMISSIONS,
@@ -38,6 +40,17 @@ router.get(
   getRequestBody(QUERY_FIELDS, QUERY_DATE_FIELDS),
   exportCollection('interaction')
 )
+
+router.get(urls.interactions.react.route, (req, res, next) => {
+  try {
+    const { user } = req.session
+    return res.render('interactions/views/interactions', {
+      props: { currentAdviserId: user.id },
+    })
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.use(subAppRouter)
 

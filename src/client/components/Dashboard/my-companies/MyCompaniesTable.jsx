@@ -1,5 +1,5 @@
 import { orderBy } from 'lodash'
-import moment from 'moment'
+import { format, parseISO } from 'date-fns'
 import React from 'react'
 import styled from 'styled-components'
 import LinesEllipsis from 'react-lines-ellipsis'
@@ -97,7 +97,7 @@ function MyCompaniesTable() {
         </Table.Cell>
         <StyledDateCell setWidth="15%">
           {latestInteraction.date
-            ? moment(latestInteraction.date).format('D MMM YYYY')
+            ? format(parseISO(latestInteraction.date), 'd MMM yyyy')
             : '-'}
         </StyledDateCell>
         <Table.Cell setWidth="50%">

@@ -435,6 +435,10 @@
            "town":"Culver City",
            "county":"CA",
            "postcode":"90232",
+           "area": {
+              "name": "California",
+              "id": "a88512e0-62d4-4808-95dc-d3beab05d0e9"
+           },
            "country":{  
               "id":"81756b9a-5d95-e211-a939-e4115bead28a",
               "name":"United States"

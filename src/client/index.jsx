@@ -42,6 +42,7 @@ import PersonalisedDashboard from './components/PersonalisedDashboard'
 import CompanyLocalHeader from './components/CompanyLocalHeader'
 import CompaniesCollection from '../apps/companies/client/CompaniesCollection.jsx'
 import ContactsCollection from '../apps/contacts/client/ContactsCollection.jsx'
+import InteractionsCollection from '../apps/interactions/client/InteractionsCollection'
 import InvestmentProjectsCollection from '../apps/investments/client/projects/ProjectsCollection.jsx'
 import Opportunities from '../apps/investments/client/opportunities/Details/Opportunities.jsx'
 import IEBanner from '../apps/dashboard/client/IEBanner'
@@ -133,8 +134,15 @@ import { TASK_GET_INVESTMENT_SUMMARY_DATA_RANGES } from './components/Investment
 import { fetchOutstandingPropositions } from './components/InvestmentReminders/tasks'
 import { TASK_GET_OUTSTANDING_PROPOSITIONS } from './components/InvestmentReminders/state'
 
-import { getContacts } from '../apps/contacts/client/tasks'
-import { TASK_GET_CONTACTS_LIST } from '../apps/contacts/client/state'
+import { getContacts, getContactsMetadata } from '../apps/contacts/client/tasks'
+import { getInteractions } from '../apps/interactions/client/tasks'
+
+import {
+  TASK_GET_CONTACTS_LIST,
+  TASK_GET_CONTACTS_METADATA,
+} from '../apps/contacts/client/state'
+
+import { TASK_GET_INTERACTIONS_LIST } from '../apps/interactions/client/state'
 
 import Footer from '../client/components/Footer'
 
@@ -221,6 +229,8 @@ function App() {
           investmentProfilesTasks.loadFilterOptions,
         CREATE_INVESTMENT_OPPORTUNITY: createUKInvestmentOpportunityTask,
         [TASK_GET_CONTACTS_LIST]: getContacts,
+        [TASK_GET_CONTACTS_METADATA]: getContactsMetadata,
+        [TASK_GET_INTERACTIONS_LIST]: getInteractions,
       }}
     >
       <Mount selector="#add-company-form">
@@ -388,6 +398,9 @@ function App() {
       </Mount>
       <Mount selector="#contacts-collection">
         {(props) => <ContactsCollection {...props} />}
+      </Mount>
+      <Mount selector="#interactions-collection">
+        {(props) => <InteractionsCollection {...props} />}
       </Mount>
       <Mount selector="#ie-banner">{() => <IEBanner />}</Mount>
     </Provider>

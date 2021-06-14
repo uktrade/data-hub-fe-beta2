@@ -14,7 +14,8 @@
         {{ Entity(item | assign({
           highlightTerm: props.highlightTerm,
           isBlockLink: hasBlockLinks,
-          preventDoubleClick: props.preventDoubleClick
+          preventDoubleClick: props.preventDoubleClick,
+          features: props.features
         })) }}
       </li>
     {% endfor %}

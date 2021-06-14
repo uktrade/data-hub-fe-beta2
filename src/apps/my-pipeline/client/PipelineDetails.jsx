@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from '@govuk-react/link'
-import moment from 'moment'
 import styled from 'styled-components'
 
 import { STATUS_VALUES, LIKELIHOOD_VALUES } from './constants'
@@ -9,6 +8,7 @@ import { SummaryTable } from '../../../client/components/'
 import { WIDTHS } from '@govuk-react/constants/lib/spacing'
 import { format } from '../../../client/utils/date-utils'
 import { currencyGBP } from '../../../client/utils/number-utils'
+import { format as formatFNS, parseISO } from 'date-fns'
 
 function getLabels(acc, { value, label }) {
   acc[value] = label
@@ -55,7 +55,7 @@ export default function PipelineDetails({ item }) {
     ],
     item.expected_win_date && [
       'Expected date for win',
-      moment(item.expected_win_date).format('MMM Y'),
+      formatFNS(parseISO(item.expected_win_date), 'MMM y'),
     ],
     ['Created', format(item.created_on)],
     item.archived && ['Reason for archive', item.archived_reason],

@@ -93,19 +93,12 @@ export function restoreState() {
   return JSON.parse(stateFromStorage)
 }
 
-export function saveInteraction({
-  values,
-  companyId,
-  referralId,
-  isTradeAgreementInteractionEnabled,
-}) {
+export function saveInteraction({ values, companyId, referralId }) {
   window.sessionStorage.removeItem(STORE_ID)
-
-  const interactionVersion = isTradeAgreementInteractionEnabled ? 'v4' : 'v3'
 
   const endpoint = referralId
     ? `/api-proxy/v4/company-referral/${referralId}/complete`
-    : `/api-proxy/${interactionVersion}/interaction`
+    : `/api-proxy/v4/interaction`
 
   const request = values.id ? axios.patch : axios.post
 

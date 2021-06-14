@@ -4,6 +4,7 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
+    day: "monday"
     time: "00:00"
     timezone: Europe/London
   open-pull-requests-limit: 10
@@ -35,4 +36,7 @@ updates:
   - dependency-name: cypress
     versions:
     - 6.1.0
+  # ignore all GitHub linguist patch updates
+  - dependency-name: "github-linguist"
+    update-types: ["version-update:semver-patch"]
   rebase-strategy: disabled

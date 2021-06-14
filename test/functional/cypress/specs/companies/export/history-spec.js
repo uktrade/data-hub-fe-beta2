@@ -13,8 +13,7 @@ describe('Company Export tab - Export countries history', () => {
   }
 
   function visitHistory(companyId) {
-    cy.server()
-    cy.route('POST', '**/export-country-history').as('exportHistoryResults')
+    cy.intercept('POST', '**/export-country-history').as('exportHistoryResults')
     cy.visit(urls.companies.exports.history.index(companyId))
     cy.wait('@exportHistoryResults')
   }
@@ -480,8 +479,7 @@ describe('Company Export tab - Export countries history', () => {
 
   describe('Country specific history', () => {
     function visitCountryHistory(companyId, countryId) {
-      cy.server()
-      cy.route('POST', '**/export-country-history').as(
+      cy.intercept('POST', '**/export-country-history').as(
         'exportCountryHistoryResults'
       )
       cy.visit(urls.companies.exports.history.country(companyId, countryId))

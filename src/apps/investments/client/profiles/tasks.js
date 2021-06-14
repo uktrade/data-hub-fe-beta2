@@ -1,5 +1,7 @@
 import { apiProxyAxios } from '../../../../client/components/Task/utils'
 
+import transformLargeCapitalProfiles from './transformers'
+
 export function getLargeCapitalProfiles({
   limit = 10,
   page,
@@ -59,9 +61,10 @@ export function getLargeCapitalProfiles({
         ? { investable_capital_end: investableCapital.max }
         : {}),
     })
-    .then(({ data }) => {
-      return data
-    })
+    .then(({ data }) => ({
+      count: data.count,
+      results: data.results.map(transformLargeCapitalProfiles),
+    }))
 }
 
 const idName2valueLabel = ({ id, name }) => ({ value: id, label: name })

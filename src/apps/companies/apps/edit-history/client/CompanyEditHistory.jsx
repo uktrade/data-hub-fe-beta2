@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 import { isBoolean, isNumber } from 'lodash'
 import { convertUsdToGbp } from '../../../../../common/currency'
 
 import EditHistory from '../../../../../client/components/EditHistory/EditHistory'
 import { formatWithTime } from '../../../../../client/utils/date-utils'
 import { currencyGBP } from '../../../../../client/utils/number-utils'
+import { isValid, parseISO } from 'date-fns'
 
 import {
   ARCHIVED,
@@ -21,7 +21,7 @@ import {
 const CURRENCY_FIELDS = ['Turnover']
 
 function isDate(dateStr) {
-  return moment(dateStr, moment.ISO_8601, true).isValid()
+  return isValid(parseISO(dateStr))
 }
 
 function getValueFromBoolean(value, field) {

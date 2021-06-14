@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment'
 import styled from 'styled-components'
 import { escape } from 'lodash'
 import Button from '@govuk-react/button'
@@ -9,6 +8,7 @@ import GridCol from '@govuk-react/grid-col'
 import { SPACING, MEDIA_QUERIES, FONT_SIZE } from '@govuk-react/constants'
 import { BLUE, GREY_1, BLACK } from 'govuk-colours'
 import { H3 } from 'govuk-react'
+import { format, parseISO } from 'date-fns'
 
 import { Card } from '../ActivityFeed/activities/card'
 import { currencyGBP } from '../../utils/number-utils'
@@ -157,11 +157,11 @@ function buildMetaList({
     },
     expected_win_date && {
       label: 'Expected date for win',
-      value: moment(expected_win_date).format('MMM Y'),
+      value: format(parseISO(expected_win_date), 'MMM y'),
     },
     {
       label: 'Created',
-      value: moment(created_on).format('DD MMM Y'),
+      value: format(parseISO(created_on), 'dd MMM y'),
       subtle: true,
       showArchived: true,
     },
@@ -178,7 +178,7 @@ function buildMetaList({
       },
     archived && {
       label: 'Archived',
-      value: moment(archived_on).format('DD MMM Y'),
+      value: format(parseISO(archived_on), 'dd MMM y'),
       subtle: true,
     },
   ]

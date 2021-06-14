@@ -10,8 +10,7 @@ describe('Contacts Collections Filter', () => {
   })
 
   beforeEach(() => {
-    cy.server()
-    cy.route('/contacts?*').as('filterResults')
+    cy.intercept('/contacts?*').as('filterResults')
   })
 
   it('should default active contacts filter', () => {
@@ -41,7 +40,7 @@ describe('Contacts Collections Filter', () => {
       .type('{enter}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain('company_name=FilterByCompany')
+      expect(xhr.response.url).to.contain('company_name=FilterByCompany')
     })
 
     cy.get(selectors.entityCollection.entities)
@@ -53,7 +52,7 @@ describe('Contacts Collections Filter', () => {
     cy.get(selectors.filter.statusInactive).click()
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain('archived=true')
+      expect(xhr.response.url).to.contain('archived=true')
     })
 
     cy.get(selectors.entityCollection.entities)
@@ -65,7 +64,7 @@ describe('Contacts Collections Filter', () => {
     cy.get(selectors.filter.statusActive).click()
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).not.to.contain('archived=false')
+      expect(xhr.response.url).not.to.contain('archived=false')
     })
 
     cy.get(selectors.entityCollection.entities)
@@ -87,7 +86,7 @@ describe('Contacts Collections Filter', () => {
       .type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         'sector_descends=af959812-6095-e211-a939-e4115bead28a'
       )
     })
@@ -108,7 +107,9 @@ describe('Contacts Collections Filter', () => {
       .type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain('country=80756b9a-5d95-e211-a939-e4115bead28a')
+      expect(xhr.response.url).to.contain(
+        'country=80756b9a-5d95-e211-a939-e4115bead28a'
+      )
     })
   })
 
@@ -131,7 +132,7 @@ describe('Contacts Collections Filter', () => {
       .type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         'uk_region=824cd12a-6095-e211-a939-e4115bead28a'
       )
 

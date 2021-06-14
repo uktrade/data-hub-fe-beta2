@@ -1,4 +1,4 @@
-const moment = require('moment')
+const { formatDistanceToNowStrict, parseISO } = require('date-fns')
 const {
   formatHelpCentreAnnouncements,
 } = require('../../../../src/apps/dashboard/transformers')
@@ -67,17 +67,32 @@ describe('#formatHelpCentreAnnouncements', () => {
     {
       heading: 'Recording policy feedback on Data Hub',
       link: 'https://helpcentre.com/hc/en-gb/articles/360001431697-Recording-policy-feedback-on-Data-Hub',
-      date: `${moment(mockData.articles[0].created_at).fromNow()}`,
+      date: `${formatDistanceToNowStrict(
+        parseISO(mockData.articles[0].created_at),
+        {
+          addSuffix: true,
+        }
+      )}`,
     },
     {
       heading: 'Improvements to company data in Data Hub - April 2019',
       link: 'https://helpcentre.com/hc/en-gb/articles/360001412918-Improvements-to-company-data-in-Data-Hub-April-2019',
-      date: `${moment(mockData.articles[1].created_at).fromNow()}`,
+      date: `${formatDistanceToNowStrict(
+        parseISO(mockData.articles[1].created_at),
+        {
+          addSuffix: true,
+        }
+      )}`,
     },
     {
       heading: 'Recording multiple DIT advisers against interactions',
       link: 'https://helpcentre.com/hc/en-gb/articles/360001345138-Recording-multiple-DIT-advisers-against-interactions',
-      date: `${moment(mockData.articles[2].created_at).fromNow()}`,
+      date: `${formatDistanceToNowStrict(
+        parseISO(mockData.articles[2].created_at),
+        {
+          addSuffix: true,
+        }
+      )}`,
     },
   ]
   context('Successful API response', () => {

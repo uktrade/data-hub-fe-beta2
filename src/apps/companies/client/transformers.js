@@ -6,6 +6,9 @@ import urls from '../../../lib/urls'
 import { addressToString } from '../../../client/utils/addresses'
 import { format, formatWithTime } from '../../../client/utils/date-utils'
 
+export const transformArchivedToApi = (archived) =>
+  archived?.length === 1 ? archived[0] === 'true' : undefined
+
 const transformCompanyToListItem = ({
   id,
   name,
@@ -66,7 +69,9 @@ const transformCompanyToListItem = ({
 
   return {
     id,
-    subheading: `Updated on ${formatWithTime(modified_on)}`,
+    subheading: modified_on
+      ? `Updated on ${formatWithTime(modified_on)}`
+      : undefined,
     headingText: name,
     headingUrl: urls.companies.detail(id),
     badges,

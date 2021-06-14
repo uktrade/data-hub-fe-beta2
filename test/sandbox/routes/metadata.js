@@ -24,6 +24,7 @@ var evidenceTag = require('../fixtures/metadata/evidence-tag.json')
 var employeeRange = require('../fixtures/metadata/employee-range.json')
 var country = require('../fixtures/metadata/country.json')
 var ukRegion = require('../fixtures/metadata/uk-region.json')
+var administrativeArea = require('../fixtures/metadata/administrative-area.json')
 var referralSourceWebsite = require('../fixtures/metadata/referral-source-website.json')
 var referralSourceMarketing = require('../fixtures/metadata/referral-source-marketing.json')
 var referralSourceActivity = require('../fixtures/metadata/referral-source-activity.json')
@@ -148,6 +149,10 @@ exports.country = function (req, res) {
 
 exports.ukRegion = function (req, res) {
   res.json(ukRegion)
+}
+
+exports.administrativeArea = function (req, res) {
+  res.json(administrativeArea)
 }
 
 exports.referralSourceWebsite = function (req, res) {

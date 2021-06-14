@@ -22,6 +22,7 @@ const exportOptions = {
 
 async function renderCompanyList(req, res, next) {
   try {
+    const { features } = res.locals
     const { user } = req.session
     const queryString = QUERY_STRING
     const sortForm = merge({}, companySortForm, {
@@ -31,12 +32,25 @@ async function renderCompanyList(req, res, next) {
 
     const sectorOptions = await getOptions(req, SECTOR, { queryString })
 
-    const filtersFields = companyFiltersFields({
+    let filtersFields = companyFiltersFields({
       sectorOptions,
     })
 
+    if (!res.locals.features['state-filter']) {
+      filtersFields = filtersFields.filter(
+        (macroField) => macroField.label !== 'US state'
+      )
+    }
+
+    if (!res.locals.features['province-filter']) {
+      filtersFields = filtersFields.filter(
+        (macroField) => macroField.label !== 'Canadian Province'
+      )
+    }
+
     const filtersFieldsWithSelectedOptions =
       await buildFieldsWithSelectedEntities(req, filtersFields, req.query)
+
     const selectedFilters = await buildSelectedFiltersSummary(
       filtersFieldsWithSelectedOptions,
       req.query
@@ -49,6 +63,9 @@ async function renderCompanyList(req, res, next) {
     )
 
     res.render('_layouts/collection', {
+      features: {
+        isAddressAreaEnabled: features['address-area-company-search'],
+      },
       sortForm,
       filtersFields: filtersFieldsWithSelectedOptions,
       selectedFilters,

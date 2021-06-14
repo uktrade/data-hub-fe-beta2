@@ -11,7 +11,7 @@
   {% if props.items | length %}
     <div class="{{ 'c-meta-list' | applyClassModifiers(props.modifier) }}">
       {% for metaItem in props.items %}
-        {{ MetaItem(metaItem | assignCopy({ highlightTerm: props.highlightTerm, modifier: metaItem.modifier or props.itemModifier })) }}
+        {{ MetaItem(metaItem | assignCopy({ features: props.features, highlightTerm: props.highlightTerm, modifier: metaItem.modifier or props.itemModifier })) }}
       {% endfor %}
     </div>
   {% endif %}

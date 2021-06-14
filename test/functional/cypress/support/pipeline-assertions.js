@@ -1,8 +1,7 @@
-const moment = require('moment')
-
 const { currencyGBP } = require('../../../../src/client/utils/number-utils')
 const { format } = require('../../../../src/client/utils/date-utils')
 const { assertKeyValueTable } = require('./assertions')
+const { format: formatFNS, parseISO } = require('date-fns')
 const urls = require('../../../../src/lib/urls')
 const {
   STATUS_VALUES,
@@ -58,9 +57,10 @@ module.exports = {
       }
 
       if (item.expected_win_date) {
-        content['Expected date for win'] = moment(
-          item.expected_win_date
-        ).format('MMM Y')
+        content['Expected date for win'] = formatFNS(
+          parseISO(item.expected_win_date),
+          'MMM y'
+        )
       }
 
       content.Created = format(item.created_on)

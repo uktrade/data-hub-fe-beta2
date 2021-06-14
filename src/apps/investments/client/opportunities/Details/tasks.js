@@ -1,13 +1,13 @@
 import { apiProxyAxios } from '../../../../../client/components/Task/utils'
 
+import { transformInvestmentOpportunityDetails } from './transformers'
+
 const idNameToValueLabel = ({ id, name }) => ({ value: id, label: name })
 
 export const getOpportunityDetails = ({ opportunityId }) =>
   apiProxyAxios
     .get(`/v4/large-capital-opportunity/${opportunityId}`)
-    .then(({ data }) => {
-      return data
-    })
+    .then(({ data }) => transformInvestmentOpportunityDetails(data))
 
 export const getDetailsMetadata = () =>
   Promise.all([

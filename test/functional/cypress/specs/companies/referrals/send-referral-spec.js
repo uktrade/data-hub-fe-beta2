@@ -10,8 +10,7 @@ const {
 
 const selectTypeahead = (field, input) =>
   cy.get(field).within(() => {
-    cy.server()
-    cy.route('/api-proxy/adviser/?*').as('adviserResults')
+    cy.intercept('/api-proxy/adviser/?*').as('adviserResults')
     cy.get('div').eq(0).type(input)
     cy.wait('@adviserResults')
     cy.get('[class*="menu"] > div').click()

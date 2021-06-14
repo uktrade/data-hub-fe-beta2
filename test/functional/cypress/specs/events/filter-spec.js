@@ -10,8 +10,7 @@ describe('Events Collections Filter', () => {
   })
 
   beforeEach(() => {
-    cy.server()
-    cy.route('/events?*').as('filterResults')
+    cy.intercept('/events?*').as('filterResults')
   })
 
   it('should filter by country', () => {
@@ -29,7 +28,7 @@ describe('Events Collections Filter', () => {
       .type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         'address_country=80756b9a-5d95-e211-a939-e4115bead28a'
       )
     })
@@ -62,7 +61,7 @@ describe('Events Collections Filter', () => {
       .type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         'uk_region=814cd12a-6095-e211-a939-e4115bead28a'
       )
     })

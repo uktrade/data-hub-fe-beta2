@@ -59,7 +59,7 @@ describe('Event repos', () => {
 
         expect(this.authorisedRequestStub).to.be.calledWith(
           stubRequest,
-          sinon.match({ url: `${config.apiRoot}/v3/event/${eventMock.id}` })
+          sinon.match({ url: `${config.apiRoot}/v4/event/${eventMock.id}` })
         )
       })
 

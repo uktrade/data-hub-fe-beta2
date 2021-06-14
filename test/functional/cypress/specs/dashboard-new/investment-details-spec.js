@@ -3,7 +3,9 @@ import faker from 'faker'
 const { companies, interactions } = require('../../../../../src/lib/urls')
 
 import { investmentProjectFaker } from '../../fakers/investment-projects'
-import { today } from '../../../../../src/client/utils/date-utils'
+import { format } from 'date-fns'
+
+const todayFormatted = format(new Date(), 'dd MMM yyyy')
 
 describe('Dashboard - Investment details', () => {
   const investmentProject = investmentProjectFaker({
@@ -16,7 +18,8 @@ describe('Dashboard - Investment details', () => {
     },
     latest_interaction: {
       id: faker.datatype.uuid(),
-      date: today(),
+      date: new Date(),
+      displayDate: todayFormatted,
       subject: 'A project interaction',
     },
     country_investment_originates_from: {
@@ -30,7 +33,6 @@ describe('Dashboard - Investment details', () => {
     investmentProjectFaker({ country_investment_originates_from: undefined }),
     investmentProjectFaker({ latest_interaction: undefined }),
   ]
-
   before(() => {
     cy.setUserFeatures(['personalised-dashboard'])
     cy.intercept('POST', '/api-proxy/v3/search/investment_project', {
@@ -102,7 +104,7 @@ describe('Dashboard - Investment details', () => {
     cy.get('@firstProjectTerms').eq(3).should('have.text', 'Last interaction:')
     cy.get('@firstProjectDescriptions')
       .eq(3)
-      .should('have.text', investmentProject.latest_interaction.date)
+      .should('have.text', investmentProject.latest_interaction.displayDate)
   })
 
   it('should display the last interaction subject with a link to the interaction', () => {

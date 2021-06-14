@@ -27,7 +27,7 @@ const getTradeAgreementOnChangeHandler = (setFieldValue) => (e) => {
   setInteractionKindFieldValues(setFieldValue, e)
 }
 
-const StepInteractionType = ({ isTradeAgreementInteractionEnabled }) => {
+const StepInteractionType = () => {
   const { setFieldValue } = useFormContext()
   const exportOption = {
     label: 'Export',
@@ -92,26 +92,26 @@ const StepInteractionType = ({ isTradeAgreementInteractionEnabled }) => {
       />
     ),
   }
-  const configuredFieldRadiosOptions = isTradeAgreementInteractionEnabled
-    ? [exportOption, investmentOption, tradeAgreementOption, otherOption]
-    : [exportOption, investmentOption, otherOption]
+  const configuredFieldRadiosOptions = [
+    exportOption,
+    investmentOption,
+    tradeAgreementOption,
+    otherOption,
+  ]
+
   return (
     <>
-      {isTradeAgreementInteractionEnabled && (
-        <InsetText data-test="trade-agreement-guide">
-          Select ‘Trade agreement’ if your interaction was set up to focus on,
-          or contributes to, implementing a trade agreement.
-          <br />
-          <br />
-          Read more{' '}
-          <NewWindowLink
-            href={urls.external.helpCentre.tradeagreementGuidance()}
-          >
-            information and guidance
-          </NewWindowLink>{' '}
-          on this section.
-        </InsetText>
-      )}
+      <InsetText data-test="trade-agreement-guide">
+        Select ‘Trade agreement’ if your interaction was set up to focus on, or
+        contributes to, implementing a trade agreement.
+        <br />
+        <br />
+        Read more{' '}
+        <NewWindowLink href={urls.external.helpCentre.tradeagreementGuidance()}>
+          information and guidance
+        </NewWindowLink>{' '}
+        on this section.
+      </InsetText>
 
       <FieldRadios
         name="theme"

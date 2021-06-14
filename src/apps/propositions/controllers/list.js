@@ -32,6 +32,7 @@ async function renderPropositionList(req, res, next) {
 
     const filtersFieldsWithSelectedOptions =
       await buildFieldsWithSelectedEntities(req, filtersFields, req.query)
+
     const selectedFilters = await buildSelectedFiltersSummary(
       filtersFieldsWithSelectedOptions,
       req.query

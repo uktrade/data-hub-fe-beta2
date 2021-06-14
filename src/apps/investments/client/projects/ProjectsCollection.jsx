@@ -128,7 +128,7 @@ const ProjectsCollection = ({
           qsParam="country_investment_originates_from"
           placeholder="Search countries"
           options={optionMetadata.countryOptions}
-          selectedOptions={selectedFilters.selectedCountries}
+          selectedOptions={selectedFilters.selectedInvestmentOriginCountries}
           data-test="country-filter"
         />
         <RoutedTypeahead

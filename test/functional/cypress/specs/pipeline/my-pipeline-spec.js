@@ -1,6 +1,6 @@
 const { BLACK, GREY_1 } = require('govuk-colours')
 const { sortBy } = require('lodash')
-const moment = require('moment')
+const { format, parseISO } = require('date-fns')
 
 const LIKELIHOOD_TO_SUCCEED = require('../../../../../src/client/components/Pipeline/constants')
 const inProgress = require('../../../../sandbox/fixtures/v4/pipeline-item/in-progress.json')
@@ -30,7 +30,7 @@ function assertPipelineItem(
       )
       cy.contains('Created')
       cy.contains(expectedDate)
-      cy.contains(moment(result.created_on).format('DD MMM Y'))
+      cy.contains(format(parseISO(result.created_on), 'dd MMM y'))
       if (result.archived) {
         cy.contains(result.name).should('have.colour', GREY_1)
         cy.contains('Delete').should(
@@ -49,7 +49,7 @@ function assertPipelineItem(
             .should('have.backgroundColour', TAG_COLOURS.grey.background)
             .should('have.colour', TAG_COLOURS.grey.colour)
         })
-        cy.contains(moment(result.archived_on).format('DD MMM Y')).siblings(
+        cy.contains(format(parseISO(result.archived_on), 'dd MMM y')).siblings(
           () => {
             cy.contains('Archived')
           }
@@ -268,8 +268,7 @@ describe('My pipeline app', () => {
 
   context('When filtering pipeline by archived', () => {
     beforeEach(() => {
-      cy.server()
-      cy.route('GET', '/api-proxy/v4/pipeline-item*').as('pipelineGet')
+      cy.intercept('GET', '/api-proxy/v4/pipeline-item*').as('pipelineGet')
       cy.visit(urls.pipeline.index())
     })
 
@@ -303,12 +302,12 @@ describe('My pipeline app', () => {
           cy.wrap(element).check()
           cy.wrap(element).should('be.checked')
           cy.wait('@pipelineGet').then((xhr) => {
-            expect(xhr.url).to.contain('archived')
+            expect(xhr.response.url).to.contain('archived')
           })
           cy.wrap(element).uncheck()
           cy.wrap(element).should('not.be.checked')
           cy.wait('@pipelineGet').then((xhr) => {
-            expect(xhr.url).to.not.contain('archived')
+            expect(xhr.response.url).to.not.contain('archived')
           })
         })
     })
@@ -320,7 +319,7 @@ describe('My pipeline app', () => {
         .then((element) => {
           cy.wrap(element).should('not.be.checked')
           cy.wait('@pipelineGet').then((xhr) => {
-            expect(xhr.url).to.contain('archived')
+            expect(xhr.response.url).to.contain('archived')
           })
         })
     })
@@ -358,8 +357,7 @@ describe('My pipeline app', () => {
 
   context('When sorting pipeline', () => {
     beforeEach(() => {
-      cy.server()
-      cy.route('GET', '/api-proxy/v4/pipeline-item*').as('pipelineGet')
+      cy.intercept('GET', '/api-proxy/v4/pipeline-item*').as('pipelineGet')
       cy.visit(urls.pipeline.index())
       cy.wait('@pipelineGet')
     })
@@ -402,8 +400,8 @@ describe('My pipeline app', () => {
             cy.wrap(element).select('Project Name A-Z')
             cy.get(element).should('contain', 'Project Name A-Z')
             cy.wait('@pipelineGet').then((xhr) => {
-              expect(xhr.url).to.contain(`sortby=name`)
-              expect(xhr.url).to.contain('archived=false')
+              expect(xhr.response.url).to.contain(`sortby=name`)
+              expect(xhr.response.url).to.contain('archived=false')
             })
           })
       })
@@ -416,8 +414,8 @@ describe('My pipeline app', () => {
             cy.wrap(element).select('Most recently updated')
             cy.wrap(element).should('contain', 'Most recently updated')
             cy.wait('@pipelineGet').then((xhr) => {
-              expect(xhr.url).to.contain(`sortby=-modified_on`)
-              expect(xhr.url).to.contain('archived=false')
+              expect(xhr.response.url).to.contain(`sortby=-modified_on`)
+              expect(xhr.response.url).to.contain('archived=false')
             })
           })
       })
@@ -431,8 +429,8 @@ describe('My pipeline app', () => {
             cy.wait('@pipelineGet')
             cy.wrap(element).select('Most recently created')
             cy.wait('@pipelineGet').then((xhr) => {
-              expect(xhr.url).to.contain(`sortby=-created_on`)
-              expect(xhr.url).to.contain('archived=false')
+              expect(xhr.response.url).to.contain(`sortby=-created_on`)
+              expect(xhr.response.url).to.contain('archived=false')
             })
           })
       })
@@ -457,8 +455,8 @@ describe('My pipeline app', () => {
           .then((element) => {
             cy.wrap(element).select('Project Name A-Z')
             cy.wait('@pipelineGet').then((xhr) => {
-              expect(xhr.url).to.contain(`sortby=name`)
-              expect(xhr.url).to.not.contain('archived')
+              expect(xhr.response.url).to.contain(`sortby=name`)
+              expect(xhr.response.url).to.not.contain('archived')
             })
           })
       })
@@ -470,8 +468,8 @@ describe('My pipeline app', () => {
           .then((element) => {
             cy.wrap(element).select('Most recently updated')
             cy.wait('@pipelineGet').then((xhr) => {
-              expect(xhr.url).to.contain(`sortby=-modified_on`)
-              expect(xhr.url).to.not.contain('archived')
+              expect(xhr.response.url).to.contain(`sortby=-modified_on`)
+              expect(xhr.response.url).to.not.contain('archived')
             })
           })
       })
@@ -485,8 +483,8 @@ describe('My pipeline app', () => {
             cy.wait('@pipelineGet')
             cy.wrap(element).select('Most recently created')
             cy.wait('@pipelineGet').then((xhr) => {
-              expect(xhr.url).to.contain(`sortby=-created_on`)
-              expect(xhr.url).to.not.contain('archived')
+              expect(xhr.response.url).to.contain(`sortby=-created_on`)
+              expect(xhr.response.url).to.not.contain('archived')
             })
           })
       })

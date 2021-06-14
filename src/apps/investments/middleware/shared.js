@@ -1,6 +1,5 @@
 const { get, upperFirst, camelCase } = require('lodash')
-const format = require('date-fns/format')
-const parseISO = require('date-fns/parseISO')
+const { format, parseISO } = require('date-fns')
 
 const metadata = require('../../../lib/metadata')
 const {

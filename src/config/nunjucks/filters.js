@@ -1,7 +1,12 @@
 const nunjucks = require('nunjucks')
-const moment = require('moment')
-require('moment-duration-format')
-const { toDate, parseISO, isValid, format: dateFnsFormat } = require('date-fns')
+const {
+  toDate,
+  parseISO,
+  isValid,
+  format: dateFnsFormat,
+  formatDistanceToNowStrict,
+  minutesToHours,
+} = require('date-fns')
 const Case = require('case')
 const numeral = require('numeral')
 const queryString = require('qs')
@@ -217,32 +222,33 @@ const filters = {
       .replace('PM', 'pm')
   },
 
-  formatAddress: (address, join = ', ') => {
-    if (address) {
-      return compact([
-        address.line_1,
-        address.line_2,
-        address.town,
-        address.county,
-        address.postcode,
-        address.country.name,
-      ]).join(join)
+  formatAddress: (address, join = ', ', isAddressAreaEnabled = false) => {
+    if (!address) {
+      return
     }
+
+    return compact([
+      address.line_1,
+      address.line_2,
+      address.town,
+      address.county,
+      address.postcode,
+      address.area && isAddressAreaEnabled ? address.area.name : null,
+      address.country.name,
+    ]).join(join)
   },
 
   humanizeDuration: (value, measurement = 'minutes') => {
-    const duration = moment.duration(value, measurement)
-    const hoursSuffix = pluralise('hour', duration.asHours())
-
-    return duration.format(`h [${hoursSuffix}]`)
-  },
-
-  formatDuration: (value, format = 'hh:mm', measurement = 'minutes') => {
-    return moment.duration(value, measurement).format(format, { trim: false })
+    let asHours = value
+    if (measurement == 'minutes') {
+      asHours = minutesToHours(value)
+    }
+    const hoursSuffix = pluralise('hour', asHours)
+    return asHours + ' ' + hoursSuffix
   },
 
   fromNow: (value) => {
-    return moment(value).fromNow()
+    return formatDistanceToNowStrict(parseISO(value))
   },
 
   arrayToLabelValues: (items) => {

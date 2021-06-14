@@ -79,7 +79,7 @@ module.exports = [
     status: 'complete',
     completed_on: '2021-11-25',
     subject: 'Have you got a bandage?',
-    created_on: '2020-1-5',
+    created_on: '2020-01-05',
     company: {
       name: 'Andy & Lou',
       id: 'andy-and-lou',

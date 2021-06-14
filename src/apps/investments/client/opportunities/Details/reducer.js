@@ -7,7 +7,6 @@ import {
   INVESTMENT_OPPORTUNITY__CANCEL_EDIT,
   INVESTMENT_OPPORTUNITY__DETAILS_CHANGE,
 } from '../../../../../client/actions'
-import { transformInvestmentOpportunityDetails } from '../../../transformers/opportunities'
 
 const initialState = {
   incompleteDetailsFields: 0,
@@ -54,7 +53,7 @@ export default (state = initialState, { type, result }) => {
     case INVESTMENT_OPPORTUNITY_DETAILS__LOADED:
       return {
         ...state,
-        details: { ...transformInvestmentOpportunityDetails(result) },
+        details: result,
       }
     case INVESTMENT_OPPORTUNITY__DETAILS_METADATA_LOADED:
       return {

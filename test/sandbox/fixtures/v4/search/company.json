@@ -13,7 +13,8 @@
         },
         "town": "Paris",
         "county": "",
-        "postcode": "75001"
+        "postcode": "75001",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -67,7 +68,8 @@
         },
         "town": "Paris",
         "county": "",
-        "postcode": "75001"
+        "postcode": "75001",
+		    "area": null
       },
       "future_interest_countries": [
         {
@@ -98,7 +100,8 @@
         },
         "town": "NOTTINGHAM",
         "county": "",
-        "postcode": "NG17 7JE"
+        "postcode": "NG17 7JE",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -137,7 +140,8 @@
         },
         "town": "NOTTINGHAM",
         "county": "",
-        "postcode": "NG17 7JE"
+        "postcode": "NG17 7JE",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -206,7 +210,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -269,7 +274,8 @@
         },
         "town": "Marioton",
         "county": "",
-        "postcode": "28050"
+        "postcode": "28050",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -334,7 +340,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -362,7 +369,11 @@
         },
         "town": "New York",
         "county": "",
-        "postcode": "765413"
+        "postcode": "765413",
+	      "area": {
+          "name": "New York",
+          "id": "aa65b701-244a-41fc-bd31-0a546303106a"
+        }
       },
       "vat_number": "",
       "employee_range": {
@@ -416,7 +427,11 @@
         },
         "town": "New York",
         "county": "",
-        "postcode": "765413"
+        "postcode": "765413",
+	      "area": {
+          "name": "New York",
+          "id": "aa65b701-244a-41fc-bd31-0a546303106a"
+        }
       },
       "future_interest_countries": [
         {
@@ -451,7 +466,8 @@
         },
         "town": "Bordley",
         "county": "",
-        "postcode": "BD23 8RZ"
+        "postcode": "BD23 8RZ",
+	      "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -490,7 +506,8 @@
         },
         "town": "Bordley",
         "county": "",
-        "postcode": "BD23 8RZ"
+        "postcode": "BD23 8RZ",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -555,7 +572,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -583,7 +601,8 @@
         },
         "town": "London",
         "county": "",
-        "postcode": "SW1A1AB"
+        "postcode": "SW1A1AB",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -623,7 +642,8 @@
         },
         "town": "London",
         "county": "",
-        "postcode": "SW1A1AB"
+        "postcode": "SW1A1AB",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -687,7 +707,8 @@
         },
         "town": "London",
         "county": "",
-        "postcode": "SE1 8SF"
+        "postcode": "SE1 8SF",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -743,7 +764,8 @@
         },
         "town": "cc",
         "county": "",
-        "postcode": "uuuiii"
+        "postcode": "uuuiii",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -805,7 +827,8 @@
         },
         "town": "Richmond",
         "county": "Surrey",
-        "postcode": "TW106EG"
+        "postcode": "TW106EG",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -840,7 +863,8 @@
         },
         "town": "SALFORD",
         "county": "",
-        "postcode": "M3 7BG"
+        "postcode": "M3 7BG",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -879,7 +903,8 @@
         },
         "town": "London",
         "county": "",
-        "postcode": "EC2V 7QP"
+        "postcode": "EC2V 7QP",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -935,7 +960,8 @@
         },
         "town": "London",
         "county": "",
-        "postcode": "EC2V 7QP"
+        "postcode": "EC2V 7QP",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1001,7 +1027,8 @@
         },
         "town": "London",
         "county": "",
-        "postcode": "SW1A 2HQ"
+        "postcode": "SW1A 2HQ",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1064,7 +1091,8 @@
         },
         "town": "AYR",
         "county": "",
-        "postcode": "KA7 1UB"
+        "postcode": "KA7 1UB",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1090,7 +1118,8 @@
         },
         "town": "DUNBAR",
         "county": "EAST LOTHIAN",
-        "postcode": "EH42 1RS"
+        "postcode": "EH42 1RS",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -1133,7 +1162,8 @@
         },
         "town": "DUNBAR",
         "county": "EAST LOTHIAN",
-        "postcode": "EH42 1RS"
+        "postcode": "EH42 1RS",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1160,7 +1190,8 @@
         },
         "town": "",
         "county": "",
-        "postcode": ""
+        "postcode": "",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -1196,7 +1227,8 @@
         },
         "town": "",
         "county": "",
-        "postcode": ""
+        "postcode": "",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1222,7 +1254,8 @@
         },
         "town": "West Kaylin",
         "county": "",
-        "postcode": "15104-2491"
+        "postcode": "15104-2491",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -1268,7 +1301,8 @@
         },
         "town": "West Kaylin",
         "county": "",
-        "postcode": "15104-2491"
+        "postcode": "15104-2491",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1296,7 +1330,8 @@
         },
         "town": "Wanchai",
         "county": "Hong Kong",
-        "postcode": ""
+        "postcode": "",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -1336,7 +1371,8 @@
         },
         "town": "Wanchai",
         "county": "Hong Kong",
-        "postcode": ""
+        "postcode": "",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1360,7 +1396,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -1409,7 +1446,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1436,7 +1474,8 @@
         },
         "town": "Watsicachester",
         "county": "",
-        "postcode": "84797"
+        "postcode": "84797",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -1482,7 +1521,8 @@
         },
         "town": "Watsicachester",
         "county": "",
-        "postcode": "84797"
+        "postcode": "84797",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1510,7 +1550,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -1559,7 +1600,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1587,7 +1629,8 @@
         },
         "town": "Leeds",
         "county": "",
-        "postcode": "LS2 8AE"
+        "postcode": "LS2 8AE",
+		    "area": null
       },
       "vat_number": "VAT Number 007",
       "employee_range": null,
@@ -1650,7 +1693,8 @@
         },
         "town": "Leeds",
         "county": "",
-        "postcode": "LS2 8AE"
+        "postcode": "LS2 8AE",
+		    "area": null
       },
       "future_interest_countries": [
         {
@@ -1687,7 +1731,8 @@
         },
         "town": "London",
         "county": "",
-        "postcode": "SW1A1AA"
+        "postcode": "SW1A1AA",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -1730,7 +1775,8 @@
         },
         "town": "London",
         "county": "",
-        "postcode": "SW1A1AB"
+        "postcode": "SW1A1AB",
+		    "area": null  
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1757,7 +1803,8 @@
         },
         "town": "LONGWOOD",
         "county": "HUDDERSFIELD",
-        "postcode": "HD3 4TG"
+        "postcode": "HD3 4TG",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -1800,7 +1847,8 @@
         },
         "town": "LONGWOOD",
         "county": "HUDDERSFIELD",
-        "postcode": "HD3 4TG"
+        "postcode": "HD3 4TG",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1826,7 +1874,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -1878,7 +1927,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1905,7 +1955,8 @@
         },
         "town": "LONDON",
         "county": "LONDON",
-        "postcode": "NW10 7HQ"
+        "postcode": "NW10 7HQ",
+		    "area": null
       },
       "vat_number": "123456",
       "employee_range": null,
@@ -1944,7 +1995,8 @@
         },
         "town": "LONDON",
         "county": "LONDON",
-        "postcode": "NW10 7HQ"
+        "postcode": "NW10 7HQ",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -1975,7 +2027,8 @@
         },
         "town": "Willington",
         "county": "",
-        "postcode": "NE28 5JB"
+        "postcode": "NE28 5JB",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -2029,7 +2082,8 @@
         },
         "town": "London",
         "county": "",
-        "postcode": "EC2V 7QP"
+        "postcode": "EC2V 7QP",
+		    "area": null
       },
       "future_interest_countries": [
         {
@@ -2060,7 +2114,8 @@
         },
         "town": "London",
         "county": "Greater London",
-        "postcode": "SW1A 2AH"
+        "postcode": "SW1A 2AH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -2108,7 +2163,8 @@
         },
         "town": "London",
         "county": "Greater London",
-        "postcode": "SW1A 2AH"
+        "postcode": "SW1A 2AH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -2138,7 +2194,8 @@
         },
         "town": "Test",
         "county": "",
-        "postcode": ""
+        "postcode": "",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -2178,7 +2235,8 @@
         },
         "town": "Test",
         "county": "",
-        "postcode": ""
+        "postcode": "",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -2208,7 +2266,8 @@
         },
         "town": "STOCKPORT",
         "county": "CHESHIRE",
-        "postcode": "SK1 3HS"
+        "postcode": "SK1 3HS",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -2244,7 +2303,8 @@
         },
         "town": "STOCKPORT",
         "county": "CHESHIRE",
-        "postcode": "SK1 3HS"
+        "postcode": "SK1 3HS",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -2270,7 +2330,8 @@
         },
         "town": "ddd",
         "county": "",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -2315,7 +2376,8 @@
         },
         "town": "ddd",
         "county": "",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -2344,7 +2406,8 @@
         },
         "town": "Lake Shemarborough",
         "county": "",
-        "postcode": "94120"
+        "postcode": "94120",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -2386,7 +2449,8 @@
         },
         "town": "Lake Shemarborough",
         "county": "",
-        "postcode": "94120"
+        "postcode": "94120",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -2410,7 +2474,8 @@
         },
         "town": "CHERTSEY",
         "county": "SURREY",
-        "postcode": "KT16 0PS"
+        "postcode": "KT16 0PS",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -2452,7 +2517,8 @@
         },
         "town": "CHERTSEY",
         "county": "SURREY",
-        "postcode": "KT16 0PS"
+        "postcode": "KT16 0PS",
+		    "area": null
       },
       "future_interest_countries": [
         {
@@ -2493,7 +2559,8 @@
         },
         "town": "Liverpool",
         "county": "",
-        "postcode": "L7 9NJ"
+        "postcode": "L7 9NJ",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -2529,7 +2596,8 @@
         },
         "town": "Liverpool",
         "county": "",
-        "postcode": "L7 9NJ"
+        "postcode": "L7 9NJ",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -2559,7 +2627,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -2611,7 +2680,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -2637,7 +2707,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -2686,7 +2757,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -2714,7 +2786,8 @@
         },
         "town": "Ornmouth",
         "county": "",
-        "postcode": "39335-3306"
+        "postcode": "39335-3306",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -2763,7 +2836,8 @@
         },
         "town": "Ornmouth",
         "county": "",
-        "postcode": "39335-3306"
+        "postcode": "39335-3306",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -2791,7 +2865,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -2840,7 +2915,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -2867,7 +2943,8 @@
         },
         "town": "Port Jerryburgh",
         "county": "",
-        "postcode": "03165"
+        "postcode": "03165",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -2916,7 +2993,8 @@
         },
         "town": "Port Jerryburgh",
         "county": "",
-        "postcode": "03165"
+        "postcode": "03165",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -2942,7 +3020,8 @@
         },
         "town": "BURY ST EDMUNDS",
         "county": "SUFFOLK",
-        "postcode": "IP32 7LL"
+        "postcode": "IP32 7LL",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -2987,7 +3066,8 @@
         },
         "town": "London",
         "county": "Greater London",
-        "postcode": "SW1A1AA"
+        "postcode": "SW1A1AA",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3015,7 +3095,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -3067,7 +3148,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3095,7 +3177,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -3144,7 +3227,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3170,7 +3254,8 @@
         },
         "town": "North Ashleytown",
         "county": "",
-        "postcode": "79267"
+        "postcode": "79267",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -3216,7 +3301,8 @@
         },
         "town": "North Ashleytown",
         "county": "",
-        "postcode": "79267"
+        "postcode": "79267",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3243,7 +3329,8 @@
         },
         "town": "Camronmouth",
         "county": "",
-        "postcode": "80962-9197"
+        "postcode": "80962-9197",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -3285,7 +3372,8 @@
         },
         "town": "Camronmouth",
         "county": "",
-        "postcode": "80962-9197"
+        "postcode": "80962-9197",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3311,7 +3399,8 @@
         },
         "town": "HOUNSLOW",
         "county": "",
-        "postcode": "TW3 3AA"
+        "postcode": "TW3 3AA",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -3350,7 +3439,8 @@
         },
         "town": "HOUNSLOW",
         "county": "",
-        "postcode": "TW3 3AA"
+        "postcode": "TW3 3AA",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3378,7 +3468,8 @@
         },
         "town": "Effertzborough",
         "county": "",
-        "postcode": ""
+        "postcode": "",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -3430,7 +3521,8 @@
         },
         "town": "Effertzborough",
         "county": "",
-        "postcode": ""
+        "postcode": "",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3458,7 +3550,11 @@
         },
         "town": "New York",
         "county": "",
-        "postcode": ""
+        "postcode": "",
+	      "area": {
+          "name": "New York",
+          "id": "aa65b701-244a-41fc-bd31-0a546303106a"
+        }
       },
       "vat_number": "",
       "employee_range": {
@@ -3507,7 +3603,11 @@
         },
         "town": "New York",
         "county": "",
-        "postcode": ""
+        "postcode": "",
+        "area": {
+            "name": "New York",
+            "id": "aa65b701-244a-41fc-bd31-0a546303106a"
+          }
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3533,7 +3633,8 @@
         },
         "town": "East Heloise",
         "county": "",
-        "postcode": "62298-3706"
+        "postcode": "62298-3706",
+	      "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -3579,7 +3680,8 @@
         },
         "town": "East Heloise",
         "county": "",
-        "postcode": "62298-3706"
+        "postcode": "62298-3706",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3607,7 +3709,8 @@
         },
         "town": "Paris",
         "county": "",
-        "postcode": "75001"
+        "postcode": "75001",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -3652,7 +3755,8 @@
         },
         "town": "Paris",
         "county": "",
-        "postcode": "75001"
+        "postcode": "75001",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3686,7 +3790,8 @@
         },
         "town": "LEEDS",
         "county": "WEST YORKSHIRE",
-        "postcode": "LS14 3AB"
+        "postcode": "LS14 3AB",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -3729,7 +3834,8 @@
         },
         "town": "LEEDS",
         "county": "WEST YORKSHIRE",
-        "postcode": "LS14 3AB"
+        "postcode": "LS14 3AB",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3753,7 +3859,8 @@
         },
         "town": "Istanbul",
         "county": "",
-        "postcode": "48300"
+        "postcode": "48300",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -3793,7 +3900,8 @@
         },
         "town": "Istanbul",
         "county": "",
-        "postcode": "48300"
+        "postcode": "48300",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3822,7 +3930,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -3871,7 +3980,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3898,7 +4008,8 @@
         },
         "town": "Lake Godfreyburgh",
         "county": "",
-        "postcode": "78696-5771"
+        "postcode": "78696-5771",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -3947,7 +4058,8 @@
         },
         "town": "333",
         "county": "44",
-        "postcode": "555"
+        "postcode": "555",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -3974,7 +4086,8 @@
         },
         "town": "Donavonland",
         "county": "",
-        "postcode": "01302"
+        "postcode": "01302",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4023,7 +4136,8 @@
         },
         "town": "Donavonland",
         "county": "",
-        "postcode": "01302"
+        "postcode": "01302",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4050,7 +4164,8 @@
         },
         "town": "West Ferne",
         "county": "",
-        "postcode": "91456"
+        "postcode": "91456",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4096,7 +4211,8 @@
         },
         "town": "West Ferne",
         "county": "",
-        "postcode": "91456"
+        "postcode": "91456",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4124,7 +4240,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4176,7 +4293,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4204,7 +4322,8 @@
         },
         "town": "Shieldsport",
         "county": "",
-        "postcode": "04825-2733"
+        "postcode": "04825-2733",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4246,7 +4365,8 @@
         },
         "town": "Shieldsport",
         "county": "",
-        "postcode": "04825-2733"
+        "postcode": "04825-2733",
+		    "area": null  
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4273,7 +4393,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4325,7 +4446,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4352,7 +4474,8 @@
         },
         "town": "Miloport",
         "county": "",
-        "postcode": "02681"
+        "postcode": "02681",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4398,7 +4521,8 @@
         },
         "town": "Miloport",
         "county": "",
-        "postcode": "02681"
+        "postcode": "02681",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4425,7 +4549,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4474,7 +4599,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4500,7 +4626,8 @@
         },
         "town": "Bellburgh",
         "county": "",
-        "postcode": "09468-0045"
+        "postcode": "09468-0045",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4542,7 +4669,8 @@
         },
         "town": "Bellburgh",
         "county": "",
-        "postcode": "09468-0045"
+        "postcode": "09468-0045",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4570,7 +4698,8 @@
         },
         "town": "South Cristal",
         "county": "",
-        "postcode": "65579"
+        "postcode": "65579",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4619,7 +4748,8 @@
         },
         "town": "South Cristal",
         "county": "",
-        "postcode": "65579"
+        "postcode": "65579",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4646,7 +4776,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4695,7 +4826,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4722,7 +4854,8 @@
         },
         "town": "New Cyrus",
         "county": "",
-        "postcode": "38605-5852"
+        "postcode": "38605-5852",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4768,7 +4901,8 @@
         },
         "town": "New Cyrus",
         "county": "",
-        "postcode": "38605-5852"
+        "postcode": "38605-5852",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4795,7 +4929,8 @@
         },
         "town": "Lockmanland",
         "county": "",
-        "postcode": "94545-8058"
+        "postcode": "94545-8058",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4844,7 +4979,8 @@
         },
         "town": "Lockmanland",
         "county": "",
-        "postcode": "94545-8058"
+        "postcode": "94545-8058",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4872,7 +5008,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4921,7 +5058,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -4948,7 +5086,8 @@
         },
         "town": "Beckerfurt",
         "county": "",
-        "postcode": "84051-5468"
+        "postcode": "84051-5468",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -4997,7 +5136,8 @@
         },
         "town": "Beckerfurt",
         "county": "",
-        "postcode": "84051-5468"
+        "postcode": "84051-5468",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -5025,7 +5165,8 @@
         },
         "town": "London",
         "county": "",
-        "postcode": "NW120 7HQ"
+        "postcode": "NW120 7HQ",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -5068,7 +5209,8 @@
         },
         "town": "London",
         "county": "",
-        "postcode": "NW120 7HQ"
+        "postcode": "NW120 7HQ",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -5097,7 +5239,8 @@
         },
         "town": "SOUTHSEA",
         "county": "HAMPSHIRE",
-        "postcode": "PO5 3LU"
+        "postcode": "PO5 3LU",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -5136,7 +5279,8 @@
         },
         "town": "SOUTHSEA",
         "county": "HAMPSHIRE",
-        "postcode": "PO5 3LU"
+        "postcode": "PO5 3LU",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -5164,7 +5308,8 @@
         },
         "town": "Bloop",
         "county": "",
-        "postcode": "123456"
+        "postcode": "123456",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -5204,7 +5349,8 @@
         },
         "town": "Bloop",
         "county": "",
-        "postcode": "123456"
+        "postcode": "123456",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -5228,7 +5374,8 @@
         },
         "town": "Bloop",
         "county": "",
-        "postcode": "123456"
+        "postcode": "123456",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -5268,7 +5415,8 @@
         },
         "town": "Bloop",
         "county": "",
-        "postcode": "123456"
+        "postcode": "123456",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -5292,7 +5440,8 @@
         },
         "town": "Bloop",
         "county": "",
-        "postcode": "123456"
+        "postcode": "123456",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -5332,7 +5481,8 @@
         },
         "town": "Bloop",
         "county": "",
-        "postcode": "123456"
+        "postcode": "123456",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -5359,7 +5509,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -5404,7 +5555,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -5437,7 +5589,8 @@
         },
         "town": "HULL",
         "county": "NORTH HUMBERSIDE",
-        "postcode": "HU4 7DW"
+        "postcode": "HU4 7DW",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -5479,7 +5632,8 @@
         },
         "town": "HULL",
         "county": "NORTH HUMBERSIDE",
-        "postcode": "HU4 7DW"
+        "postcode": "HU4 7DW",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [],
@@ -5504,7 +5658,8 @@
         },
         "town": "LEEDS",
         "county": "YORKSHIRE",
-        "postcode": "LS10 2RU"
+        "postcode": "LS10 2RU",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -5553,7 +5708,8 @@
         },
         "town": "LEEDS",
         "county": "YORKSHIRE",
-        "postcode": "LS10 2RU"
+        "postcode": "LS10 2RU",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -5579,7 +5735,8 @@
         },
         "town": "Achme Town",
         "county": "Achmevile",
-        "postcode": "ACH1ME"
+        "postcode": "ACH1ME",
+		    "area": null
       },
       "vat_number": "asdf",
       "employee_range": {
@@ -5692,7 +5849,8 @@
         },
         "town": "Achme Town",
         "county": "Achmevile",
-        "postcode": "ACG1ME"
+        "postcode": "ACG1ME",
+		    "area": null
       },
       "future_interest_countries": [
         {
@@ -5731,7 +5889,8 @@
         },
         "town": "MARKET DRAYTON",
         "county": "SHROPSHIRE",
-        "postcode": "TF9 3EW"
+        "postcode": "TF9 3EW",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -5774,7 +5933,8 @@
         },
         "town": "MARKET DRAYTON",
         "county": "SHROPSHIRE",
-        "postcode": "TF9 3EW"
+        "postcode": "TF9 3EW",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -5806,7 +5966,8 @@
         },
         "town": "LONDON",
         "county": "",
-        "postcode": "N3 1LF"
+        "postcode": "N3 1LF",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -5848,7 +6009,8 @@
         },
         "town": "LONDON",
         "county": "",
-        "postcode": "N3 1LF"
+        "postcode": "N3 1LF",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [],
@@ -5870,7 +6032,8 @@
         },
         "town": "LONDON",
         "county": "",
-        "postcode": "N3 1LF"
+        "postcode": "N3 1LF",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": null,
@@ -5912,7 +6075,8 @@
         },
         "town": "LONDON",
         "county": "",
-        "postcode": "N3 1LF"
+        "postcode": "N3 1LF",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -5938,7 +6102,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -5990,7 +6155,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6016,7 +6182,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6068,7 +6235,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6095,7 +6263,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6144,7 +6313,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6172,7 +6342,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6217,7 +6388,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6243,7 +6415,8 @@
         },
         "town": "Archibaldmouth",
         "county": "",
-        "postcode": "62051"
+        "postcode": "62051",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6289,7 +6462,8 @@
         },
         "town": "Archibaldmouth",
         "county": "",
-        "postcode": "62051"
+        "postcode": "62051",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6315,7 +6489,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6367,7 +6542,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6395,7 +6571,8 @@
         },
         "town": "South Bella",
         "county": "",
-        "postcode": "44076-7993"
+        "postcode": "44076-7993",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6444,7 +6621,8 @@
         },
         "town": "South Bella",
         "county": "",
-        "postcode": "44076-7993"
+        "postcode": "44076-7993",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6471,7 +6649,8 @@
         },
         "town": "Kaylaberg",
         "county": "",
-        "postcode": "21688-2316"
+        "postcode": "21688-2316",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6520,7 +6699,8 @@
         },
         "town": "Kaylaberg",
         "county": "",
-        "postcode": "21688-2316"
+        "postcode": "21688-2316",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6547,7 +6727,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6596,7 +6777,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6623,7 +6805,8 @@
         },
         "town": "Stephenland",
         "county": "",
-        "postcode": "96319"
+        "postcode": "96319",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6669,7 +6852,8 @@
         },
         "town": "Stephenland",
         "county": "",
-        "postcode": "96319"
+        "postcode": "96319",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6696,7 +6880,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6741,7 +6926,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6769,7 +6955,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6821,7 +7008,8 @@
         },
         "town": "Dursley",
         "county": "Gloucestershire",
-        "postcode": "GL11 4DH"
+        "postcode": "GL11 4DH",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6847,7 +7035,8 @@
         },
         "town": "Harrisville",
         "county": "",
-        "postcode": "87995-6233"
+        "postcode": "87995-6233",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6893,7 +7082,8 @@
         },
         "town": "Harrisville",
         "county": "",
-        "postcode": "87995-6233"
+        "postcode": "87995-6233",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6919,7 +7109,8 @@
         },
         "town": "Myronfort",
         "county": "",
-        "postcode": "50063-2791"
+        "postcode": "50063-2791",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -6968,7 +7159,8 @@
         },
         "town": "Myronfort",
         "county": "",
-        "postcode": "50063-2791"
+        "postcode": "50063-2791",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -6994,7 +7186,8 @@
         },
         "town": "Kerluketown",
         "county": "",
-        "postcode": "28562"
+        "postcode": "28562",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -7043,7 +7236,8 @@
         },
         "town": "Kerluketown",
         "county": "",
-        "postcode": "28562"
+        "postcode": "28562",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -7071,7 +7265,8 @@
         },
         "town": "West Aubrey",
         "county": "",
-        "postcode": "23604"
+        "postcode": "23604",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -7120,7 +7315,8 @@
         },
         "town": "West Aubrey",
         "county": "",
-        "postcode": "23604"
+        "postcode": "23604",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -7147,7 +7343,8 @@
         },
         "town": "North Thalia",
         "county": "",
-        "postcode": "05723"
+        "postcode": "05723",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -7196,7 +7393,8 @@
         },
         "town": "North Thalia",
         "county": "",
-        "postcode": "05723"
+        "postcode": "05723",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -7223,7 +7421,8 @@
         },
         "town": "Wilkinsonview",
         "county": "",
-        "postcode": "04442-2684"
+        "postcode": "04442-2684",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -7269,7 +7468,8 @@
         },
         "town": "Wilkinsonview",
         "county": "",
-        "postcode": "04442-2684"
+        "postcode": "04442-2684",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [
@@ -7296,7 +7496,8 @@
         },
         "town": "Enolafurt",
         "county": "",
-        "postcode": "08770-6311"
+        "postcode": "08770-6311",
+		    "area": null
       },
       "vat_number": "",
       "employee_range": {
@@ -7345,7 +7546,8 @@
         },
         "town": "Enolafurt",
         "county": "",
-        "postcode": "08770-6311"
+        "postcode": "08770-6311",
+		    "area": null
       },
       "future_interest_countries": [],
       "suggest": [

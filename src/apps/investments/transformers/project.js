@@ -8,8 +8,7 @@ const {
   mapValues,
   map,
 } = require('lodash')
-const format = require('date-fns/format')
-const moment = require('moment')
+const { format, parseISO } = require('date-fns')
 
 const { getInvestmentTypeDetails } = require('./shared')
 const { transformDateObjectToDateString } = require('../../transformers')
@@ -167,7 +166,7 @@ function transformInvestmentForView({
     level_of_involvement,
     specific_programme,
     estimated_land_date: !isEmpty(estimated_land_date)
-      ? moment(estimated_land_date, 'YYYY-MM-DD').format('MMMM yyyy')
+      ? format(parseISO(estimated_land_date), 'MMMM yyyy')
       : null,
     actual_land_date: !isEmpty(actual_land_date)
       ? {
@@ -212,7 +211,7 @@ function transformBriefInvestmentSummary(data) {
       .map((country) => country.name)
       .join(', '),
     estimated_land_date: !isEmpty(data.estimated_land_date)
-      ? moment(data.estimated_land_date, 'YYYY-MM-DD').format('MMMM yyyy')
+      ? format(parseISO(data.estimated_land_date), 'MMMM yyyy')
       : null,
     total_investment: data.total_investment
       ? {

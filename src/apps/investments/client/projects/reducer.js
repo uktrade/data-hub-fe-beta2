@@ -4,8 +4,6 @@ import {
   INVESTMENTS__SET_PROJECTS_METADATA,
 } from '../../../../client/actions'
 
-import { transformInvestmentProjectToListItem } from '../../transformers'
-
 const initialState = {
   results: [],
   selectedAdvisers: [],
@@ -19,7 +17,7 @@ export default (state = initialState, { type, result }) => {
       return {
         ...state,
         count: result.count,
-        results: result.results?.map(transformInvestmentProjectToListItem),
+        results: result.results,
         isComplete: true,
       }
     case INVESTMENTS__PROJECTS_SELECTED_ADVISERS:

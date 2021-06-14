@@ -4,8 +4,6 @@ import {
   INVESTMENTS_PROFILES__FILTER_OPTIONS_LOADED,
 } from '../../../../client/actions'
 
-import { transformLargeCapitalProfiles } from '../../transformers/profiles'
-
 const initialState = {
   page: 1,
   results: [],
@@ -30,8 +28,7 @@ export default (state = initialState, { type, page, result }) => {
       return {
         ...state,
         count: result.count,
-        // FIXME: The transformation should be moved to the task
-        results: result?.results?.map(transformLargeCapitalProfiles),
+        results: result.results,
         isComplete: true,
       }
     // TODO: Remove this after the feature flag capital-investments-filters

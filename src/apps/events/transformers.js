@@ -184,13 +184,10 @@ function transformEventResponseToFormBody(props = {}) {
   })
 }
 
-function transformEventFormBodyToApiRequest(props, featureFlags) {
+function transformEventFormBodyToApiRequest(props) {
   const teamsArray = castCompactArray(props.teams)
   const related_programmes = castCompactArray(props.related_programmes)
-  const related_trade_agreements =
-    featureFlags && featureFlags.relatedTradeAgreements
-      ? castRelatedTradeAgreements()
-      : []
+  const related_trade_agreements = castRelatedTradeAgreements()
   const teams = props.lead_team
     ? teamsArray.concat(props.lead_team)
     : teamsArray

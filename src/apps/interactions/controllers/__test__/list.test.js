@@ -1,4 +1,5 @@
-const moment = require('moment')
+const endOfYesterday = require('date-fns/endOfYesterday')
+
 const { omit } = require('lodash')
 
 const config = require('../../../../config')
@@ -52,7 +53,7 @@ describe('interaction list', () => {
 
     next = sinon.stub()
 
-    const yesterday = moment().subtract(1, 'days').toISOString()
+    const yesterday = endOfYesterday()
 
     metadataMock = {
       teamOptions: [

@@ -1,12 +1,7 @@
 /* eslint camelcase: 0 */
 const { isArray, assign, compact, pickBy } = require('lodash')
-const { format, parseISO } = require('date-fns')
 
-const urls = require('../../../lib/urls')
-
-// TODO: Remove labels when all collection lists are reworked into React.
 const labels = require('../labels')
-// end
 
 function transformInvestmentProjectToListItem({
   id,
@@ -19,24 +14,6 @@ function transformInvestmentProjectToListItem({
   estimated_land_date,
   sector,
 }) {
-  const badges = [
-    { text: stage.name },
-    { text: investment_type.name },
-    { text: status },
-  ]
-
-  const metadata = [
-    { label: 'Investor', value: investor_company.name },
-    { label: 'Sector', value: sector ? sector.name : '' },
-    {
-      label: 'Estimated land date',
-      value:
-        estimated_land_date &&
-        format(parseISO(estimated_land_date), 'MMMM yyyy'),
-    },
-  ].filter((metadata) => metadata.value)
-
-  // TODO: Remove metaItems when all collection lists are reworked into React.
   const metaItems = [
     { key: 'stage', value: stage, type: 'badge' },
     {
@@ -60,27 +37,16 @@ function transformInvestmentProjectToListItem({
       label: labels.investmentProjectMetaItemLabels[key],
     })
   })
-  // end
 
   return {
-    // TODO: Remove all these props when all collection lists are reworked into React.
     id,
     name,
     type: 'investments/project',
     subTitle: {
-      type: 'project',
       label: 'Project code',
-      badges,
       value: project_code,
-      metadata,
     },
     meta: compact(metaItems),
-    // end
-    headingUrl: urls.investments.projects.details(id),
-    headingText: name,
-    subheading: `Project code ${project_code}`,
-    badges,
-    metadata,
   }
 }
 

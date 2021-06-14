@@ -60,11 +60,11 @@
     "is_active": true
   },
   {
-    "code": "trade-agreement-interaction-v4-endpoint",
+    "code": "state-filter",
     "is_active": true
   },
   {
-    "code": "relatedTradeAgreements",
+    "code": "province-filter",
     "is_active": true
   }
 ]

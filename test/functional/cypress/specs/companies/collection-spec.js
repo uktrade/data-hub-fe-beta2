@@ -41,4 +41,16 @@ describe('Company Collections', () => {
       .should('be.visible')
       .and('contain', 'Add company')
   })
+
+  it('should display US State Filter', () => {
+    cy.get(selectors.entityCollection.multiSelect)
+      .should('be.visible')
+      .and('contain', 'US state')
+  })
+
+  it('should display Canadian Province Filter', () => {
+    cy.get(selectors.entityCollection.multiSelect)
+      .should('be.visible')
+      .and('contain', 'Canadian Province')
+  })
 })

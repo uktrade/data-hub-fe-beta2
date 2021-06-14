@@ -6,8 +6,8 @@ const randomAdviser = () => ({
 })
 
 const randomReferral = () => ({
-  companyId: faker.random.uuid(),
-  id: faker.random.uuid(),
+  companyId: faker.datatype.uuid(),
+  id: faker.datatype.uuid(),
   subject: faker.lorem.sentence(),
   companyName: faker.company.companyName(),
   date: faker.date.past(1),

@@ -1,6 +1,5 @@
-const moment = require('moment')
 const { get, pick } = require('lodash')
-
+const format = require('date-fns/format')
 const { KINDS, THEMES } = require('../../constants')
 const { getActiveEvents } = require('../../../events/repos')
 const {
@@ -126,7 +125,7 @@ const getInitialFormValues = (req, res) => {
   const { user } = req.session
   const { company, investment, interaction, referral } = res.locals
   const { theme, kind } = req.params
-  const date = interaction ? moment(interaction.date) : moment()
+  const date = interaction ? new Date(interaction.date) : new Date()
   const investmentId = get(
     investment,
     'id',
@@ -144,9 +143,9 @@ const getInitialFormValues = (req, res) => {
     company: company.id,
     investment_project: investmentId,
     date: {
-      day: date.format('DD'),
-      month: date.format('MM'),
-      year: date.format('YYYY'),
+      day: format(date, 'dd'),
+      month: format(date, 'MM'),
+      year: format(date, 'yyyy'),
     },
     contacts:
       referral && referral.contact
@@ -162,8 +161,7 @@ const getInitialFormValues = (req, res) => {
 
 async function renderInteractionDetailsForm(req, res, next) {
   try {
-    const { company, interaction, referral, investment, contact, features } =
-      res.locals
+    const { company, interaction, referral, investment, contact } = res.locals
 
     const [
       services,
@@ -208,8 +206,6 @@ async function renderInteractionDetailsForm(req, res, next) {
           policyIssueTypes,
           communicationChannels,
           countries,
-          isTradeAgreementInteractionEnabled:
-            features['trade-agreement-interaction-v4-endpoint'],
           relatedTradeAgreements,
         },
       })

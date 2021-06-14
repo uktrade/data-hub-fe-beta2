@@ -2,8 +2,7 @@ const selectors = require('../../../../selectors')
 
 describe('Event Collections Sort', () => {
   beforeEach(() => {
-    cy.server()
-    cy.route('/events?*').as('sortResults')
+    cy.intercept('/events?*').as('sortResults')
     cy.visit('/events')
     cy.get(selectors.entityCollection.entities)
       .children()
@@ -15,7 +14,7 @@ describe('Event Collections Sort', () => {
     cy.get(selectors.entityCollection.sort).select('name:asc')
 
     cy.wait('@sortResults').then((xhr) => {
-      expect(xhr.url).to.contain('?custom=true&sortby=name:asc')
+      expect(xhr.response.url).to.contain('?custom=true&sortby=name%3Aasc')
     })
 
     cy.get(selectors.entityCollection.entities)
@@ -28,7 +27,9 @@ describe('Event Collections Sort', () => {
     cy.get(selectors.entityCollection.sort).select('modified_on:asc')
 
     cy.wait('@sortResults').then((xhr) => {
-      expect(xhr.url).to.contain('?custom=true&sortby=modified_on:asc')
+      expect(xhr.response.url).to.contain(
+        '?custom=true&sortby=modified_on%3Aasc'
+      )
     })
 
     cy.get(selectors.entityCollection.entities)
@@ -41,7 +42,9 @@ describe('Event Collections Sort', () => {
     cy.get(selectors.entityCollection.sort).select('start_date:asc')
 
     cy.wait('@sortResults').then((xhr) => {
-      expect(xhr.url).to.contain('?custom=true&sortby=start_date:asc')
+      expect(xhr.response.url).to.contain(
+        '?custom=true&sortby=start_date%3Aasc'
+      )
     })
 
     cy.get(selectors.entityCollection.entities)
@@ -54,7 +57,9 @@ describe('Event Collections Sort', () => {
     cy.get(selectors.entityCollection.sort).select('start_date:desc')
 
     cy.wait('@sortResults').then((xhr) => {
-      expect(xhr.url).to.contain('?custom=true&sortby=start_date:desc')
+      expect(xhr.response.url).to.contain(
+        '?custom=true&sortby=start_date%3Adesc'
+      )
     })
 
     cy.get(selectors.entityCollection.entities)

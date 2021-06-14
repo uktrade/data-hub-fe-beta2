@@ -1,9 +1,11 @@
 const fixtures = require('../../fixtures')
 const selectors = require('../../../../selectors')
 
+import { format } from 'date-fns'
+
 const { omis } = require('../../../../../src/lib/urls')
 
-const today = Cypress.moment().format('D MMM YYYY')
+const today = format(new Date(), 'd MMM yyyy')
 
 describe('Order', () => {
   const company = fixtures.company.create.defaultCompany('order testing')

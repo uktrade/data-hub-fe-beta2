@@ -1,0 +1,11 @@
+{% extends "_layouts/template.njk" %}
+
+{% block content %}
+  <div class="govuk-grid-column-full">
+      {% component 'react-slot', {
+        id: 'interactions-collection',
+        props: props
+      }
+      %}
+  </div>
+{% endblock %}

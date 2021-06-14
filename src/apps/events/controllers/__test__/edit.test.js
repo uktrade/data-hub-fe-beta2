@@ -1,6 +1,6 @@
 const { assign, find, sortBy } = require('lodash')
-const moment = require('moment')
 const proxyquire = require('proxyquire')
+const { endOfYesterday, subMonths } = require('date-fns')
 
 const config = require('../../../../config')
 const eventData = require('../../../../../test/unit/data/events/event.json')
@@ -10,8 +10,8 @@ const {
   filterServiceNames,
 } = require('../../../../../src/apps/events/controllers/edit')
 
-const yesterday = moment().subtract(1, 'days').toISOString()
-const lastMonth = moment().subtract(1, 'months').toISOString()
+const yesterday = endOfYesterday()
+const lastMonth = subMonths(new Date(), 1)
 
 const metadataMock = {
   teamOptions: [

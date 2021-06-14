@@ -2,7 +2,6 @@ const router = require('express').Router()
 
 const urls = require('../../lib/urls')
 
-const { ENTITIES } = require('../search/constants')
 const {
   DEFAULT_COLLECTION_QUERY,
   APP_PERMISSIONS,
@@ -12,7 +11,6 @@ const {
 
 const { getRequestBody } = require('../../middleware/collection')
 const {
-  getCollection,
   exportCollection,
 } = require('../../modules/search/middleware/collection')
 
@@ -91,8 +89,6 @@ const {
   removeAssociatedInvestmentProject,
 } = require('./controllers/associated')
 
-const { transformInvestmentProjectToListItem } = require('./transformers')
-
 const interactionsRouter = require('../interactions/router.sub-app')
 const propositionsRouter = require('../propositions/router.sub-app')
 
@@ -102,17 +98,7 @@ router.use('/:investmentId', setLocalNavigation)
 router.param('investmentId', shared.getInvestmentDetails)
 router.param('companyId', shared.getCompanyDetails)
 
-router.get(
-  '/',
-  getRequestBody(QUERY_FIELDS, QUERY_DATE_FIELDS),
-  getCollection(
-    'investment_project',
-    ENTITIES,
-    transformInvestmentProjectToListItem
-  ),
-  setInvestmentTabItems,
-  renderProjectsView
-)
+router.get('/', setInvestmentTabItems, renderProjectsView)
 
 router.get(
   '/export',

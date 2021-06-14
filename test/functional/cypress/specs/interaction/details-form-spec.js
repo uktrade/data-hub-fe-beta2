@@ -298,8 +298,7 @@ function clickAddInteraction() {
 }
 
 function spyOnRequest(url = '/api-proxy/v4/interaction') {
-  cy.server()
-  cy.route('POST', url).as('interactionHttpRequest')
+  cy.intercept('POST', url).as('interactionHttpRequest')
 }
 
 function objectDiff(a, b) {
@@ -316,17 +315,17 @@ function assertRequestBody(expectedBody, callback) {
     // eslint-disable-next-line no-console
     cy.log(
       'Request body fields that differ',
-      objectDiff(xhr.requestBody, expectedBody)
+      objectDiff(xhr.request.body, expectedBody)
     )
 
-    expect(xhr.requestBody.has_related_trade_agreements).to.equal(
+    expect(xhr.request.body.has_related_trade_agreements).to.equal(
       expectedBody.has_related_trade_agreements
     )
-    expect(xhr.requestBody.related_trade_agreements).to.deep.equal(
+    expect(xhr.request.body.related_trade_agreements).to.deep.equal(
       expectedBody.related_trade_agreements
     )
 
-    expect(xhr.requestBody).to.deep.equal(expectedBody)
+    expect(xhr.request.body).to.deep.equal(expectedBody)
 
     callback(xhr)
   })
@@ -458,7 +457,7 @@ describe('Interaction theme', () => {
         (xhr) => {
           cy.location('pathname').should(
             'eq',
-            urls.companies.interactions.detail(company.id, xhr.responseBody.id)
+            urls.companies.interactions.detail(company.id, xhr.response.body.id)
           )
         }
       )
@@ -553,7 +552,7 @@ describe('Service delivery theme', () => {
       assertRequestBody(expectedBody, (xhr) => {
         cy.location('pathname').should(
           'eq',
-          urls.companies.interactions.detail(company.id, xhr.responseBody.id)
+          urls.companies.interactions.detail(company.id, xhr.response.body.id)
         )
       })
     })
@@ -626,7 +625,7 @@ describe('Investment theme', () => {
         (xhr) => {
           cy.location('pathname').should(
             'eq',
-            urls.companies.interactions.detail(company.id, xhr.responseBody.id)
+            urls.companies.interactions.detail(company.id, xhr.response.body.id)
           )
         }
       )
@@ -714,7 +713,7 @@ describe('Trade Agreement theme', () => {
         (xhr) => {
           cy.location('pathname').should(
             'eq',
-            urls.companies.interactions.detail(company.id, xhr.responseBody.id)
+            urls.companies.interactions.detail(company.id, xhr.response.body.id)
           )
         }
       )
@@ -753,7 +752,7 @@ describe('Trade Agreement theme', () => {
         (xhr) => {
           cy.location('pathname').should(
             'eq',
-            urls.companies.interactions.detail(company.id, xhr.responseBody.id)
+            urls.companies.interactions.detail(company.id, xhr.response.body.id)
           )
         }
       )
@@ -874,7 +873,7 @@ describe('Adding an interaction from a referral', () => {
           urls.companies.referrals.interactions.detail(
             referral.company.id,
             referral.id,
-            xhr.responseBody.id
+            xhr.response.body.id
           )
         )
       }

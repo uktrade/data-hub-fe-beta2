@@ -1,10 +1,10 @@
-const moment = require('moment')
+const { endOfToday, subDays, subWeeks } = require('date-fns')
 
 const config = require('../../config')
 
-const yesterday = moment().subtract(1, 'days').toISOString()
-const lastWeek = moment().subtract(1, 'weeks').toISOString()
-const today = moment().toISOString()
+const today = endOfToday()
+const yesterday = subDays(today, 1)
+const lastWeek = subWeeks(today, 1)
 
 const { getOptions, fetchOptions } = require('../options')
 const serviceOptionData = require('../../../test/unit/data/interactions/service-options-data.json')
@@ -40,10 +40,6 @@ describe('#options', () => {
         { label: 'r1', value: '1' },
         { label: 'r3', value: '3' },
       ])
-    })
-
-    it('fetches options', async () => {
-      expect(this.fetchedOptions).to.deep.equal(regionOptions)
     })
   })
 

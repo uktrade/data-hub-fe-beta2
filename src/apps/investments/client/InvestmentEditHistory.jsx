@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 import { isBoolean, isNumber } from 'lodash'
 import { formatWithTime } from '../../../client/utils/date-utils'
+import { isValid, parseISO } from 'date-fns'
 
 import { CHANGE_TYPE_TEXT, TRUE, FALSE, NOT_SET } from '../constants'
 
 import EditHistory from '../../../client/components/EditHistory/EditHistory'
 
 function isDate(dateStr) {
-  return moment(dateStr, moment.ISO_8601, true).isValid()
+  return isValid(parseISO(dateStr))
 }
 
 function getValue(value) {

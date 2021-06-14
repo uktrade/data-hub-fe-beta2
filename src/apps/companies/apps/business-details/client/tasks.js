@@ -1,5 +1,5 @@
 import axios from 'axios'
-import moment from 'moment'
+import { subDays, endOfToday, isAfter } from 'date-fns'
 
 export function checkIfPendingRequest(duns_number) {
   if (duns_number) {
@@ -14,11 +14,11 @@ export function checkIfPendingRequest(duns_number) {
 
 const checkIfRequestIsValid = ({ count, results }) => {
   if (count > 0) {
-    const timeInterval = moment().subtract(20, 'days')
+    const todaysDate = endOfToday()
+    const timeInterval = subDays(todaysDate, 20)
+    const isValid = isAfter(todaysDate, timeInterval)
     const validRequests = results.filter(
-      (result) =>
-        ['pending', 'submitted'].includes(result.status) &&
-        moment(result.created_on).isAfter(timeInterval)
+      (result) => ['pending', 'submitted'].includes(result.status) && isValid
     )
     return validRequests.length > 0
   }

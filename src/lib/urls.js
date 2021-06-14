@@ -63,6 +63,7 @@ function createInteractionsSubApp(mountPoint, pathPrefix = '') {
     createType: url(mountPoint, pathPrefix + '/create/:theme/:kind'),
     edit: url(mountPoint, pathPrefix + '/:interactionId/edit'),
     complete: url(mountPoint, pathPrefix + '/:interactionId/complete'),
+    react: url(mountPoint, pathPrefix + '/react'),
   }
 }
 
@@ -329,6 +330,7 @@ module.exports = {
     employeeRange: url('/api-proxy/v4/metadata', '/employee-range'),
     country: url('/api-proxy/v4/metadata', '/country'),
     ukRegion: url('/api-proxy/v4/metadata', '/uk-region'),
+    administrativeArea: url('/api-proxy/v4/metadata', '/administrative-area'),
     referralSourceWebsite: url(
       '/api-proxy/v4/metadata',
       '/referral-source-website'

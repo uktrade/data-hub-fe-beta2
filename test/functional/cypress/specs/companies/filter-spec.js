@@ -13,8 +13,7 @@ describe('Company Collections Filter', () => {
   })
 
   beforeEach(() => {
-    cy.server()
-    cy.route('/companies?*').as('filterResults')
+    cy.intercept('/companies?*').as('filterResults')
   })
 
   it('should filter by name', () => {
@@ -38,7 +37,7 @@ describe('Company Collections Filter', () => {
     cy.get(selectors.filter.statusActive).click()
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         '?sortby=collectionTest&custom=true&name=FilterByCompany&archived=false'
       )
     })
@@ -52,7 +51,7 @@ describe('Company Collections Filter', () => {
     cy.get(selectors.filter.statusInactive).click()
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         '?sortby=collectionTest&custom=true&name=FilterByCompany&archived=false&archived=true'
       )
     })
@@ -66,7 +65,7 @@ describe('Company Collections Filter', () => {
     cy.get(selectors.filter.firstInteractionDate).click()
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain('interaction_between=0')
+      expect(xhr.response.url).to.contain('interaction_between=0')
     })
 
     cy.get(selectors.entityCollection.entities)
@@ -96,7 +95,7 @@ describe('Company Collections Filter', () => {
       .type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         'sector_descends=af959812-6095-e211-a939-e4115bead28a'
       )
     })
@@ -117,7 +116,9 @@ describe('Company Collections Filter', () => {
       .type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain('country=80756b9a-5d95-e211-a939-e4115bead28a')
+      expect(xhr.response.url).to.contain(
+        'country=80756b9a-5d95-e211-a939-e4115bead28a'
+      )
     })
   })
 
@@ -136,7 +137,7 @@ describe('Company Collections Filter', () => {
       .type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         'export_to_countries=9f5f66a0-5d95-e211-a939-e4115bead28a'
       )
     })
@@ -157,7 +158,7 @@ describe('Company Collections Filter', () => {
       .type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         'future_interest_countries=a25f66a0-5d95-e211-a939-e4115bead28a'
       )
     })
@@ -170,9 +171,7 @@ describe('Company Collections Filter', () => {
     cy.get(selectors.filter.ukPostcode).should('be.visible')
     cy.get(selectors.filter.ukPostcode).clear().type(POSTCODE).type('{enter}')
 
-    cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(`uk_postcode=${POSTCODE}`)
-    })
+    cy.url().should('include', `uk_postcode=${POSTCODE}`)
 
     cy.get(selectors.entityCollection.entities)
       .children()
@@ -192,7 +191,7 @@ describe('Company Collections Filter', () => {
     cy.get(typeahead(leadIta).selectedOption).type('{enter}').type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         'one_list_group_global_account_manager=2c42c516-9898-e211-a939-e4115bead28a'
       )
     })
@@ -211,8 +210,54 @@ describe('Company Collections Filter', () => {
       .type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         'uk_region=824cd12a-6095-e211-a939-e4115bead28a'
+      )
+    })
+  })
+
+  it('should filter by us state', () => {
+    const { area, typeahead } = selectors.filter
+    cy.get(typeahead(area).selectedOption)
+      .first()
+      .click()
+      .get(typeahead(area).textInput)
+      .first()
+      .type('New York')
+      .get(typeahead(area).options)
+      .first()
+      .should('have.length', 1)
+      .get(typeahead(area).textInput)
+      .first()
+      .type('{enter}')
+      .type('{esc}')
+
+    cy.wait('@filterResults').then((xhr) => {
+      expect(xhr.response.url).to.contain(
+        'area=aa65b701-244a-41fc-bd31-0a546303106a'
+      )
+    })
+  })
+
+  it('should filter by canadian province', () => {
+    const { area, typeahead } = selectors.filter
+    cy.get(typeahead(area).selectedOption)
+      .eq(1)
+      .click()
+      .get(typeahead(area).textInput)
+      .eq(1)
+      .type('Alberta')
+      .get(typeahead(area).options)
+      .eq(1)
+      .should('have.length', 1)
+      .get(typeahead(area).textInput)
+      .eq(1)
+      .type('{enter}')
+      .type('{esc}')
+
+    cy.wait('@filterResults').then((xhr) => {
+      expect(xhr.response.url).to.contain(
+        'area=75e337c3-23c9-4294-8085-6b1e8c43eb07'
       )
     })
   })

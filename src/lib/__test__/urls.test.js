@@ -36,8 +36,8 @@ describe('urls', () => {
     let countryId
 
     beforeEach(() => {
-      companyId = faker.random.uuid()
-      countryId = faker.random.uuid()
+      companyId = faker.datatype.uuid()
+      countryId = faker.datatype.uuid()
     })
     it('should return the correct values', () => {
       expect(urls.companies.index.mountPoint).to.equal('/companies')
@@ -159,7 +159,7 @@ describe('urls', () => {
         urls.companies.investments.largeCapitalProfile(companyId)
       ).to.equal(`/companies/${companyId}/investments/large-capital-profile`)
 
-      const globalHqId = faker.random.uuid()
+      const globalHqId = faker.datatype.uuid()
       expect(
         urls.companies.hierarchies.ghq.add(companyId, globalHqId)
       ).to.equal(`/companies/${companyId}/hierarchies/ghq/${globalHqId}/add`)
@@ -179,7 +179,7 @@ describe('urls', () => {
         '/:companyId/hierarchies/ghq/remove'
       )
 
-      const interactionId = faker.random.uuid()
+      const interactionId = faker.datatype.uuid()
       expect(urls.companies.interactions.create.route).to.equal(
         '/:companyId/interactions/create'
       )
@@ -195,7 +195,7 @@ describe('urls', () => {
       )
       expect(urls.companies.orders.route).to.equal('/:companyId/orders')
 
-      const referralId = faker.random.uuid()
+      const referralId = faker.datatype.uuid()
       expect(urls.companies.referrals.send(companyId)).to.equal(
         `/companies/${companyId}/referrals/send`
       )
@@ -238,7 +238,7 @@ describe('urls', () => {
       expect(urls.contacts.index.route).to.equal('/')
       expect(urls.contacts.index()).to.equal('/contacts')
 
-      const contactId = faker.random.uuid()
+      const contactId = faker.datatype.uuid()
       expect(urls.contacts.interactions.create(contactId)).to.equal(
         `/contacts/${contactId}/interactions/create`
       )
@@ -308,7 +308,7 @@ describe('urls', () => {
   })
 
   describe('pipeline', () => {
-    const pipelineItemId = faker.random.uuid()
+    const pipelineItemId = faker.datatype.uuid()
 
     it('should return the correct value', () => {
       expect(urls.pipeline.index()).to.equal('/my-pipeline')

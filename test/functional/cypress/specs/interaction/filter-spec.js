@@ -6,8 +6,7 @@ describe('Interactions Collections Filter', () => {
   })
 
   beforeEach(() => {
-    cy.server()
-    cy.route('/interactions?*').as('filterResults')
+    cy.intercept('/interactions?*').as('filterResults')
   })
 
   it('should filter by sector', () => {
@@ -24,7 +23,7 @@ describe('Interactions Collections Filter', () => {
       .type('{esc}')
 
     cy.wait('@filterResults').then((xhr) => {
-      expect(xhr.url).to.contain(
+      expect(xhr.response.url).to.contain(
         'sector_descends=af959812-6095-e211-a939-e4115bead28a'
       )
     })

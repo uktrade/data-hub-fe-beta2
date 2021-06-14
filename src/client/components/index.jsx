@@ -49,6 +49,7 @@ export { default as Step } from './Form/elements/Step'
 export { default as SecondaryButton } from './SecondaryButton'
 export { default as ReadMore } from './ReadMore'
 export { default as RoutedAdvisersTypeahead } from './RoutedAdvisersTypeahead'
+export { default as RoutedInputField } from './RoutedInputField'
 export { default as RoutedTypeahead } from './RoutedTypeahead'
 export {
   DashboardToggleSection,

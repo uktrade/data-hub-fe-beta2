@@ -28,6 +28,7 @@ const ALLOWLIST = [
   '/v4/metadata/employee-range',
   '/v4/metadata/country',
   '/v4/metadata/uk-region',
+  '/v4/metadata/administrative-area',
   '/v4/metadata/referral-source-website',
   '/v4/metadata/referral-source-marketing',
   '/v4/metadata/referral-source-activity',

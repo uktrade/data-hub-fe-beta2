@@ -18,6 +18,9 @@ const OPTIONS_YES_NO = [
   { label: 'No', value: OPTION_NO },
 ]
 
+const US_COUNTRY_ID = '81756b9a-5d95-e211-a939-e4115bead28a'
+const CANADA_COUNTRY_ID = '5daf72a6-5d95-e211-a939-e4115bead28a'
+
 module.exports = {
   ERROR,
   EXPORT_INTEREST_STATUS,
@@ -25,4 +28,6 @@ module.exports = {
   OPTION_YES,
   OPTION_NO,
   OPTIONS_YES_NO,
+  US_COUNTRY_ID,
+  CANADA_COUNTRY_ID,
 }

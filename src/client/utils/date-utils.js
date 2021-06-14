@@ -1,12 +1,14 @@
-import moment from 'moment'
 import {
   endOfToday,
   format as formatFNS,
   differenceInCalendarDays,
+  parseISO,
+  isValid,
+  parse,
 } from 'date-fns'
 
-const DATE_FORMAT_LONG = 'YYYY-MM-DD'
-const DATE_FORMAT_SHORT = 'YYYY-MM'
+export const DATE_FORMAT_LONG = 'yyyy-MM-dd'
+export const DATE_FORMAT_SHORT = 'yyyy-MM'
 
 const padZero = (value) => {
   const parsedValue = parseInt(value, 10)
@@ -23,8 +25,8 @@ const normaliseAndFormatDate = (year, month, day) => {
   return day ? `${yearAndMonth}-${padZero(day)}` : yearAndMonth
 }
 
-export const format = (dateStr) => {
-  return moment(dateStr).format('DD MMM YYYY')
+export const format = (dateStr, dateFormat = 'dd MMM yyyy') => {
+  return formatFNS(parseISO(dateStr), dateFormat)
 }
 
 export const today = () => {
@@ -32,12 +34,12 @@ export const today = () => {
 }
 
 export const formatWithTime = (dateTimeStr) => {
-  return moment(dateTimeStr).format('D MMM YYYY, h:mma')
+  return formatFNS(parseISO(dateTimeStr), 'd MMM yyyy, h:mmaaa')
 }
 
 export const isDateValid = (year, month, day, format = DATE_FORMAT_LONG) => {
   const date = normaliseAndFormatDate(year, month, day)
-  return moment(date, format, true).isValid()
+  return isValid(parse(date, format, new Date()))
 }
 
 export const isShortDateValid = (year, month) => {

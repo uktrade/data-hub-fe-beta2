@@ -10,6 +10,9 @@ const getTelephoneNumber = (telephone_countrycode, telephone_number) =>
     ? `(${telephone_countrycode}) ${telephone_number}`
     : telephone_number
 
+export const transformArchivedToApi = (archived) =>
+  archived?.length === 1 ? archived[0] === 'true' : undefined
+
 export const transformContactToListItem = ({
   id,
   first_name,

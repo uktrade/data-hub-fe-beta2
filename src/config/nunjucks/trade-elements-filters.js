@@ -1,5 +1,5 @@
 /* global JSON:true */
-const moment = require('moment')
+const format = require('date-fns/format')
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -102,7 +102,7 @@ function getDateParts(value) {
   }
 
   if (typeof value === 'object') {
-    value = moment(value).format('DD/MM/YYYY')
+    value = format(value, 'dd/MM/YYYY')
   }
 
   const seperator = value.indexOf('-') !== -1 ? '-' : '/'
@@ -192,17 +192,17 @@ filter.newDate = function (d) {
 }
 
 /**
- * returns a standard gov.uk date from an epoch using momentjs
- * moment documentation: http://momentjs.com/docs/
+ * returns a standard gov.uk date from an epoch using date-fns
+ * date-fns documentation: https://date-fns.org
  * @method function
  * @param  {string} date date e.g 1462834800000
- * @param  {string} format moment.js format string (to override the default if needed)
+ * @param  {string} format date-fns format string (to override the default if needed)
  * @return {string} date string as per the current gov.uk standard 09/12/1981 -> 09 December 1981
  */
 filter.date = function (date, format) {
-  format = format || 'DD MMMM YYYY, h:mm:ss a'
+  format = format || 'dd MMMM YYYY, h:mm:ss aaa'
 
-  const formatted = moment(date).format(format)
+  const formatted = format(date, format)
 
   if (formatted === 'Invalid date') {
     return ''

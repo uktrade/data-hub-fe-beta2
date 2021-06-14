@@ -12,7 +12,6 @@ const DEFAULT_INTERACTION = {
       { value: '65f1a4cc-0171-4db8-8768-0428bd99dd71', label: '' },
     ],
   },
-  isTradeAgreementInteractionEnabled: true,
 }
 
 storiesOf('Company Interactions', module)
@@ -21,10 +20,4 @@ storiesOf('Company Interactions', module)
   })
   .add('With Trade Agreement', () => (
     <InteractionDetailsForm {...DEFAULT_INTERACTION}></InteractionDetailsForm>
-  ))
-  .add('Without Trade Agreement', () => (
-    <InteractionDetailsForm
-      {...DEFAULT_INTERACTION}
-      isTradeAgreementInteractionEnabled={false}
-    ></InteractionDetailsForm>
   ))

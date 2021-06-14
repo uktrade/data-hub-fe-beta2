@@ -2,7 +2,9 @@ const { company, contact, investmentProject } = require('../../fixtures')
 const selectors = require('../../../../selectors')
 const urls = require('../../../../../src/lib/urls')
 
-const todaysDate = Cypress.moment().format('D MMM YYYY')
+import { format } from 'date-fns'
+
+const todaysDate = format(new Date(), 'd MMM yyyy')
 let companyObj
 let contactObj
 let investmentProjectObj

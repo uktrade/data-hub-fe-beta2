@@ -69,6 +69,7 @@ const metadataItems = [
   ['sector', 'sectorOptions'],
   ['turnover', 'turnoverOptions'],
   ['uk-region', 'regionOptions'],
+  ['administrative-area', 'administrativeAreaOptions'],
   ['country', 'countryOptions'],
   ['employee-range', 'employeeOptions'],
   ['evidence-tag', 'evidenceTagOptions'],

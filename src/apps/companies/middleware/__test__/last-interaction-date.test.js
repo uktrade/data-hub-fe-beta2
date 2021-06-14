@@ -1,4 +1,4 @@
-const moment = require('moment')
+const { endOfToday, format, subMonths } = require('date-fns')
 const middleware = require('../last-interaction-date')
 const buildMiddlewareParameters = require('../../../../../test/unit/helpers/middleware-parameters-builder')
 
@@ -7,13 +7,13 @@ const START_DATE_PARAM = 'latest_interaction_date_before'
 const END_DATE_PARAM = 'latest_interaction_date_after'
 
 function getTimestamp(offset) {
-  const date = moment()
+  const date = endOfToday()
 
   if (offset > 0) {
-    date.subtract(offset, 'month')
+    subMonths(date, offset)
   }
 
-  return date.utc().format('YYYY-MM-DD')
+  return format(date, 'y-MM-d')
 }
 
 function callMiddleware(value) {

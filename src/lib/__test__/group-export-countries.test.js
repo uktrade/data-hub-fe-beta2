@@ -1,4 +1,4 @@
-const { uuid } = require('faker').random
+const { uuid } = require('faker').datatype
 const { EXPORT_INTEREST_STATUS } = require('../../apps/constants')
 
 const {

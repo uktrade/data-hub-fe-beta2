@@ -1,20 +1,23 @@
 import faker from 'faker'
 
 const randomLists = ({ length, max = 10 }) =>
-  Array(length || faker.random.number(max))
+  Array(length || faker.datatype.number(max))
     .fill(null)
-    .reduce((a) => ({ ...a, [faker.random.uuid()]: faker.random.words(3) }), {})
+    .reduce(
+      (a) => ({ ...a, [faker.datatype.uuid()]: faker.random.words(3) }),
+      {}
+    )
 
 const randomList = ({ length, max = 10, id }) =>
-  Array(length || faker.random.number(max))
+  Array(length || faker.datatype.number(max))
     .fill()
     .map(() => ({
-      id: id || faker.random.uuid(),
+      id: id || faker.datatype.uuid(),
       name: faker.random.words(3),
-      interactionId: faker.random.uuid(),
+      interactionId: faker.datatype.uuid(),
       date: faker.date.past(),
       subject: faker.random.words(3),
-      ditParticipants: Array(faker.random.number(2))
+      ditParticipants: Array(faker.datatype.number(2))
         .fill()
         .map(() => ({
           name: faker.name.findName(),

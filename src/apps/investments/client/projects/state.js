@@ -130,7 +130,7 @@ export const state2props = ({ router, ...state }) => {
       value: sector_descends,
       categoryLabel: sectorLabel,
     }),
-    selectedCountries: buildOptionsFilter({
+    selectedInvestmentOriginCountries: buildOptionsFilter({
       options: metadata.countryOptions,
       value: country_investment_originates_from,
       categoryLabel: countryLabel,

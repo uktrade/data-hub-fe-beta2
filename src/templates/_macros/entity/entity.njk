@@ -41,7 +41,8 @@
               MetaList({
                 items: metaBadges,
                 highlightTerm: props.highlightTerm,
-                modifier: ['inline', 'condensed']
+                modifier: ['inline', 'condensed'],
+                features: props.features
               })
             }}
           </div>
@@ -66,7 +67,8 @@
             MetaList({
               items: metaItems,
               highlightTerm: props.highlightTerm,
-              modifier: props.contentMetaModifier
+              modifier: props.contentMetaModifier,
+              features: props.features
             })
           }}
         </div>
@@ -81,7 +83,6 @@
           })
         }}
       {% endif %}
-
     </{{ containerElement }}>
   {% endif %}
 {% endmacro %}

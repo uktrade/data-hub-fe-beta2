@@ -108,8 +108,22 @@ function FilteredCollectionHeader({
           qsParamName="sector_descends"
         />
         <RoutedFilterChips
-          selectedOptions={selectedFilters.selectedCountries}
+          selectedOptions={selectedFilters.selectedInvestmentOriginCountries}
           qsParamName="country_investment_originates_from"
+        />
+        <RoutedFilterChips
+          selectedOptions={selectedFilters.selectedCountries}
+          qsParamName="country"
+        />
+        <RoutedFilterChips
+          selectedOptions={selectedFilters.selectedExportToCountries}
+          qsParamName="export_to_countries"
+          showCategoryLabels={true}
+        />
+        <RoutedFilterChips
+          selectedOptions={selectedFilters.selectedFutureCountriesOfInterest}
+          qsParamName="future_interest_countries"
+          showCategoryLabels={true}
         />
         <RoutedFilterChips
           selectedOptions={selectedFilters.selectedCountryOfOrigin}
@@ -210,6 +224,34 @@ function FilteredCollectionHeader({
         <RoutedFilterChips
           selectedOptions={selectedFilters.selectedHeadquarterTypes}
           qsParamName="headquarter_type"
+        />
+        <RoutedFilterChips
+          selectedOptions={selectedFilters.selectedCompanySectors}
+          qsParamName="company_sector_descends"
+        />
+        <RoutedFilterChips
+          selectedOptions={selectedFilters.selectedAddressCountries}
+          qsParamName="address_country"
+        />
+        <RoutedFilterChips
+          selectedOptions={selectedFilters.selectedCompanyUkRegions}
+          qsParamName="company_uk_region"
+        />
+        <RoutedFilterChips
+          selectedOptions={selectedFilters.selectedName}
+          qsParamName="name"
+        />
+        <RoutedFilterChips
+          selectedOptions={selectedFilters.selectedStatus}
+          qsParamName="archived"
+        />
+        <RoutedFilterChips
+          selectedOptions={selectedFilters.selectedCompanyName}
+          qsParamName="company_name"
+        />
+        <RoutedFilterChips
+          selectedOptions={selectedFilters.selectedCompanyStatuses}
+          qsParamName="archived"
         />
         <RoutedFilterChips
           selectedOptions={

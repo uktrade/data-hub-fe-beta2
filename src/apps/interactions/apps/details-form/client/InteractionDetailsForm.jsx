@@ -59,7 +59,6 @@ const InteractionDetailsForm = ({
   wasPolicyFeedbackProvided,
   initialValues,
   progress = false,
-  isTradeAgreementInteractionEnabled = false,
   has_related_trade_agreements,
   related_trade_agreements,
   ...props
@@ -106,7 +105,6 @@ const InteractionDetailsForm = ({
                       values,
                       companyId,
                       referralId,
-                      isTradeAgreementInteractionEnabled,
                     },
                     onSuccessDispatch: ADD_INTERACTION_FORM__SUBMIT,
                   })
@@ -124,13 +122,7 @@ const InteractionDetailsForm = ({
                   <LoadingBox loading={progress}>
                     {(!initialValues.theme || !initialValues.kind) && (
                       <MultiInstanceForm.Step name="interaction_type">
-                        {() => (
-                          <StepInteractionType
-                            isTradeAgreementInteractionEnabled={
-                              isTradeAgreementInteractionEnabled
-                            }
-                          />
-                        )}
+                        {() => <StepInteractionType />}
                       </MultiInstanceForm.Step>
                     )}
 
@@ -184,7 +176,6 @@ InteractionDetailsForm.propTypes = {
   returnLink: PropTypes.string,
   progress: PropTypes.bool,
   initialValues: PropTypes.object,
-  isTradeAgreementInteractionEnabled: PropTypes.bool,
   ...StepInteractionDetails.propTypes,
 }
 

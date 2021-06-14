@@ -53,8 +53,7 @@ describe('Company Export tab - Edit export countries', () => {
     })
 
     beforeEach(() => {
-      cy.server()
-      cy.route('PATCH', '*/v4/company/*/export-detail').as(XHR_ALIAS)
+      cy.intercept('PATCH', '*/v4/company/*/export-detail').as(XHR_ALIAS)
     })
 
     it('Should enter values for currently exporting', () => {
@@ -91,7 +90,7 @@ describe('Company Export tab - Edit export countries', () => {
       cy.contains('Save and return').click()
 
       cy.wait('@' + XHR_ALIAS).then((xhr) => {
-        expect(xhr.url).to.contain(lambdaPlc.id)
+        expect(xhr.response.url).to.contain(lambdaPlc.id)
         expect(xhr.request.body.export_countries).to.deep.equal(
           getExportCountries([
             { name: 'Spain', status: 'currently_exporting' },
@@ -117,8 +116,7 @@ describe('Company Export tab - Edit export countries', () => {
     })
 
     beforeEach(() => {
-      cy.server()
-      cy.route('PATCH', '*/v4/company/*/export-detail').as(XHR_ALIAS)
+      cy.intercept('PATCH', '*/v4/company/*/export-detail').as(XHR_ALIAS)
     })
 
     it('Should enter values for currently exporting', () => {
@@ -145,7 +143,7 @@ describe('Company Export tab - Edit export countries', () => {
       cy.contains('Save and return').click()
 
       cy.wait('@' + XHR_ALIAS).then((xhr) => {
-        expect(xhr.url).to.contain(dnbCorp.id)
+        expect(xhr.response.url).to.contain(dnbCorp.id)
         expect(xhr.request.body.export_countries).to.deep.equal(
           getExportCountries([
             { name: 'Spain', status: 'currently_exporting' },
@@ -165,15 +163,14 @@ describe('Company Export tab - Edit export countries', () => {
     })
 
     beforeEach(() => {
-      cy.server()
-      cy.route('PATCH', '*/v4/company/*/export-detail').as(XHR_ALIAS)
+      cy.intercept('PATCH', '*/v4/company/*/export-detail').as(XHR_ALIAS)
     })
 
     it('Should save and return back to the exports index', () => {
       cy.contains('Save and return').click()
 
       cy.wait('@' + XHR_ALIAS).then((xhr) => {
-        expect(xhr.url).to.contain(oneListCorp.id)
+        expect(xhr.response.url).to.contain(oneListCorp.id)
         expect(xhr.request.body.export_countries).to.deep.equal([])
         cy.url().should('contain', urls.companies.exports.index(oneListCorp.id))
       })

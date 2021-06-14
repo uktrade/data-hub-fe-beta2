@@ -1,9 +1,10 @@
-const moment = require('moment')
+const { addMonths, subMonths } = require('date-fns')
 
 const { filterDisabledOption, filterNonPermittedItem } = require('../filters')
 
-const lastMonth = moment().subtract(1, 'months').toISOString()
-const nextMonth = moment().add(1, 'months').toISOString()
+const today = new Date()
+const lastMonth = subMonths(today, 1)
+const nextMonth = addMonths(today, 1)
 
 describe('filters', () => {
   describe('#filterDisabledOption', () => {

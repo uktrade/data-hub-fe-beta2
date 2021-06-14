@@ -32,7 +32,7 @@
     {% elif props.type === 'fromNow' %}
       {% set metaItemValue = FromNow({ datetime: props.value }) %}
     {% elif props.type === 'address' %}
-      {% set metaItemValue = props.value | formatAddress %}
+      {% set metaItemValue = props.value | formatAddress(', ', props.features.isAddressAreaEnabled) %}
     {% else %}
       {% set metaItemValue = props.value.name | default(props.value) %}
     {% endif %}

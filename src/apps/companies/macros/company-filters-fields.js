@@ -10,6 +10,8 @@ const PRIMARY_SECTOR_NAME = FILTER_CONSTANTS.COMPANIES.SECTOR.PRIMARY.NAME
 const companyFiltersFields = function ({ sectorOptions }) {
   const countryOptions = globalFields.countries.options()
   const ukRegionOptions = globalFields.ukRegions.options()
+  const usStateOptions = globalFields.usStates.options()
+  const canadaProvinceOptions = globalFields.canadaProvinces.options()
   return [
     Object.assign({}, globalFields.headquarter_type, {
       name: QUERY_FIELDS_MAP.headquarterType,
@@ -42,6 +44,28 @@ const companyFiltersFields = function ({ sectorOptions }) {
       hideInactive: false,
       target: 'metadata',
       label: 'Country',
+    },
+    {
+      macroName: 'Typeahead',
+      name: QUERY_FIELDS_MAP.area,
+      isAsync: false,
+      placeholder: 'Search US state',
+      useSubLabel: false,
+      options: usStateOptions,
+      hideInactive: false,
+      target: 'metadata',
+      label: 'US state',
+    },
+    {
+      macroName: 'Typeahead',
+      name: QUERY_FIELDS_MAP.area,
+      isAsync: false,
+      placeholder: 'Search Canadian Province',
+      useSubLabel: false,
+      options: canadaProvinceOptions,
+      hideInactive: false,
+      target: 'metadata',
+      label: 'Canadian Province',
     },
     {
       macroName: 'TextField',

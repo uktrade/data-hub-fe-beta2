@@ -4,8 +4,7 @@ const urls = require('../../../../../../src/lib/urls')
 const exportSelectors = require('../../../../../selectors/company/export')
 
 function visitExportIndex(companyId) {
-  cy.server()
-  cy.route('GET', '**/export-win').as('exportWinResults')
+  cy.intercept('GET', '**/export-win').as('exportWinResults')
   cy.visit(urls.companies.exports.index(companyId))
   cy.wait('@exportWinResults')
 }
@@ -311,8 +310,7 @@ describe('Company Export tab', () => {
 
   describe('Export Wins', () => {
     function visitExports(companyId) {
-      cy.server()
-      cy.route('**/export-win').as('exportWinsResults')
+      cy.intercept('**/export-win').as('exportWinsResults')
       cy.visit(urls.companies.exports.index(companyId))
       cy.wait('@exportWinsResults')
     }
