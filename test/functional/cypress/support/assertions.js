@@ -274,7 +274,9 @@ const assertFieldTextarea = ({ element, label, hint, value }) =>
 
 const assertFieldAddress = ({ element, hint = null, value = {} }) => {
   const isUkBased = value.country.name === 'United Kingdom'
-  const addressElements = [
+  const hasStateField =
+    value.country.name === 'Canada' || value.country.name === 'United States'
+  let addressElements = [
     {
       assert: ({ element }) => cy.wrap(element).should('have.text', 'Address'),
     },
@@ -308,6 +310,20 @@ const assertFieldAddress = ({ element, hint = null, value = {} }) => {
       value: value.town,
       assert: assertFieldInput,
     },
+  ]
+
+  if (hasStateField) {
+    addressElements = [
+      ...addressElements,
+      {
+        label: value.country.name === 'Canada' ? 'Province' : 'State',
+        value: value.area.name,
+        assert: assertFieldSelect,
+      },
+    ]
+  }
+  addressElements = [
+    ...addressElements,
     {
       label: 'County (optional)',
       value: value.county,
