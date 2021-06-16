@@ -5,18 +5,16 @@ import { GREY_4 } from 'govuk-colours'
 import { SPACING } from '@govuk-react/constants'
 
 const StyledHeaderDetails = styled('div')`
-padding-bottom: ${SPACING.SCALE_5};
-background-color: ${GREY_4};
-padding-top: ${SPACING.SCALE_3};
+  background-color: ${GREY_4};
 `
 
 const StyledHeaderList = styled('li')`
-display: inline-block;
-padding: ${SPACING.SCALE_2};
+  display: inline-block;
+  padding-right: ${SPACING.SCALE_5};
 `
 
 const StyledHeaderListLabel = styled('label')`
-color: #6f777b;
+  color: #6f777b;
 `
 
 const LocalHeaderDetails = ({ items }) => {

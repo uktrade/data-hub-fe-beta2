@@ -2,7 +2,7 @@
 
 ### Description
 
-Implementation of the company local header details in React, extending the LocalHeader component.
+Implementation of re-usable component for investment opportunities header details using React.
 
 ### Usage
 
