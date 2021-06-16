@@ -1,5 +1,12 @@
 {% extends "_layouts/collection.njk" %}
 
+{% block local_header %}
+  {% component 'react-slot', {
+    id: 'opportunity-details-header',
+    props: props
+  } %}
+{% endblock %}
+
 {% block content %}
 {% component 'react-slot', {
   id: 'opportunity-details',

@@ -47,6 +47,7 @@ import EventsCollection from '../apps/events/client/EventsCollection.jsx'
 import InteractionsCollection from '../apps/interactions/client/InteractionsCollection'
 import InvestmentProjectsCollection from '../apps/investments/client/projects/ProjectsCollection.jsx'
 import Opportunities from '../apps/investments/client/opportunities/Details/Opportunities.jsx'
+import OpportunityDetailsHeader from '../apps/investments/client/opportunities/Details/OpportunityDetailsHeader'
 import IEBanner from '../apps/dashboard/client/IEBanner'
 import CreateUKInvestmentOpportunity from './components/CreateUKInvestmentOpportunity'
 import createUKInvestmentOpportunityTask from './components/CreateUKInvestmentOpportunity/tasks'
@@ -365,6 +366,9 @@ function App() {
       </Mount>
       <Mount selector="#opportunity-details">
         {(props) => <Opportunities {...props} />}
+      </Mount>
+      <Mount selector="#opportunity-details-header">
+        {(props) => <OpportunityDetailsHeader {...props} />}
       </Mount>
       <Mount selector="#create-uk-investment-opportunity">
         {() => (
