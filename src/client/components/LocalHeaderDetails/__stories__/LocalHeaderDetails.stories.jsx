@@ -14,15 +14,14 @@ import lgCapOpps from '../../../../../test/sandbox/fixtures/v4/investment/large-
 import { transformInvestmentOpportunityDetails } from '../../../../apps/investments/client/opportunities/Details/transformers'
 
 const StyledHeaderDetails = styled('div')`
-  padding-bottom: ${SPACING.SCALE_5};
   background-color: ${GREY_4};
-  padding-top: ${SPACING.SCALE_3};
 `
 
 const StyledHeaderList = styled('li')`
   display: inline-block;
-  padding: ${SPACING.SCALE_2};
+  padding-right: ${SPACING.SCALE_5};
 `
+
 const StyledHeaderListLabel = styled('label')`
   color: #6f777b;
 `
