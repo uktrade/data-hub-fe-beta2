@@ -15,7 +15,12 @@ const StyledSpan = styled('span')`
 
 const CollectionSort = ({ sortOptions, totalPages }) => {
   const actions = (
-    <RoutedSelect name="sortBy" qsParamName="sortby" label="Sort by">
+    <RoutedSelect
+      data-test="sortby"
+      name="sortBy"
+      qsParamName="sortby"
+      label="Sort by"
+    >
       {sortOptions.map(({ name, value }, i) => {
         return (
           <option value={value} key={i}>
