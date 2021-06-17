@@ -10,6 +10,7 @@ export const getContacts = ({
   page,
   name,
   limit = 10,
+  sortby,
   archived,
   company_name,
   address_country,
@@ -20,7 +21,7 @@ export const getContacts = ({
     .post('/api-proxy/v3/search/contact', {
       name,
       limit,
-      sortby: 'modified_on:desc',
+      sortby,
       archived,
       company_name,
       address_country,

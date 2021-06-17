@@ -57,6 +57,7 @@ const ContactsCollection = ({
       entityName="contact"
       defaultQueryParams={{
         archived: ['false'],
+        sortby: 'modified_on:desc',
         page: 1,
       }}
     >

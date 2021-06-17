@@ -1,13 +1,13 @@
 import { omitBy, isEmpty } from 'lodash'
 import qs from 'qs'
 
-export const TASK_GET_CONTACTS_LIST = 'TASK_GET_CONTACTS_LIST'
-export const TASK_GET_CONTACTS_METADATA = 'TASK_GET_CONTACTS_METADATA'
-export const ID = 'contactsList'
-
 import { buildSelectedFilters } from './filters'
 import { transformArchivedToApi } from './transformers'
-import { STATUS_OPTIONS } from './metadata'
+import { STATUS_OPTIONS, SORT_OPTIONS } from './constants'
+
+export const ID = 'contactsList'
+export const TASK_GET_CONTACTS_LIST = 'TASK_GET_CONTACTS_LIST'
+export const TASK_GET_CONTACTS_METADATA = 'TASK_GET_CONTACTS_METADATA'
 
 const parseQueryString = (queryString) => {
   const queryStringObject = omitBy({ ...qs.parse(queryString) }, isEmpty)
@@ -31,7 +31,7 @@ export const state2props = ({ router, ...state }) => {
     },
     selectedFilters,
     optionMetadata: {
-      sortOptions: [],
+      sortOptions: SORT_OPTIONS,
       statusOptions: STATUS_OPTIONS,
       ...metadata,
     },
