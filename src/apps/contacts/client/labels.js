@@ -1,6 +1,0 @@
-export const SECTOR = 'Sector'
-export const COUNTRY = 'Country'
-export const UK_REGION = 'UK region'
-export const CONTACTS_NAME = 'Contact name'
-export const COMPANY_NAME = 'Company name'
-export const STATUS = 'Status'
