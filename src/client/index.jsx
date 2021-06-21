@@ -171,6 +171,8 @@ import {
 
 import Footer from '../client/components/Footer'
 
+import resourceTasks from '../client/components/Resource/tasks'
+
 function parseProps(domNode) {
   return 'props' in domNode.dataset ? JSON.parse(domNode.dataset.props) : {}
 }
@@ -242,15 +244,13 @@ function App() {
         [TASK_GET_COMPANIES_LIST]: getCompanies,
         [TASK_GET_COMPANIES_METADATA]: getCompaniesMetadata,
         [TASK_GET_INVESTMENTS_PROJECTS_ADVISER_NAME]: getAdviserNames,
-        [TASK_GET_COMPANIES_LEAD_ITA_OR_GLOBAL_ACCOUNT_MANAGER_NAME]:
-          getAdviserNames,
+        [TASK_GET_COMPANIES_LEAD_ITA_OR_GLOBAL_ACCOUNT_MANAGER_NAME]: getAdviserNames,
         [TASK_GET_INVESTMENTS_PROJECTS_METADATA]:
           getInvestmentProjects.getMetadata,
         [TASK_CHECK_FOR_INVESTMENTS]: personalisedDashboard.checkForInvestments,
         [TASK_GET_MY_INVESTMENTS_LIST]:
           myInvestmentProjects.fetchMyInvestmentsList,
-        [TASK_GET_INVESTMENT_SUMMARY_DATA_RANGES]:
-          fetchInvestmentSummaryDataRanges,
+        [TASK_GET_INVESTMENT_SUMMARY_DATA_RANGES]: fetchInvestmentSummaryDataRanges,
         [TASK_GET_OUTSTANDING_PROPOSITIONS]: fetchOutstandingPropositions,
         'Large investment profiles filters':
           investmentProfilesTasks.loadFilterOptions,
@@ -265,6 +265,7 @@ function App() {
         [TASK_GET_EVENTS_ORGANISER_NAME]: getAdviserNames,
         [TASK_GET_ORDERS_METADATA]: getOrdersMetadata,
         [TASK_GET_ORDERS_LIST]: getOrders,
+        ...resourceTasks,
       }}
     >
       <Mount selector="#add-company-form">

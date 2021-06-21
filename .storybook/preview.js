@@ -10,6 +10,7 @@ import DataHubProvider from '../src/client/provider'
 import referralsTask from '../src/client/components/ReferralList/tasks/dummy/spread'
 import companyListsTasks from '../src/client/components/CompanyLists/tasks/dummy/spread'
 import taskStoriesTasks from '../src/client/components/Task/__stories__/tasks.js'
+import contactTasks from '../src/client/components/Resource/__stories__/tasks.js'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -35,6 +36,7 @@ addDecorator(s =>
       ...referralsTask(),
       ...companyListsTasks(),
       ...taskStoriesTasks,
+      ...contactTasks,
     }}>
       {s()}
     </DataHubProvider>
