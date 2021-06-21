@@ -26,7 +26,6 @@ const StyledFieldPostcode = styled(FieldInput)`
 `
 
 const FieldAddress = ({
-  name,
   label,
   legend,
   hint,
@@ -76,7 +75,7 @@ const FieldAddress = ({
   }
 
   return (
-    <FieldWrapper {...{ name, label, legend, hint }} showBorder={true}>
+    <FieldWrapper {...{ label, legend, hint }} showBorder={true}>
       {isUK && (
         <>
           <StyledFieldPostcode
@@ -153,7 +152,6 @@ const FieldAddress = ({
 }
 
 FieldAddress.propTypes = {
-  name: PropTypes.string.isRequired,
   label: PropTypes.node,
   legend: PropTypes.node,
   hint: PropTypes.node,
