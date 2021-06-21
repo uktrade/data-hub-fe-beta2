@@ -150,6 +150,8 @@ import { TASK_GET_INTERACTIONS_LIST } from '../apps/interactions/client/state'
 
 import Footer from '../client/components/Footer'
 
+import resourceTasks from '../client/components/Resource/tasks'
+
 function parseProps(domNode) {
   return 'props' in domNode.dataset ? JSON.parse(domNode.dataset.props) : {}
 }
@@ -237,6 +239,7 @@ function App() {
         [TASK_GET_CONTACTS_LIST]: getContacts,
         [TASK_GET_CONTACTS_METADATA]: getContactsMetadata,
         [TASK_GET_INTERACTIONS_LIST]: getInteractions,
+        ...resourceTasks,
       }}
     >
       <Mount selector="#add-company-form">
