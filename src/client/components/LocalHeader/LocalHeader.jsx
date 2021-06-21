@@ -25,6 +25,12 @@ const BreadcrumbsWrapper = styled(Breadcrumbs)`
   margin-bottom: ${SPACING.SCALE_5};
   margin-top: 0;
 `
+
+const StyledSuperheading = styled.div({
+  fontSize: 20,
+  lineHeight: '32px',
+})
+
 const LocalHeader = ({
   breadcrumbs,
   flashMessages,
@@ -50,7 +56,7 @@ const LocalHeader = ({
         )}
       </BreadcrumbsWrapper>
       {flashMessages && <FlashMessages flashMessages={flashMessages} />}
-      <div style={{ fontSize: 20, lineHeight: '32px' }}>{superheading}</div>
+      {superheading && <StyledSuperheading>{superheading}</StyledSuperheading>}
       {heading && <LocalHeaderHeading>{heading}</LocalHeaderHeading>}
       {children}
     </StyledMain>
