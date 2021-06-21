@@ -17,7 +17,7 @@ const Resource = multiInstance({
       startOnRender={{
         onSuccessDispatch: 'RESOURCE',
         payload: id,
-        // ignoreIfInProgress: true,
+        ignoreIfInProgress: true,
       }}
     >
       {() => result !== undefined && children(result)}
