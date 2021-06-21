@@ -21,7 +21,7 @@ const {
 } = require('../middleware')
 const { getCommon, getDetails } = require('./controllers/details')
 const { renderContactsView } = require('./controllers/contacts')
-const { postDetails, editDetails } = require('./controllers/edit')
+const createAndEdit = require('./controllers/create-and-edit')
 const { archiveContact, unarchiveContact } = require('./controllers/archive')
 const { renderDocuments } = require('./controllers/documents')
 const { getAudit } = require('./controllers/audit')
@@ -46,6 +46,7 @@ const interactionsRouter = require('../interactions/router.sub-app')
 // )
 
 router.get(urls.contacts.index.route, renderContactsView)
+router.get(['/create', '/:contactId/edit'], createAndEdit)
 
 router.get(
   '/export',
@@ -53,8 +54,6 @@ router.get(
   getRequestBody(QUERY_FIELDS),
   exportCollection('contact')
 )
-
-router.route('/create').get(editDetails).post(postDetails, editDetails)
 
 router.use(
   '/:contactId',
@@ -65,8 +64,6 @@ router.use(
 
 router.get('/:contactId', redirectToFirstNavItem)
 router.get('/:contactId/details', getDetails)
-
-router.route('/:contactId/edit').get(editDetails).post(postDetails, editDetails)
 
 router.post('/:id/archive', archiveContact)
 router.get('/:id/unarchive', unarchiveContact)
