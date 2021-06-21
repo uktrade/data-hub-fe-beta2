@@ -23,7 +23,7 @@ const {
 const { getCommon, getDetails } = require('./controllers/details')
 const { renderContactList } = require('./controllers/list')
 const { renderContactsView } = require('./controllers/contacts')
-const { postDetails, editDetails } = require('./controllers/edit')
+const createAndEdit = require('./controllers/create-and-edit')
 const { archiveContact, unarchiveContact } = require('./controllers/archive')
 const { renderDocuments } = require('./controllers/documents')
 const { getAudit } = require('./controllers/audit')
@@ -44,6 +44,7 @@ router.get(
 
 // New react route (to replace the old companies list route above when complete)
 router.get(urls.contacts.react.index.route, renderContactsView)
+router.get(['/create', '/:contactId/edit'], createAndEdit)
 
 router.get(
   '/export',
@@ -51,8 +52,6 @@ router.get(
   getRequestBody(QUERY_FIELDS),
   exportCollection('contact')
 )
-
-router.route('/create').get(editDetails).post(postDetails, editDetails)
 
 router.use(
   '/:contactId',
@@ -63,8 +62,6 @@ router.use(
 
 router.get('/:contactId', redirectToFirstNavItem)
 router.get('/:contactId/details', getDetails)
-
-router.route('/:contactId/edit').get(editDetails).post(postDetails, editDetails)
 
 router.post('/:id/archive', archiveContact)
 router.get('/:id/unarchive', unarchiveContact)
