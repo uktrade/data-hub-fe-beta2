@@ -11,20 +11,17 @@ import styled from 'styled-components'
 
 import { useFormContext } from '../../hooks'
 import useAddressSearch from '../../../AddressSearch/useAddressSearch'
+import useAreaLookup from '../../../AddressSearch/useAreaLookup'
 import usePostcodeLookup from '../../../AddressSearch/usePostcodeLookup'
 import FieldInput from '../FieldInput'
 import FieldUneditable from '../FieldUneditable'
 import FieldWrapper from '../FieldWrapper'
 import StatusMessage from '../../../StatusMessage'
-import axios from 'axios'
-import { transformObjectToOption } from '../../../../../apps/transformers'
 import FieldSelect from '../FieldSelect'
 
 const UNITED_KINGDOM = 'United Kingdom'
 const UNITED_STATES = 'United States'
-const UNITED_STATES_ID = '81756b9a-5d95-e211-a939-e4115bead28a'
 const CANADA = 'Canada'
-const CANADA_ID = '5daf72a6-5d95-e211-a939-e4115bead28a'
 
 const StyledFieldPostcode = styled(FieldInput)`
   ${MEDIA_QUERIES.TABLET} {
@@ -53,32 +50,34 @@ const FieldAddress = ({
 
   const [usStates, setUsStates] = useState([])
   const [canadaProvinces, setCanadaProvinces] = useState([])
+
   useEffect(() => setIsLoading(isSubmitting), [isSubmitting])
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios('/api-proxy/v4/metadata/administrative-area')
+  useEffect(() => useAreaLookup(apiEndpoint, setUsStates, setCanadaProvinces))
+  // useEffect(() => {
+//     const fetchData = async () => {
+    //   const result = await axios('/api-proxy/v4/metadata/administrative-area')
 
-      setUsStates(
-        result.data
-          .filter(
-            (administrativeAreas) =>
-              administrativeAreas.country.id === UNITED_STATES_ID
-          )
-          .map((states) => transformObjectToOption(states))
-      )
+    //   setUsStates(
+    //     result.data
+    //       .filter(
+    //         (administrativeAreas) =>
+    //           administrativeAreas.country.id === UNITED_STATES_ID
+    //       )
+    //       .map((states) => transformObjectToOption(states))
+    //   )
 
-      setCanadaProvinces(
-        result.data
-          .filter(
-            (administrativeAreas) =>
-              administrativeAreas.country.id === CANADA_ID
-          )
-          .map((states) => transformObjectToOption(states))
-      )
-    }
+    //   setCanadaProvinces(
+    //     result.data
+    //       .filter(
+    //         (administrativeAreas) =>
+    //           administrativeAreas.country.id === CANADA_ID
+    //       )
+    //       .map((states) => transformObjectToOption(states))
+    //   )
+    // }
 
-    fetchData()
-  }, [])
+    // fetchData()
+  // }, [])
 
   const isUK = country.name === UNITED_KINGDOM
   const isUS = country.name === UNITED_STATES
