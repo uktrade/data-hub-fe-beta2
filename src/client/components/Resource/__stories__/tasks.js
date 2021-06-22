@@ -124,8 +124,7 @@ export default {
             oneListGroupGlobalAccountManager: null,
             globalHeadquarters: null,
             sector: {
-              name:
-                'Biotechnology and Pharmaceuticals : Bio and Pharma Marketing and Sales : Bio and Pharma Retail',
+              name: 'Biotechnology and Pharmaceuticals : Bio and Pharma Marketing and Sales : Bio and Pharma Retail',
               id: '70f7ffde-5f95-e211-a939-e4115bead28a',
             },
             turnoverRange: {
