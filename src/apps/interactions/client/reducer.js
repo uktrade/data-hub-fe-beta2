@@ -1,6 +1,7 @@
 import {
   INTERACTIONS__LOADED,
   INTERACTIONS_SELECTED_ADVISERS,
+  INTERACTIONS__METADATA_LOADED,
 } from '../../../client/actions'
 
 const initialState = {
@@ -22,6 +23,11 @@ export default (state = initialState, { type, result }) => {
       return {
         ...state,
         selectedAdvisers: result,
+      }
+    case INTERACTIONS__METADATA_LOADED:
+      return {
+        ...state,
+        metadata: result,
       }
     default:
       return state

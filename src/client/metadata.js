@@ -46,4 +46,19 @@ const getSectorOptions = (url, searchString) =>
         .map(({ id, name }) => ({ value: id, label: name }))
     )
 
-export { getMetadataOptions, getHeadquarterTypeOptions, getSectorOptions }
+/**
+ * Get metadata options as a list of values and labels
+ */
+const getTeamOptions = (url) =>
+  axios
+    .get(url)
+    .then(({ data }) =>
+      data.map(({ id, name }) => ({ value: id, label: name }))
+    )
+
+export {
+  getMetadataOptions,
+  getHeadquarterTypeOptions,
+  getSectorOptions,
+  getTeamOptions,
+}

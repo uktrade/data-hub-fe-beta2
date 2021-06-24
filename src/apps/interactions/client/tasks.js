@@ -1,10 +1,21 @@
 import axios from 'axios'
 
+import urls from '../../../lib/urls'
+
 import { transformResponseToCollection } from './transformers'
+
+import { getTeamOptions } from '../../../client/metadata'
 
 const handleError = (e) => Promise.reject(Error(e.response.data.detail))
 
-export const getInteractions = ({
+const getInteractionsMetadata = () =>
+  Promise.all([getTeamOptions(urls.metadata.team())])
+    .then(([teamOptions]) => ({
+      teamOptions,
+    }))
+    .catch(handleError)
+
+const getInteractions = ({
   limit = 10,
   page = 1,
   kind,
@@ -23,3 +34,5 @@ export const getInteractions = ({
       date_after,
     })
     .then(({ data }) => transformResponseToCollection(data), handleError)
+
+export { getInteractions, getInteractionsMetadata }

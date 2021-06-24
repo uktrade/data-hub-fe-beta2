@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {
   INTERACTIONS__LOADED,
   INTERACTIONS_SELECTED_ADVISERS,
+  INTERACTIONS__METADATA_LOADED,
 } from '../../../client/actions'
 
 import { LABELS, KIND_OPTIONS } from './constants'
@@ -21,6 +22,7 @@ import {
   state2props,
   TASK_GET_INTERACTIONS_LIST,
   TASK_GET_INTERACTIONS_ADVISER_NAME,
+  TASK_GET_INTERACTIONS_METADATA,
 } from './state'
 
 const InteractionCollection = ({
@@ -48,6 +50,16 @@ const InteractionCollection = ({
       onSuccessDispatch: INTERACTIONS_SELECTED_ADVISERS,
     },
   }
+
+  const collectionListMetadataTask = {
+    name: TASK_GET_INTERACTIONS_METADATA,
+    id: ID,
+    progressMessage: 'Loading filters',
+    startOnRender: {
+      onSuccessDispatch: INTERACTIONS__METADATA_LOADED,
+    },
+  }
+
   return (
     <FilteredCollectionList
       {...props}
@@ -62,7 +74,7 @@ const InteractionCollection = ({
         page: 1,
       }}
     >
-      <CollectionFilters>
+      <CollectionFilters taskProps={collectionListMetadataTask}>
         <RoutedCheckboxGroupField
           legend={LABELS.kind}
           name="kind"
@@ -101,6 +113,16 @@ const InteractionCollection = ({
           name="date_before"
           qsParamName="date_before"
           data-test="date-before-filter"
+        />
+        <RoutedAdvisersTypeahead
+          isMulti={true}
+          legend="Teams"
+          name="dit_participants__team"
+          qsParam="dit_participants__team"
+          placeholder="Search teams"
+          options={optionMetadata.teamOptions}
+          noOptionsMessage={() => <>No teams found</>}
+          data-test="teams-filter"
         />
       </CollectionFilters>
     </FilteredCollectionList>
