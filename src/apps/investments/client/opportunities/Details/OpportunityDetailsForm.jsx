@@ -29,7 +29,7 @@ import {
 } from '../../../../../client/components'
 
 function OpportunityDetailsForm(state) {
-  const { opportunityId, formInitialValues, metadata, details } = state
+  const { opportunityId, metadata, details } = state
   const { name, description, assetClasses } = details.detailsFields
   const clearedReference = '02d6fc9b-fbb9-4621-b247-d86f2487898e'
   const issuesIdentifiedReference = '9beab8fc-1094-49b4-97d0-37bc7a9de631'
@@ -45,7 +45,6 @@ function OpportunityDetailsForm(state) {
           return (
             <MultiInstanceForm
               id={ID}
-              initialValues={formInitialValues}
               showErrorSummary={true}
               onSubmit={(values) => {
                 saveOpportunityDetails.start({
@@ -74,21 +73,18 @@ function OpportunityDetailsForm(state) {
                         initialValue={name}
                         name="name"
                         type="text"
-                        required="Enter a name to continue"
                       />
                       <FieldTextarea
                         label="Opportunity description"
                         initialValue={description}
                         name="description"
                         type="text"
-                        required="Enter a description to continue"
                       />
                       <FieldAddAnother
                         name="ukRegions"
                         label="UK location"
                         placeholder="-- Select a UK region --"
                         data-test-prefix="uk-region-location-field-"
-                        required="Select at least one location"
                         item-name="uk location"
                       >
                         {({ value, onChange, error }) => (
@@ -97,7 +93,6 @@ function OpportunityDetailsForm(state) {
                             inputId="uk_region_locations"
                             label=""
                             options={metadata.ukRegions}
-                            required="Select at least one location"
                             aria-label="Select a uk location"
                             value={metadata.ukRegions.find(
                               ({ value: option_value }) =>
@@ -113,7 +108,6 @@ function OpportunityDetailsForm(state) {
                         label="Promoters"
                         placeholder="-- Search for a company --"
                         data-test-prefix="promoters-field-"
-                        required="Select at least one company"
                         item-name="promoter"
                       >
                         {({ value, onChange, error }) => (
@@ -122,7 +116,6 @@ function OpportunityDetailsForm(state) {
                             inputId="promoters"
                             label=""
                             options={metadata.promoters}
-                            required="Select at least one company"
                             aria-label="Select a promoter"
                             value={metadata.promoters.find(
                               ({ value: option_value }) =>
@@ -145,13 +138,11 @@ function OpportunityDetailsForm(state) {
                           <FieldDate
                             name="requiredChecksConductedOn"
                             label="Date of most recent checks"
-                            required="Enter a valid date"
                           />
                           <AdviserTypeAhead
                             name="requiredChecksConductedBy"
                             label="Person responsible for most recent checks"
                             placeholder="-- Search for an adviser --"
-                            required="Select at least one adviser"
                             isMulti={false}
                           />
                         </>
@@ -165,7 +156,6 @@ function OpportunityDetailsForm(state) {
                         name="leadRelationshipManager"
                         label="Lead DIT relationship manager"
                         placeholder="-- Search for an adviser --"
-                        required="Select at least one adviser"
                         isMulti={false}
                       />
                       {values.values.leadRelationshipManager && (
@@ -210,7 +200,6 @@ function OpportunityDetailsForm(state) {
                                 hint="For energy and infrastructure projects"
                                 name="opportunityValue"
                                 type="number"
-                                required="Please enter a value to continue"
                               />
                             ),
                           },
@@ -223,7 +212,6 @@ function OpportunityDetailsForm(state) {
                                 label="Gross development value (GDV)"
                                 name="opportunityValue"
                                 type="number"
-                                required="Please enter a value to continue"
                               />
                             ),
                           },
@@ -233,7 +221,6 @@ function OpportunityDetailsForm(state) {
                         isMulti={true}
                         label="Asset classes"
                         name="assetClasses"
-                        required="Select at least one asset class"
                         options={metadata.classesOfInterest}
                         placeholder="-- Search asset classes --"
                         aria-label="Select asset classes"
