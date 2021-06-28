@@ -245,13 +245,15 @@ function App() {
         [TASK_GET_COMPANIES_LIST]: getCompanies,
         [TASK_GET_COMPANIES_METADATA]: getCompaniesMetadata,
         [TASK_GET_INVESTMENTS_PROJECTS_ADVISER_NAME]: getAdviserNames,
-        [TASK_GET_COMPANIES_LEAD_ITA_OR_GLOBAL_ACCOUNT_MANAGER_NAME]: getAdviserNames,
+        [TASK_GET_COMPANIES_LEAD_ITA_OR_GLOBAL_ACCOUNT_MANAGER_NAME]:
+          getAdviserNames,
         [TASK_GET_INVESTMENTS_PROJECTS_METADATA]:
           getInvestmentProjects.getMetadata,
         [TASK_CHECK_FOR_INVESTMENTS]: personalisedDashboard.checkForInvestments,
         [TASK_GET_MY_INVESTMENTS_LIST]:
           myInvestmentProjects.fetchMyInvestmentsList,
-        [TASK_GET_INVESTMENT_SUMMARY_DATA_RANGES]: fetchInvestmentSummaryDataRanges,
+        [TASK_GET_INVESTMENT_SUMMARY_DATA_RANGES]:
+          fetchInvestmentSummaryDataRanges,
         [TASK_GET_OUTSTANDING_PROPOSITIONS]: fetchOutstandingPropositions,
         'Large investment profiles filters':
           investmentProfilesTasks.loadFilterOptions,
@@ -445,7 +447,9 @@ function App() {
         {(props) => <InteractionsCollection {...props} />}
       </Mount>
       <Mount selector="#ie-banner">{() => <IEBanner />}</Mount>
-      <Mount selector="#contact-form" children={ContactForm} />
+      <Mount selector="#contact-form">
+        {(props) => <ContactForm {...props} />}
+      </Mount>
     </Provider>
   )
 }

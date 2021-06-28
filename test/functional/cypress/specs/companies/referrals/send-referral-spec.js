@@ -367,7 +367,7 @@ describe('Contact loop', () => {
       cy.contains('fieldset', 'Is this person a primary contact?')
         .contains('label', 'Yes')
         .click()
-      cy.contains('div', 'Telephone country code').find('input').type('+44')
+      cy.contains('div', 'Telephone country code').find('input').type('44')
       cy.contains('div', 'Telephone number').find('input').type('123 567 789')
       cy.contains('div', 'Email').find('input').type('john@example.com')
       cy.contains(
@@ -382,9 +382,10 @@ describe('Contact loop', () => {
         'include',
         urls.companies.referrals.send(fixtures.company.withContacts.id)
       )
-      cy.contains(
-        'You added Json Russel.You can now continue sending the referral.'
-      )
+
+      // We are not expecting John Doe here, because the mocked sandbox response
+      // returns Json Russel
+      cy.contains(`You have successfully added a new contact Json Russel`)
 
       cy.get(selectors.sendReferral.subjectFieldInput).should(
         'have.attr',

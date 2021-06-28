@@ -1,3 +1,4 @@
+import qs from 'qs'
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
@@ -24,6 +25,7 @@ import Contact from '../Resource/Contact'
 import Company from '../Resource/Company'
 import ReferrerLink from '../ReferrerLink'
 import * as validators from '../Form/validators'
+import State from '../State'
 
 const boolToYesNo = (x) => (x === true ? 'yes' : x === false ? 'no' : x)
 
@@ -31,6 +33,7 @@ const ContactForm = ({
   method,
   edit,
   contactId,
+  redirectTo = ({ id }) => `/contacts/${id}/details`,
   // Needed for linking the newly created contact to a company and breadcrumbs
   companyId,
   // We need to convert these to 'yes' / 'no' strings
@@ -117,12 +120,11 @@ const ContactForm = ({
               addMessage(
                 'success',
                 method === 'POST'
-                  ? 'Added new contact'
+                  ? `You have successfully added a new contact ${response.data.name}`
                   : 'Contact record updated'
               )
 
-              // Redirect
-              return `/contacts/${response.data.id}/details`
+              return redirectTo(response.data)
             }}
           >
             {({ submissionError, values, errors }) => (
@@ -297,7 +299,27 @@ ContactForm.propTypes = {
 }
 
 export const CreateContactForm = ({ companyId }) => (
-  <ContactForm companyId={companyId} method="POST" />
+  <State>
+    {(state) => {
+      const { origin_url } = qs.parse(state.router.location.search)
+      return (
+        <ContactForm
+          companyId={companyId}
+          method="POST"
+          redirectTo={
+            origin_url &&
+            (({ id, name }) => {
+              const encoded = qs.stringify({
+                'new-contact-name': name,
+                'new-contact-id': id,
+              })
+              return `${origin_url}?${encoded}`
+            })
+          }
+        />
+      )
+    }}
+  </State>
 )
 
 CreateContactForm.propTypes = requiredProps

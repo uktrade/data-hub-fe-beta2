@@ -41,6 +41,7 @@ const LocalHeader = ({
   <StyledHeader
     aria-label="local header"
     data-auto-id="localHeader"
+    data-test="localHeader"
     role="region"
   >
     <StyledMain>

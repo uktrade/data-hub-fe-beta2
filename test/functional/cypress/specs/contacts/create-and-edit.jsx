@@ -1,7 +1,5 @@
 /// <reference types="Cypress" />
 
-import '@testing-library/cypress/add-commands'
-
 const { assertBreadcrumbs } = require('../../support/assertions')
 
 const ZBONCAK_COMPANY_ID = '4cd4128b-1bad-4f1e-9146-5d4678c6a018'
