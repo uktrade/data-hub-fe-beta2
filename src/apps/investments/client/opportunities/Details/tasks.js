@@ -73,8 +73,8 @@ export function saveOpportunityDetails({ values, opportunityId }) {
       other_dit_contacts: values.otherDitContacts?.map(({ value }) => value),
       asset_classes: values.assetClasses?.map(({ value }) => value),
       opportunity_value: values.opportunityValue,
-      construction_risks: [values.constructionRisks],
       // TODO: refactor this to not be in an array once the API is fixed.
+      construction_risks: [values.constructionRisks],
     })
     .then(({ data }) => {
       return data
