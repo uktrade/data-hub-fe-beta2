@@ -27,12 +27,11 @@ import {
   Typeahead,
   AdviserTypeAhead,
 } from '../../../../../client/components'
+import { CLEARED_REFERENCE, ISSUES_IDENTIFIED_REFERENCE } from './constants'
 
 function OpportunityDetailsForm(state) {
   const { opportunityId, metadata, details } = state
   const { name, description, assetClasses } = details.detailsFields
-  const clearedReference = '02d6fc9b-fbb9-4621-b247-d86f2487898e'
-  const issuesIdentifiedReference = '9beab8fc-1094-49b4-97d0-37bc7a9de631'
 
   return (
     <Main>
@@ -131,9 +130,10 @@ function OpportunityDetailsForm(state) {
                         legend="Has this opportunity cleared the required checks?"
                         options={metadata.requiredChecksConducted}
                       />
-                      {[clearedReference, issuesIdentifiedReference].includes(
-                        values.values.requiredChecksConducted
-                      ) && (
+                      {[
+                        CLEARED_REFERENCE,
+                        ISSUES_IDENTIFIED_REFERENCE,
+                      ].includes(values.values.requiredChecksConducted) && (
                         <>
                           <FieldDate
                             name="requiredChecksConductedOn"
