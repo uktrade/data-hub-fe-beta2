@@ -6,6 +6,16 @@ const fixtures = require('../../fixtures')
 const { investments } = require('../../../../../src/lib/urls')
 var companies = require('../../../../sandbox/fixtures/v4/company/companies.json')
 
+const UK_REGION_ID = '864cd12a-6095-e211-a939-e4115bead28a'
+const PROMOTER_ID = '6f6a4c1a-dbc5-4a03-ba21-972c034e7df1'
+const CLEARED_CHECKS_ID = '02d6fc9b-fbb9-4621-b247-d86f2487898e'
+const CONDUCTED_BY_ID = '3442c516-9898-e211-a939-e4115bead28a'
+const CONSTRUCTION_RISK_ID = '79cc3963-9376-4771-9cba-c1b3cc0ade33'
+const RELATIONSHIP_MANAGER_ID = '3442c516-9898-e211-a939-e4115bead28a'
+const OTHER_DIT_CONTACT_ID = '9fd3a7a4-9798-e211-a939-e4115bead28a'
+const ASSET_CLASS_DIRECT_HEATING = 'bfab8ff2-e9bb-4fc8-b36c-5adddf8286b0'
+const ASSET_CLASS_BIOMASS = 'f2b6c1a7-4d4f-4fd9-884b-5e1f5b3525be'
+
 describe('UK Opportunity with missing data', () => {
   before(() => {
     cy.visit(
@@ -107,7 +117,7 @@ describe('UK Opportunity edit details functionality', () => {
     cy.contains('Has this opportunity cleared the required checks?')
       .next()
       .find('input')
-      .check('02d6fc9b-fbb9-4621-b247-d86f2487898e')
+      .check(CLEARED_CHECKS_ID)
     cy.get('#requiredChecksConductedOn\\.day').type('01')
     cy.get('#requiredChecksConductedOn\\.month').type('01')
     cy.get('#requiredChecksConductedOn\\.year').type('2021')
@@ -117,7 +127,7 @@ describe('UK Opportunity edit details functionality', () => {
     cy.contains('Construction risk')
       .next()
       .find('input')
-      .check('79cc3963-9376-4771-9cba-c1b3cc0ade33')
+      .check(CONSTRUCTION_RISK_ID)
     cy.contains('Lead DIT relationship manager')
       .parent()
       .selectTypeaheadOption('Violet Roy')
@@ -136,17 +146,18 @@ describe('UK Opportunity edit details functionality', () => {
       (req) => {
         expect(req.body).to.include('A great opportunity')
         expect(req.body).to.include('A very good description')
-        expect(req.body).to.include('[864cd12a-6095-e211-a939-e4115bead28a]')
-        expect(req.body).to.include('[6f6a4c1a-dbc5-4a03-ba21-972c034e7df1]')
-        expect(req.body).to.include('[02d6fc9b-fbb9-4621-b247-d86f2487898e]')
+        expect(req.body).to.include(UK_REGION_ID)
+        expect(req.body).to.include(PROMOTER_ID)
+        expect(req.body).to.include(CLEARED_CHECKS_ID)
         expect(req.body).to.include('2021-01-01')
-        expect(req.body).to.include('[3442c516-9898-e211-a939-e4115bead28a]')
-        expect(req.body).to.include('[79cc3963-9376-4771-9cba-c1b3cc0ade33]')
-        expect(req.body).to.include('[3442c516-9898-e211-a939-e4115bead28a]')
-        expect(req.body).to.include('[9fd3a7a4-9798-e211-a939-e4115bead28a]')
+        expect(req.body).to.include(CONDUCTED_BY_ID)
+        expect(req.body).to.include(CONSTRUCTION_RISK_ID)
+        expect(req.body).to.include(RELATIONSHIP_MANAGER_ID)
+        expect(req.body).to.include(OTHER_DIT_CONTACT_ID)
         expect(req.body).to.include('123456')
         expect(req.body).to.include(
-          '[bfab8ff2-e9bb-4fc8-b36c-5adddf8286b0, f2b6c1a7-4d4f-4fd9-884b-5e1f5b3525be]'
+          ASSET_CLASS_DIRECT_HEATING,
+          ASSET_CLASS_BIOMASS
         )
       }
     )
