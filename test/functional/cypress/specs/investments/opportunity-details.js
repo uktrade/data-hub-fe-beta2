@@ -46,10 +46,6 @@ describe('UK Opportunity with missing data', () => {
       'contain',
       'Opportunity requirements'
     )
-    cy.get('#opportunity_delete_toggle').should(
-      'contain',
-      'Need to delete this opportunity?'
-    )
   })
 
   it('should display required field tags', () => {
