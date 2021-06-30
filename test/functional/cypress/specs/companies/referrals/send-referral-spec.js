@@ -364,19 +364,15 @@ describe('Contact loop', () => {
       cy.contains('div', 'First name').find('input').type('John')
       cy.contains('div', 'Last name').find('input').type('Doe')
       cy.contains('div', 'Job title').find('input').type('Full-stack dev')
-      cy.contains('fieldset', 'Is this person a primary contact?')
-        .contains('label', 'Yes')
-        .click()
+      cy.checkRadioGroup('Is this person a primary contact?', 'Yes')
       cy.contains('div', 'Telephone country code').find('input').type('44')
       cy.contains('div', 'Telephone number').find('input').type('123 567 789')
       cy.contains('div', 'Email').find('input').type('john@example.com')
-      cy.contains(
-        'fieldset',
-        'Is the contact’s address the same as the company address?'
+      cy.checkRadioGroup(
+        'Is the contact’s address the same as the company address?',
+        'Yes'
       )
-        .contains('label', 'Yes')
-        .click()
-      cy.contains('button', 'Add contact').click()
+      cy.getSubmitButtonByLabel('Add contact')
 
       cy.url().should(
         'include',

@@ -1,33 +1,33 @@
-const selectors = require('../../../../selectors')
+const fillOut = (data) => {
+  cy.contains('First name').type(data.name)
+  cy.contains('Last name').type(data.lastName)
+  cy.contains('Job title').type(data.jobTitle)
+  cy.checkRadioGroup('Is this person a primary contact?', 'Yes')
+  cy.contains('Telephone country code').type(data.countryCode)
+  cy.contains('Telephone number').type(data.phone)
+  cy.contains('Email').type(data.email)
+}
 
 const create = (data) => {
-  cy.get(selectors.contactCreate.name).type(data.name)
-  cy.get(selectors.contactCreate.lastName).type(data.lastName)
-  cy.get(selectors.contactCreate.jobTitle).type(data.jobTitle)
-  cy.get(selectors.contactCreate.primaryContactYes).click()
-  cy.get(selectors.contactCreate.countryCode).type(data.countryCode)
-  cy.get(selectors.contactCreate.phone).type(data.phone)
-  cy.get(selectors.contactCreate.email).type(data.email)
-  cy.get(selectors.contactCreate.sameCompanyAddressYes).click()
-  cy.get(selectors.companyForm.save).click()
+  fillOut(data)
+  cy.checkRadioGroup(
+    'Is the contact’s address the same as the company address?',
+    'Yes'
+  )
+  cy.getSubmitButtonByLabel('Add contact').click()
 }
 
 const createWithNewAddress = (data) => {
-  cy.get(selectors.contactCreate.name).type(data.name)
-  cy.get(selectors.contactCreate.lastName).type(data.lastName)
-  cy.get(selectors.contactCreate.jobTitle).type(data.jobTitle)
-  cy.get(selectors.contactCreate.primaryContactYes).click()
-  cy.get(selectors.contactCreate.countryCode).type(data.countryCode)
-  cy.get(selectors.contactCreate.phone).type(data.phone)
-  cy.get(selectors.contactCreate.email).type(data.email)
-
-  cy.get(selectors.contactCreate.sameCompanyAddressNo).click()
-  cy.get(selectors.contactCreate.postCodeLookupAddress1).type(data.address1)
-  cy.get(selectors.contactCreate.postCodeLookupAddress2).type(data.address2)
-  cy.get(selectors.contactCreate.postCodeLookupTown).type(data.city)
-  cy.get(selectors.contactCreate.postCodeLookupCountry).select(data.country)
-
-  cy.get(selectors.companyForm.save).click()
+  fillOut(data)
+  cy.checkRadioGroup(
+    'Is the contact’s address the same as the company address?',
+    'No'
+  )
+  cy.contains('Address line 1').type(data.address1)
+  cy.contains('Address line 2').type(data.address2)
+  cy.contains('Town or city').type(data.city)
+  cy.contains('Country').type(data.country)
+  cy.getSubmitButtonByLabel('Add contact').click()
 }
 
 module.exports = {
