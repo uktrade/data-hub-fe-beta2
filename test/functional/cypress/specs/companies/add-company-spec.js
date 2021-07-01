@@ -95,17 +95,40 @@ describe('Add company form', () => {
             'have.text',
             'This company is already on Data Hub. You can record activity on the company page.'
           )
-          .find('a')
+        cy.findByRole('link', {
+          name: /Go to Some matched company details page to record activity/i,
+        })
           .should(
             'have.attr',
             'href',
             urls.companies.detail('0fb3379c-341c-4da4-b825-bf8d47b26baa')
           )
-          .should(
-            'have.attr',
-            'aria-label',
-            'Go to Some matched company details page to record activity'
-          )
+          .should('have.text', 'on the company page.')
+        //   cy.get('[data-test="entity-list"] li')
+        //     .eq(1)
+        //     .find('h3')
+        //     .should('have.text', 'Some matched company')
+        //     .next()
+        //     .should(
+        //       'have.text',
+        //       'Trading name(s) Some matched company trading nameLocation at 123 Fake Street, Brighton, BN1 4SE'
+        //     )
+        //     .next()
+        //     .should(
+        //       'have.text',
+        //       'This company is already on Data Hub. You can record activity on the company page.'
+        //     )
+        //     .find('a')
+        //     .should(
+        //       'have.attr',
+        //       'href',
+        //       urls.companies.detail('0fb3379c-341c-4da4-b825-bf8d47b26baa')
+        //     )
+        //     .should(
+        //       'have.attr',
+        //       'aria-label',
+        //       'Go to Some matched company details page to record activity'
+        //     )
       })
     }
   )
@@ -124,33 +147,41 @@ describe('Add company form', () => {
     })
 
     it('should display "Where is this company located?" heading', () => {
-      cy.get(selectors.companyAdd.form).contains(
-        'Where is this company located?'
-      )
+      cy.findByRole('group', {
+        name: /Where is this company located?/i,
+      }).should('exist')
+      // cy.get(selectors.companyAdd.form).contains(
+      //   'Where is this company located?'
+      // )
     })
 
     it('should display "Continue" button', () => {
-      cy.get(selectors.companyAdd.continueButton).should('be.visible')
+      cy.findByRole('button', { name: /Continue/i }).should('be.visible')
+      // cy.get(selectors.companyAdd.continueButton).should('be.visible')
     })
 
     it('should not display an error message', () => {
-      cy.get(selectors.companyAdd.form)
-        .contains('Specify location of the company')
-        .should('not.exist')
+      cy.findByText('Specify location of the company').should('not.exist')
+      // cy.get(selectors.companyAdd.form)
+      //   .contains('Specify location of the company')
+      //   .should('not.exist')
     })
 
     it('should display an error message when no location is selected', () => {
-      cy.get(selectors.companyAdd.continueButton).click()
-      cy.get(selectors.companyAdd.form).contains(
-        'Specify location of the company'
-      )
+      cy.findByRole('button', { name: /Continue/i }).click()
+      cy.findByText('Specify location of the company').should('exist')
+      // cy.get(selectors.companyAdd.continueButton).click()
+      // cy.get(selectors.companyAdd.form).contains(
+      //   'Specify location of the company'
+      // )
     })
   })
 
   context('when "Overseas" is selected for the company location', () => {
     before(() => {
       cy.visit(urls.companies.create())
-      cy.get(selectors.companyAdd.form).find('[type="radio"]').check('overseas')
+      cy.findByRole('radio', { name: /Overseas/i }).check()
+      // cy.get(selectors.companyAdd.form).find('[type="radio"]').check('overseas')
       cy.get(selectors.companyAdd.continueButton).click()
     })
 
