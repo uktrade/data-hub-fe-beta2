@@ -21,8 +21,10 @@ const gotoOverseasCompanySearchPage = () => {
 
 const gotoOverseasCompanySearchResultsPage = () => {
   gotoOverseasCompanySearchPage()
-  cy.get(selectors.companyAdd.entitySearch.companyNameField).type('a company')
-  cy.get(selectors.companyAdd.entitySearch.searchButton).click()
+  cy.findByRole('searchbox', { name: /Company name/i }).type('a company')
+  // cy.get(selectors.companyAdd.entitySearch.companyNameField).type('a company')
+  cy.findAllByRole('button', { name: /Find company/i }).click()
+  // cy.get(selectors.companyAdd.entitySearch.searchButton).click()
 }
 
 const gotoUKCompanySearchResultsPage = () => {
@@ -296,12 +298,21 @@ describe('Add company form', () => {
     })
 
     it('should display the entity search results', () => {
-      cy.get(selectors.companyAdd.entitySearch.results.someCompanyName).should(
-        'be.visible'
+      cy.findByRole('heading', { name: /Some unmatched company/i }).should(
+        'exist'
       )
-      cy.get(selectors.companyAdd.entitySearch.results.someOtherCompany).should(
-        'be.visible'
+      cy.findByRole('heading', { name: /Some matched company/i }).should(
+        'exist'
       )
+      cy.findByRole('heading', {
+        name: /Some company \(unknown postcode\)/i,
+      }).should('exist')
+      // cy.get(selectors.companyAdd.entitySearch.results.someCompanyName).should(
+      //   'be.visible'
+      // )
+      // cy.get(selectors.companyAdd.entitySearch.results.someOtherCompany).should(
+      //   'be.visible'
+      // )
     })
   })
 
