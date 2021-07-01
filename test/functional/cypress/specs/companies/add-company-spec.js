@@ -11,9 +11,12 @@ const urls = require('../../../../../src/lib/urls')
 
 const gotoOverseasCompanySearchPage = () => {
   cy.visit(urls.companies.create())
-  cy.get(selectors.companyAdd.form).find('[type="radio"]').check('overseas')
-  cy.get(selectors.companyAdd.form).find('select').select('Poland')
-  cy.get(selectors.companyAdd.continueButton).click()
+  cy.findByRole('radio', { name: /Overseas/i }).check()
+  // cy.get(selectors.companyAdd.form).find('[type="radio"]').check('overseas')
+  cy.findByRole('combobox', { name: /Country/i }).select('Poland')
+  // cy.get(selectors.companyAdd.form).find('select').select('Poland')
+  cy.findByRole('button', { name: /Continue/i }).click()
+  // cy.get(selectors.companyAdd.continueButton).click()
 }
 
 const gotoOverseasCompanySearchResultsPage = () => {
@@ -223,51 +226,67 @@ describe('Add company form', () => {
     })
 
     it('should display the "Find the company" heading', () => {
-      cy.get(selectors.companyAdd.stepHeader).should(
-        'have.text',
-        'Find the company'
-      )
+      cy.findByRole('heading', { name: /Find the company/i }).should('exist')
+      // cy.get(selectors.companyAdd.stepHeader).should(
+      //   'have.text',
+      //   'Find the company'
+      // )
     })
 
     it('should display the selected country', () => {
-      cy.get(selectors.companyAdd.form)
-        .find('fieldset')
-        .should('have.text', 'CountryPoland Change Country')
+      cy.findByText('Poland').should('exist')
+      cy.findByRole('button', { name: /Change Country/i }).should('exist')
+      // cy.get(selectors.companyAdd.form)
+      //   .find('fieldset')
+      //   .should('have.text', 'CountryPoland Change Country')
     })
 
     it('should display the "Find company" button', () => {
-      cy.get(selectors.companyAdd.entitySearch.searchButton).should(
-        'be.visible'
-      )
+      cy.findByRole('button', { name: /Find company/i }).should('exist')
+      // cy.get(selectors.companyAdd.entitySearch.searchButton).should(
+      //   'be.visible'
+      // )
     })
 
     it('should not display the"Back" button', () => {
-      cy.get(selectors.companyAdd.backButton).should('not.exist')
+      cy.findByRole('button', { name: /Back/i }).should('not.exist')
+      // cy.get(selectors.companyAdd.backButton).should('not.exist')
     })
 
     it('should not display the "Continue" button', () => {
-      cy.get(selectors.companyAdd.continueButton).should('not.exist')
+      cy.findByRole('button', { name: /Continue/i }).should('not.exist')
+      // cy.get(selectors.companyAdd.continueButton).should('not.exist')
     })
 
     it('should display an error message when the "Company name" field is not filled in', () => {
-      cy.get(selectors.companyAdd.entitySearch.searchButton).click()
-      cy.get(selectors.companyAdd.form).should('contain', 'Enter company name')
-      cy.get(selectors.companyAdd.entitySearch.results.someCompanyName).should(
-        'not.exist'
-      )
-      cy.get(selectors.companyAdd.entitySearch.results.someOtherCompany).should(
-        'not.exist'
-      )
+      cy.findByRole('button', { name: /Find company/i }).click()
+      // cy.get(selectors.companyAdd.entitySearch.searchButton).click()
+      cy.findByText('Enter company name').should('exist')
+      // cy.get(selectors.companyAdd.form).should('contain', 'Enter company name')
+      cy.findByText('Enter company name').should('exist')
+      // cy.get(selectors.companyAdd.entitySearch.results.someCompanyName).should(
+      //   'not.exist'
+      // )
+      // cy.get(selectors.companyAdd.entitySearch.results.someOtherCompany).should(
+      //   'not.exist'
+      // )
     })
 
     it('should display an error message when DnB search fails', () => {
-      cy.get(selectors.companyAdd.entitySearch.companyNameField).type(
+      cy.findAllByRole('searchbox', { name: /Company name/i }).type(
         'Simulate 500 Error'
       )
+      // cy.get(selectors.companyAdd.entitySearch.companyNameField).type(
+      //   'Simulate 500 Error'
+      // )
+      cy.findByRole('button', { name: /Find company/i }).click()
       cy.get(selectors.companyAdd.entitySearch.searchButton).click()
-      cy.get('[data-test="status-message"]')
-        .should('exist')
-        .should('contain.text', 'Error occurred while searching for company.')
+      cy.findByText('Error occurred while searching for company.').should(
+        'exist'
+      )
+      // cy.get('[data-test="status-message"]')
+      //   .should('exist')
+      //   .should('contain.text', 'Error occurred while searching for company.')
     })
   })
 
