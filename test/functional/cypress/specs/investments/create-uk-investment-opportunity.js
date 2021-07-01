@@ -1,13 +1,13 @@
 it('Create UK Investment Opportunity page', () => {
   cy.visit('/investments/opportunities/create')
 
-  cy.contains('There is a problem').should('not.exist')
-  cy.contains('Enter an opportunity name').should('not.exist')
-  cy.contains('Save').click()
-  cy.contains('There is a problem')
-  cy.contains('Enter an opportunity name')
+  cy.findByText('There is a problem').should('not.exist')
+  cy.findByText('Enter an opportunity name').should('not.exist')
+  cy.findByRole('button', { name: 'Save' }).click()
+  cy.findByText('There is a problem').should('exist')
+  cy.findAllByText('Enter an opportunity name').should('exist')
 
-  cy.get('input[name="name"]').type('Foooo{enter}')
+  cy.findByText('Opportunity name').type('Foooo{enter}')
   cy.url().should(
     'eq',
     `${
