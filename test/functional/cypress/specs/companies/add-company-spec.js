@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+/// <reference types="@testing-library/cypress" />
 /**
  * Tests for: ./src/apps/companies/apps/add-company/client/AddCompanyForm.jsx
  */
@@ -22,10 +24,15 @@ const gotoOverseasCompanySearchResultsPage = () => {
 
 const gotoUKCompanySearchResultsPage = () => {
   cy.visit(urls.companies.create())
-  cy.get(selectors.companyAdd.form).find('[type="radio"]').check('GB')
-  cy.get(selectors.companyAdd.continueButton).click()
-  cy.get(selectors.companyAdd.entitySearch.companyNameField).type('a company')
-  cy.get(selectors.companyAdd.entitySearch.searchButton).click()
+  cy.findByRole('radio', { name: /United Kingdom/i }).check()
+  // cy.get(selectors.companyAdd.form).find('[type="radio"]').check('GB')
+  cy.findByRole('button', { name: /Continue/i }).click()
+  // cy.get(selectors.companyAdd.continueButton).click()
+  // cy.findByRole('searchbox', { name: /Company name/i }).type('a company')
+  cy.findByLabelText('Company name').type('a company')
+  // cy.get(selectors.companyAdd.entitySearch.companyNameField).type('a company')
+  cy.findByRole('button', { name: /Find company/i }).click()
+  // cy.get(selectors.companyAdd.entitySearch.searchButton).click()
 }
 
 const gotoAddUKCompanyPage = (listItem) => {
@@ -76,10 +83,8 @@ describe('Add company form', () => {
     () => {
       it('should show that the company is already in Data Hub', () => {
         gotoUKCompanySearchResultsPage()
-        cy.get('[data-test="entity-list"] li')
-          .eq(1)
-          .find('h3')
-          .should('have.text', 'Some matched company')
+        cy.findByRole('heading', { name: /Some matched company/i })
+          .should('exist')
           .next()
           .should(
             'have.text',
