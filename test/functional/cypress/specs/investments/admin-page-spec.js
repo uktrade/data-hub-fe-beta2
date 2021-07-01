@@ -13,10 +13,10 @@ describe('Update the project stage', () => {
       )
     })
     it('should display the admin button', () => {
-      cy.contains('Admin')
+      cy.findByRole('link', { name: 'Admin' }).should('exist')
     })
     it('should render the admin page when the Admin tab is clicked', () => {
-      cy.contains('Admin').click()
+      cy.findByRole('link', { name: 'Admin' }).click()
       cy.url().should(
         'contain',
         urls.investments.projects.admin(fixtures.investment.newHotelFdi.id)
@@ -49,16 +49,16 @@ describe('Update the project stage', () => {
     })
     it('should display heading and radio buttons for the remaining four stages', () => {
       cy.contains('h2', 'Change the stage to')
-      cy.get('label').eq(0).should('contain', 'Prospect')
-      cy.get('label').eq(1).should('contain', 'Active')
-      cy.get('label').eq(2).should('contain', 'Verify win')
-      cy.get('label').eq(3).should('contain', 'Won')
+      cy.findByLabelText('Prospect').should('exist')
+      cy.findByLabelText('Active').should('exist')
+      cy.findByLabelText('Verify win').should('exist')
+      cy.findByLabelText('Won').should('exist')
     })
     it('should display the "Save" button', () => {
-      cy.contains('button', 'Save')
+      cy.findByRole('button', { name: 'Save' }).should('exist')
     })
     it('should display the "Cancel" link', () => {
-      cy.contains('a', 'Cancel')
+      cy.findByRole('link', { name: 'Cancel' }).should('exist')
     })
   })
   context('When clicking the "Cancel" link', () => {
@@ -68,7 +68,7 @@ describe('Update the project stage', () => {
       )
     })
     it('should take you back to the project details page', () => {
-      cy.contains('a', 'Cancel').click()
+      cy.findByRole('link', { name: 'Cancel' }).click()
       cy.url().should(
         'contain',
         urls.investments.projects.details(fixtures.investment.newHotelFdi.id)
@@ -84,11 +84,8 @@ describe('Update the project stage', () => {
         )
       })
       it('should display an error message', () => {
-        cy.contains('button', 'Save').click()
-        cy.contains('h2', 'There is a problem')
-          .next()
-          .should('have.text', 'Select a new stage')
-        cy.contains('div', 'Prospect').should('contain', 'Select a new stage')
+        cy.findByRole('button', { name: 'Save' }).click()
+        cy.get('#form-errors').findByText('Select a new stage').should('exist')
       })
     }
   )
@@ -101,17 +98,17 @@ describe('Update the project stage', () => {
         )
       })
       it('should take you to project details page and display a flash message', () => {
-        cy.get('label').eq(0).click()
-        cy.contains('button', 'Save').click()
+        cy.findByLabelText('Prospect').click()
+        cy.findByRole('button', { name: 'Save' }).click()
         cy.url().should(
           'contain',
           urls.investments.projects.details(fixtures.investment.newHotelFdi.id)
         )
-        cy.contains('div', 'Project stage saved')
+        cy.findByText('Project stage saved').should('exist')
       })
       it('should no longer show the flash message when the page is refreshed', () => {
         cy.reload()
-        cy.contains('div', 'Project stage saved').should('not.exist')
+        cy.findByText('Project stage saved').should('not.exist')
       })
     }
   )
