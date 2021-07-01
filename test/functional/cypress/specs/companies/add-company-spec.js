@@ -182,27 +182,38 @@ describe('Add company form', () => {
       cy.visit(urls.companies.create())
       cy.findByRole('radio', { name: /Overseas/i }).check()
       // cy.get(selectors.companyAdd.form).find('[type="radio"]').check('overseas')
-      cy.get(selectors.companyAdd.continueButton).click()
+      cy.findByRole('button', { name: /Continue/i }).click()
+      // cy.get(selectors.companyAdd.continueButton).click()
     })
 
     it('should display "Country" selection', () => {
-      cy.get(selectors.companyAdd.form).contains('Country')
-      cy.get(selectors.companyAdd.form).find('select').should('be.visible')
+      cy.findByLabelText('Country').should('exist')
+      // cy.get(selectors.companyAdd.form).contains('Country')
+      cy.findByRole('option', { name: /-- Select country --/i }).should(
+        'be.visible'
+      )
+      // cy.get(selectors.companyAdd.form).find('select').should('be.visible')
     })
 
     it('should include Hong Kong in the "Country" selection', () => {
-      cy.get(selectors.companyAdd.form).contains('Country')
-      cy.get(selectors.companyAdd.form)
-        .find('select option[value="HK"]')
-        .should('have.length', 1)
-        .should('have.text', 'Hong Kong (SAR)')
+      cy.findByLabelText('Country').should('exist')
+      // cy.get(selectors.companyAdd.form).contains('Country')
+      cy.findByRole('option', { name: /Hong Kong \(SAR\)/i }).should('exist')
+      // cy.get(selectors.companyAdd.form)
+      //   .find('select option[value="HK"]')
+      //   .should('have.length', 1)
+      //   .should('have.text', 'Hong Kong (SAR)')
     })
 
     it('should display an error message when no country is specified', () => {
-      cy.get(selectors.companyAdd.continueButton).click()
-      cy.get(selectors.companyAdd.form).contains(
-        'Select in which country the company is located'
+      cy.findByRole('button', { name: /Continue/i }).click()
+      // cy.get(selectors.companyAdd.continueButton).click()
+      cy.findByText('Select in which country the company is located').should(
+        'exist'
       )
+      // cy.get(selectors.companyAdd.form).contains(
+      //   'Select in which country the company is located'
+      // )
     })
   })
 
