@@ -323,35 +323,48 @@ describe('Add company form', () => {
     })
 
     it('should display a confirmation summary', () => {
-      cy.get(selectors.companyAdd.stepHeader).should(
-        'have.text',
-        'Confirm you want to add this company to Data Hub'
-      )
-      cy.get(selectors.companyAdd.summary).should(
-        'contain',
-        'Registered company name'
-      )
-      cy.get(selectors.companyAdd.summary).should(
-        'contain',
-        'Some unmatched company'
-      )
-      cy.get(selectors.companyAdd.summary).should(
-        'contain',
-        'Companies House number'
-      )
-      cy.get(selectors.companyAdd.summary).should('contain', '00016033')
-      cy.get(selectors.companyAdd.summary).should('contain', 'Address')
-      cy.get(selectors.companyAdd.summary).should(
-        'contain',
-        '123 ABC Road, Brighton, BN2 9QB'
-      )
-      cy.get(selectors.companyAdd.summary).should('contain', 'Country')
-      cy.get(selectors.companyAdd.summary).should('contain', 'Poland')
+      cy.findByRole('heading', {
+        name: /Confirm you want to add this company to Data Hub/i,
+      }).should('exist')
+      // cy.get(selectors.companyAdd.stepHeader).should(
+      //   'have.text',
+      //   'Confirm you want to add this company to Data Hub'
+      // )
+      cy.findByText('Registered company name').should('exist')
+      // cy.get(selectors.companyAdd.summary).should(
+      //   'contain',
+      //   'Registered company name'
+      // )
+      cy.findByText('Some unmatched company').should('exist')
+      // cy.get(selectors.companyAdd.summary).should(
+      //   'contain',
+      //   'Some unmatched company'
+      // )
+      cy.findByText('Companies House number').should('exist')
+      // cy.get(selectors.companyAdd.summary).should(
+      //   'contain',
+      //   'Companies House number'
+      // )
+      cy.findByText('00016033').should('exist')
+      // cy.get(selectors.companyAdd.summary).should('contain', '00016033')
+      cy.findByText('Address').should('exist')
+      // cy.get(selectors.companyAdd.summary).should('contain', 'Address')
+      cy.findByText('123 ABC Road, Brighton, BN2 9QB').should('exist')
+      // cy.get(selectors.companyAdd.summary).should(
+      //   'contain',
+      //   '123 ABC Road, Brighton, BN2 9QB'
+      // )
+      cy.findByText('Country').should('exist')
+      // cy.get(selectors.companyAdd.summary).should('contain', 'Country')
+      cy.findByText('Poland').should('exist')
+      // cy.get(selectors.companyAdd.summary).should('contain', 'Poland')
     })
 
     it('should show back and continue buttons', () => {
-      cy.get(selectors.companyAdd.backButton).should('be.visible')
-      cy.get(selectors.companyAdd.continueButton).should('be.visible')
+      cy.findByRole('button', { name: /Back/i }).should('exist')
+      // cy.get(selectors.companyAdd.backButton).should('be.visible')
+      cy.findByRole('button', { name: /Continue/i }).should('exist')
+      // cy.get(selectors.companyAdd.continueButton).should('be.visible')
     })
   })
 
