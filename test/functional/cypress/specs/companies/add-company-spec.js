@@ -371,50 +371,57 @@ describe('Add company form', () => {
   context('when adding a company that does not exist on Data Hub', () => {
     beforeEach(() => {
       gotoOverseasCompanySearchResultsPage()
-      cy.contains('Some unmatched company').click()
-      cy.get(selectors.companyAdd.continueButton).click()
+      cy.findByRole('button', { name: /Some unmatched company/i }).click()
+      // cy.contains('Some unmatched company').click()
+      cy.findByRole('button', { name: /Continue/i }).click()
+      // cy.get(selectors.companyAdd.continueButton).click()
     })
 
     it('should render the "Add company" page with a form to add a sector', () => {
-      cy.get(selectors.companyAdd.title)
-      cy.should('have.text', 'Add company').and('have.prop', 'tagName', 'H1')
-      cy.contains('DIT sector')
-        .next()
-        .get('select option:selected')
-        .should('have.text', '-- Select DIT sector --')
-        .parent()
-        .parent()
-        .parent()
-        .next()
-        .contains('Add company')
-        .and('match', 'button')
-        .next()
-        .contains('Back')
-        .and('match', 'button')
+      cy.findByRole('heading', { name: /Add company/i }).should('exist')
+      // cy.get(selectors.companyAdd.title)
+      // cy.should('have.text', 'Add company').and('have.prop', 'tagName', 'H1')
+      cy.findByRole('combobox', { name: /DIT Sector/i }).should('exist')
+      cy.findByRole('option', { name: /-- Select DIT sector --/i }).should(
+        'exist'
+      )
+      cy.findByRole('button', { name: /Add company/i }).should('exist')
+      cy.findByRole('button', { name: /Back/i }).should('exist')
     })
 
     it('should display an error message when no sector is selected', () => {
-      cy.get(selectors.companyAdd.submitButton).click()
-      cy.get(selectors.companyAdd.form).contains('Select DIT sector')
+      cy.findByRole('button', { name: /Add company/i }).click()
+      // cy.get(selectors.companyAdd.submitButton).click()
+      cy.findByText('Select DIT sector').should('exist')
+      // cy.get(selectors.companyAdd.form).contains('Select DIT sector')
     })
 
     it('should redirect to the new company activity when a sector is picked', () => {
-      cy.get(selectors.companyAdd.sectorSelect)
-        .select('Airports')
-        .get(selectors.companyAdd.submitButton)
-        .click()
-        .location('pathname')
-        .should(
-          'eq',
-          urls.companies.activity.index(fixtures.company.someOtherCompany.id)
-        )
-      cy.contains('Company added to Data Hub')
+      cy.findByRole('combobox', { name: /DIT Sector/i }).select('Airports')
+      cy.findByRole('button', { name: /Add company/i }).click()
+      cy.location('pathname').should(
+        'eq',
+        urls.companies.activity.index(fixtures.company.someOtherCompany.id)
+      )
+      cy.findByText('Company added to Data Hub')
+      // cy.get(selectors.companyAdd.sectorSelect)
+      //   .select('Airports')
+      //   .get(selectors.companyAdd.submitButton)
+      //   .click()
+      //   .location('pathname')
+      //   .should(
+      //     'eq',
+      //     urls.companies.activity.index(fixtures.company.someOtherCompany.id)
+      //   )
+      // cy.contains('Company added to Data Hub')
     })
 
     it('should not continue when DnB company creation fails', () => {
       // Choosing the water sector simulates a server error
-      cy.get(selectors.companyAdd.sectorSelect).select('Water')
-      cy.get(selectors.companyAdd.submitButton).click()
+      cy.findByRole('combobox', { name: /DIT Sector/i }).select('Water')
+      // cy.get(selectors.companyAdd.sectorSelect).select('Water')
+      cy.findByRole('button', { name: /Add company/i }).click()
+      // cy.get(selectors.companyAdd.submitButton).click()
       cy.location('pathname').should('eq', urls.companies.create())
     })
   })
