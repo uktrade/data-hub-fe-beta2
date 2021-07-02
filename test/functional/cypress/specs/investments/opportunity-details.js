@@ -27,23 +27,14 @@ describe('UK Opportunity with missing data', () => {
   })
 
   it('should display opportunity toggles', () => {
-    cy.get('#opportunity_details_toggle').should(
-      'contain',
-      'Opportunity details'
-    )
-    cy.get('#opportunity_requirements_toggle').should(
-      'contain',
-      'Opportunity requirements'
-    )
-    cy.get('#opportunity_delete_toggle').should(
-      'contain',
-      'Need to delete this opportunity?'
-    )
+    cy.findByText('Opportunity details').should('exist')
+    cy.findByText('Opportunity requirements').should('exist')
+    cy.findByText('Need to delete this opportunity?').should('exist')
   })
 
   it('should display required field tags', () => {
-    cy.get('#opportunity-details').should('contain', '7 fields required')
-    cy.get('#opportunity-details').should('contain', '3 fields required')
+    cy.findByText('7 fields required').should('exist')
+    cy.findByText('3 fields required').should('exist')
   })
 
   it('should display the Edit button', () => {
@@ -66,8 +57,7 @@ describe('UK Opportunity with complete data', () => {
   })
 
   it('should display required field tags', () => {
-    cy.get('#opportunity-details').should('contain', 'Complete')
-    cy.get('#opportunity-details').should('contain', 'Complete')
+    cy.findAllByText('Completed').should('exist')
   })
 
   it('should display the Edit button', () => {
@@ -90,14 +80,14 @@ describe('UK Opportunity edit details functionality', () => {
   })
 
   it('Should display the edit details form and submit the new data', () => {
-    cy.get(
-      '#opportunity_details_toggle > div > [data-test="toggle-section-button"]'
-    ).click()
+    cy.findByText('Opportunity details').click()
     cy.contains('Edit').click()
-    cy.get('#name').type('Egg Shop')
-    cy.get('#description').type('A very good description')
-    cy.get('#opportunityValue').type('123456')
-    cy.contains('Submit').click()
+    cy.findByLabelText('Opportunity name').type('Egg Shop')
+    cy.findByLabelText('Opportunity description').type(
+      'A very good description'
+    )
+    cy.findByLabelText('Gross development value (GDV)').type('123456')
+    cy.findByRole('button', { name: 'Submit' }).click()
     cy.intercept(
       `PATCH', '/v4/large-capital-opportunity/${fixtures.investment.incompleteOpportunity.id}`,
       (req) => {
