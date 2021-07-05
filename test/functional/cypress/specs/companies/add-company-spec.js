@@ -48,8 +48,15 @@ const gotoAddUKCompanyPage = (listItem) => {
 
 const gotoManualAddUKCompanyPage = () => {
   gotoUKCompanySearchResultsPage()
-  cy.get(selectors.companyAdd.entitySearch.cannotFind.summary).click()
-  cy.get(selectors.companyAdd.entitySearch.cannotFind.stillCannotFind).click()
+  cy.findByText("I can't find what I'm looking for").click()
+  // NOTE: This findByText above is due to the fact that "I can't find what I'm looking for" is a span, not a button.
+  // This feels like an accessibility violation.
+
+  // cy.get(selectors.companyAdd.entitySearch.cannotFind.summary).click()
+  cy.findByRole('button', {
+    name: /I still can't find what I'm looking for/i,
+  }).click()
+  // cy.get(selectors.companyAdd.entitySearch.cannotFind.stillCannotFind).click()
 }
 
 const gotoUKCompanySectorAndRegionPage = () => {
@@ -432,127 +439,166 @@ describe('Add company form', () => {
     })
 
     it('should display the manual entry form', () => {
-      cy.get(selectors.companyAdd.newCompanyRecordForm.organisationType.charity)
-        .parent()
-        .should('be.visible')
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.organisationType
-          .governmentDepartmentOrOtherPublicBody
-      )
-        .parent()
-        .should('be.visible')
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.organisationType
-          .limitedCompany
-      )
-        .parent()
-        .should('be.visible')
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.organisationType
-          .limitedPartnership
-      )
-        .parent()
-        .should('be.visible')
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.organisationType.partnership
-      )
-        .parent()
-        .should('be.visible')
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.organisationType.soleTrader
-      )
-        .parent()
-        .should('be.visible')
-      cy.get(selectors.companyAdd.newCompanyRecordForm.companyName).should(
-        'be.visible'
-      )
-      cy.get(selectors.companyAdd.newCompanyRecordForm.website).should(
-        'be.visible'
-      )
-      cy.get(selectors.companyAdd.newCompanyRecordForm.website).should(
-        'be.visible'
-      )
-      cy.get(selectors.companyAdd.newCompanyRecordForm.telephone).should(
-        'be.visible'
-      )
-      cy.get(selectors.companyAdd.newCompanyRecordForm.address.postcode).should(
-        'be.visible'
-      )
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.address.findUkAddress
-      ).should('be.visible')
-      cy.get(selectors.companyAdd.form).contains('United Kingdom')
+      cy.findByRole('radio', { name: /Charity/i }).should('exist')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.organisationType.charity)
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByRole('radio', {
+        name: /Government department or other public body/i,
+      }).should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.organisationType
+      //     .governmentDepartmentOrOtherPublicBody
+      // )
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByRole('radio', {
+        name: /Limited company/i,
+      }).should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.organisationType
+      //     .limitedCompany
+      // )
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByRole('radio', {
+        name: /Limited partnership/i,
+      }).should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.organisationType
+      //     .limitedPartnership
+      // )
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByRole('radio', {
+        name: /^Partnership/i,
+      }).should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.organisationType.partnership
+      // )
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByRole('radio', {
+        name: /Sole Trader/i,
+      }).should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.organisationType.soleTrader
+      // )
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByLabelText('Name of company').should('exist')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.companyName).should(
+      //   'be.visible'
+      // )
+      cy.findByLabelText("Company's website").should('exist')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.website).should(
+      //   'be.visible'
+      // )
+      cy.findByLabelText("Company's telephone number").should('exist')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.telephone).should(
+      //   'be.visible'
+      // )
+      cy.findByLabelText('Postcode').should('exist')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.address.postcode).should(
+      //   'be.visible'
+      // )
+      cy.findByRole('button', { name: /Find UK address/i }).should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.address.findUkAddress
+      // ).should('be.visible')
+      cy.findByText('United Kingdom')
+      // cy.get(selectors.companyAdd.form).contains('United Kingdom')
     })
 
     it('should display errors when the form is incomplete', () => {
-      cy.get(selectors.companyAdd.continueButton).click()
+      cy.findByRole('button', { name: /Continue/i }).click()
+      // cy.get(selectors.companyAdd.continueButton).click()
 
-      cy.get(selectors.companyAdd.form).contains('Select organisation type')
-      cy.get(selectors.companyAdd.form).contains('Enter name')
-      cy.get('#field-website').contains('Enter a website or phone number')
-      cy.get('#field-telephone_number').contains(
-        'Enter a website or phone number'
-      )
-      cy.get(selectors.companyAdd.form).contains('Enter address line 1')
-      cy.get(selectors.companyAdd.form).contains('Enter town or city')
+      cy.findByText('Select organisation type').should('exist')
+      // cy.get(selectors.companyAdd.form).contains('Select organisation type')
+      cy.findByText('Enter name').should('exist')
+      // cy.get(selectors.companyAdd.form).contains('Enter name')
+      cy.findAllByText('Enter a website or phone number').should('exist')
+      // cy.get('#field-telephone_number').contains(
+      //   'Enter a website or phone number'
+      // )
+      cy.findByText('Enter address line 1').should('exist')
+      // cy.get(selectors.companyAdd.form).contains('Enter address line 1')
+      cy.findByText('Enter town or city').should('exist')
+      // cy.get(selectors.companyAdd.form).contains('Enter town or city')
     })
 
     it('should not display "Enter a website or phone number" when the website is present', () => {
-      cy.get(selectors.companyAdd.newCompanyRecordForm.website).type(
-        'www.example.com'
-      )
-      cy.get(selectors.companyAdd.continueButton).click()
-      cy.get(selectors.companyAdd.form).should(
-        'not.contain',
-        'Enter a website or phone number'
-      )
+      cy.findByLabelText("Company's website").type('www.example.com')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.website).type(
+      //   'www.example.com'
+      // )
+      cy.findByRole('button', { name: /Continue/i }).click()
+      // cy.get(selectors.companyAdd.continueButton).click()
+      cy.findByText('Enter a website or phone number').should('not.exist')
+      // cy.get(selectors.companyAdd.form).should(
+      //   'not.contain',
+      //   'Enter a website or phone number'
+      // )
     })
 
     it('should not display "Enter a website or phone number" when the phone number is present', () => {
-      cy.get(selectors.companyAdd.newCompanyRecordForm.telephone).type(
-        '+01 (23) 456789'
-      )
-      cy.get(selectors.companyAdd.continueButton).click()
-      cy.get(selectors.companyAdd.form).should(
-        'not.contain',
-        'Enter a website or phone number'
-      )
+      cy.findByLabelText("Company's telephone number").type('+01 (23) 456789')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.telephone).type(
+      //   '+01 (23) 456789'
+      // )
+      cy.findAllByRole('button', { name: /Continue/i }).click()
+      // cy.get(selectors.companyAdd.continueButton).click()
+      cy.findByText('Enter a website or phone number').should('not.exist')
+      // cy.get(selectors.companyAdd.form).should(
+      //   'not.contain',
+      //   'Enter a website or phone number'
+      // )
     })
 
     it('should display invalid website URL error when an invalid website URL is entered', () => {
-      cy.get(selectors.companyAdd.newCompanyRecordForm.website).type('hello')
-      cy.get(selectors.companyAdd.continueButton).click()
+      cy.findByLabelText("Company's website").type('hello')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.website).type('hello')
+      cy.findByRole('button', { name: /Continue/i }).click()
+      // cy.get(selectors.companyAdd.continueButton).click()
 
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.websiteContainer
-      ).contains('Enter a valid website URL')
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.telephoneContainer
-      ).should('not.contain', 'Enter a valid website URL')
+      cy.findByText('Enter a valid website URL').should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.websiteContainer
+      // ).contains('Enter a valid website URL')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.telephoneContainer
+      // ).should('not.contain', 'Enter a valid website URL')
     })
 
     it('should display invalid telephone number error when an invalid telephone number is entered', () => {
-      cy.get(selectors.companyAdd.newCompanyRecordForm.telephone).type(
-        '©123123123'
-      )
-      cy.get(selectors.companyAdd.continueButton).click()
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.telephoneContainer
-      ).contains('Enter a valid telephone number')
-      cy.get(selectors.companyAdd.newCompanyRecordForm.websiteContainer).should(
-        'not.contain',
-        'Enter a valid telephone number'
-      )
+      cy.findByLabelText("Company's telephone number").type('©123123123')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.telephone).type(
+      //   '©123123123'
+      // )
+      cy.findByRole('button', { name: /Continue/i }).click()
+      // cy.get(selectors.companyAdd.continueButton).click()
+      cy.findByText('Enter a valid telephone number').should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.telephoneContainer
+      // ).contains('Enter a valid telephone number')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.websiteContainer).should(
+      //   'not.contain',
+      //   'Enter a valid telephone number'
+      // )
     })
 
     it('should display an error when an invalid organisation name is filled', () => {
-      cy.get(selectors.companyAdd.newCompanyRecordForm.companyName).type(
-        '=INVESTIGATION LIMITED'
-      )
-      cy.get(selectors.companyAdd.continueButton).click()
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.companyNameContainer
-      ).contains('Enter a valid name')
+      cy.findByLabelText('Name of company').type('=INVESTIGATION LIMITED')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.companyName).type(
+      //   '=INVESTIGATION LIMITED'
+      // )
+      cy.findByRole('button', { name: /Continue/i }).click()
+      // cy.get(selectors.companyAdd.continueButton).click()
+      cy.findByText('Enter a valid name').should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.companyNameContainer
+      // ).contains('Enter a valid name')
     })
   })
 
