@@ -657,11 +657,14 @@ describe('Add company form', () => {
   context('when a valid sector and region are submitted', () => {
     before(() => {
       gotoUKCompanySectorAndRegionPage()
-      cy.get(selectors.companyAdd.newCompanyRecordForm.region).select('London')
-      cy.get(selectors.companyAdd.newCompanyRecordForm.sector).select(
-        'Advanced Engineering'
-      )
-      cy.get(selectors.companyAdd.submitButton).click()
+      cy.findByLabelText('DIT region').select('London')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.region).select('London')
+      cy.findByLabelText('DIT sector').select('Advanced Engineering')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.sector).select(
+      //   'Advanced Engineering'
+      // )
+      cy.findByRole('button', { name: /Add Company/i }).click()
+      // cy.get(selectors.companyAdd.submitButton).click()
     })
     it('should redirect to the new company activity', () => {
       cy.location('pathname').should(
@@ -670,12 +673,16 @@ describe('Add company form', () => {
       )
     })
     it('should display the flash message', () => {
-      cy.contains('Company added to Data Hub')
+      cy.findByText('Company added to Data Hub').should('be.visible')
+      // cy.contains('Company added to Data Hub')
     })
     it('should display the pending D&B investigation message', () => {
-      cy.get(selectors.companyActivity.pendingDnbInvestigationMessage).should(
-        'be.visible'
-      )
+      cy.findByText(
+        'This company record is based on information that has not yet been validated. This information is currently being checked by the Data Hub support team.'
+      ).should('be.visible')
+      // cy.get(selectors.companyActivity.pendingDnbInvestigationMessage).should(
+      //   'be.visible'
+      // )
     })
   })
 
