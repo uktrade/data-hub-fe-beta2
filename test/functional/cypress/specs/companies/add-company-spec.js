@@ -61,28 +61,36 @@ const gotoManualAddUKCompanyPage = () => {
 
 const gotoUKCompanySectorAndRegionPage = () => {
   gotoManualAddUKCompanyPage()
-  cy.get(
-    selectors.companyAdd.newCompanyRecordForm.organisationType.limitedCompany
-  ).click()
-  cy.get(selectors.companyAdd.newCompanyRecordForm.companyName).type(
-    'INVESTIGATION LIMITED'
-  )
-  cy.get(selectors.companyAdd.newCompanyRecordForm.website).type(
-    'www.investigationlimited.com'
-  )
-  cy.get(selectors.companyAdd.newCompanyRecordForm.telephone)
-    .clear()
-    .type('0123456789')
-  cy.get(selectors.companyAdd.newCompanyRecordForm.address.postcode).type(
-    'SW1H 9AJ'
-  )
-  cy.get(
-    selectors.companyAdd.newCompanyRecordForm.address.findUkAddress
-  ).click()
-  cy.get(selectors.companyAdd.newCompanyRecordForm.address.options).select(
-    'Ministry of Justice'
-  )
-  cy.get(selectors.companyAdd.continueButton).click()
+  cy.findByRole('radio', { name: /Limited company/i }).click()
+  // cy.get(
+  //   selectors.companyAdd.newCompanyRecordForm.organisationType.limitedCompany
+  // ).click()
+  cy.findByLabelText('Name of company').type('INVESTIGATION LIMITED')
+  // cy.get(selectors.companyAdd.newCompanyRecordForm.companyName).type(
+  //   'INVESTIGATION LIMITED'
+  // )
+  cy.findByLabelText("Company's website").type('www.investigationlimited.com')
+  // cy.get(selectors.companyAdd.newCompanyRecordForm.website).type(
+  //   'www.investigationlimited.com'
+  // )
+  cy.findByLabelText("Company's telephone number").type('0123456789')
+  // cy.get(selectors.companyAdd.newCompanyRecordForm.telephone)
+  //   .clear()
+  //   .type('0123456789')
+  cy.findByLabelText('Postcode').type('SW1H 9AJ')
+  // cy.get(selectors.companyAdd.newCompanyRecordForm.address.postcode).type(
+  //   'SW1H 9AJ'
+  // )
+  cy.findByRole('button', { name: /Find UK address/i }).click()
+  // cy.get(
+  //   selectors.companyAdd.newCompanyRecordForm.address.findUkAddress
+  // ).click()
+  cy.findByLabelText('Select an address').select('Ministry of Justice')
+  // cy.get(selectors.companyAdd.newCompanyRecordForm.address.options).select(
+  //   'Ministry of Justice'
+  // )
+  cy.findByRole('button', { name: /Continue/i }).click()
+  // cy.get(selectors.companyAdd.continueButton).click()
 }
 
 describe('Add company form', () => {
@@ -608,27 +616,39 @@ describe('Add company form', () => {
     })
 
     it('should render the region and sector fields', () => {
-      cy.get(selectors.companyAdd.form).contains('London')
-      cy.get(selectors.companyAdd.form).contains('Select DIT sector')
+      cy.findByLabelText('DIT region').should('contain.text', 'London')
+      // cy.get(selectors.companyAdd.form).contains('London')
+      cy.findByLabelText('DIT sector').should(
+        'contain.text',
+        '-- Select DIT sector --'
+      )
+      // cy.get(selectors.companyAdd.form).contains('Select DIT sector')
     })
 
     it('should show errors when continuing without a region or sector', () => {
-      cy.get(selectors.companyAdd.newCompanyRecordForm.region).select(
-        '-- Select DIT region --'
-      )
-      cy.get(selectors.companyAdd.submitButton)
-        .click()
-        .get(selectors.companyAdd.form)
-        .contains('Select DIT region')
-        .get(selectors.companyAdd.form)
-        .contains('Select DIT sector')
+      cy.findByLabelText('DIT region').select('-- Select DIT region --')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.region).select(
+      //   '-- Select DIT region --'
+      // )
+      cy.findAllByRole('button', { name: /Add company/i }).click()
+      cy.findByText('Select DIT region').should('be.visible')
+      cy.findByText('Select DIT sector').should('be.visible')
+      // cy.get(selectors.companyAdd.submitButton)
+      //   .click()
+      //   .get(selectors.companyAdd.form)
+      //   .contains('Select DIT region')
+      //   .get(selectors.companyAdd.form)
+      //   .contains('Select DIT sector')
     })
 
     it('should not continue when the DnB investigation api call fails', () => {
-      cy.get(selectors.companyAdd.newCompanyRecordForm.region).select('London')
+      cy.findByLabelText('DIT region').select('London')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.region).select('London')
       // Water sector simulates a server error from dnb investigation post
-      cy.get(selectors.companyAdd.newCompanyRecordForm.sector).select('Water')
-      cy.get(selectors.companyAdd.submitButton).click()
+      cy.findByLabelText('DIT sector').select('Water')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.sector).select('Water')
+      cy.findByRole('button', { name: /Add company/i }).click()
+      // cy.get(selectors.companyAdd.submitButton).click()
 
       cy.location('pathname').should('eq', urls.companies.create())
     })
