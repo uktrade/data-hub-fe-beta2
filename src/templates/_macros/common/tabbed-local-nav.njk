@@ -7,11 +7,12 @@
 {% macro TabbedLocalNav(props) %}
   {% if props %}
     <nav class="govuk-tabs" aria-label="local navigation" data-test="tabbedLocalNav">
-      <ul class="govuk-tabs__list govuk-tabs__list--full">
+      <ul class="govuk-tabs__list govuk-tabs__list--full" role="tablist">
         {% for item in props.items %}
-          <li class="govuk-tabs__list-item govuk-tabs__list-item--full">
+          <li class="govuk-tabs__list-item govuk-tabs__list-item--full" >
             <a class="govuk-tabs__tab {{ 'govuk-tabs__tab--selected' if item.isActive }}"
               href="{{ item.url }}"
+              role="tab"
               {% if item.ariaDescription %} aria-label="{{ item.ariaDescription }}" {% endif %}
             >
               {{ item.label }}

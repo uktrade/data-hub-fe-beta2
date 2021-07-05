@@ -1,12 +1,11 @@
 const fixtures = require('../../../fixtures')
-const selectors = require('../../../../../selectors')
 const urls = require('../../../../../../src/lib/urls')
 
 describe('Lead advisers', () => {
   context('when viewing a non One List tier company', () => {
     before(() => {
       cy.visit(urls.companies.detail(fixtures.company.marsExportsLtd.id))
-      cy.get(selectors.tabbedLocalNav().item(3)).click()
+      cy.findByRole('tab', { name: 'Lead adviser' }).click()
     })
 
     it('should render a meta title', () => {
@@ -16,18 +15,10 @@ describe('Lead advisers', () => {
       )
     })
 
-    it('should display the "Lead Adviser" tab in the navigation', () => {
-      cy.get(selectors.tabbedLocalNav().item(3)).should(
-        'contain',
-        'Lead adviser'
-      )
-    })
     it('should display a header with the company name', () => {
-      cy.get(selectors.companyLeadAdviser.header).should(
-        'have.text',
-        'Lead ITA for Mars Exports Ltd'
-      )
+      cy.contains('h2', 'Lead ITA for Mars Exports Ltd')
     })
+
     it('should display help text for adding a lead adviser', () => {
       cy.contains(
         'This company record has no Lead International Trade Adviser (ITA).'
@@ -36,103 +27,76 @@ describe('Lead advisers', () => {
         'You can add a Lead ITA. This will be visible to all Data Hub users.'
       )
     })
+
     it('should display a button to add a lead adviser', () => {
-      cy.contains('Add a Lead ITA')
-        .invoke('attr', 'href')
-        .should(
-          'eq',
-          urls.companies.advisers.assign(fixtures.company.marsExportsLtd.id)
-        )
+      cy.findByRole('link', { name: 'Add a Lead ITA' }).should(
+        'have.attr',
+        'href',
+        urls.companies.advisers.assign(fixtures.company.marsExportsLtd.id)
+      )
     })
   })
+
   context('when viewing a One List Tier company', () => {
     before(() => {
       cy.visit(urls.companies.detail(fixtures.company.oneListCorp.id))
     })
 
     it('should display the "Core team" tab in the navigation', () => {
-      cy.get(selectors.tabbedLocalNav().item(3)).should('contain', 'Core team')
+      cy.findByRole('tab', { name: 'Core team' })
     })
   })
+
   context(
     'when viewing a One List tier D - ITA company with an allocated Account manager',
     () => {
       before(() => {
         cy.visit(urls.companies.detail(fixtures.company.oneListTierDita.id))
-        cy.get(selectors.tabbedLocalNav().item(3)).click()
+        cy.findByRole('tab', { name: 'Lead adviser' }).click()
       })
 
       it('should have a link to the Lead adviser tab', () => {
-        cy.contains('View Lead adviser')
-          .invoke('attr', 'href')
-          .should(
-            'eq',
-            urls.companies.advisers.index(fixtures.company.oneListTierDita.id)
-          )
-      })
-      it('should display the "Lead Adviser" tab in the navigation', () => {
-        cy.get(selectors.tabbedLocalNav().item(3)).should(
-          'contain',
-          'Lead adviser'
+        cy.findByRole('link', { name: 'View Lead adviser' }).should(
+          'have.attr',
+          'href',
+          urls.companies.advisers.index(fixtures.company.oneListTierDita.id)
         )
       })
-      it('should display a header with the company name', () => {
-        cy.get(selectors.companyLeadAdviser.header).should(
-          'have.text',
-          "Lead ITA for Ian's Camper Vans Ltd"
-        )
+
+      context('In the table', () => {
+        it('should display correct headers', () => {
+          cy.findByRole('table', { name: "Lead ITA for Ian's Camper Vans Ltd" })
+            .findAllByRole('columnheader')
+            .then((es) => [...es.map((i, e) => e.innerText)])
+            .should('deep.equal', ['Team', 'Lead ITA', 'Email'])
+        })
+
+        it('should display correct cell values', () => {
+          cy.findByRole('table', { name: "Lead ITA for Ian's Camper Vans Ltd" })
+            .findAllByRole('cell')
+            .then((es) => [...es.map((i, e) => e.innerText)])
+            .should('deep.equal', [
+              'IST - Sector Advisory Services',
+              'Travis Greene',
+              'travis@travis.com',
+            ])
+        })
       })
-      it('should display a header for the team', () => {
-        cy.get(selectors.companyLeadAdviser.table.teamHeader).should(
-          'have.text',
-          'Team'
-        )
-      })
-      it('should display a header for the Lead ITA', () => {
-        cy.get(selectors.companyLeadAdviser.table.leadItaHeader).should(
-          'have.text',
-          'Lead ITA'
-        )
-      })
-      it('should display a header for the Email', () => {
-        cy.get(selectors.companyLeadAdviser.table.emailHeader).should(
-          'have.text',
-          'Email'
-        )
-      })
-      it('should display the team name', () => {
-        cy.get(selectors.companyLeadAdviser.table.team).should(
-          'have.text',
-          'IST - Sector Advisory Services'
-        )
-      })
-      it('should display the Lead ITA', () => {
-        cy.get(selectors.companyLeadAdviser.table.leadIta).should(
-          'have.text',
-          'Travis Greene'
-        )
-      })
-      it('should display the email', () => {
-        cy.get(selectors.companyLeadAdviser.table.email).should(
-          'have.text',
-          'travis@travis.com'
-        )
-      })
+
       it('should display a button to replace the Lead ITA', () => {
-        cy.contains('Replace Lead ITA')
-          .invoke('attr', 'href')
-          .should(
-            'eq',
-            urls.companies.advisers.assign(fixtures.company.oneListTierDita.id)
-          )
+        cy.findByRole('link', { name: 'Replace Lead ITA' }).should(
+          'have.attr',
+          'href',
+          urls.companies.advisers.assign(fixtures.company.oneListTierDita.id)
+        )
       })
+
       it('should display a button to remove the Lead ITA', () => {
-        cy.contains('Remove Lead ITA')
-          .invoke('attr', 'href')
-          .should(
-            'eq',
-            urls.companies.advisers.remove(fixtures.company.oneListTierDita.id)
-          )
+        cy.findByRole('link', { name: 'Remove Lead ITA' }).should(
+          'have.attr',
+          'href',
+          urls.companies.advisers.remove(fixtures.company.oneListTierDita.id)
+        )
       })
     }
   )

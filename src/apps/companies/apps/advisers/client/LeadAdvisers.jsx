@@ -24,8 +24,7 @@ const RenderHasAccountManager = ({
   companyId,
 }) => (
   <div>
-    <H2 size={LEVEL_SIZE[3]}>Lead ITA for {companyName}</H2>
-    <Table>
+    <Table caption={`Lead ITA for ${companyName}`}>
       <Table.Row>
         <Table.Header setWidth="33%">Team</Table.Header>
         <Table.Header setWidth="33%">Lead ITA</Table.Header>
