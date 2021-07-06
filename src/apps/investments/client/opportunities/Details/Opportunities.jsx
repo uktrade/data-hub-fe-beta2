@@ -16,21 +16,11 @@ import OpportunityDetailsForm from './OpportunityDetailsForm'
 import Task from '../../../../../client/components/Task'
 import ToggleSection from '../../../../../client/components/ToggleSection'
 import SummaryTable from '../../../../../client/components/SummaryTable'
-import { FONT_SIZE, SPACING } from '@govuk-react/constants'
 
 import styled from 'styled-components'
-import { HIGHLIGHT_COLOUR, RED, GREEN } from 'govuk-colours'
+import { RED } from 'govuk-colours'
 import Button from '@govuk-react/button'
 import Link from '@govuk-react/link'
-
-const StyledSpan = styled('span')`
-  background: ${HIGHLIGHT_COLOUR};
-`
-
-const StyledToggle = styled(ToggleSection)`
-  font-size: ${FONT_SIZE.SIZE_14};
-  margin-top: ${SPACING.SCALE_4};
-`
 
 const StyledLabel = styled('label')`
   display: inline-table;
@@ -44,9 +34,9 @@ const StyledLabel = styled('label')`
 
 const RequiredFields = (fieldCount) => {
   if (fieldCount == 0) {
-    return <StyledLabel color={GREEN}>Completed</StyledLabel>
+    return <StyledLabel color={RED}>Complete</StyledLabel>
   }
-  return <StyledLabel color={RED}>{fieldCount} fields required</StyledLabel>
+  return <StyledLabel color={RED}>{fieldCount} fields incomplete</StyledLabel>
 }
 
 const OpportunitySection = ({
@@ -130,16 +120,17 @@ const Opportunities = ({
             <OpportunityRequirements details={requirementsFields} />
           </OpportunitySection>
 
-          <StyledToggle
-            label="Need to delete this opportunity?"
-            id="opportunity_delete_toggle"
-            fontSize={FONT_SIZE.SIZE_14}
-          >
-            <StyledSpan>
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text govuk-!-font-size-16">
+                Need to delete this opportunity?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
               To delete this opportunity, email{' '}
               <Link>capitalinvestment@trade.gov.uk</Link>
-            </StyledSpan>
-          </StyledToggle>
+            </div>
+          </details>
         </>
       )}
     </Task.Status>

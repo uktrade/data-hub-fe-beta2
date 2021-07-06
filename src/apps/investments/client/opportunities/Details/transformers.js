@@ -1,6 +1,3 @@
-const getArrayNamesAndIds = (data) =>
-  data.map((d) => ({ label: d.name, value: d.id }))
-
 const getNameAndId = (data) =>
   data ? { value: data.id, label: data.name } : {}
 
@@ -15,6 +12,7 @@ export const transformInvestmentOpportunityDetails = ({
   promoters,
   required_checks_conducted,
   lead_dit_relationship_manager,
+  other_dit_contacts,
   asset_classes,
   opportunity_value_type,
   opportunity_value,
@@ -29,13 +27,15 @@ export const transformInvestmentOpportunityDetails = ({
   incompleteRequirementsFields: incomplete_requirements_fields.length,
   isEditingDetails: false,
   isEditingRequirements: false,
+  formSaved: false,
   detailsFields: {
     name,
     description,
     ukRegions: uk_region_locations.map(idNameToValueLabel),
-    promoters: getArrayNamesAndIds(promoters),
-    requiredChecks: getNameAndId(required_checks_conducted),
+    promoters: promoters.map(idNameToValueLabel),
+    requiredChecksConducted: getNameAndId(required_checks_conducted),
     leadRelationshipManager: getNameAndId(lead_dit_relationship_manager),
+    otherDitContacts: getNameAndId(other_dit_contacts),
     assetClasses: asset_classes.map(idNameToValueLabel),
     opportunityValue: {
       label: opportunity_value_type?.name || 'Opportunity value',
