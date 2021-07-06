@@ -854,10 +854,14 @@ describe('Add company form', () => {
     })
 
     it('should prompt the user to select a "Region"', () => {
-      cy.contains('DIT region')
-        .next()
-        .find('select option:selected')
-        .should('have.text', '-- Select DIT region --')
+      cy.findByLabelText('DIT region').should(
+        'contain.text',
+        '-- Select DIT region --'
+      )
+      // cy.contains('DIT region')
+      //   .next()
+      //   .find('select option:selected')
+      //   .should('have.text', '-- Select DIT region --')
     })
   })
 })
