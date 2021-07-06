@@ -690,63 +690,81 @@ describe('Add company form', () => {
     before(() => {
       gotoOverseasCompanySearchResultsPage()
 
-      cy.get(selectors.companyAdd.entitySearch.cannotFind.summary).click()
-      cy.get(
-        selectors.companyAdd.entitySearch.cannotFind.stillCannotFind
-      ).click()
+      cy.findByText("I can't find what I'm looking for").click()
+      // cy.get(selectors.companyAdd.entitySearch.cannotFind.summary).click()
+      cy.findByRole('button', {
+        name: /I still can't find what I'm looking for/i,
+      }).click()
+      // cy.get(
+      //   selectors.companyAdd.entitySearch.cannotFind.stillCannotFind
+      // ).click()
     })
 
     it('should display the manual entry form', () => {
-      cy.get(selectors.companyAdd.newCompanyRecordForm.organisationType.charity)
-        .parent()
-        .should('be.visible')
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.organisationType
-          .governmentDepartmentOrOtherPublicBody
-      )
-        .parent()
-        .should('be.visible')
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.organisationType
-          .limitedCompany
-      )
-        .parent()
-        .should('be.visible')
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.organisationType
-          .limitedPartnership
-      )
-        .parent()
-        .should('be.visible')
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.organisationType.partnership
-      )
-        .parent()
-        .should('be.visible')
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.organisationType.soleTrader
-      )
-        .parent()
-        .should('be.visible')
-      cy.get(selectors.companyAdd.newCompanyRecordForm.companyName).should(
-        'be.visible'
-      )
-      cy.get(selectors.companyAdd.newCompanyRecordForm.website).should(
-        'be.visible'
-      )
-      cy.get(selectors.companyAdd.newCompanyRecordForm.telephone).should(
-        'be.visible'
-      )
-      cy.get(selectors.companyAdd.newCompanyRecordForm.address.postcode).should(
-        'be.visible'
-      )
-      cy.get(selectors.companyAdd.form).contains('Poland')
+      cy.findByRole('radio', { name: /Charity/i }).should('exist')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.organisationType.charity)
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByRole('radio', {
+        name: /Government department or other public body/i,
+      }).should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.organisationType
+      //     .governmentDepartmentOrOtherPublicBody
+      // )
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByRole('radio', { name: /Limited company/i }).should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.organisationType
+      //     .limitedCompany
+      // )
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByRole('radio', { name: /Limited partnership/i }).should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.organisationType
+      //     .limitedPartnership
+      // )
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByRole('radio', { name: /^Partnership/i }).should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.organisationType.partnership
+      // )
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByRole('radio', { name: /Sole Trader/i }).should('exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.organisationType.soleTrader
+      // )
+      //   .parent()
+      //   .should('be.visible')
+      cy.findByLabelText('Name of company').should('be.visible')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.companyName).should(
+      //   'be.visible'
+      // )
+      cy.findByLabelText("Company's website").should('be.visible')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.website).should(
+      //   'be.visible'
+      // )
+      cy.findByLabelText("Company's telephone number").should('be.visible')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.telephone).should(
+      //   'be.visible'
+      // )
+      cy.findByLabelText('Postcode (optional)').should('be.visible')
+      // cy.get(selectors.companyAdd.newCompanyRecordForm.address.postcode).should(
+      //   'be.visible'
+      // )
+      cy.findByText('Poland').should('be.visible')
+      // cy.get(selectors.companyAdd.form).contains('Poland')
     })
 
     it('should hide the UK-related fields', () => {
-      cy.get(
-        selectors.companyAdd.newCompanyRecordForm.address.findUkAddress
-      ).should('not.exist')
+      cy.findByRole('button', { name: /Find UK address/i }).should('not.exist')
+      // cy.get(
+      //   selectors.companyAdd.newCompanyRecordForm.address.findUkAddress
+      // ).should('not.exist')
     })
   })
 
