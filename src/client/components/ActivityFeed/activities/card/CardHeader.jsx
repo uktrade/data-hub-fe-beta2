@@ -106,20 +106,24 @@ const CardHeader = ({
     <StyledCardHeader>
       <StyledHeadingWrapper>
         {blockText && (
-          <StyledBlockText sourceType={sourceType}>{blockText}</StyledBlockText>
+          <StyledBlockText sourceType={sourceType} role="heading">
+            {blockText}
+          </StyledBlockText>
         )}
 
         {subHeading && <StyledSubHeading>{subHeading}</StyledSubHeading>}
         {heading && (
-          <StyledHeading level={headingLevel}>{heading}</StyledHeading>
+          <StyledHeading role="heading" level={headingLevel}>
+            {heading}
+          </StyledHeading>
         )}
       </StyledHeadingWrapper>
 
-      <StyledMetaItems>
-        {startTime && <ListItem>{format(startTime)}</ListItem>}
+      <StyledMetaItems role="list">
+        {startTime && <ListItem role="listitem">{format(startTime)}</ListItem>}
 
         {badge && (
-          <ListItem>
+          <ListItem role="listitem">
             <Badge borderColour={badge.borderColour}>{badge.text}</Badge>
           </ListItem>
         )}

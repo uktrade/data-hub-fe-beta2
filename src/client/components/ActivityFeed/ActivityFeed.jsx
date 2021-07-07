@@ -173,9 +173,9 @@ export default class ActivityFeed extends React.Component {
           </ActivityFeedShowAll>
         )}
 
-        <ActivityFeedCardList>
+        <ActivityFeedCardList role="list">
           {activities.map((activity) => (
-            <li key={activity.id}>
+            <li key={activity.id} role="group">
               <Activity
                 activity={activity}
                 showDetails={showDetails}

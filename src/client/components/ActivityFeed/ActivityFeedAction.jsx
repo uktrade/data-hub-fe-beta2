@@ -15,6 +15,7 @@ const Link = styled('a')`
 
 const ActivityFeedAction = ({ text, link }) => (
   <Button
+    role="button"
     key={text}
     as={Link}
     href={link}

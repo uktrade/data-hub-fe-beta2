@@ -17,9 +17,9 @@ const StyledListItem = styled(ListItem)`
 
 const CardDetailsList = ({ items, itemRenderer, itemPropName }) => {
   return (
-    <StyledUnorderedList listStyleType="none">
+    <StyledUnorderedList listStyleType="none" role="list">
       {items.map((item, index) => (
-        <StyledListItem key={item.id}>
+        <StyledListItem key={item.id} role="listitem">
           {itemRenderer(item, index, itemPropName)}
         </StyledListItem>
       ))}

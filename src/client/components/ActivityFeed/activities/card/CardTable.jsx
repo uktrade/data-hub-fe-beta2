@@ -46,11 +46,16 @@ class DetailsRow extends React.PureComponent {
     }
 
     return (
-      <Table.Row>
-        <Table.CellHeader style={{ fontWeight: 'normal', border: 0 }}>
+      <Table.Row role="row">
+        <Table.CellHeader
+          style={{ fontWeight: 'normal', border: 0 }}
+          role="cell"
+        >
           {header}
         </Table.CellHeader>
-        <Table.Cell style={{ border: 0 }}>{children}</Table.Cell>
+        <Table.Cell style={{ border: 0 }} role="cell">
+          {children}
+        </Table.Cell>
       </Table.Row>
     )
   }
@@ -74,9 +79,9 @@ export default class CardTable extends React.Component {
   render() {
     const { rows, isNotWrappedInDetails } = this.props
     return (
-      <GovUkTable isNotWrappedInDetails={isNotWrappedInDetails}>
+      <GovUkTable isNotWrappedInDetails={isNotWrappedInDetails} role="table">
         {rows.map(({ header, content, hasReadmore }) => (
-          <DetailsRow header={header} key={header}>
+          <DetailsRow header={header} key={header} role="row">
             {hasReadmore ? <ReadMore text={content} /> : content}
           </DetailsRow>
         ))}

@@ -1,17 +1,5 @@
 const fixtures = require('../../fixtures')
-const selectors = require('../../../../selectors')
 const urls = require('../../../../../src/lib/urls')
-
-const companyLocalHeader = selectors.companyLocalHeader()
-
-const assertTable = (selector, tableContents) => {
-  tableContents.forEach((row, index) => {
-    cy.get(`${selector} table tr:nth-child(${index + 1}) th`).should(
-      'have.text',
-      row.th
-    )
-  })
-}
 
 describe('Company activity feed', () => {
   context('when viewing Venus Ltd which has no activities', () => {
@@ -27,36 +15,19 @@ describe('Company activity feed', () => {
     })
 
     it('should display the activity header', () => {
-      cy.get(selectors.companyCollection().heading).should(
-        'have.text',
-        'Activities'
-      )
+      cy.findByRole('heading', { name: 'Activities' })
     })
 
     it('should display "Add interaction" button', () => {
-      cy.get(
-        selectors
-          .companyCollection()
-          .interaction.addButton(fixtures.company.venusLtd.id)
-      ).should('have.text', 'Add interaction')
+      cy.findByRole('button', { name: 'Add interaction' }).should('exist')
     })
 
     it('should display "Refer this company" button', () => {
-      cy.get(
-        selectors
-          .companyCollection()
-          .interaction.referButton(fixtures.company.venusLtd.id)
-      ).should('have.text', 'Refer this company')
-    })
-
-    it('should not display the activity feed', () => {
-      cy.get(selectors.companyActivity.activityFeed.item(1)).should('not.exist')
+      cy.findByRole('button', { name: 'Refer this company' }).should('exist')
     })
 
     it('should display the "There are no activities to show." message', () => {
-      cy.get(selectors.companyActivity.activityFeed.noActivites).should(
-        'be.visible'
-      )
+      cy.findByText('There are no activities to show.')
     })
   })
 
@@ -66,44 +37,34 @@ describe('Company activity feed', () => {
     })
 
     it('should display the badge', () => {
-      cy.get(companyLocalHeader.badge).first().should('have.text', 'Global HQ')
+      cy.findByText('Global HQ')
     })
 
     it('should display the One List tier', () => {
-      const expected =
+      cy.findByText(
         'This is an account managed company (One List Tier A - Strategic Account)'
-      cy.get(companyLocalHeader.description.paragraph(1)).should(
-        'have.text',
-        expected
       )
     })
 
-    it('should display the Global Account Manager', () => {
-      const expected = 'Global Account Manager: Travis Greene View core team'
-      cy.get(companyLocalHeader.description.paragraph(2)).should(
-        'have.text',
-        expected
-      )
+    it('should display the Global Account Manager with view core team link', () => {
+      cy.findByText(/^Global Account Manager: Travis Greene/i)
+      cy.findByRole('link', {
+        name: /View core team/i,
+      }).should('exist')
     })
 
     it('should not display the "Add interaction" button', () => {
-      cy.contains('Add interaction').should('not.exist')
+      cy.findByRole('button', { name: /Add interaction/i }).should('not.exist')
     })
 
     it('should not display "Refer this company" button', () => {
-      cy.contains('Refer this company').should('not.exist')
-    })
-
-    it('should display the activity feed', () => {
-      cy.get(selectors.companyActivity.activityFeed.item(1)).should(
-        'be.visible'
+      cy.findByRole('button', { name: /Refer this company/i }).should(
+        'not.exist'
       )
     })
 
     it('should not display the "There are no activities to show." message', () => {
-      cy.get(selectors.companyActivity.activityFeed.noActivites).should(
-        'not.exist'
-      )
+      cy.findByText('There are no activities to show.').should('not.exist')
     })
   })
 
@@ -153,9 +114,9 @@ describe('Company activity feed', () => {
     })
 
     it('should not display the pending D&B investigation message', () => {
-      cy.get(selectors.companyActivity.pendingDnbInvestigationMessage).should(
-        'not.exist'
-      )
+      cy.findByText(
+        'This company record is based on information that has not yet been validated. This information is currently being checked by the Data Hub support team.'
+      ).should('not.exist')
     })
   })
 
@@ -174,9 +135,9 @@ describe('Company activity feed', () => {
     })
 
     it('should display the pending D&B investigation message', () => {
-      cy.get(selectors.companyActivity.pendingDnbInvestigationMessage).should(
-        'be.visible'
-      )
+      cy.findByText(
+        'This company record is based on information that has not yet been validated. This information is currently being checked by the Data Hub support team.'
+      ).should('exist')
     })
   })
 
@@ -186,7 +147,6 @@ describe('Company activity feed', () => {
         urls.companies.activity.index(fixtures.company.externalActivitiesLtd.id)
       )
       cy.get('[data-test="activity-feed"] select').select('externalActivity')
-      cy.get(selectors.companyActivity.activityFeed.item(1)).as('exportEnquiry')
     })
     it('should display an export enquiry with truncated comment', () => {
       const exportEnquiry = [
@@ -207,25 +167,18 @@ describe('Company activity feed', () => {
           td: 'gary.james@fish.com',
         },
       ]
-      cy.get('@exportEnquiry').find('h3').should('have.text', 'Great.gov.uk')
-      cy.get('@exportEnquiry')
-        .find('ul')
-        .should('have.text', '10 Nov 2020GREAT.GOV.UK')
-      cy.get('@exportEnquiry')
-        .find('details summary')
-        .should('have.text', 'View key details for this enquiry')
-        .click()
-      assertTable(selectors.companyActivity.activityFeed.item(1), exportEnquiry)
+      cy.findByText('Great.gov.uk')
+      cy.findByText('10 Nov 2020')
+      cy.findByText('View key details for this enquiry')
+      exportEnquiry.forEach((item) => {
+        cy.findByRole('cell', { name: `${item.th}` })
+        cy.findByRole('cell', { name: `${item.td}` })
+      })
     })
     it('should be able to read the full comment', () => {
-      cy.get(selectors.companyActivity.activityFeed.item(1)).as('exportEnquiry')
-      cy.get('@exportEnquiry').find('table tr:nth-child(1) td button').click()
-      cy.get('@exportEnquiry')
-        .find('table tr:nth-child(1) td')
-        .should(
-          'have.text',
-          'We export fish products to South Korea. In 2011 we were issued an approved exporter authorisation number by HMRC to be able to export to South Korea. Does this number still stand for exporting to South Korea in 2021 or do we need a new number? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Show Less'
-        )
+      const comment =
+        'We export fish products to South Korea. In 2011 we were issued an approved exporter authorisation number by HMRC to be able to export to South Korea. Does this number still stand for exporting to South Korea in 2021 or do we need a new number? Lorem... Read More'
+      cy.findByRole('cell', { name: `${comment}` })
     })
   })
 
@@ -240,37 +193,17 @@ describe('Company activity feed', () => {
     })
 
     it('should show campaign heading, email subject and date', () => {
-      cy.get(selectors.companyActivity.activityFeed.item(2)).as(
-        'maxemailCampaign'
-      )
-
-      cy.get('@maxemailCampaign')
-        .find('h3')
-        .eq(0)
-        .should('have.text', 'Email Campaign')
-
-      cy.get('@maxemailCampaign')
-        .find('h3')
-        .eq(1)
-        .should('have.text', 'British Business Network Update - December 2020')
-
-      cy.get('@maxemailCampaign')
-        .find('ul')
-        .first()
-        .should('have.text', '15 Dec 2020')
+      cy.findAllByRole('heading', {
+        name: 'Email Campaign',
+      })
+      cy.findByRole('heading', {
+        name: 'British Business Network Update - December 2020',
+      })
+      cy.findByText('15 Dec 2020')
     })
 
     it('should summarize the details of the campaign', () => {
-      cy.get(selectors.companyActivity.activityFeed.item(2)).as(
-        'maxemailCampaign'
-      )
-
-      cy.get('@maxemailCampaign')
-        .find('details summary')
-        .should('have.text', 'View details of this campaign')
-        .click()
-
-      assertTable(selectors.companyActivity.activityFeed.item(2), [
+      campaignDetails = [
         {
           th: 'Senders name',
           td: 'Susannah Howen',
@@ -283,19 +216,15 @@ describe('Company activity feed', () => {
           th: 'Content',
           td: 'All the latest updates from around the BBN',
         },
-      ])
+      ]
+      campaignDetails.forEach((item) => {
+        cy.findAllByRole('cell', { name: `${item.th}` }).should('exist')
+        cy.findAllByRole('cell', { name: `${item.td}` }).should('exist')
+      })
     })
 
     it('should show a list of campaign email recipients', () => {
-      cy.get(selectors.companyActivity.activityFeed.item(2)).as(
-        'maxemailCampaign'
-      )
-
-      cy.get('@maxemailCampaign')
-        .find('table tbody tr')
-        .last()
-        .find('th')
-        .should('have.text', 'Recipients')
+      cy.findAllByRole('cell', { name: 'Recipients' }).should('exist')
 
       const recipients = [
         {
@@ -312,12 +241,12 @@ describe('Company activity feed', () => {
         },
       ]
 
-      recipients.forEach((recipient, index) => {
-        cy.get('@maxemailCampaign')
-          .find('a')
-          .eq(index)
-          .should('have.text', recipient.text)
-          .and('have.attr', 'href', recipient.href)
+      recipients.forEach((recipient) => {
+        cy.findAllByRole('link', { name: `${recipient.text}` }).and(
+          'have.attr',
+          'href',
+          recipient.href
+        )
       })
     })
   })

@@ -26,7 +26,6 @@ module.exports = () => {
           companyId
         )}"]`,
     },
-    heading: `${bodyMainContentSelector} h2`,
     archivedSummary: `${bodyMainContentSelector} .details__summary`,
   }
 }
