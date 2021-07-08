@@ -82,7 +82,6 @@ function OpportunityDetailsForm(state) {
                       <FieldAddAnother
                         name="ukRegions"
                         label="UK location"
-                        placeholder="-- Select a UK region --"
                         data-test-prefix="uk-region-location-field-"
                         item-name="uk location"
                       >
@@ -90,6 +89,7 @@ function OpportunityDetailsForm(state) {
                           <Typeahead
                             name="ukRegions"
                             inputId="uk_region_locations"
+                            placeholder="-- Select UK region --"
                             label=""
                             options={metadata.ukRegions}
                             aria-label="Select a uk location"
@@ -105,7 +105,6 @@ function OpportunityDetailsForm(state) {
                       <FieldAddAnother
                         name="promoters"
                         label="Promoters"
-                        placeholder="-- Search for a company --"
                         data-test-prefix="promoters-field-"
                         item-name="promoter"
                       >
@@ -113,6 +112,7 @@ function OpportunityDetailsForm(state) {
                           <Typeahead
                             name="promoters"
                             inputId="promoters"
+                            placeholder="-- Select company --"
                             label=""
                             options={metadata.promoters}
                             aria-label="Select a promoter"
@@ -155,7 +155,7 @@ function OpportunityDetailsForm(state) {
                       <AdviserTypeAhead
                         name="leadRelationshipManager"
                         label="Lead DIT relationship manager"
-                        placeholder="-- Search for an adviser --"
+                        placeholder="-- Select adviser --"
                         isMulti={false}
                       />
                       {values.values.leadRelationshipManager && (
@@ -163,7 +163,6 @@ function OpportunityDetailsForm(state) {
                           <FieldAddAnother
                             name="otherDitContacts"
                             label="Other DIT contact"
-                            placeholder="-- Search for an adviser --"
                             data-test-prefix="other-dit-contact-field-"
                             item-name="contact"
                           >
@@ -171,7 +170,7 @@ function OpportunityDetailsForm(state) {
                               <Typeahead
                                 name="otherDitContacts"
                                 inputId="other-dit-contacts"
-                                placeholder="-- Search for an adviser --"
+                                placeholder="-- Select adviser --"
                                 label=""
                                 options={metadata.advisers}
                                 aria-label="Search for an adviser"
@@ -222,7 +221,7 @@ function OpportunityDetailsForm(state) {
                         label="Asset classes"
                         name="assetClasses"
                         options={metadata.classesOfInterest}
-                        placeholder="-- Search asset classes --"
+                        placeholder="-- Select asset class --"
                         aria-label="Select asset classes"
                         initialValue={assetClasses}
                       />
