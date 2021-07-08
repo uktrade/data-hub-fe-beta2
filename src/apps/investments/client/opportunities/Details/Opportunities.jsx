@@ -21,6 +21,7 @@ import styled from 'styled-components'
 import { RED } from 'govuk-colours'
 import Button from '@govuk-react/button'
 import Link from '@govuk-react/link'
+import { SectionBreak } from 'govuk-react'
 
 const StyledLabel = styled('label')`
   display: inline-table;
@@ -50,6 +51,7 @@ const OpportunitySection = ({
   formEnabled, // TODO: remove when there is a Requirements Form
 }) => (
   <>
+    <SectionBreak></SectionBreak>
     {RequiredFields(incompleteFields)}
     <ToggleSection label={toggleName} id={`${id}_toggle`}>
       {isEditing ? (
@@ -119,6 +121,7 @@ const Opportunities = ({
           >
             <OpportunityRequirements details={requirementsFields} />
           </OpportunitySection>
+          <SectionBreak></SectionBreak>
 
           <details class="govuk-details" data-module="govuk-details">
             <summary class="govuk-details__summary">
