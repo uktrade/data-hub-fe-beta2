@@ -21,7 +21,8 @@ import styled from 'styled-components'
 import { RED } from 'govuk-colours'
 import Button from '@govuk-react/button'
 import Link from '@govuk-react/link'
-import { SectionBreak } from 'govuk-react'
+import { Details, SectionBreak } from 'govuk-react'
+import { FONT_SIZE } from '@govuk-react/constants'
 
 const StyledLabel = styled('label')`
   display: inline-table;
@@ -31,6 +32,12 @@ const StyledLabel = styled('label')`
   float: right;
   margin: 5px;
   color: ${(props) => props.color};
+`
+
+const StyledDetails = styled(Details)`
+  span {
+    font-size: ${FONT_SIZE.SIZE_19};
+  }
 `
 
 const RequiredFields = (fieldCount) => {
@@ -123,17 +130,10 @@ const Opportunities = ({
           </OpportunitySection>
           <SectionBreak></SectionBreak>
 
-          <details class="govuk-details" data-module="govuk-details">
-            <summary class="govuk-details__summary">
-              <span class="govuk-details__summary-text govuk-!-font-size-16">
-                Need to delete this opportunity?
-              </span>
-            </summary>
-            <div class="govuk-details__text">
+          <StyledDetails summary="Need to delete this opportunity?">
               To delete this opportunity, email{' '}
               <Link>capitalinvestment@trade.gov.uk</Link>
-            </div>
-          </details>
+          </StyledDetails>
         </>
       )}
     </Task.Status>
