@@ -1,6 +1,6 @@
 export const sortOptions = [
   {
-    name: 'Most recently created',
+    name: 'Recently created',
     value: 'created_on:desc',
   },
   {
@@ -8,7 +8,7 @@ export const sortOptions = [
     value: 'created_on:asc',
   },
   {
-    name: 'Opportunity name',
+    name: 'Opportunity name A-Z',
     value: 'name:asc',
   },
 ]

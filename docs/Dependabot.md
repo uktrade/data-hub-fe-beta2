@@ -24,7 +24,7 @@ When Cypress is updated, the version used in [`Dockerfile.dependencies`](https:/
 
 ### Elasticsearch
 
-If the Elasticsearch version has been updated in the API, the version used in [`docker-compose.e2e`](https://github.com/uktrade/data-hub-frontend/blob/master/docker-compose.e2e.yml#L82) needs to be updated to match.
+If the Elasticsearch version has been updated in the API, the version used in [`docker-compose.e2e.backend`](https://github.com/uktrade/data-hub-frontend/blob/master/docker-compose.e2e.backend.yml#L57) needs to be updated to match.
 
 ### Storybook
 

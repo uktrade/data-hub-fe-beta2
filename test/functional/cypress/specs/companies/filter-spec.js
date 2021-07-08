@@ -216,7 +216,7 @@ describe('Company Collections Filter', () => {
     })
   })
 
-  it('should filter by us state', () => {
+  it('should filter by US state', () => {
     const { usState, typeahead } = selectors.filter
     cy.get(typeahead(usState).selectedOption)
       .first()
@@ -239,7 +239,20 @@ describe('Company Collections Filter', () => {
     })
   })
 
-  it('should filter by canadian province', () => {
+  it('should not include disabled US states', () => {
+    const { usState, typeahead } = selectors.filter
+
+    cy.get(typeahead(usState).selectedOption)
+      .first()
+      .click()
+      .get(typeahead(usState).textInput)
+      .first()
+      .type('Disabled US State')
+      .get(typeahead(usState).options)
+      .should('not.exist')
+  })
+
+  it('should filter by Canadian province', () => {
     const { canadianProvince, typeahead } = selectors.filter
     cy.get(typeahead(canadianProvince).selectedOption)
       .first()
@@ -260,5 +273,18 @@ describe('Company Collections Filter', () => {
         'canadian_province=75e337c3-23c9-4294-8085-6b1e8c43eb07'
       )
     })
+  })
+
+  it('should not include disabled Canada states', () => {
+    const { canadianProvince, typeahead } = selectors.filter
+
+    cy.get(typeahead(canadianProvince).selectedOption)
+      .first()
+      .click()
+      .get(typeahead(canadianProvince).textInput)
+      .first()
+      .type('Disabled Canadian Province')
+      .get(typeahead(canadianProvince).options)
+      .should('not.exist')
   })
 })

@@ -70,5 +70,9 @@
   {
     "code": "edit-business-details-area-fields",
     "is_active": true
+  },
+  {
+    "code": "address-area-unverifed-match",
+    "is_active": true
   }
 ]

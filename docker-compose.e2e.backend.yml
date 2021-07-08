@@ -3,31 +3,6 @@ services:
   frontend:
     depends_on:
       - api
-      - mock-sso
-    entrypoint: dockerize -wait tcp://api:8000 -timeout 3m -wait-retry-interval 5s
-    environment:
-      DATA_STORE_SERVICE_POSTCODE_TO_REGION_URL: http://api:8000/api/v1/get-postcode-data/
-      POSTCODE_KEY: ${POSTCODE_KEY}
-      OAUTH2_TOKEN_FETCH_URL: http://mock-sso:8080/o/token
-      OAUTH2_USER_PROFILE_URL: http://mock-sso:8080/api/v1/user/me
-      # When running locally change to
-      # OAUTH2_AUTH_URL: http://localhost:8080/o/authorize
-      OAUTH2_AUTH_URL: http://mock-sso:8080/o/authorize
-      OAUTH2_REDIRECT_URL: http://localhost:3000/oauth/callback
-      OAUTH2_LOGOUT_URL: http://mock-sso:8080/o/logout
-      OAUTH2_BYPASS_SSO: 'False'
-      OAUTH2_CLIENT_SECRET: youAintSeenMyRight
-      OAUTH2_CLIENT_ID: randomClientId
-      ELASTIC_APM_SERVER_URL: http://es-apm:8200
-
-  mock-sso:
-    image: gcr.io/sre-docker-registry/github.com/uktrade/mock-sso:latest
-    ports:
-      - 8080:8080
-    environment:
-      MOCK_SSO_SCOPE: data-hub:internal-front-end
-      MOCK_SSO_TOKEN: 123
-      MOCK_SSO_EMAIL_USER_ID: test@gov.uk
 
   api:
     image: gcr.io/sre-docker-registry/github.com/uktrade/data-hub-api:develop
@@ -51,7 +26,7 @@ services:
       - celery
       - mock-sso
     entrypoint: dockerize -wait tcp://postgres:5432 -wait tcp://mi-postgres:5432 -wait tcp://es:9200 -wait tcp://redis:6379 -timeout 5m
-    command: /app/setup-uat.sh || echo "all ood"
+    command: /app/setup-uat.sh || echo "all good"
 
   celery:
     image: gcr.io/sre-docker-registry/github.com/uktrade/data-hub-api:develop

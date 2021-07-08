@@ -1,7 +1,7 @@
 {
   "total_matches": 271,
-  "total_returned": 2,
-  "page_size": 2,
+  "total_returned": 3,
+  "page_size": 3,
   "page_number": 1,
   "results": [
     {
@@ -33,6 +33,7 @@
         "registered_address_county": "",
         "registered_address_postcode": "BN2 9QB",
         "registered_address_country": "GB",
+        
         "annual_sales": 1999999999,
         "annual_sales_currency": "USD",
         "is_annual_sales_estimated": null,
@@ -136,6 +137,52 @@
           {
             "usSicV4": "1623",
             "usSicV4Description": "Water/sewer/utility construction"
+          }
+        ],
+        "legal_status": "corporation"
+      },
+      "datahub_company": null
+    },
+    {
+      "dnb_company": {
+        "duns_number": "268435455",
+        "primary_name": "Some unmatched US company",
+        "trading_names": [
+          "Some unmatched company trading name"
+        ],
+        "registration_numbers": [
+          {
+            "registration_type": "uk_companies_house_number",
+            "registration_number": "14515926"
+          }
+        ],
+        "global_ultimate_duns_number": "319999999",
+        "global_ultimate_primary_name": "Some other company parent",
+        "domain": "example.co.uk",
+        "is_out_of_business": false,
+        "address_line_1": "256 Square Street",
+        "address_line_2": "",
+        "address_town": "Austin",
+        "address_county": "",
+        "address_postcode": "765413",
+        "address_area": "Texas",
+        "address_country": "US",
+        "registered_address_line_1": "",
+        "registered_address_line_2": "",
+        "registered_address_town": "Austin",
+        "registered_address_county": "",
+        "registered_address_postcode": "765413",
+        "registered_address_area": "Texas",
+        "registered_address_country": "US",
+        "annual_sales": 141592653589,
+        "annual_sales_currency": "USD",
+        "is_annual_sales_estimated": null,
+        "employee_number": 512,
+        "is_employees_number_estimated": true,
+        "industry_codes": [
+          {
+            "usSicV4": "3799",
+            "usSicV4Description": "Mfg transportation equipment"
           }
         ],
         "legal_status": "corporation"

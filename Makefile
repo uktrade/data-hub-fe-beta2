@@ -1,7 +1,7 @@
 docker-base = docker-compose -p dh -f docker-compose.base.yml
 docker-mock = docker-compose -p dh -f docker-compose.base.yml -f docker-compose.mock.yml
-docker-e2e = docker-compose -p dh -f docker-compose.base.yml -f docker-compose.e2e.yml -f docker-compose.services.yml
-docker-dev = docker-compose -p dh -f docker-compose.base.yml -f docker-compose.e2e.yml -f docker-compose.dev.yml
+docker-e2e = docker-compose -p dh -f docker-compose.base.yml -f docker-compose.frontend.yml -f docker-compose.e2e.backend.yml -f docker-compose.services.yml
+docker-dev = docker-compose -p dh -f docker-compose.base.yml -f docker-compose.frontend.yml
 docker-storybook = docker-compose -p dh -f docker-compose.storybook.yml
 
 wait-for-frontend = dockerize -wait tcp://localhost:3000/healthcheck -timeout 5m -wait-retry-interval 5s
@@ -43,6 +43,8 @@ start-e2e-dit:
 	OAUTH2_DEV_TOKEN=ditStaffToken $(docker-e2e) $(start-command)
 start-dev:
 	@echo "*** To stop this stack run 'make stop-dev' ***"
+	@echo "*** IMPORTANT This will now use ../data-hub-api/.env for 'api' and 'celery' services ***"
+	$(MAKE) -C ../data-hub-api start-dev
 	$(docker-dev) $(start-command)
 start-storybook:
 	@echo "*** To stop this stack run 'make stop-storybook' ***"
@@ -55,6 +57,7 @@ stop-mock:
 stop-e2e:
 	$(docker-e2e) down -v --remove-orphans
 stop-dev:
+	$(MAKE) -C ../data-hub-api stop-dev
 	$(docker-dev) down -v --remove-orphans
 stop-storybook:
 	$(docker-storybook) down -v --remove-orphans

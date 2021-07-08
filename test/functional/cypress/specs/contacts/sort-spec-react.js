@@ -12,7 +12,7 @@ describe('Contact Collections Sort', () => {
         },
       }).as('apiRequest')
 
-      cy.visit(contacts.react.index())
+      cy.visit(contacts.index())
       cy.wait('@apiRequest')
     })
 
@@ -51,7 +51,7 @@ describe('Contact Collections Sort', () => {
           results: contactsList,
         },
       }).as('apiRequest')
-      cy.visit(`${contacts.react.index()}?page=1`)
+      cy.visit(`${contacts.index()}?page=1`)
       cy.wait('@apiRequest')
     })
 

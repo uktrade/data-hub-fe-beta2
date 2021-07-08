@@ -215,10 +215,6 @@ module.exports = {
     rename: url('/company-lists', '/:listId/rename'),
   },
   contacts: {
-    // React routes (Work in progress) - to be released on completion
-    react: {
-      index: url('/contacts', '/react'),
-    },
     index: url('/contacts'),
     export: url('/contacts', '/export'),
     audit: url('/contacts', '/:contactId/audit'),

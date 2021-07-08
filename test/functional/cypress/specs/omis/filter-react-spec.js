@@ -451,7 +451,7 @@ describe('Orders Collections Filter', () => {
       testTypeahead({
         element,
         legend: 'Sector',
-        placeholder: 'Search sectors',
+        placeholder: 'Search sector',
         input: 'aero',
         expectedOption: 'Aerospace',
       })

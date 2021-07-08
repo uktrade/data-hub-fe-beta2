@@ -9,5 +9,6 @@ export default function useAdministrativeAreaLookup() {
 }
 
 export function filterAreaDataByCountry(data, countryId) {
-  return data.filter((area) => area.country.id === countryId)
+  const activeAreas = data.filter((area) => area.disabled_on === null)
+  return activeAreas.filter((area) => area.country.id === countryId)
 }

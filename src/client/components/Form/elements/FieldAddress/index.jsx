@@ -45,8 +45,7 @@ const FieldAddress = ({
   onSelectUKAddress,
   features,
 }) => {
-  const areaFieldEnabled =
-    features && features['edit-business-details-area-fields']
+  const areaFieldEnabled = features && features.areaFormField
   const findAdministrativeAreas = useAdministrativeAreaLookup()
   const {
     onAdministrativeAreaSearch,

@@ -23,6 +23,9 @@ import {
 import { testTypeahead } from '../../support/tests'
 
 import { serviceFaker } from '../../fakers/services'
+import { policyAreaFaker } from '../../fakers/policy-area'
+import { policyIssueTypeFaker } from '../../fakers/policy-issue-type'
+import { companyOneListgroupTierFaker } from '../../fakers/company-one-list-group-tier'
 
 const buildQueryString = (queryParams = {}) =>
   qs.stringify({
@@ -40,6 +43,12 @@ const minimumPayload = {
 const interactionsSearchEndpoint = '/api-proxy/v3/search/interaction'
 const adviserAutocompleteEndpoint = '/api-proxy/adviser/?autocomplete=*'
 const serviceMetadataEndpoint = '/api-proxy/v4/metadata/service'
+const policyAreaMetadataEndpoint = '/api-proxy/v4/metadata/policy-area'
+const policyIssueTypeMetadataEndpoint =
+  '/api-proxy/v4/metadata/policy-issue-type'
+const companyOneListTierGroupMetadataEndpoint =
+  '/api-proxy/v4/metadata/one-list-tier'
+
 const myAdviserId = '7d19d407-9aec-4d06-b190-d3f404627f21'
 const myAdviserEndpoint = `/api-proxy/adviser/${myAdviserId}`
 
@@ -380,7 +389,7 @@ describe('Interactions Collections Filter', () => {
       testTypeahead({
         element,
         legend: 'Sector',
-        placeholder: 'Search sectors',
+        placeholder: 'Search sector',
         input: 'aero',
         expectedOption: 'Aerospace',
       })
@@ -430,6 +439,159 @@ describe('Interactions Collections Filter', () => {
       removeChip('true')
       assertPayload('@apiRequest', minimumPayload)
       assertChipsEmpty()
+    })
+  })
+  context('Policy area(s)', () => {
+    const element = '[data-test="policy-area-filter"]'
+    const policyArea = policyAreaFaker()
+    const expectedPayload = {
+      ...minimumPayload,
+      policy_areas: [policyArea.id],
+    }
+
+    it('should filter from the url', () => {
+      const queryString = buildQueryString({
+        policy_areas: [policyArea.id],
+      })
+      cy.intercept('POST', interactionsSearchEndpoint).as('apiRequest')
+      cy.intercept('GET', policyAreaMetadataEndpoint, [policyArea]).as(
+        'metaApiRequest'
+      )
+      cy.visit(`${interactions.react()}?${queryString}`)
+      assertPayload('@apiRequest', expectedPayload)
+      cy.wait('@metaApiRequest')
+      assertCheckboxGroupOption({
+        element,
+        value: policyArea.id,
+        checked: true,
+      })
+      assertChipExists({ label: policyArea.name, position: 1 })
+    })
+
+    it('should filter from user input and remove the chips', () => {
+      const queryString = buildQueryString()
+      cy.intercept('POST', interactionsSearchEndpoint).as('apiRequest')
+      cy.intercept('GET', policyAreaMetadataEndpoint, [policyArea]).as(
+        'metaApiRequest'
+      )
+      cy.visit(`${interactions.react()}?${queryString}`)
+      cy.wait('@apiRequest')
+      cy.wait('@metaApiRequest')
+
+      clickCheckboxGroupOption({
+        element,
+        value: policyArea.id,
+      })
+      assertPayload('@apiRequest', expectedPayload)
+      assertQueryParams('policy_areas', [policyArea.id])
+      assertChipExists({ label: policyArea.name, position: 1 })
+      removeChip(policyArea.id)
+      assertPayload('@apiRequest', minimumPayload)
+      assertChipsEmpty()
+      assertFieldEmpty(element)
+    })
+  })
+
+  context('Policy issue types', () => {
+    const element = '[data-test="policy-issue-type-filter"]'
+    const policyIssueType = policyIssueTypeFaker()
+    const expectedPayload = {
+      ...minimumPayload,
+      policy_issue_types: [policyIssueType.id],
+    }
+
+    it('should filter from the url', () => {
+      const queryString = buildQueryString({
+        policy_issue_types: [policyIssueType.id],
+      })
+      cy.intercept('POST', interactionsSearchEndpoint).as('apiRequest')
+      cy.intercept('GET', policyIssueTypeMetadataEndpoint, [
+        policyIssueType,
+      ]).as('metaApiRequest')
+      cy.visit(`${interactions.react()}?${queryString}`)
+      assertPayload('@apiRequest', expectedPayload)
+      cy.wait('@metaApiRequest')
+      assertCheckboxGroupOption({
+        element,
+        value: policyIssueType.id,
+        checked: true,
+      })
+      assertChipExists({ label: policyIssueType.name, position: 1 })
+    })
+
+    it('should filter from user input and remove the chips', () => {
+      const queryString = buildQueryString()
+      cy.intercept('POST', interactionsSearchEndpoint).as('apiRequest')
+      cy.intercept('GET', policyIssueTypeMetadataEndpoint, [
+        policyIssueType,
+      ]).as('metaApiRequest')
+      cy.visit(`${interactions.react()}?${queryString}`)
+      cy.wait('@apiRequest')
+      cy.wait('@metaApiRequest')
+
+      clickCheckboxGroupOption({
+        element,
+        value: policyIssueType.id,
+      })
+      assertPayload('@apiRequest', expectedPayload)
+      assertQueryParams('policy_issue_types', [policyIssueType.id])
+      assertChipExists({ label: policyIssueType.name, position: 1 })
+      removeChip(policyIssueType.id)
+      assertPayload('@apiRequest', minimumPayload)
+      assertChipsEmpty()
+      assertFieldEmpty(element)
+    })
+  })
+  context('Company One List Group Tier', () => {
+    const element = '[data-test="company-one-list-group-tier-filter"]'
+    const companyOneListgroupTier = companyOneListgroupTierFaker()
+    const expectedPayload = {
+      ...minimumPayload,
+      company_one_list_group_tier: [companyOneListgroupTier.id],
+    }
+
+    it('should filter from the url', () => {
+      const queryString = buildQueryString({
+        company_one_list_group_tier: [companyOneListgroupTier.id],
+      })
+      cy.intercept('POST', interactionsSearchEndpoint).as('apiRequest')
+      cy.intercept('GET', companyOneListTierGroupMetadataEndpoint, [
+        companyOneListgroupTier,
+      ]).as('metaApiRequest')
+      cy.visit(`${interactions.react()}?${queryString}`)
+      assertPayload('@apiRequest', expectedPayload)
+      cy.wait('@metaApiRequest')
+      assertCheckboxGroupOption({
+        element,
+        value: companyOneListgroupTier.id,
+        checked: true,
+      })
+      assertChipExists({ label: companyOneListgroupTier.name, position: 1 })
+    })
+
+    it('should filter from user input and remove the chips', () => {
+      const queryString = buildQueryString()
+      cy.intercept('POST', interactionsSearchEndpoint).as('apiRequest')
+      cy.intercept('GET', companyOneListTierGroupMetadataEndpoint, [
+        companyOneListgroupTier,
+      ]).as('metaApiRequest')
+      cy.visit(`${interactions.react()}?${queryString}`)
+      cy.wait('@apiRequest')
+      cy.wait('@metaApiRequest')
+
+      clickCheckboxGroupOption({
+        element,
+        value: companyOneListgroupTier.id,
+      })
+      assertPayload('@apiRequest', expectedPayload)
+      assertQueryParams('company_one_list_group_tier', [
+        companyOneListgroupTier.id,
+      ])
+      assertChipExists({ label: companyOneListgroupTier.name, position: 1 })
+      removeChip(companyOneListgroupTier.id)
+      assertPayload('@apiRequest', minimumPayload)
+      assertChipsEmpty()
+      assertFieldEmpty(element)
     })
   })
 })

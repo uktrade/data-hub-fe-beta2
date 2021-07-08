@@ -34,14 +34,16 @@ exports.config = {
       'os': 'Windows',
       'os_version': '10',
       'browserName': 'Chrome',
-      'resolution': '1280x1024'
+      'resolution': '1280x1024',
+      'browserstack.timezone' : 'UTC'
     },
     {
       'os': 'Windows',
       'os_version': '10',
       'browserName': 'IE',
       'browser_version': '11.0',
-      'resolution': '1280x1024'
+      'resolution': '1280x1024',
+      'browserstack.timezone' : 'UTC'
     },
   ],
   featureFlags: {

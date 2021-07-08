@@ -58,7 +58,7 @@ describe('Contacts Collections - React', () => {
         results: contactsList,
       },
     }).as('apiRequest')
-    cy.visit(contacts.react.index())
+    cy.visit(contacts.index())
     cy.wait('@apiRequest')
   })
 

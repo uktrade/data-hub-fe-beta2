@@ -39,6 +39,7 @@ describe('Data Hub', () => {
 
   it('contacts page', async () => {
     await browser.url('/contacts')
+    await $('[data-test="metadata"]')
     await hideScrollBarIE()
     await browser.imageDiff.take()
     const result = await browser.imageDiff.validate()

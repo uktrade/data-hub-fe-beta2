@@ -27,7 +27,7 @@ export const STAGE_OPTIONS = [
 
 export const SORT_OPTIONS = [
   {
-    name: 'Most recently created',
+    name: 'Recently created',
     value: 'created_on:desc',
   },
   {

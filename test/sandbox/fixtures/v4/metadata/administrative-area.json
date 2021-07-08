@@ -2590,16 +2590,6 @@
         "area_code": ""
     },
     {
-        "id": "4a6f5211-9e54-42e9-ba25-7c67be785d1a",
-        "name": "Puerto Rico",
-        "disabled_on": null,
-        "country": {
-            "name": "United States",
-            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
-        },
-        "area_code": "PR"
-    },
-    {
         "id": "84515d9a-836c-4249-a290-debf64817c35",
         "name": "Punjab",
         "disabled_on": null,
@@ -3738,5 +3728,25 @@
             "id": "63af72a6-5d95-e211-a939-e4115bead28a"
         },
         "area_code": ""
+    },
+    {
+        "id": "e6373334-055e-4833-a382-c6dd73b2e4cf",
+        "name": "Disabled Canadian Province",
+        "disabled_on": "1991-08-25T00:00:00.000Z",
+        "country": {
+            "name": "Canada",
+            "id": "5daf72a6-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "DCP"
+    },
+    {
+        "id": "4a6f5211-9e54-42e9-ba25-7c67be785d1a",
+        "name": "Disabled US State",
+        "disabled_on": "1991-08-25T00:00:00.000Z",
+        "country": {
+            "name": "United States",
+            "id": "81756b9a-5d95-e211-a939-e4115bead28a"
+        },
+        "area_code": "DUS"
     }
 ]

@@ -127,6 +127,7 @@ function AddCompanyForm({
               <CompanyNotFoundStep
                 organisationTypes={organisationTypes}
                 country={country}
+                features={features}
               />
             )}
             {values.cannotFind && (

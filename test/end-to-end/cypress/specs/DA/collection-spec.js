@@ -30,7 +30,7 @@ describe('Collection', () => {
     })
 
     it('should return the results summary for a contact collection', () => {
-      checkCollection()
+      cy.get('[data-test="collectionCount"]').should('have.text', '9')
     })
   })
 

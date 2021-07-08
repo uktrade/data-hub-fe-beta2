@@ -21,7 +21,7 @@ const LargeCapitalOpportunityCollection = ({
     taskProps={{
       name: TASK_GET_OPPORTUNITIES_LIST,
       id: ID,
-      progressMessage: 'loading opportunities...',
+      progressMessage: 'Loading opportunities',
       startOnRender: {
         payload: { payload, activePage },
         onSuccessDispatch: INVESTMENTS__OPPORTUNITIES_LOADED,

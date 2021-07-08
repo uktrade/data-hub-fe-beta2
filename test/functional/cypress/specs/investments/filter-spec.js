@@ -117,9 +117,9 @@ describe('Investments Collections Filter', () => {
 
     it('should filter by advisers', () => {
       cy.get('@adviserFilter')
-        .should('contain', 'Search advisers')
+        .should('contain', 'Search adviser')
         .find('legend')
-        .should('have.text', 'Advisers')
+        .should('have.text', 'Adviser')
 
       selectFirstAdvisersTypeaheadOption({
         element: '@adviserFilter',
@@ -130,7 +130,7 @@ describe('Investments Collections Filter', () => {
 
       testRemoveChip({
         element: '@adviserFilter',
-        placeholder: 'Search advisers',
+        placeholder: 'Search adviser',
       })
     })
 
@@ -138,14 +138,14 @@ describe('Investments Collections Filter', () => {
       testTypeahead({
         element: '@sectorFilter',
         legend: 'Sector',
-        placeholder: 'Search sectors',
+        placeholder: 'Search sector',
         input: 'adv',
         expectedOption: 'Advanced Engineering',
       })
 
       testRemoveChip({
         element: '@sectorFilter',
-        placeholder: 'Search sectors',
+        placeholder: 'Search sector',
       })
     })
 
@@ -153,14 +153,14 @@ describe('Investments Collections Filter', () => {
       testTypeahead({
         element: '@countryFilter',
         legend: 'Country of origin',
-        placeholder: 'Search countries',
+        placeholder: 'Search country',
         input: 'sin',
         expectedOption: 'Singapore',
       })
 
       testRemoveChip({
         element: '@countryFilter',
-        placeholder: 'Search countries',
+        placeholder: 'Search country',
       })
     })
 
@@ -412,9 +412,9 @@ describe('Investments Collections Filter', () => {
       cy.get('@estimatedDateBeforeFilter')
         .find('input')
         .should('have.attr', 'value', '')
-      cy.get('@adviserFilter').should('contain', 'Search advisers')
-      cy.get('@sectorFilter').should('contain', 'Search sectors')
-      cy.get('@countryFilter').should('contain', 'Search countries')
+      cy.get('@adviserFilter').should('contain', 'Search adviser')
+      cy.get('@sectorFilter').should('contain', 'Search sector')
+      cy.get('@countryFilter').should('contain', 'Search country')
       cy.get('@ukRegionFilter').should('contain', 'Search UK region')
       assertCheckboxGroupNoneSelected('@stageFilter')
       assertCheckboxGroupNoneSelected('@myProjectsFilter')

@@ -46,6 +46,7 @@ const globalFields = {
     options() {
       return metadata.administrativeAreaOptions
         .filter((states) => states.country.id === US_COUNTRY_ID)
+        .filter((area) => area.disabled_on === null)
         .map(transformObjectToOption)
     },
   },
@@ -58,6 +59,7 @@ const globalFields = {
     options() {
       return metadata.administrativeAreaOptions
         .filter((states) => states.country.id === CANADA_COUNTRY_ID)
+        .filter((area) => area.disabled_on === null)
         .map(transformObjectToOption)
     },
   },

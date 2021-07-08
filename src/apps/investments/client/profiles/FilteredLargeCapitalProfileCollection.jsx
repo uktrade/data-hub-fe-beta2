@@ -124,11 +124,11 @@ const LargeCapitalProfileCollection = ({
           count={count}
           results={results}
           isComplete={isComplete}
-          collectionName="Profile"
+          collectionName="profile"
           taskProps={{
             name: TASK_GET_PROFILES_LIST,
             id: ID,
-            progressMessage: 'loading profiles...',
+            progressMessage: 'Loading profiles',
             startOnRender: {
               payload: {
                 page: parseInt(qsParams.page, 10),
@@ -264,6 +264,7 @@ const LargeCapitalProfileCollection = ({
             taskProps={{
               name: 'Large investment profiles filters',
               id: 'investments/profiles',
+              progressMessage: 'Loading filters',
               startOnRender: {
                 onSuccessDispatch:
                   'INVESTMENTS_PROFILES__FILTER_OPTIONS_LOADED',
@@ -289,7 +290,7 @@ const LargeCapitalProfileCollection = ({
                 legend="Country of origin"
                 name="country"
                 qsParam={QS_PARAMS.countryOfOrigin}
-                placeholder="Search countries"
+                placeholder="Search country"
                 options={filterOptions.countries}
                 selectedOptions={selectedCountries}
                 data-test="country-filter"

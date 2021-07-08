@@ -104,7 +104,6 @@ function FilteredCollectionHeader({
           </FilterReset>
         </StyledDiv>
       </CollectionHeaderRow>
-
       <CollectionHeaderRow data-test="filter-chips" id="filter-chips">
         <RoutedFilterChipsCollection selectedFilters={selectedFilters} />
       </CollectionHeaderRow>

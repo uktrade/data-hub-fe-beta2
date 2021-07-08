@@ -41,6 +41,14 @@ function getCountryName(country, countries) {
   )
 }
 
+function getAreaName(area) {
+  if (typeof area === 'string') {
+    return area
+  } else {
+    return get(area, 'name')
+  }
+}
+
 function getCountryCode(company, countries) {
   const companyID = get(company, 'address.country.id')
   return get(
@@ -49,7 +57,12 @@ function getCountryCode(company, countries) {
   )
 }
 
-function parseAddress(dnbCompany, countries, prefix = '') {
+function parseAddress({
+  dnbCompany,
+  countries,
+  prefix = '',
+  isAddressAreaEnabled = false,
+}) {
   return Object.values(
     pick(
       {
@@ -58,12 +71,16 @@ function parseAddress(dnbCompany, countries, prefix = '') {
           get(dnbCompany, `${prefix}country`),
           countries
         ),
+        [`${prefix}area`]: isAddressAreaEnabled
+          ? getAreaName(get(dnbCompany, `${prefix}area`))
+          : null,
       },
       [
         `${prefix}line_1`,
         `${prefix}line_2`,
         `${prefix}town`,
         `${prefix}postcode`,
+        isAddressAreaEnabled ? `${prefix}area` : null,
         `${prefix}country`,
       ]
     )
@@ -72,6 +89,9 @@ function parseAddress(dnbCompany, countries, prefix = '') {
 
 async function renderMatchConfirmation(req, res, next) {
   try {
+    const isAddressAreaEnabled =
+      res.locals.features['address-area-unverifed-match']
+
     const { company } = res.locals
     const { dunsNumber } = req.params
     const countries = await getCountries(req)
@@ -95,17 +115,27 @@ async function renderMatchConfirmation(req, res, next) {
           company: {
             ...pick(company, ['id', 'name', 'trading_names']),
             ...pick(company, ['name']),
-            address: parseAddress(company.address, countries),
+            address: parseAddress({
+              dnbCompany: company.address,
+              countries,
+              isAddressAreaEnabled,
+            }),
           },
           dnbCompany: {
             ...pick(dnbCompany, ['primary_name', 'duns_number']),
             datahub_company_id: dataHubCompanyId,
-            address: parseAddress(dnbCompany, countries, 'address_'),
-            registered_address: parseAddress(
+            address: parseAddress({
               dnbCompany,
               countries,
-              'registered_address_'
-            ),
+              prefix: 'address_',
+              isAddressAreaEnabled,
+            }),
+            registered_address: parseAddress({
+              dnbCompany,
+              countries,
+              prefix: 'registered_address_',
+              isAddressAreaEnabled,
+            }),
           },
         },
       })
@@ -141,6 +171,8 @@ async function renderFindCompanyForm(req, res, next) {
   try {
     const { company } = res.locals
     const countries = await getCountries(req)
+    const isAddressAreaEnabled =
+      res.locals.features['address-area-unverifed-match']
 
     res
       .breadcrumb(company.name, urls.companies.detail(company.id))
@@ -149,7 +181,12 @@ async function renderFindCompanyForm(req, res, next) {
         props: {
           company: {
             ...pick(company, ['id', 'name']),
-            address: parseAddress(company.address, countries),
+            address: parseAddress({
+              dnbCompany: company.address,
+              countries,
+              prefix: '',
+              isAddressAreaEnabled,
+            }),
             postcode: get(company, 'address.postcode'),
             countryCode: getCountryCode(company, countries),
           },
@@ -175,6 +212,9 @@ async function findDnbCompany(req, res, next) {
 
 async function renderCannotFindMatch(req, res, next) {
   try {
+    const isAddressAreaEnabled =
+      res.locals.features['address-area-unverifed-match']
+
     const { company } = res.locals
     const countries = await getCountries(req)
 
@@ -183,7 +223,12 @@ async function renderCannotFindMatch(req, res, next) {
       props: {
         company: {
           ...pick(company, ['id', 'name']),
-          address: parseAddress(company.address, countries),
+          address: parseAddress({
+            dnbCompany: company.address,
+            countries,
+            prefix: '',
+            isAddressAreaEnabled,
+          }),
         },
       },
     })

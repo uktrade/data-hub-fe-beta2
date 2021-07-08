@@ -75,7 +75,7 @@ Ensure you have [node](https://nodejs.org/en/download/) v10 installed then insta
 ### Setting up E2E tests within docker (preferred method)
 1. In `test/cypress/support/commands.js`, find the `loadFixture` Cypress command and change `${backend_url}` to `http://localhost:8000`. 
 
-2. In `docker-compose.e2e.yml`, change the environment variable `OAUTH2_AUTH_URL` to point to `http://localhost:8080/o/authorize`.
+2. In `docker-compose.frontend.yml`, change the environment variable `OAUTH2_AUTH_URL` to point to `http://localhost:8080/o/authorize`.
 
 3. Run the relevant make command, for example `make start-e2e-dit`.
 

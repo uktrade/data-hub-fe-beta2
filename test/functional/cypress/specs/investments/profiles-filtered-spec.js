@@ -20,7 +20,7 @@ const testTypeaheadFilter = ({
         options.forEach((option) => cy.wrap(e).type(`${option}{enter}`))
       )
       cy.contains(
-        `${expectedNumberOfResults} Profile${
+        `${expectedNumberOfResults} profile${
           expectedNumberOfResults > 1 ? 's' : ''
         }`
       )
@@ -43,7 +43,7 @@ const testInputFilter = ({ selector, text, expectedNumberOfResults }) => {
       expandToggleSections()
       cy.get(selector).within((e) => cy.wrap(e).type(text).blur())
       cy.contains(
-        `${expectedNumberOfResults} Profile${
+        `${expectedNumberOfResults} profile${
           expectedNumberOfResults > 1 ? 's' : ''
         }`
       )

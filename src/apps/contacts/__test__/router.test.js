@@ -5,7 +5,6 @@ describe('Contacts router', () => {
     const paths = router.stack.filter((r) => r.route).map((r) => r.route.path)
     expect(paths).to.deep.equal([
       '/',
-      '/react',
       '/export',
       '/create',
       '/:contactId',

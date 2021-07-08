@@ -24,7 +24,6 @@ and be provided with a back end server to provide the API, data storage and sear
 - [Templating With Nunjucks](./docs/Templating%20with%20Nunjucks.md)
 - [Running tests](./docs/Running%20tests.md)
 - [Code Review guidelines](./docs/Code%20review%20guidelines.md)
-- [Folder structure](./docs/Folder%20structure.md)
 - [Sub-apps](./docs/Sub-apps.md)
 - [Feature flags](./docs/Feature%20flags.md)
 - [Upgrading Node version](./docs/Upgrading%20Node%20version.md)

@@ -57,7 +57,7 @@ describe('Event attendee search', () => {
       cy.get('@button').click()
       cy.get('.c-collection header').should(
         'contain',
-        '4,977 contacts matching lambda'
+        '1 contact matching lambda'
       )
       cy.get('@message').should(
         'contain',

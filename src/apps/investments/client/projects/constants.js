@@ -16,7 +16,7 @@ export const LABELS = {
 
 export const SORT_OPTIONS = [
   {
-    name: 'Most recently created',
+    name: 'Recently created',
     value: 'created_on:desc',
   },
   {
@@ -28,7 +28,7 @@ export const SORT_OPTIONS = [
     value: 'estimated_land_date:desc',
   },
   {
-    name: 'Project name',
+    name: 'Project name A-Z',
     value: 'name:asc',
   },
   {
