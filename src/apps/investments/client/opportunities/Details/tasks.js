@@ -20,6 +20,9 @@ export const getDetailsMetadata = () =>
     apiProxyAxios.get('/v4/metadata/capital-investment/construction-risk'),
     apiProxyAxios.get('/v4/company'),
     apiProxyAxios.get('/adviser/'),
+    apiProxyAxios.get(
+      '/v4/metadata/large-capital-opportunity/opportunity-value-type'
+    ),
   ]).then(
     ([
       { data: ukRegions },
@@ -28,6 +31,7 @@ export const getDetailsMetadata = () =>
       { data: constructionRisks },
       { data: promoters },
       { data: advisers },
+      { data: valueTypes },
     ]) => ({
       ukRegions: ukRegions.map(idNameToValueLabel),
       requiredChecksConducted: requiredChecksConducted.map(idNameToValueLabel),
@@ -35,6 +39,7 @@ export const getDetailsMetadata = () =>
       constructionRisks: constructionRisks.map(idNameToValueLabel),
       promoters: promoters.results.map(idNameToValueLabel),
       advisers: advisers.results.map(idNameToValueLabel),
+      valueTypes: valueTypes.map(idNameToValueLabel),
     })
   )
 
@@ -62,8 +67,8 @@ export function saveOpportunityDetails({ values, opportunityId }) {
     .patch(`v4/large-capital-opportunity/${opportunityId}`, {
       name: values.name,
       description: values.description,
-      uk_region_locations: values.ukRegions.map(({ value }) => value),
-      promoters: values.promoters.map(({ value }) => value),
+      uk_region_locations: values.ukRegions?.map(({ value }) => value),
+      promoters: values.promoters?.map(({ value }) => value),
       required_checks_conducted: values.requiredChecksConducted,
       required_checks_conducted_by: values.requiredChecksConductedBy?.value,
       required_checks_conducted_on: values.requiredChecksConductedOn

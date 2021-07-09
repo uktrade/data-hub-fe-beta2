@@ -33,6 +33,16 @@ function OpportunityDetailsForm(state) {
   const { opportunityId, metadata, details } = state
   const { name, description, assetClasses } = details.detailsFields
 
+  // const gvaOption = metadata.valueTypes.find(
+  //   (type) => type.name == 'Gross development value (GDV)'
+  // )
+  // gvaOption.hint = 'For real estate projects'
+  // const capExOption = metadata.valueTypes.find(
+  //   (type) => type.name == 'Capital expenditure'
+  // )
+  // capExOption.hint = 'For energy and infrastructure projects'
+  // const valueTypeOptions = [gvaOption, capExOption]
+
   return (
     <Main>
       <Task>
@@ -42,30 +52,30 @@ function OpportunityDetailsForm(state) {
             ID
           )
           return (
-            <MultiInstanceForm
+            <Task.Status
+              name={TASK_GET_OPPORTUNITY_DETAILS_METADATA}
               id={ID}
-              showErrorSummary={true}
-              onSubmit={(values) => {
-                saveOpportunityDetails.start({
-                  payload: {
-                    values,
-                    opportunityId,
-                  },
-                  onSuccessDispatch: INVESTMENT_OPPORTUNITY__DETAILS_CHANGE,
-                })
+              startOnRender={{
+                onSuccessDispatch:
+                  INVESTMENT_OPPORTUNITY__DETAILS_METADATA_LOADED,
               }}
-              submissionError={saveOpportunityDetails.errorMessage}
             >
-              {(values) => (
-                <Task.Status
-                  name={TASK_GET_OPPORTUNITY_DETAILS_METADATA}
+              {() => (
+                <MultiInstanceForm
                   id={ID}
-                  startOnRender={{
-                    onSuccessDispatch:
-                      INVESTMENT_OPPORTUNITY__DETAILS_METADATA_LOADED,
+                  showErrorSummary={true}
+                  onSubmit={(values) => {
+                    saveOpportunityDetails.start({
+                      payload: {
+                        values,
+                        opportunityId,
+                      },
+                      onSuccessDispatch: INVESTMENT_OPPORTUNITY__DETAILS_CHANGE,
+                    })
                   }}
+                  submissionError={saveOpportunityDetails.errorMessage}
                 >
-                  {() => (
+                  {(values) => (
                     <MultiInstanceForm.Step name="updateOpportunityDetails">
                       <FieldInput
                         label="Opportunity name"
@@ -185,37 +195,25 @@ function OpportunityDetailsForm(state) {
                           </FieldAddAnother>
                         </>
                       )}
-                      <FieldRadios
+
+                      {/* <FieldRadios
                         name="valueType"
                         legend="Value"
-                        options={[
+                        options={valueTypeOptions.map((option) => [
                           {
-                            label: 'CapEx',
-                            hint: 'For energy and infrastructure projects',
-                            value: 'CapEx',
+                            label: option.name,
+                            hint: option.hint,
+                            value: option.id,
                             children: (
                               <FieldInput
-                                label="CapEx"
-                                hint="For energy and infrastructure projects"
+                                label={option.name}
                                 name="opportunityValue"
                                 type="number"
                               />
                             ),
                           },
-                          {
-                            label: 'Gross development value (GDV)',
-                            hint: 'For real estate projects',
-                            value: 'GDV',
-                            children: (
-                              <FieldInput
-                                label="Gross development value (GDV)"
-                                name="opportunityValue"
-                                type="number"
-                              />
-                            ),
-                          },
-                        ]}
-                      />
+                        ])}
+                      /> */}
                       <FieldTypeahead
                         isMulti={true}
                         label="Asset classes"
@@ -235,9 +233,9 @@ function OpportunityDetailsForm(state) {
                       </p>
                     </MultiInstanceForm.Step>
                   )}
-                </Task.Status>
+                </MultiInstanceForm>
               )}
-            </MultiInstanceForm>
+            </Task.Status>
           )
         }}
       </Task>

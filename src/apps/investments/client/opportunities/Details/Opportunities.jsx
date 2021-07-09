@@ -32,6 +32,9 @@ const StyledLabel = styled('label')`
   float: right;
   margin: 5px;
   color: ${(props) => props.color};
+  @media screen and (max-width: 600px) {
+    float: None;
+  }
 `
 
 const StyledDetails = styled(Details)`
@@ -59,8 +62,11 @@ const OpportunitySection = ({
 }) => (
   <>
     <SectionBreak></SectionBreak>
-    {RequiredFields(incompleteFields)}
-    <ToggleSection label={toggleName} id={`${id}_toggle`}>
+    <ToggleSection
+      label={toggleName}
+      id={`${id}_toggle`}
+      badge={RequiredFields(incompleteFields)}
+    >
       {isEditing ? (
         <>{form}</>
       ) : (
@@ -131,8 +137,8 @@ const Opportunities = ({
           <SectionBreak></SectionBreak>
 
           <StyledDetails summary="Need to delete this opportunity?">
-              To delete this opportunity, email{' '}
-              <Link>capitalinvestment@trade.gov.uk</Link>
+            To delete this opportunity, email{' '}
+            <Link>capitalinvestment@trade.gov.uk</Link>
           </StyledDetails>
         </>
       )}

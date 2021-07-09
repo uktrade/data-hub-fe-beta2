@@ -26,6 +26,7 @@ const initialState = {
       leadRelationshipManager: {},
       otherDitContacts: [],
       assetClasses: [],
+      valueType: [],
       opportunityValue: {
         label: 'Opportunity value',
         value: 0,
@@ -50,6 +51,7 @@ const initialState = {
     investmentTypes: [],
     returnRates: [],
     timeScales: [],
+    valueType: [],
   },
 }
 
@@ -71,6 +73,7 @@ export default (state = initialState, { type, result }) => {
           constructionRisks: result.constructionRisks,
           promoters: result.promoters,
           advisers: result.advisers,
+          valueTypes: result.valueTypes,
         },
       }
     case INVESTMENT_OPPORTUNITY__REQUIREMENTS_METADATA_LOADED:
