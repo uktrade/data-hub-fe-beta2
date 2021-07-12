@@ -8,7 +8,7 @@ import GridCol from '@govuk-react/grid-col'
 import { SPACING, MEDIA_QUERIES, FONT_SIZE } from '@govuk-react/constants'
 import { BLUE, GREY_1, BLACK } from 'govuk-colours'
 import { H3 } from 'govuk-react'
-import { format, parseISO } from 'date-fns'
+import { format } from '../../utils/date-utils'
 
 import { Card } from '../ActivityFeed/activities/card'
 import { currencyGBP } from '../../utils/number-utils'
@@ -157,11 +157,11 @@ function buildMetaList({
     },
     expected_win_date && {
       label: 'Expected date for win',
-      value: format(parseISO(expected_win_date), 'MMM y'),
+      value: format(expected_win_date, 'MMM y'),
     },
     {
       label: 'Created',
-      value: format(parseISO(created_on), 'dd MMM y'),
+      value: format(created_on, 'dd MMM y'),
       subtle: true,
       showArchived: true,
     },
@@ -178,7 +178,7 @@ function buildMetaList({
       },
     archived && {
       label: 'Archived',
-      value: format(parseISO(archived_on), 'dd MMM y'),
+      value: format(archived_on, 'dd MMM y'),
       subtle: true,
     },
   ]

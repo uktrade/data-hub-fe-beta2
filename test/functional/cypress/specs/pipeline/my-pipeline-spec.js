@@ -1,6 +1,5 @@
 const { BLACK, GREY_1 } = require('govuk-colours')
 const { sortBy } = require('lodash')
-const { format, parseISO } = require('date-fns')
 
 const LIKELIHOOD_TO_SUCCEED = require('../../../../../src/client/components/Pipeline/constants')
 const inProgress = require('../../../../sandbox/fixtures/v4/pipeline-item/in-progress.json')
@@ -9,6 +8,7 @@ const leads = require('../../../../sandbox/fixtures/v4/pipeline-item/leads.json'
 const TAG_COLOURS = require('../../../../../src/client/components/Tag/colours')
 const win = require('../../../../sandbox/fixtures/v4/pipeline-item/win.json')
 const urls = require('../../../../../src/lib/urls')
+const { format } = require('../../../../../src/client/utils/date-utils')
 
 function assertPipelineItem(
   index,
@@ -30,7 +30,7 @@ function assertPipelineItem(
       )
       cy.contains('Created')
       cy.contains(expectedDate)
-      cy.contains(format(parseISO(result.created_on), 'dd MMM y'))
+      cy.contains(format(result.created_on, 'dd MMM y'))
       if (result.archived) {
         cy.contains(result.name).should('have.colour', GREY_1)
         cy.contains('Delete').should(
@@ -49,11 +49,9 @@ function assertPipelineItem(
             .should('have.backgroundColour', TAG_COLOURS.grey.background)
             .should('have.colour', TAG_COLOURS.grey.colour)
         })
-        cy.contains(format(parseISO(result.archived_on), 'dd MMM y')).siblings(
-          () => {
-            cy.contains('Archived')
-          }
-        )
+        cy.contains(format(result.archived_on, 'dd MMM y')).siblings(() => {
+          cy.contains('Archived')
+        })
       } else if (result.likelihood_to_win) {
         cy.get('span[aria-label="Likelihood to succeed"]').within(() => {
           cy.contains('Archived').should('not.exist')

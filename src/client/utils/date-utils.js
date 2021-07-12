@@ -62,6 +62,10 @@ export const transformValueForAPI = ({ year, month, day = 1 }) => {
   return null
 }
 
+export const createExpectedWinDateForPipeline = (date) => {
+  return parse(date, 'yyyy-MM-dd', new Date())
+}
+
 /**
  * Get the number of days to a given date as an integer.
  */
