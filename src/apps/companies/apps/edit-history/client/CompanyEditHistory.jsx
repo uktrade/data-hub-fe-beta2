@@ -4,9 +4,11 @@ import { isBoolean, isNumber } from 'lodash'
 import { convertUsdToGbp } from '../../../../../common/currency'
 
 import EditHistory from '../../../../../client/components/EditHistory/EditHistory'
-import { formatWithTime } from '../../../../../client/utils/date-utils'
+import {
+  formatWithTime,
+  isDateValid,
+} from '../../../../../client/utils/date-utils'
 import { currencyGBP } from '../../../../../client/utils/number-utils'
-import { isValid, parseISO } from 'date-fns'
 
 import {
   ARCHIVED,
@@ -19,10 +21,6 @@ import {
 } from '../constants'
 
 const CURRENCY_FIELDS = ['Turnover']
-
-function isDate(dateStr) {
-  return isValid(parseISO(dateStr))
-}
 
 function getValueFromBoolean(value, field) {
   if (
@@ -50,7 +48,7 @@ function getValue(value, field) {
       : value.toString()
   }
 
-  if (isDate(value)) {
+  if (isDateValid(value)) {
     return formatWithTime(value)
   }
 
