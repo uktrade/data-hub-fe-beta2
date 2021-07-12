@@ -15,7 +15,10 @@ import {
 import FieldWrapper from '../FieldWrapper'
 import useField from '../../hooks/useField'
 import { useFormContext } from '../../hooks'
-import { isDateValid, isShortDateValid } from '../../../../utils/date-utils'
+import {
+  isNormalisedDateValid,
+  isShortDateValid,
+} from '../../../../utils/date-utils'
 
 const DAY = 'day'
 const MONTH = 'month'
@@ -51,7 +54,7 @@ const getValidator =
   ({ day, month, year }) => {
     const isLong = format === FORMAT_LONG
     const isValid = isLong
-      ? isDateValid(year, month, day)
+      ? isNormalisedDateValid(year, month, day)
       : isShortDateValid(year, month)
 
     const isDateEmpty = isLong ? !day && !month && !year : !month && !year

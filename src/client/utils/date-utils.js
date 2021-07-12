@@ -26,7 +26,7 @@ const normaliseAndFormatDate = (year, month, day) => {
 }
 
 export const format = (dateStr, dateFormat = 'dd MMM yyyy') =>
-  isValid(dateStr) ? formatFNS(parseISO(dateStr), dateFormat) : null
+  isDateValid(dateStr) ? formatFNS(parseISO(dateStr), dateFormat) : null
 
 export const today = () => {
   return format(new Date())
@@ -36,13 +36,22 @@ export const formatWithTime = (dateTimeStr) => {
   return format(dateTimeStr, 'd MMM yyyy, h:mmaaa')
 }
 
-export const isDateValid = (year, month, day, format = DATE_FORMAT_LONG) => {
+export const isDateValid = (date) => {
+  return isValid(parseISO(date))
+}
+
+export const isNormalisedDateValid = (
+  year,
+  month,
+  day,
+  format = DATE_FORMAT_LONG
+) => {
   const date = normaliseAndFormatDate(year, month, day)
   return isValid(parse(date, format, new Date()))
 }
 
 export const isShortDateValid = (year, month) => {
-  return isDateValid(year, month, null, DATE_FORMAT_SHORT)
+  return isNormalisedDateValid(year, month, null, DATE_FORMAT_SHORT)
 }
 
 export const transformValueForAPI = ({ year, month, day = 1 }) => {
