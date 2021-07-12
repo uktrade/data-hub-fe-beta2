@@ -51,7 +51,7 @@ const initialState = {
     investmentTypes: [],
     returnRates: [],
     timeScales: [],
-    valueType: [],
+    valueTypes: [],
   },
 }
 
