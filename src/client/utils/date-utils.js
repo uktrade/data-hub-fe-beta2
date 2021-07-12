@@ -25,6 +25,10 @@ const normaliseAndFormatDate = (year, month, day) => {
   return day ? `${yearAndMonth}-${padZero(day)}` : yearAndMonth
 }
 
+export const isDateValid = (date) => {
+  return isValid(parseISO(date))
+}
+
 export const format = (dateStr, dateFormat = 'dd MMM yyyy') =>
   isDateValid(dateStr) ? formatFNS(parseISO(dateStr), dateFormat) : null
 
@@ -34,10 +38,6 @@ export const today = () => {
 
 export const formatWithTime = (dateTimeStr) => {
   return format(dateTimeStr, 'd MMM yyyy, h:mmaaa')
-}
-
-export const isDateValid = (date) => {
-  return isValid(parseISO(date))
 }
 
 export const isNormalisedDateValid = (
