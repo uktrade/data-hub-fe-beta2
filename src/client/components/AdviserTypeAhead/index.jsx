@@ -11,6 +11,7 @@ const AdviserTypeAhead = ({
   required,
   isMulti,
   onlyShowActiveAdvisers = true,
+  ...props
 }) => {
   return (
     <FieldTypeahead
@@ -32,6 +33,7 @@ const AdviserTypeAhead = ({
         500
       )}
       isMulti={isMulti}
+      {...props}
     />
   )
 }
