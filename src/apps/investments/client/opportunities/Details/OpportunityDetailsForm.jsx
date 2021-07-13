@@ -14,6 +14,8 @@ import {
   INVESTMENT_OPPORTUNITY__DETAILS_METADATA_LOADED,
 } from '../../../../../client/actions'
 
+import { transformDateStringToDateObject } from '../../../../transformers'
+
 import Task from '../../../../../client/components/Task'
 import {
   Main,
@@ -21,17 +23,29 @@ import {
   FieldTextarea,
   FieldRadios,
   FieldDate,
-  FieldAddAnother,
   MultiInstanceForm,
   FieldTypeahead,
-  Typeahead,
   AdviserTypeAhead,
 } from '../../../../../client/components'
 import { CLEARED_REFERENCE, ISSUES_IDENTIFIED_REFERENCE } from './constants'
 
 function OpportunityDetailsForm(state) {
   const { opportunityId, metadata, details } = state
-  const { name, description, assetClasses } = details.detailsFields
+  const {
+    name,
+    description,
+    assetClasses,
+    valueType,
+    leadRelationshipManager,
+    requiredChecksConducted,
+    requiredChecksConductedBy,
+    requiredChecksConductedOn,
+    constructionRisks,
+    opportunityValue,
+    ukRegions,
+    promoters,
+    otherDitContacts,
+  } = details.detailsFields
 
   function hintAdder(valueTypes) {
     const gvaOption = valueTypes.find(
@@ -64,7 +78,7 @@ function OpportunityDetailsForm(state) {
               }}
             >
               {() =>
-                metadata.valueTypes.length && (
+                !!metadata.valueTypes.length && (
                   <MultiInstanceForm
                     id={ID}
                     showErrorSummary={true}
@@ -87,62 +101,37 @@ function OpportunityDetailsForm(state) {
                           initialValue={name}
                           name="name"
                           type="text"
+                          required="Enter a name"
                         />
                         <FieldTextarea
                           label="Opportunity description"
                           initialValue={description}
                           name="description"
                           type="text"
+                          required="Enter a description"
                         />
-                        <FieldAddAnother
-                          name="ukRegions"
+                        <FieldTypeahead
+                          isMulti={true}
                           label="UK location"
-                          data-test-prefix="uk-region-location-field-"
-                          item-name="uk location"
-                        >
-                          {({ value, onChange, error }) => (
-                            <Typeahead
-                              name="ukRegions"
-                              inputId="uk_region_locations"
-                              placeholder="-- Select UK region --"
-                              label=""
-                              options={metadata.ukRegions}
-                              aria-label="Select a uk location"
-                              value={metadata.ukRegions.find(
-                                ({ value: option_value }) =>
-                                  option_value === value
-                              )}
-                              onChange={onChange}
-                              error={error}
-                            />
-                          )}
-                        </FieldAddAnother>
-                        <FieldAddAnother
-                          name="promoters"
+                          name="ukRegions"
+                          options={metadata.ukRegions}
+                          placeholder="-- Select UK region --"
+                          aria-label="Select a uk location"
+                          initialValue={ukRegions}
+                        />
+                        <FieldTypeahead
+                          isMulti={true}
                           label="Promoters"
-                          data-test-prefix="promoters-field-"
-                          item-name="promoter"
-                        >
-                          {({ value, onChange, error }) => (
-                            <Typeahead
-                              name="promoters"
-                              inputId="promoters"
-                              placeholder="-- Select company --"
-                              label=""
-                              options={metadata.promoters}
-                              aria-label="Select a promoter"
-                              value={metadata.promoters.find(
-                                ({ value: option_value }) =>
-                                  option_value === value
-                              )}
-                              onChange={onChange}
-                              error={error}
-                            />
-                          )}
-                        </FieldAddAnother>
+                          name="promoters"
+                          options={metadata.promoters}
+                          placeholder="-- Select company --"
+                          aria-label="Select a company"
+                          initialValue={promoters}
+                        />
                         <FieldRadios
                           name="requiredChecksConducted"
                           legend="Has this opportunity cleared the required checks?"
+                          initialValue={requiredChecksConducted[0]?.value}
                           options={metadata.requiredChecksConducted}
                         />
                         {[
@@ -153,57 +142,50 @@ function OpportunityDetailsForm(state) {
                             <FieldDate
                               name="requiredChecksConductedOn"
                               label="Date of most recent checks"
+                              required="Enter a date"
+                              initialValue={transformDateStringToDateObject(
+                                requiredChecksConductedOn
+                              )}
                             />
                             <AdviserTypeAhead
                               name="requiredChecksConductedBy"
                               label="Person responsible for most recent checks"
                               placeholder="-- Search for an adviser --"
-                              isMulti={false}
+                              required="Enter a name"
+                              initialValue={requiredChecksConductedBy}
                             />
                           </>
                         )}
                         <FieldRadios
                           name="constructionRisks"
                           legend="Construction risk"
+                          initialValue={constructionRisks[0]?.value}
                           options={metadata.constructionRisks}
                         />
                         <AdviserTypeAhead
                           name="leadRelationshipManager"
                           label="Lead DIT relationship manager"
+                          initialValue={leadRelationshipManager}
                           placeholder="-- Select adviser --"
                           isMulti={false}
                         />
                         {values.values.leadRelationshipManager && (
                           <>
-                            <FieldAddAnother
-                              name="otherDitContacts"
+                            <FieldTypeahead
+                              isMulti={true}
                               label="Other DIT contact"
-                              data-test-prefix="other-dit-contact-field-"
-                              item-name="contact"
-                            >
-                              {({ value, onChange, error }) => (
-                                <Typeahead
-                                  name="otherDitContacts"
-                                  inputId="other-dit-contacts"
-                                  placeholder="-- Select adviser --"
-                                  label=""
-                                  options={metadata.advisers}
-                                  aria-label="Search for an adviser"
-                                  value={metadata.advisers.find(
-                                    ({ value: option_value }) =>
-                                      option_value === value
-                                  )}
-                                  onChange={onChange}
-                                  error={error}
-                                />
-                              )}
-                            </FieldAddAnother>
+                              name="otherDitContacts"
+                              options={metadata.advisers}
+                              placeholder="-- Select adviser --"
+                              aria-label="Select an adviser"
+                              initialValue={otherDitContacts}
+                            />
                           </>
                         )}
                         <FieldRadios
                           name="valueType"
                           legend="Value"
-                          initialValue="edeff484-2bd1-40e6-94ca-0437d6115886"
+                          initialValue={valueType.value}
                           options={hintAdder(metadata.valueTypes).map(
                             (option) => ({
                               label: option.label,
@@ -212,6 +194,7 @@ function OpportunityDetailsForm(state) {
                               children: (
                                 <FieldInput
                                   label={option.label}
+                                  initialValue={opportunityValue.value}
                                   name="opportunityValue"
                                   type="number"
                                 />

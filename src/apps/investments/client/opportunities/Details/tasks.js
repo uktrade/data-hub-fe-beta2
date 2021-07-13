@@ -69,17 +69,24 @@ export function saveOpportunityDetails({ values, opportunityId }) {
       description: values.description,
       uk_region_locations: values.ukRegions?.map(({ value }) => value),
       promoters: values.promoters?.map(({ value }) => value),
-      required_checks_conducted: values.requiredChecksConducted,
+      required_checks_conducted: values.requiredChecksConducted
+        ? values.requiredChecksConducted
+        : undefined,
       required_checks_conducted_by: values.requiredChecksConductedBy?.value,
       required_checks_conducted_on: values.requiredChecksConductedOn
         ? transformValueForApi(values.requiredChecksConductedOn)
         : undefined,
-      lead_dit_relationship_manager: values.leadRelationshipManager.value,
+      lead_dit_relationship_manager: values.leadRelationshipManager?.value,
       other_dit_contacts: values.otherDitContacts?.map(({ value }) => value),
       asset_classes: values.assetClasses?.map(({ value }) => value),
-      opportunity_value: values.opportunityValue,
+      opportunity_value: values.opportunityValue
+        ? values.opportunityValue
+        : undefined,
       // TODO: refactor this to not be in an array once the API is fixed.
-      construction_risks: [values.constructionRisks],
+      construction_risks: values.constructionRisks.length
+        ? [values.constructionRisks]
+        : [],
+      opportunity_value_type: values.valueType ? values.valueType : undefined,
     })
     .then(({ data }) => {
       return data

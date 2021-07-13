@@ -1,5 +1,6 @@
-const getNameAndId = (data) =>
-  data ? { value: data.id, label: data.name } : {}
+const getNameAndId = (data) => {
+  return data ? { value: data.id, label: data.name } : {}
+}
 
 const idNameToValueLabel = ({ id, name }) => ({ value: id, label: name })
 
@@ -11,6 +12,8 @@ export const transformInvestmentOpportunityDetails = ({
   uk_region_locations,
   promoters,
   required_checks_conducted,
+  required_checks_conducted_by,
+  required_checks_conducted_on,
   lead_dit_relationship_manager,
   other_dit_contacts,
   asset_classes,
@@ -34,9 +37,12 @@ export const transformInvestmentOpportunityDetails = ({
     ukRegions: uk_region_locations.map(idNameToValueLabel),
     promoters: promoters.map(idNameToValueLabel),
     requiredChecksConducted: getNameAndId(required_checks_conducted),
+    requiredChecksConductedBy: getNameAndId(required_checks_conducted_by),
+    requiredChecksConductedOn: required_checks_conducted_on,
     leadRelationshipManager: getNameAndId(lead_dit_relationship_manager),
-    otherDitContacts: getNameAndId(other_dit_contacts),
+    otherDitContacts: other_dit_contacts.map(idNameToValueLabel),
     assetClasses: asset_classes.map(idNameToValueLabel),
+    valueType: getNameAndId(opportunity_value_type),
     opportunityValue: {
       label: opportunity_value_type?.name || 'Opportunity value',
       value: opportunity_value,
