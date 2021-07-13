@@ -1,9 +1,7 @@
 import React from 'react'
-import { useSelector, shallowEqual } from "react-redux";
+import { useSelector, shallowEqual } from 'react-redux';
 import PropTypes from 'prop-types'
 import urls from '../../../../../lib/urls'
-import { formatWithTime } from '../../../../../client/utils/date-utils'
-import { ID } from '../Details/state'
 import { currencyGBP } from '../../../../../client/utils/number-utils'
 import LocalHeader from '../../../../../client/components/LocalHeader/LocalHeader'
 import LocalHeaderHeading from '../../../../../client/components/LocalHeader/LocalHeaderHeading'
@@ -45,10 +43,10 @@ const OpportunityDetailsHeader = ({ opportunityId }) => {
 
   return (
     <>
-      <LocalHeader breadcrumbs={breadcrumbs} flashMessages={null} >
+      { name && <LocalHeader breadcrumbs={breadcrumbs} flashMessages={null} >
         <LocalHeaderHeading data-auto-id="heading">{name}</LocalHeaderHeading>
         <LocalHeaderDetails items={itemCollection}/>
-      </LocalHeader>
+      </LocalHeader> }
     </>
   )
 }
