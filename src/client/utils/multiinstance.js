@@ -18,6 +18,8 @@ import PropTypes from 'prop-types'
  * If it's a string, it will match if the action type starts with it.
  * If it's an array, it will match if the action type is included in the array.
  * If it's a regex, it will match if the action type matches the regex
+ * @param {String} [idProp='id'] - The property of the action that holds the
+ * _instance_ ID.
  * @returns An _id aware_ reducer.
  * @example
  * const reducer = (state = 0, {type}) =>
@@ -33,8 +35,9 @@ import PropTypes from 'prop-types'
  * // {foo: 2, bar: 1}
  */
 export const reducerDecorator =
-  (reducer, actionPattern) =>
-  (state = {}, { id, type, ...action }) => {
+  (reducer, actionPattern, idProp = 'id') =>
+  (state = {}, { type, ...action }) => {
+    const id = action[idProp]
     const handleAction = {
       String: () => type.startsWith(actionPattern),
       Object: () => Object.values(actionPattern).includes(type),
@@ -92,23 +95,26 @@ const interceptDispatch =
  * }))
  */
 export const connect = (componentState2props, dispatch2props, ...rest) =>
-  curry((Component, name) => {
+  curry((Component, name, idProp) => {
     // We use this instead of the default argument value to also allow for
     // ignoring this by passing null, to stick to the original connect signature
     componentState2props = componentState2props || ((x) => x)
     const Connected = reactRedux.connect(
       (state, props) =>
-        componentState2props(state[name]?.[props.id] || {}, state, props),
+        componentState2props(state[name]?.[props[idProp]] || {}, state, props),
       dispatch2props &&
         ((dispatch, props, ...rest) =>
           dispatch2props(
-            interceptDispatch(dispatch, props.id),
+            interceptDispatch(dispatch, props[idProp]),
             props,
             ...rest
           )),
       ...rest
     )(({ dispatch, ...props }) => (
-      <Component {...props} dispatch={interceptDispatch(dispatch, props.id)} />
+      <Component
+        {...props}
+        dispatch={interceptDispatch(dispatch, props[idProp])}
+      />
     ))
 
     Connected.propTypes = {
@@ -137,6 +143,8 @@ export const connect = (componentState2props, dispatch2props, ...rest) =>
  * @param {Array} [options.connectArgs=[]] - Will be spread as arguments to the
  * first part of the underlying `react-redux.connect` after
  * {componentStateToProps} and {dispatchToProps}.
+ * @param {String} [options.idProp='id'] - The name of the prop that represents
+ * the _instance_ ID.
  * @returns An _id aware_ connected component with a `reducerSpread` property,
  * which is an object where the _id aware_ reducer is assigned to the {name}.
  * This is meant to be spread into `redux.combineReducers`.
@@ -176,6 +184,7 @@ export default ({
   connectArgs = [],
   componentStateToProps = (x) => x,
   dispatchToProps,
+  idProp = 'id',
 }) => {
   console.assert(component, 'component is required')
   console.assert(reducer, 'reducer is required')
@@ -185,8 +194,10 @@ export default ({
     componentStateToProps,
     dispatchToProps,
     ...connectArgs
-  )(component)(name)
+  )(component)(name, idProp)
 
-  Connected.reducerSpread = { [name]: reducerDecorator(reducer, actionPattern) }
+  Connected.reducerSpread = {
+    [name]: reducerDecorator(reducer, actionPattern, idProp),
+  }
   return withRouter(Connected)
 }
