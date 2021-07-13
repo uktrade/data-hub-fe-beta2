@@ -45,6 +45,7 @@ const ContactForm = ({
   addressPostcode: postcode,
   addressTown: city,
   addressCounty: county,
+  addressCountry,
   ...props
 }) => (
   <Company id={companyId}>
@@ -65,6 +66,7 @@ const ContactForm = ({
               : [{ text: `Add contact at ${company.name}` }]),
           ]}
         />
+
         <Main>
           <FormStateful
             id="add-contact-form"
@@ -74,6 +76,7 @@ const ContactForm = ({
               postcode,
               county,
               city,
+              country: addressCountry?.id,
               primary: boolToYesNo(primary),
               addressSameAsCompany: boolToYesNo(addressSameAsCompany),
               acceptsDitEmailMarketing: [boolToYesNo(acceptsDitEmailMarketing)],
@@ -83,6 +86,7 @@ const ContactForm = ({
               address2,
               city,
               county,
+              country,
               postcode,
               acceptsDitEmailMarketing,
               addressSameAsCompany,
@@ -104,7 +108,7 @@ const ContactForm = ({
                   address_town: city || ' ',
                   address_county: county,
                   address_postcode: postcode,
-                  address_country: company.address.country,
+                  address_country: country,
                 }),
               }
 
@@ -228,8 +232,8 @@ const ContactForm = ({
                         <fieldset>
                           <legend>Contact address</legend>
                           <FieldAddress
-                            country={company.address.country}
                             apiEndpoint="/api/postcodelookup"
+                            isCountrySelectable={true}
                           />
                         </fieldset>
                       ),
@@ -265,15 +269,12 @@ const ContactForm = ({
   </Company>
 )
 
-const idNameShape = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-})
-
 const requiredProps = {
   method: PropTypes.oneOf(['POST', 'PATCH']),
-  addressCountry: idNameShape,
-  company: idNameShape,
+  company: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }),
 }
 
 ContactForm.propTypes = {

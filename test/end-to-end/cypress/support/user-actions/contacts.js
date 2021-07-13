@@ -26,7 +26,7 @@ const createWithNewAddress = (data) => {
   cy.contains('Address line 1').type(data.address1)
   cy.contains('Address line 2').type(data.address2)
   cy.contains('Town or city').type(data.city)
-  cy.contains('Country').type(data.country)
+  cy.contains('Country').parent().find('select').select(data.country)
   cy.getSubmitButtonByLabel('Add contact').click()
 }
 
