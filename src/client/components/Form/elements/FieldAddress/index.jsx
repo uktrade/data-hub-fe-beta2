@@ -22,6 +22,7 @@ import FieldWrapper from '../FieldWrapper'
 import StatusMessage from '../../../StatusMessage'
 import { transformObjectToOption } from '../../../../../apps/transformers'
 import FieldSelect from '../FieldSelect'
+import FieldCountrySelect from '../FieldCountrySelect'
 
 const UNITED_KINGDOM = 'United Kingdom'
 const UNITED_STATES = 'United States'
@@ -43,6 +44,7 @@ const FieldAddress = ({
   apiEndpoint,
   onSelectUKAddress,
   features,
+  isCountrySelectable,
 }) => {
   const areaFieldEnabled = features && features.areaFormField
   const findAdministrativeAreas = useAdministrativeAreaLookup()
@@ -92,9 +94,9 @@ const FieldAddress = ({
     }
   }, [administrativeAreaList])
 
-  const isUK = country.name === UNITED_KINGDOM
-  const isUS = country.name === UNITED_STATES
-  const isCanada = country.name === CANADA
+  const isUK = country?.name === UNITED_KINGDOM
+  const isUS = country?.name === UNITED_STATES
+  const isCanada = country?.name === CANADA
 
   function onSearchClick(e) {
     e.preventDefault()
@@ -116,7 +118,7 @@ const FieldAddress = ({
     setFieldValue('address2', address.address2)
     setFieldValue('city', address.city)
     setFieldValue('county', address.county)
-    setFieldValue('country', country.id)
+    setFieldValue('country', isCountrySelectable ? address.country : country.id)
     setFieldValue('area', address.area)
 
     if (onSelectUKAddress) {
@@ -224,9 +226,13 @@ const FieldAddress = ({
       )}
 
       <FieldInput type="text" name="county" label="County (optional)" />
-      <FieldUneditable name="country" label="Country">
-        {country.name}
-      </FieldUneditable>
+      {isCountrySelectable ? (
+        <FieldCountrySelect name="country" />
+      ) : (
+        <FieldUneditable name="country" label="Country">
+          {country.name}
+        </FieldUneditable>
+      )}
     </FieldWrapper>
   )
 }
@@ -235,12 +241,15 @@ FieldAddress.propTypes = {
   label: PropTypes.node,
   legend: PropTypes.node,
   hint: PropTypes.node,
+  apiEndpoint: PropTypes.string.isRequired,
+  onSelectUKAddress: PropTypes.func,
+  isCountrySelectable: PropTypes.any,
+  // Country is only required if isCountrySelectable is falsy, but this can't be
+  // expressed with propTypes
   country: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
-  apiEndpoint: PropTypes.string.isRequired,
-  onSelectUKAddress: PropTypes.func,
 }
 
 FieldAddress.defaultProps = {
