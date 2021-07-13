@@ -1,3 +1,5 @@
+import { formatWithTime } from '../../../../../client/utils/date-utils'
+
 const getArrayNamesAndIds = (data) =>
   data.map((d) => ({ label: d.name, value: d.id }))
 
@@ -31,7 +33,7 @@ export const transformInvestmentOpportunityDetails = ({
   isEditingDetails: false,
   isEditingRequirements: false,
   detailsFields: {
-    createdOn: created_on,
+    createdOn: created_on ? formatWithTime(created_on) : null,
     name,
     description,
     ukRegions: uk_region_locations.map(idNameToValueLabel),

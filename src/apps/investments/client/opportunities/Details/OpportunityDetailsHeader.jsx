@@ -3,8 +3,8 @@ import { useSelector, shallowEqual } from "react-redux";
 import PropTypes from 'prop-types'
 import urls from '../../../../../lib/urls'
 import { formatWithTime } from '../../../../../client/utils/date-utils'
+import { ID } from '../Details/state'
 import { currencyGBP } from '../../../../../client/utils/number-utils'
-
 import LocalHeader from '../../../../../client/components/LocalHeader/LocalHeader'
 import LocalHeaderHeading from '../../../../../client/components/LocalHeader/LocalHeaderHeading'
 import LocalHeaderDetails from '../../../../../client/components/LocalHeaderDetails'
@@ -33,7 +33,7 @@ const OpportunityDetailsHeader = ({ opportunityId }) => {
     'Value': `${oppsValue}`,
     'UK location': `${ukLocation}`,
     'Asset value': `${assetClass}`,
-    'Created on': `${formatWithTime(createdOn)}`,
+    'Created on': `${createdOn}`,
   }
 
   const breadcrumbs = [
