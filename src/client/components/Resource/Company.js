@@ -1,3 +1,3 @@
 import { createResource } from '.'
 
-export default createResource('Company', 'v4/company')
+export default createResource('Company', (id) => `v4/company/${id}`)

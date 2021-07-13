@@ -28,7 +28,12 @@ import Task from '../Task'
 const Resource = multiInstance({
   name: 'Resource',
   actionPattern: 'RESOURCE',
-  reducer: (_, { result }) => ({ result }),
+  reducer: (state, { id, result }) => ({
+    ...state,
+    [id]: result,
+  }),
+  idProp: 'name',
+  componentStateToProps: (state, _, { id }) => ({ result: state[id] }),
   component: ({ name, id, taskStatusProps, children, result }) => (
     <Task.Status
       {...taskStatusProps}
@@ -55,16 +60,16 @@ Resource.propTypes = {
 export default Resource
 
 const deepKeysToCamelCase = (x) =>
-  Object.fromEntries(
-    Object.entries(x).map(([k, v]) => [
-      _.camelCase(k),
-      _.isPlainObject(v)
-        ? deepKeysToCamelCase(v)
-        : Array.isArray(v)
-        ? v.map(deepKeysToCamelCase)
-        : v,
-    ])
-  )
+  Array.isArray(x)
+    ? x.map(deepKeysToCamelCase)
+    : _.isPlainObject(x)
+    ? Object.fromEntries(
+        Object.entries(x).map(([k, v]) => [
+          _.camelCase(k),
+          deepKeysToCamelCase(v),
+        ])
+      )
+    : x
 
 /**
  * A utility factory for creating a {Resource} preset to a specific API endpoint
@@ -90,7 +95,7 @@ export const createResource = (name, endpoint) => {
   Component.tasks = {
     [name]: (id) =>
       apiProxyAxios
-        .get(`/api-proxy/${endpoint}/${id}`)
+        .get(`/api-proxy/${endpoint(id)}`)
         .then(({ data }) => deepKeysToCamelCase(data)),
   }
 
