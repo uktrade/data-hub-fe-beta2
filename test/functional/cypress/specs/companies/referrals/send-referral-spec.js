@@ -372,7 +372,7 @@ describe('Contact loop', () => {
         'Is the contact’s address the same as the company address?',
         'Yes'
       )
-      cy.getSubmitButtonByLabel('Add contact')
+      cy.getSubmitButtonByLabel('Add contact').click()
 
       cy.url().should(
         'include',
