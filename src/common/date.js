@@ -1,8 +1,9 @@
-const { format } = require('date-fns')
+const { format, subMonths } = require('date-fns')
 const {
   DATE_LONG_FORMAT,
   DATE_MEDIUM_FORMAT,
   DATE_TIME_MEDIUM_FORMAT,
+  INTERACTION_TIMESTAMP_FORMAT,
 } = require('./constants')
 
 function formatLongDate(dateString = []) {
@@ -58,10 +59,21 @@ function transformValueForApi({ year, month, day = 1 }) {
   return null
 }
 
+function getInteractionTimestamp({ offset }) {
+  const date = new Date()
+
+  if (offset > 0) {
+    subMonths(date, offset)
+  }
+
+  return format(date, INTERACTION_TIMESTAMP_FORMAT)
+}
+
 module.exports = {
   formatLongDate,
   formatMediumDate,
   formatMediumDateTime,
   parseDateString,
   transformValueForApi,
+  getInteractionTimestamp,
 }

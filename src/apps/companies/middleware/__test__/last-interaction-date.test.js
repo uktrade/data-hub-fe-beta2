@@ -1,20 +1,10 @@
-const { endOfToday, format, subMonths } = require('date-fns')
+const { getInteractionTimestamp } = require('../../../../common/date')
 const middleware = require('../last-interaction-date')
 const buildMiddlewareParameters = require('../../../../../test/unit/helpers/middleware-parameters-builder')
 
 const QUERY_PARAM = 'interaction_between'
 const START_DATE_PARAM = 'latest_interaction_date_before'
 const END_DATE_PARAM = 'latest_interaction_date_after'
-
-function getTimestamp(offset) {
-  const date = endOfToday()
-
-  if (offset > 0) {
-    subMonths(date, offset)
-  }
-
-  return format(date, 'y-MM-d')
-}
 
 function callMiddleware(value) {
   const { reqMock, resMock, nextSpy } = buildMiddlewareParameters({
@@ -30,8 +20,12 @@ function callMiddleware(value) {
 
 function checkBody(reqMock, startValue, endValue) {
   expect(reqMock.body[QUERY_PARAM]).to.be.undefined
-  expect(reqMock.body[START_DATE_PARAM]).to.equal(getTimestamp(startValue))
-  expect(reqMock.body[END_DATE_PARAM]).to.equal(getTimestamp(endValue))
+  expect(reqMock.body[START_DATE_PARAM]).to.equal(
+    getInteractionTimestamp(startValue)
+  )
+  expect(reqMock.body[END_DATE_PARAM]).to.equal(
+    getInteractionTimestamp(endValue)
+  )
 }
 
 describe('Last interaction date middleware', () => {
