@@ -3,6 +3,11 @@ import Link from '@govuk-react/link'
 
 import State from './State'
 
+const stripHost = (u) => {
+  const url = new URL(u)
+  return url.pathname + url.search
+}
+
 /**
  * @function ReferrerLink
  * @description Same as {@govuk-react/link} but with {href} set to the referrer
@@ -12,5 +17,9 @@ import State from './State'
  * <ReferrerLink>Back</ReferrerLink>
  */
 export default (props) => (
-  <State>{({ referrerUrl }) => <Link {...props} href={referrerUrl} />}</State>
+  <State>
+    {({ referrerUrl }) => (
+      <Link {...props} href={referrerUrl ? stripHost(referrerUrl) : '/'} />
+    )}
+  </State>
 )
