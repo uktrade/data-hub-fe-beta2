@@ -5,6 +5,8 @@ import {
   parseISO,
   isValid,
   parse,
+  subDays,
+  isAfter,
 } from 'date-fns'
 
 export const DATE_FORMAT_LONG = 'yyyy-MM-dd'
@@ -87,3 +89,9 @@ export const getFinancialYearStart = (date) =>
 
 export const generateFinancialYearLabel = (yearStart) =>
   `${yearStart}-${(yearStart + 1).toString().slice(-2)}`
+
+export const isDNBChangeRequestValid = (date) => {
+  const todaysDate = today()
+  const timeInterval = subDays(todaysDate, 20)
+  return isAfter(date, timeInterval)
+}
