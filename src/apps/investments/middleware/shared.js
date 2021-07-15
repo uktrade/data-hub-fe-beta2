@@ -1,5 +1,4 @@
 const { get, upperFirst, camelCase } = require('lodash')
-const { format, parseISO } = require('date-fns')
 
 const metadata = require('../../../lib/metadata')
 const {
@@ -10,8 +9,8 @@ const { isValidGuid } = require('../../../lib/controller-utils')
 const { getDitCompany } = require('../../companies/repos')
 const { getAdviser } = require('../../adviser/repos')
 const { getInvestment } = require('../repos')
-const { DATE_TIME_MEDIUM_FORMAT } = require('../../../common/constants')
 const { companies, investments } = require('../../../lib/urls')
+const { formatMediumDateTime } = require('../../../common/date')
 
 function getNextStage(currentStage, projectStages) {
   const projectStageIndex = projectStages.findIndex((projectStage) => {
@@ -119,12 +118,7 @@ async function getInvestmentDetails(req, res, next) {
         },
         {
           label: 'Created on',
-          value: investment.created_on
-            ? format(
-                new Date(parseISO(investment.created_on)),
-                DATE_TIME_MEDIUM_FORMAT
-              )
-            : null,
+          value: formatMediumDateTime(new Date(investment.created_on)),
         },
       ],
       company: {

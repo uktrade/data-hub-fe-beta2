@@ -1,5 +1,4 @@
 const { get, pick } = require('lodash')
-const format = require('date-fns/format')
 const { KINDS, THEMES } = require('../../constants')
 const { getActiveEvents } = require('../../../events/repos')
 const {
@@ -10,6 +9,7 @@ const { getOptions } = require('../../../../lib/options')
 
 const { OPTION_YES, OPTION_NO } = require('../../../constants')
 const urls = require('../../../../lib/urls')
+const { parseAndFormatDate } = require('../../../../common/date')
 
 const transformServiceToOption = (service) => ({
   value: service.id,
@@ -142,11 +142,7 @@ const getInitialFormValues = (req, res) => {
     kind,
     company: company.id,
     investment_project: investmentId,
-    date: {
-      day: format(date, 'dd'),
-      month: format(date, 'MM'),
-      year: format(date, 'yyyy'),
-    },
+    date: parseAndFormatDate(date),
     contacts:
       referral && referral.contact
         ? [transformObjectToOption(referral.contact)]

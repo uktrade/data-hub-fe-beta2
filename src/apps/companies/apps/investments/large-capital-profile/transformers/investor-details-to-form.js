@@ -1,19 +1,11 @@
 /* eslint-disable camelcase */
 const { find, get } = require('lodash')
-const { format } = require('date-fns')
 const { requiredChecks: types } = require('../constants')
 
 const {
   transformAdviserToOption,
 } = require('../../../../../adviser/transformers')
-
-const parseDate = (dateStr) => {
-  return {
-    day: parseInt(format(new Date(dateStr), 'd')),
-    month: parseInt(format(new Date(dateStr), 'M')),
-    year: parseInt(format(new Date(dateStr), 'yyyy')),
-  }
-}
+const { parseAndFormatDate } = require('../../../../../../common/date')
 
 const transformInvestorTypes = (investorTypesMetadata, { investorType }) => {
   const { value } = investorType
@@ -57,12 +49,12 @@ const transformRequiredChecks = (
 
   if (type === types.CLEARED) {
     transformed.cleared.adviser = requiredChecks.adviser
-    transformed.cleared.date = parseDate(requiredChecks.date)
+    transformed.cleared.date = parseAndFormatDate(requiredChecks.date)
   }
 
   if (type === types.ISSUES_IDENTIFIED) {
     transformed.issuesIdentified.adviser = requiredChecks.adviser
-    transformed.issuesIdentified.date = parseDate(requiredChecks.date)
+    transformed.issuesIdentified.date = parseAndFormatDate(requiredChecks.date)
   }
 
   const id = get(requiredChecks, 'type.id')

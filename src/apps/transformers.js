@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 const { filter, keyBy, snakeCase, upperFirst } = require('lodash')
-const { isValid, format, parseISO } = require('date-fns')
+const { formatDate, isDateValid } = require('../common/date')
 
 const { hqLabels } = require('./companies/labels')
 
@@ -82,12 +82,12 @@ function transformDateObjectToDateString(key) {
 }
 
 function transformDateStringToDateObject(dateString) {
-  const isValidDate = dateString && isValid(parseISO(dateString))
+  const isValidDate = dateString && isDateValid(dateString)
 
   return {
-    year: isValidDate ? format(parseISO(dateString), 'yyyy') : '',
-    month: isValidDate ? format(parseISO(dateString), 'MM') : '',
-    day: isValidDate ? format(parseISO(dateString), 'dd') : '',
+    year: isValidDate ? formatDate(dateString, 'yyyy') : '',
+    month: isValidDate ? formatDate(dateString, 'MM') : '',
+    day: isValidDate ? formatDate(dateString, 'dd') : '',
   }
 }
 
