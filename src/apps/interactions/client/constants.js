@@ -7,6 +7,7 @@ export const LABELS = {
   dateAfter: 'From',
   dateBefore: 'To',
   service: 'Service',
+  teams: 'Teams',
   sector: 'Sector',
   businessIntelligence: 'Business intelligence',
   policyAreas: 'Policy area(s)',

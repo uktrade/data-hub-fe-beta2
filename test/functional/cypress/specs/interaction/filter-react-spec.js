@@ -6,6 +6,7 @@ import {
   clickCheckboxGroupOption,
   removeChip,
   selectFirstAdvisersTypeaheadOption,
+  selectFirstTeamsTypeaheadOption,
   inputDateValue,
 } from '../../support/actions'
 
@@ -51,14 +52,25 @@ const companyOneListTierGroupMetadataEndpoint =
 
 const myAdviserId = '7d19d407-9aec-4d06-b190-d3f404627f21'
 const myAdviserEndpoint = `/api-proxy/adviser/${myAdviserId}`
+const teamId = 'cff02898-9698-e211-a939-e4115bead28a'
+const teamAutocompleteEndpoint = '/api-proxy/metadata/team/?autocomplete=*'
+const teamEndpoint = `/api-proxy/v4/metadata/team?id=${teamId}`
 
 const advisersFilter = '[data-test="adviser-filter"]'
+const teamsFilter = '[data-test="team-filter"]'
 const myInteractionsFilter = '[data-test="my-interactions-filter"]'
 
 const adviser = {
   id: myAdviserId,
   name: 'Barry Oling',
 }
+
+const team = [
+  {
+    id: teamId,
+    name: 'Aberdeen City Council',
+  },
+]
 
 describe('Interactions Collections Filter', () => {
   context('Default Params', () => {
@@ -314,6 +326,62 @@ describe('Interactions Collections Filter', () => {
       assertChipsEmpty()
       assertFieldEmpty(dateBefore)
       assertFieldEmpty(dateAfter)
+    })
+  })
+
+  context('Teams', () => {
+    const expectedPayload = {
+      ...minimumPayload,
+      dit_participants__team: [team[0].id],
+    }
+
+    it('should filter from the url', () => {
+      const queryParams = buildQueryString({
+        dit_participants__team: [team[0].id],
+      })
+
+      cy.intercept('POST', interactionsSearchEndpoint).as('apiRequest')
+      cy.visit(`${interactions.react()}?${queryParams}`)
+      assertPayload('@apiRequest', expectedPayload)
+      assertTypeaheadOptionSelected({
+        element: teamsFilter,
+        expectedOption: team[0].name,
+      })
+      assertChipExists({ label: team[0].name, position: 1 })
+    })
+
+    it('should filter from user input and remove chips', () => {
+      const queryString = buildQueryString()
+      cy.intercept('POST', interactionsSearchEndpoint).as('apiRequest')
+      cy.intercept('GET', teamAutocompleteEndpoint, {
+        count: 1,
+        results: [team],
+      }).as('teamListApiRequest')
+      cy.intercept('GET', teamEndpoint, team).as('teamApiRequest')
+
+      cy.visit(`${interactions.react()}?${queryString}`)
+      cy.wait('@apiRequest')
+      selectFirstTeamsTypeaheadOption({
+        element: teamsFilter,
+        input: team[0].name,
+      })
+      cy.wait('@teamApiRequest')
+      assertPayload('@apiRequest', expectedPayload)
+      assertQueryParams('dit_participants__team', [team[0].id])
+      assertTypeaheadOptionSelected({
+        element: teamsFilter,
+        expectedOption: team[0].name,
+      })
+
+      assertChipExists({
+        label: team[0].name,
+        position: 1,
+      })
+
+      removeChip(team[0].id)
+      assertPayload('@apiRequest', minimumPayload)
+      assertChipsEmpty()
+      assertFieldEmpty(teamsFilter)
     })
   })
 

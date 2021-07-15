@@ -2,12 +2,14 @@ import {
   INTERACTIONS__LOADED,
   INTERACTIONS_SELECTED_ADVISERS,
   INTERACTIONS__METADATA_LOADED,
+  INTERACTIONS_SELECTED_TEAMS,
 } from '../../../client/actions'
 
 const initialState = {
   results: [],
   metadata: {},
   selectedAdvisers: [],
+  selectedTeams: [],
   isComplete: false,
 }
 
@@ -28,6 +30,11 @@ export default (state = initialState, { type, result }) => {
       return {
         ...state,
         metadata: result,
+      }
+    case INTERACTIONS_SELECTED_TEAMS:
+      return {
+        ...state,
+        selectedTeams: result,
       }
     default:
       return state
