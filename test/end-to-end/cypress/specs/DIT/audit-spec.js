@@ -38,17 +38,20 @@ describe('Contact', () => {
     cy.loadFixture([companyObj])
     cy.loadFixture([contactObj])
     cy.visit(urls.contacts.edit(contactObj.pk))
+
+    cy.contains('Job title').type('Freerider')
+    cy.contains('Telephone country code').type('1234')
   })
 
   it('should display name of the person who made contact record changes', () => {
-    cy.get(selectors.contactCreate.save).click()
-    cy.get(selectors.message.successful).should('be.visible')
+    cy.getSubmitButtonByLabel('Save and return').click()
+    cy.contains('Contact record updated')
 
     cy.visit(urls.contacts.audit(contactObj.pk))
 
     cy.get(selectors.collection.items)
       .should('contain', 'DIT Staff')
-      .and('contain', 'No changes saved')
+      .and('contain', '2 changes')
       .and('contain', todaysDate)
     cy.get(selectors.collection.header).should('contain', '1 result')
   })
