@@ -107,7 +107,6 @@ describe('Create contact form', () => {
       'Telephone country code': 'This field may not be null.',
       'Telephone number': 'This field may not be null.',
       Email: 'This field may not be null.',
-      Postcode: 'Enter postcode',
       'Address line 1': 'Enter address line 1',
       'Town or city': 'Enter town or city',
     })
