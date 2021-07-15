@@ -6,6 +6,7 @@ import {
   clickCheckboxGroupOption,
   removeChip,
   selectFirstAdvisersTypeaheadOption,
+  selectFirstTeamsTypeaheadOption,
   inputDateValue,
 } from '../../support/actions'
 
@@ -25,7 +26,9 @@ import { testTypeahead } from '../../support/tests'
 import { serviceFaker } from '../../fakers/services'
 import { policyAreaFaker } from '../../fakers/policy-area'
 import { policyIssueTypeFaker } from '../../fakers/policy-issue-type'
+
 import { companyOneListgroupTierFaker } from '../../fakers/company-one-list-group-tier'
+import { teamListFaker } from '../../fakers/team'
 
 const buildQueryString = (queryParams = {}) =>
   qs.stringify({
@@ -51,14 +54,19 @@ const companyOneListTierGroupMetadataEndpoint =
 
 const myAdviserId = '7d19d407-9aec-4d06-b190-d3f404627f21'
 const myAdviserEndpoint = `/api-proxy/adviser/${myAdviserId}`
+const teamAutocompleteEndpoint = '/api-proxy/v4/metadata/team?autocomplete=*'
+const teamEndpoint = '/api-proxy/v4/metadata/team?id=*'
 
 const advisersFilter = '[data-test="adviser-filter"]'
+const teamsFilter = '[data-test="team-filter"]'
 const myInteractionsFilter = '[data-test="my-interactions-filter"]'
 
 const adviser = {
   id: myAdviserId,
   name: 'Barry Oling',
 }
+
+const teams = teamListFaker(10)
 
 describe('Interactions Collections Filter', () => {
   context('Default Params', () => {
@@ -314,6 +322,66 @@ describe('Interactions Collections Filter', () => {
       assertChipsEmpty()
       assertFieldEmpty(dateBefore)
       assertFieldEmpty(dateAfter)
+    })
+  })
+
+  context('Teams', () => {
+    const expectedPayload = {
+      ...minimumPayload,
+      dit_participants__team: [teams[0].id],
+    }
+
+    it('should filter from the url', () => {
+      const queryParams = buildQueryString({
+        dit_participants__team: [teams[0].id],
+      })
+
+      cy.intercept('POST', interactionsSearchEndpoint, teams[0]).as(
+        'apiRequest'
+      )
+      cy.intercept('GET', teamEndpoint, [teams[0]]).as('teamApiRequest')
+
+      cy.visit(`${interactions.react()}?${queryParams}`)
+      assertPayload('@apiRequest', expectedPayload)
+      assertTypeaheadOptionSelected({
+        element: teamsFilter,
+        expectedOption: teams[0].name,
+      })
+      assertChipExists({ label: teams[0].name, position: 1 })
+    })
+
+    it('should filter from user input and remove chips', () => {
+      const queryString = buildQueryString()
+      cy.intercept('POST', interactionsSearchEndpoint).as('apiRequest')
+      cy.intercept('GET', teamAutocompleteEndpoint, teams).as(
+        'teamListApiRequest'
+      )
+      cy.intercept('GET', teamEndpoint, teams).as('teamApiRequest')
+
+      cy.visit(`${interactions.react()}?${queryString}`)
+      cy.wait('@apiRequest')
+      selectFirstTeamsTypeaheadOption({
+        element: teamsFilter,
+        input: teams[0].name,
+      })
+      cy.wait('@teamListApiRequest')
+      cy.wait('@teamApiRequest')
+      assertPayload('@apiRequest', expectedPayload)
+      assertQueryParams('dit_participants__team', [teams[0].id])
+      assertTypeaheadOptionSelected({
+        element: teamsFilter,
+        expectedOption: teams[0].name,
+      })
+
+      assertChipExists({
+        label: teams[0].name,
+        position: 1,
+      })
+
+      removeChip(teams[0].id)
+      assertPayload('@apiRequest', minimumPayload)
+      assertChipsEmpty()
+      assertFieldEmpty(teamsFilter)
     })
   })
 

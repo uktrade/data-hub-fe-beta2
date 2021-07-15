@@ -59,6 +59,7 @@ const getInteractions = ({
   policy_areas,
   policy_issue_types,
   company_one_list_group_tier,
+  dit_participants__team,
 }) =>
   axios
     .post('/api-proxy/v3/search/interaction', {
@@ -75,6 +76,7 @@ const getInteractions = ({
       policy_areas,
       policy_issue_types,
       company_one_list_group_tier,
+      dit_participants__team,
     })
     .then(({ data }) => transformResponseToCollection(data), handleError)
 
