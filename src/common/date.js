@@ -4,6 +4,10 @@ const {
   isValid,
   parseISO,
   subMonths,
+  endOfYesterday,
+  addMonths: addMonthsFNS,
+  subDays,
+  subWeeks,
 } = require('date-fns')
 const {
   DATE_LONG_FORMAT,
@@ -14,6 +18,10 @@ const {
 
 function isDateValid(date) {
   return isValid(parseISO(date))
+}
+
+function isUnparsedDateValid(date) {
+  return isValid(date)
 }
 
 function formatDate(date, dateFormat) {
@@ -92,6 +100,26 @@ function getDifferenceInWords(date, suffix = true) {
   }
 }
 
+function getYesterday() {
+  return endOfYesterday()
+}
+
+function subtractMonths(date, numberOfMonths) {
+  return subMonths(date, numberOfMonths)
+}
+
+function addMonths(date, numberOfMonths) {
+  return addMonthsFNS(date, numberOfMonths)
+}
+
+function subtractDays(date, numberOfDays) {
+  return subDays(date, numberOfDays)
+}
+
+function subtractWeeks(date, numberOfweeks) {
+  return subWeeks(date, numberOfweeks)
+}
+
 module.exports = {
   formatDate,
   formatLongDate,
@@ -103,4 +131,10 @@ module.exports = {
   getInteractionTimestamp,
   parseAndFormatDate,
   getDifferenceInWords,
+  getYesterday,
+  subtractMonths,
+  addMonths,
+  subtractDays,
+  subtractWeeks,
+  isUnparsedDateValid,
 }

@@ -1,10 +1,10 @@
-const { endOfToday, subDays, subWeeks } = require('date-fns')
+const { subtractDays, subtractWeeks } = require('../../common/date')
 
 const config = require('../../config')
 
-const today = endOfToday()
-const yesterday = subDays(today, 1)
-const lastWeek = subWeeks(today, 1)
+const today = new Date()
+const yesterday = subtractDays(today, 1)
+const lastWeek = subtractWeeks(today, 1)
 
 const { getOptions, fetchOptions } = require('../options')
 const serviceOptionData = require('../../../test/unit/data/interactions/service-options-data.json')

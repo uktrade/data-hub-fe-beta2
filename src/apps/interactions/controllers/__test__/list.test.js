@@ -1,4 +1,4 @@
-const endOfYesterday = require('date-fns/endOfYesterday')
+const { getYesterday } = require('../../../../common/date')
 
 const { omit } = require('lodash')
 
@@ -53,7 +53,7 @@ describe('interaction list', () => {
 
     next = sinon.stub()
 
-    const yesterday = endOfYesterday()
+    const yesterday = getYesterday()
 
     metadataMock = {
       teamOptions: [

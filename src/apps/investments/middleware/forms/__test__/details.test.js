@@ -1,13 +1,13 @@
 const { v4: uuid } = require('uuid')
 const { assign } = require('lodash')
-const endOfYesterday = require('date-fns/endOfYesterday')
+const { getYesterday } = require('../../../../../common/date')
 const proxyquire = require('proxyquire')
 
 const config = require('../../../../../config')
 const paths = require('../../../paths')
 const companyData = require('../../../../../../test/unit/data/companies/company-v4.json')
 
-const yesterday = endOfYesterday()
+const yesterday = getYesterday()
 
 const metadataMock = {
   investmentTypeOptions: [
