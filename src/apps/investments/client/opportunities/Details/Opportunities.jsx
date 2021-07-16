@@ -12,6 +12,7 @@ import {
 import OpportunityDetails from './OpportunityDetails'
 import OpportunityRequirements from './OpportunityRequirements'
 import OpportunityDetailsForm from './OpportunityDetailsForm'
+import OpportunityRequirementsForm from './OpportunityRequirementsForm'
 
 import Task from '../../../../../client/components/Task'
 import ToggleSection from '../../../../../client/components/ToggleSection'
@@ -121,11 +122,12 @@ const Opportunities = ({
 
           <OpportunitySection
             incompleteFields={incompleteRequirementsFields}
-            form={<div>This will be a form</div>}
+            form={<OpportunityRequirementsForm opportunityId={opportunityId} />}
             toggleName="Opportunity requirements"
             id="opportunity_requirements"
             isEditing={isEditingRequirements}
             onEdit={onRequirementsEdit}
+            formEnabled={!isEditingRequirements} // Inverted isEditingRequirements value to showcase edit button.
           >
             <OpportunityRequirements details={requirementsFields} />
           </OpportunitySection>
