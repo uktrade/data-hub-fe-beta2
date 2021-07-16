@@ -1,10 +1,11 @@
 const nunjucks = require('nunjucks')
-const { isValid, format: dateFnsFormat } = require('date-fns')
+const { format: dateFnsFormat } = require('date-fns')
 
 const {
   getDifferenceInWords,
   convertMinutesToHours,
   convertValueToDate,
+  isUnparsedDateValid,
 } = require('../../common/date')
 const Case = require('case')
 const numeral = require('numeral')
@@ -198,7 +199,7 @@ const filters = {
       return value
     }
 
-    if (!isValid(new Date(value))) {
+    if (!isUnparsedDateValid(new Date(value))) {
       return value
     }
 
@@ -212,7 +213,7 @@ const filters = {
 
     const parsedDate = convertValueToDate(value)
 
-    if (!isValid(parsedDate)) {
+    if (!isUnparsedDateValid(parsedDate)) {
       return value
     }
 
