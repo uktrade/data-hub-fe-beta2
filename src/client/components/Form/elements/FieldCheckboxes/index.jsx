@@ -66,6 +66,7 @@ const FieldCheckboxes = ({
   initialValue,
   reduced,
   reducedPadding,
+  ...props
 }) => {
   const { value, error, touched, onBlur } = useField({
     name,
@@ -91,6 +92,7 @@ const FieldCheckboxes = ({
   return (
     <FieldWrapper
       {...{
+        ...props,
         name,
         label,
         legend,
