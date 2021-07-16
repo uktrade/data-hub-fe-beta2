@@ -5,6 +5,16 @@ const {
 const fixtures = require('../../fixtures')
 const { investments } = require('../../../../../src/lib/urls')
 
+const assertTableValues = (values, tableElement) => {
+  cy.get('#opportunity_requirements_toggle')
+    .find(tableElement)
+    .as('requirementElements')
+
+  values.forEach((value, index) => {
+    cy.get('@requirementElements').eq(index).should('have.text', value)
+  })
+}
+
 describe('UK Opportunity with missing data', () => {
   before(() => {
     cy.visit(
@@ -40,19 +50,46 @@ describe('UK Opportunity with missing data', () => {
       'Need to delete this opportunity?'
     )
   })
-
   it('should display required field tags', () => {
     cy.get('#opportunity-details').should('contain', '7 fields required')
-    cy.get('#opportunity-details').should('contain', '3 fields required')
+    cy.get('#opportunity-details').should('contain', '5 fields required')
   })
-
-  it('should display the Edit button', () => {
-    cy.visit(
-      investments.opportunities.details(
-        fixtures.investment.completeOpportunity.id
+  context('The details section', () => {
+    it('should display the Edit button', () => {
+      cy.get('#opportunity-details').should('contain', 'Edit')
+    })
+  })
+  context('The requirements section', () => {
+    before(() => {
+      cy.contains('Opportunity requirements').click({ force: true })
+    })
+    it('should show five rows of data', () => {
+      cy.get('#opportunity_requirements_toggle')
+        .find('tr')
+        .should('have.length', '5')
+    })
+    it('should display the correct table headings', () => {
+      assertTableValues(
+        [
+          'Total investment sought',
+          'Current investment secured',
+          'Types of investment',
+          'Estimated return rate',
+          'Timescales',
+        ],
+        'th'
       )
-    )
-    cy.get('#opportunity-details').should('contain', 'Edit')
+    })
+    it('should only display "Incomplete" in table data', () => {
+      cy.get('#opportunity_requirements_toggle')
+        .find('td')
+        .each((el) => {
+          cy.wrap(el).should('have.text', 'incomplete')
+        })
+    })
+    it('should display the "Edit" button', () => {
+      cy.get('#opportunity_requirements_toggle').should('contain', 'Edit')
+    })
   })
 })
 
@@ -65,18 +102,36 @@ describe('UK Opportunity with complete data', () => {
     )
   })
 
-  it('should display required field tags', () => {
-    cy.get('#opportunity-details').should('contain', 'Complete')
-    cy.get('#opportunity-details').should('contain', 'Complete')
+  it('should display two "Completed" labels', () => {
+    cy.get('label:contains("Complete")').should('have.length', '2')
   })
-
-  it('should display the Edit button', () => {
-    cy.visit(
-      investments.opportunities.details(
-        fixtures.investment.completeOpportunity.id
+  context('The details section', () => {
+    before(() => {
+      cy.contains('Opportunity details').click({ force: true })
+    })
+    it('should display the Edit button', () => {
+      cy.get('#opportunity_details_toggle').should('contain', 'Edit')
+    })
+  })
+  context('The requirements section', () => {
+    before(() => {
+      cy.contains('Opportunity requirements').click({ force: true })
+    })
+    it('Should show data in all fields', () => {
+      assertTableValues(
+        [
+          '£24,000,000',
+          '£120,000',
+          'Direct Investment in Project EquityVenture capital funds',
+          '5-10%',
+          'Up to 5 years',
+        ],
+        'td'
       )
-    )
-    cy.get('#opportunity-details').should('contain', 'Edit')
+    })
+    it('should display the "Edit" button', () => {
+      cy.get('#opportunity_requirements_toggle').should('contain', 'Edit')
+    })
   })
 })
 
