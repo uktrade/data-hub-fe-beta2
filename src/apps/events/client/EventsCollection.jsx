@@ -129,6 +129,7 @@ const EventsCollection = ({
           data-test="uk-region-filter"
         />
         <RoutedCheckboxGroupField
+          maxScrollHeight={345}
           legend={LABELS.eventType}
           name="event_type"
           qsParam="event_type"
