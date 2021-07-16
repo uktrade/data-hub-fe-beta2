@@ -9,6 +9,7 @@ const {
   subDays,
   subWeeks,
   minutesToHours,
+  toDate,
 } = require('date-fns')
 const {
   DATE_LONG_FORMAT,
@@ -125,6 +126,10 @@ function convertMinutesToHours(date) {
   return minutesToHours(date)
 }
 
+function convertValueToDate(value) {
+  return toDate(parseISO(value))
+}
+
 module.exports = {
   formatDate,
   formatLongDate,
@@ -143,4 +148,5 @@ module.exports = {
   subtractWeeks,
   isUnparsedDateValid,
   convertMinutesToHours,
+  convertValueToDate,
 }
