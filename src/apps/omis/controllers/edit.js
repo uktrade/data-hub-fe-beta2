@@ -11,11 +11,10 @@ const {
   pick,
   pickBy,
 } = require('lodash')
-const dateFns = require('date-fns')
 
 const FormController = require('./form')
-const { DATE_LONG_FORMAT } = require('../../../common/constants')
 const { Order } = require('../models')
+const { formatLongDate, isDateValid } = require('../../../common/date')
 
 class EditController extends FormController {
   async saveValues(req, res, next) {
@@ -73,13 +72,8 @@ class EditController extends FormController {
           return flatten([newValue])
         }
 
-        const parsedDate = dateFns.parseISO(newValue)
-        if (
-          dateFields.includes(key) &&
-          newValue &&
-          dateFns.isValid(parsedDate)
-        ) {
-          return dateFns.format(parsedDate, DATE_LONG_FORMAT)
+        if (dateFields.includes(key) && newValue && isDateValid(newValue)) {
+          return formatLongDate(newValue)
         }
 
         return newValue

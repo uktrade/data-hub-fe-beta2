@@ -1,5 +1,5 @@
 /* global JSON:true */
-const format = require('date-fns/format')
+const { formatDate } = require('../../common/date')
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -102,7 +102,7 @@ function getDateParts(value) {
   }
 
   if (typeof value === 'object') {
-    value = format(value, 'dd/MM/YYYY')
+    value = formatDate(value, 'dd/MM/YYYY')
   }
 
   const seperator = value.indexOf('-') !== -1 ? '-' : '/'
@@ -202,7 +202,7 @@ filter.newDate = function (d) {
 filter.date = function (date, format) {
   format = format || 'dd MMMM YYYY, h:mm:ss aaa'
 
-  const formatted = format(date, format)
+  const formatted = formatDate(date, format)
 
   if (formatted === 'Invalid date') {
     return ''
