@@ -13,6 +13,8 @@
         "construction_risks"
     ],
     "incomplete_requirements_fields": [
+        "total_investment_sought",
+        "current_investment_secured",
         "investment_types",
         "estimated_return_rate",
         "time_horizons"
@@ -30,8 +32,8 @@
     "opportunity_value_type": {},
     "opportunity_value": null,
     "construction_risks": [],
-    "total_investment_sought": 24000000,
-    "current_investment_secured": 0,
+    "total_investment_sought": null,
+    "current_investment_secured": null,
     "investment_types": [],
     "estimated_return_rate": {},
     "time_horizons": [],
