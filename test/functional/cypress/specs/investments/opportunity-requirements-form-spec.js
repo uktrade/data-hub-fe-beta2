@@ -70,7 +70,7 @@ describe('A capital opportunity without existing requirements', () => {
     it('should allow the user to fill in all fields', () => {
       cy.intercept(
         'PATCH',
-        `/v4/large-capital-opportunity/${incompleteOpportunity.id}`
+        `/api-proxy/v4/large-capital-opportunity/${incompleteOpportunity.id}`
       ).as('apiRequest')
 
       cy.get('#total_investment_sought').type('100')
