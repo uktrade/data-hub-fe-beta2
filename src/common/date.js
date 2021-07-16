@@ -1,4 +1,10 @@
-const { format, isValid, parseISO, subMonths } = require('date-fns')
+const {
+  format,
+  formatDistanceToNowStrict,
+  isValid,
+  parseISO,
+  subMonths,
+} = require('date-fns')
 const {
   DATE_LONG_FORMAT,
   DATE_MEDIUM_FORMAT,
@@ -75,6 +81,17 @@ const parseAndFormatDate = (dateStr) => {
   }
 }
 
+function getDifferenceInWords(date, suffix = true) {
+  const formattedDate = formatDistanceToNowStrict(parseISO(date), {
+    addSuffix: suffix,
+  })
+  if (formattedDate == '1 day ago') {
+    return 'a day ago'
+  } else {
+    return formattedDate
+  }
+}
+
 module.exports = {
   formatDate,
   formatLongDate,
@@ -85,4 +102,5 @@ module.exports = {
   transformValueForApi,
   getInteractionTimestamp,
   parseAndFormatDate,
+  getDifferenceInWords,
 }

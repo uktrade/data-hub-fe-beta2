@@ -1,4 +1,4 @@
-const { formatDistanceToNowStrict, parseISO } = require('date-fns')
+const { getDifferenceInWords } = require('../../../common/date')
 const {
   formatHelpCentreAnnouncements,
 } = require('../../../../src/apps/dashboard/transformers')
@@ -67,32 +67,17 @@ describe('#formatHelpCentreAnnouncements', () => {
     {
       heading: 'Recording policy feedback on Data Hub',
       link: 'https://helpcentre.com/hc/en-gb/articles/360001431697-Recording-policy-feedback-on-Data-Hub',
-      date: `${formatDistanceToNowStrict(
-        parseISO(mockData.articles[0].created_at),
-        {
-          addSuffix: true,
-        }
-      )}`,
+      date: `${getDifferenceInWords(mockData.articles[0].created_at)}`,
     },
     {
       heading: 'Improvements to company data in Data Hub - April 2019',
       link: 'https://helpcentre.com/hc/en-gb/articles/360001412918-Improvements-to-company-data-in-Data-Hub-April-2019',
-      date: `${formatDistanceToNowStrict(
-        parseISO(mockData.articles[1].created_at),
-        {
-          addSuffix: true,
-        }
-      )}`,
+      date: `${getDifferenceInWords(mockData.articles[1].created_at)}`,
     },
     {
       heading: 'Recording multiple DIT advisers against interactions',
       link: 'https://helpcentre.com/hc/en-gb/articles/360001345138-Recording-multiple-DIT-advisers-against-interactions',
-      date: `${formatDistanceToNowStrict(
-        parseISO(mockData.articles[2].created_at),
-        {
-          addSuffix: true,
-        }
-      )}`,
+      date: `${getDifferenceInWords(mockData.articles[2].created_at)}`,
     },
   ]
   context('Successful API response', () => {
