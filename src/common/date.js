@@ -27,11 +27,11 @@ function isUnparsedDateValid(date) {
 }
 
 function formatDate(date, dateFormat) {
-  return isDateValid(date)
-    ? format(parseISO(date), dateFormat)
-    : isUnparsedDateValid(date)
-    ? format(date, dateFormat)
-    : null
+  return isDateValid(date) ? format(parseISO(date), dateFormat) : null
+}
+
+function formatDateWithoutParsing(date, dateFormat) {
+  return isUnparsedDateValid(date) ? format(parseISO(date), dateFormat) : null
 }
 
 function formatLongDate(dateString) {
@@ -153,4 +153,5 @@ module.exports = {
   isUnparsedDateValid,
   convertMinutesToHours,
   convertValueToDate,
+  formatDateWithoutParsing,
 }

@@ -202,7 +202,6 @@ const filters = {
     if (!isUnparsedDateValid(new Date(value))) {
       return value
     }
-
     return dateFnsFormat(new Date(value), format)
   },
 
