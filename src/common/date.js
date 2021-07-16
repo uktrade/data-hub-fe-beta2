@@ -8,6 +8,7 @@ const {
   addMonths: addMonthsFNS,
   subDays,
   subWeeks,
+  minutesToHours,
 } = require('date-fns')
 const {
   DATE_LONG_FORMAT,
@@ -120,6 +121,10 @@ function subtractWeeks(date, numberOfweeks) {
   return subWeeks(date, numberOfweeks)
 }
 
+function convertMinutesToHours(date) {
+  return minutesToHours(date)
+}
+
 module.exports = {
   formatDate,
   formatLongDate,
@@ -137,4 +142,5 @@ module.exports = {
   subtractDays,
   subtractWeeks,
   isUnparsedDateValid,
+  convertMinutesToHours,
 }

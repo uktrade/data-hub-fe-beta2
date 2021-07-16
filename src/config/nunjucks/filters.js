@@ -1,12 +1,10 @@
 const nunjucks = require('nunjucks')
+const { toDate, parseISO, isValid, format: dateFnsFormat } = require('date-fns')
+
 const {
-  toDate,
-  parseISO,
-  isValid,
-  format: dateFnsFormat,
-  formatDistanceToNowStrict,
-  minutesToHours,
-} = require('date-fns')
+  getDifferenceInWords,
+  convertMinutesToHours,
+} = require('../../common/date')
 const Case = require('case')
 const numeral = require('numeral')
 const queryString = require('qs')
@@ -241,14 +239,14 @@ const filters = {
   humanizeDuration: (value, measurement = 'minutes') => {
     let asHours = value
     if (measurement == 'minutes') {
-      asHours = minutesToHours(value)
+      asHours = convertMinutesToHours(value)
     }
     const hoursSuffix = pluralise('hour', asHours)
     return asHours + ' ' + hoursSuffix
   },
 
   fromNow: (value) => {
-    return formatDistanceToNowStrict(parseISO(value))
+    return getDifferenceInWords(value)
   },
 
   arrayToLabelValues: (items) => {
