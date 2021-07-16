@@ -58,7 +58,6 @@ const OpportunitySection = ({
   form,
   isEditing,
   onEdit,
-  formEnabled, // TODO: remove when there is a Requirements Form
 }) => (
   <>
     {RequiredFields(incompleteFields)}
@@ -68,11 +67,9 @@ const OpportunitySection = ({
       ) : (
         <>
           <SummaryTable>{children}</SummaryTable>
-          {formEnabled ? (
-            <Button onClick={onEdit} dataTest={`${id}_button`}>
-              Edit
-            </Button>
-          ) : null}
+          <Button onClick={onEdit} dataTest={`${id}_button`}>
+            Edit
+          </Button>
         </>
       )}
     </ToggleSection>
@@ -115,7 +112,6 @@ const Opportunities = ({
             id="opportunity_details"
             isEditing={isEditingDetails}
             onEdit={onDetailsEdit}
-            formEnabled={true} // TODO: remove this conditional when Requirements form added
           >
             <OpportunityDetails details={detailsFields} />
           </OpportunitySection>
@@ -127,7 +123,6 @@ const Opportunities = ({
             id="opportunity_requirements"
             isEditing={isEditingRequirements}
             onEdit={onRequirementsEdit}
-            formEnabled={!isEditingRequirements} // Inverted isEditingRequirements value to showcase edit button.
           >
             <OpportunityRequirements details={requirementsFields} />
           </OpportunitySection>
