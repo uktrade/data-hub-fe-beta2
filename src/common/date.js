@@ -27,7 +27,11 @@ function isUnparsedDateValid(date) {
 }
 
 function formatDate(date, dateFormat) {
-  return isDateValid(date) ? format(parseISO(date), dateFormat) : null
+  return isDateValid(date)
+    ? format(parseISO(date), dateFormat)
+    : isUnparsedDateValid(date)
+    ? format(date, dateFormat)
+    : null
 }
 
 function formatLongDate(dateString) {
