@@ -1,9 +1,10 @@
 const nunjucks = require('nunjucks')
-const { toDate, parseISO, isValid, format: dateFnsFormat } = require('date-fns')
+const { isValid, format: dateFnsFormat } = require('date-fns')
 
 const {
   getDifferenceInWords,
   convertMinutesToHours,
+  convertValueToDate,
 } = require('../../common/date')
 const Case = require('case')
 const numeral = require('numeral')
@@ -209,7 +210,7 @@ const filters = {
       return value
     }
 
-    const parsedDate = toDate(parseISO(value))
+    const parsedDate = convertValueToDate(value)
 
     if (!isValid(parsedDate)) {
       return value
