@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import * as Sentry from '@sentry/browser'
 
 import Provider from './provider'
@@ -444,7 +445,26 @@ function App() {
         {(props) => <EventsCollection {...props} />}
       </Mount>
       <Mount selector="#interactions-collection">
-        {(props) => <InteractionsCollection {...props} />}
+        <Router>
+          <ul>
+            <Link to="/interactions/react/">home</Link>
+            <li>
+              <Link to="/interactions/react/about">about</Link>
+            </li>
+            <li>
+              <Link to="/interactions/react/products">products</Link>
+            </li>
+            <li>
+              <Link to="/interactions/react/contact">contact</Link>
+            </li>
+          </ul>
+          <Switch>
+            <Route path="/interactions/react/about">about</Route>
+            <Route path="/interactions/react/products">products</Route>
+            <Route path="/interactions/react/contact">products</Route>
+            <Route path="/">This is where the colection list goes</Route>
+          </Switch>
+        </Router>
       </Mount>
       <Mount selector="#ie-banner">{() => <IEBanner />}</Mount>
     </Provider>

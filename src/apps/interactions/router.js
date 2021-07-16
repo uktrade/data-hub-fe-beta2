@@ -41,7 +41,7 @@ router.get(
   exportCollection('interaction')
 )
 
-router.get(urls.interactions.react.route, (req, res, next) => {
+router.get(`${urls.interactions.react.route}*`, (req, res, next) => {
   try {
     const { user } = req.session
     return res.render('interactions/views/interactions', {
