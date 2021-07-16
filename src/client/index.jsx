@@ -119,6 +119,7 @@ import { TASK_GET_OPPORTUNITIES_LIST } from '../apps/investments/client/opportun
 import * as investmentOpportunitiesListTasks from '../apps/investments/client/opportunities/List/tasks'
 import {
   TASK_SAVE_OPPORTUNITY_DETAILS,
+  TASK_SAVE_OPPORTUNITY_REQUIREMENTS,
   TASK_GET_OPPORTUNITY_DETAILS,
   TASK_GET_OPPORTUNITY_DETAILS_METADATA,
   TASK_GET_OPPORTUNITY_REQUIREMENTS_METADATA,
@@ -227,6 +228,8 @@ function App() {
         [TASK_UPDATE_ADVISER]: manageAdviser.updateAdviser,
         [TASK_SAVE_OPPORTUNITY_DETAILS]:
           investmentOpportunitiesDetailsTasks.saveOpportunityDetails,
+        [TASK_SAVE_OPPORTUNITY_REQUIREMENTS]:
+          investmentOpportunitiesDetailsTasks.saveOpportunityRequirements,
         [TASK_GET_OPPORTUNITY_DETAILS]:
           investmentOpportunitiesDetailsTasks.getOpportunityDetails,
         [TASK_GET_OPPORTUNITIES_LIST]:

@@ -61,3 +61,18 @@ export function saveOpportunityDetails({ values, opportunityId }) {
       return data
     })
 }
+
+export function saveOpportunityRequirements({ values, opportunityId }) {
+  return apiProxyAxios
+    .patch(`v4/large-capital-opportunity/${opportunityId}`, {
+      total_investment_sought: values.total_investment_sought,
+      current_investment_secured: values.current_investment_secured,
+      investment_types: values.investment_types,
+      estimated_return_rate: values.estimated_return_rate,
+      // TODO: Remove array bracket after refactoring endpoint.
+      time_horizons: values.time_horizons ? [values.time_horizons] : [],
+    })
+    .then(({ data }) => {
+      return data
+    })
+}
