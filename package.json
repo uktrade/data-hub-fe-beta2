@@ -192,7 +192,7 @@
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
     "chromedriver": "^91.0.1",
-    "cypress": "^7.6.0",
+    "cypress": "^7.7.0",
     "cypress-image-diff-js": "1.11.1",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
