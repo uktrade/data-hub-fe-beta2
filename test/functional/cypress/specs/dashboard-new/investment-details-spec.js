@@ -3,7 +3,7 @@ import faker from 'faker'
 const { companies, interactions } = require('../../../../../src/lib/urls')
 
 import { investmentProjectFaker } from '../../fakers/investment-projects'
-import { format } from 'date-fns'
+import { format } from '../../../../../src/client/utils/date-utils'
 
 const todayFormatted = format(new Date(), 'dd MMM yyyy')
 

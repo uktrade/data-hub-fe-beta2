@@ -1,4 +1,4 @@
-import { addDays, format } from 'date-fns'
+import { addDays, format } from '../../../../../src/client/utils/date-utils'
 import faker from 'faker'
 import urls from '../../../../../src/lib/urls'
 import {
