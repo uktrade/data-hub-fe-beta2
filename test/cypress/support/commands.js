@@ -255,6 +255,17 @@ Cypress.Commands.add('initA11y', (options = {}) => {
   cy.configureAxe(options)
 })
 
+Cypress.Commands.add('checkRadioGroup', (label, option) =>
+  cy
+    .contains(label)
+    .parent()
+    .within(() => cy.get(`[aria-label="${option}"]`).check()))
+
+Cypress.Commands.add(
+  'getSubmitButtonByLabel',
+  (label) => cy.get('form').contains(label)
+)
+
 Cypress.Commands.add('runA11y', (context = null, options = null) => {
   cy.checkA11y(context, options, (violations) => {
     const hasOneErr = violations.length === 1

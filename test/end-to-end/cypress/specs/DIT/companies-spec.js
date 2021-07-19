@@ -49,7 +49,7 @@ describe('Contacts', () => {
     cy.visit(contacts.create(company.pk))
     userActions.contacts.create(data)
 
-    cy.get(selectors.message.successful).should('contain', 'Added new contact')
+    cy.contains('You have successfully added a new contact Company Contact')
 
     assertKeyValueTable('bodyMainContent', {
       'Job title': 'Coffee machine operator',

@@ -171,6 +171,9 @@ import {
 
 import Footer from '../client/components/Footer'
 
+import ContactForm from '../client/components/ContactForm'
+import resourceTasks from '../client/components/Resource/tasks'
+
 function parseProps(domNode) {
   return 'props' in domNode.dataset ? JSON.parse(domNode.dataset.props) : {}
 }
@@ -265,6 +268,7 @@ function App() {
         [TASK_GET_EVENTS_ORGANISER_NAME]: getAdviserNames,
         [TASK_GET_ORDERS_METADATA]: getOrdersMetadata,
         [TASK_GET_ORDERS_LIST]: getOrders,
+        ...resourceTasks,
       }}
     >
       <Mount selector="#add-company-form">
@@ -443,6 +447,9 @@ function App() {
         {(props) => <InteractionsCollection {...props} />}
       </Mount>
       <Mount selector="#ie-banner">{() => <IEBanner />}</Mount>
+      <Mount selector="#contact-form">
+        {(props) => <ContactForm {...props} />}
+      </Mount>
     </Provider>
   )
 }

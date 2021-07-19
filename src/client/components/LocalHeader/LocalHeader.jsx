@@ -25,8 +25,25 @@ const BreadcrumbsWrapper = styled(Breadcrumbs)`
   margin-bottom: ${SPACING.SCALE_5};
   margin-top: 0;
 `
-const LocalHeader = ({ breadcrumbs, flashMessages, heading, children }) => (
-  <StyledHeader aria-label="local header" data-test="localHeader" role="region">
+
+const StyledSuperheading = styled.div({
+  fontSize: 20,
+  lineHeight: '32px',
+})
+
+const LocalHeader = ({
+  breadcrumbs,
+  flashMessages,
+  heading,
+  superheading,
+  children,
+}) => (
+  <StyledHeader
+    aria-label="local header"
+    data-auto-id="localHeader"
+    data-test="localHeader"
+    role="region"
+  >
     <StyledMain>
       <BreadcrumbsWrapper>
         {breadcrumbs?.map((breadcrumb) =>
@@ -40,6 +57,7 @@ const LocalHeader = ({ breadcrumbs, flashMessages, heading, children }) => (
         )}
       </BreadcrumbsWrapper>
       {flashMessages && <FlashMessages flashMessages={flashMessages} />}
+      {superheading && <StyledSuperheading>{superheading}</StyledSuperheading>}
       {heading && <LocalHeaderHeading>{heading}</LocalHeaderHeading>}
       {children}
     </StyledMain>
@@ -66,6 +84,7 @@ LocalHeader.propTypes = {
     ]),
   }),
   heading: PropTypes.string,
+  superheading: PropTypes.node,
   children: PropTypes.node,
 }
 

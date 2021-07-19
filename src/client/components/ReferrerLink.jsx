@@ -1,6 +1,12 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import Link from '@govuk-react/link'
+
+import State from './State'
+
+const stripHost = (u) => {
+  const url = new URL(u)
+  return url.pathname + url.search
+}
 
 /**
  * @function ReferrerLink
@@ -10,6 +16,10 @@ import Link from '@govuk-react/link'
  * @example
  * <ReferrerLink>Back</ReferrerLink>
  */
-export default connect(({ referrerUrl }) => ({
-  referrerUrl,
-}))(({ referrerUrl, ...props }) => <Link {...props} href={referrerUrl} />)
+export default (props) => (
+  <State>
+    {({ referrerUrl }) => (
+      <Link {...props} href={referrerUrl ? stripHost(referrerUrl) : '/'} />
+    )}
+  </State>
+)
