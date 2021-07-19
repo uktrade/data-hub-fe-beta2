@@ -1,7 +1,6 @@
-import { format, parseISO } from 'date-fns'
+import { format } from './utils/date-utils'
 
-const getDateLabel = (value) =>
-  value ? `${format(parseISO(value), 'd MMMM yyyy')}` : ''
+const getDateLabel = (value) => (value ? `${format(value, 'd MMMM yyyy')}` : '')
 
 export const buildOptionsFilter = ({
   options = [],
