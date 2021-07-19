@@ -15,14 +15,11 @@ const renderOpportunitiesView = (req, res, next) => {
 
 const renderOpportunityDetailsView = (req, res, next) => {
   try {
-    res
-      .breadcrumb('UK Opportunities')
-      .render('investments/views/opportunity-details', {
-        heading: 'UK Opportunities',
-        props: {
-          opportunityId: req.params.opportunityId,
-        },
-      })
+    res.render('investments/views/opportunity-details', {
+      props: {
+        opportunityId: req.params.opportunityId,
+      },
+    })
   } catch (error) {
     next(error)
   }

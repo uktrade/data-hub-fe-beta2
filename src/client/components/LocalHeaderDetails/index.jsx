@@ -24,27 +24,27 @@ const LocalHeaderDetails = ({ items }) => {
       data-auto-id="localHeaderDetails"
       role="region"
     >
-      { Object.entries(items).map(item => {
+      {Object.entries(items).map((item) => {
         return (
           <StyledHeaderList key={item[0]}>
             <StyledHeaderListLabel>{item[0]}</StyledHeaderListLabel>
-              { item[1][0].length ? <p>{item[1]}</p> : 
-                  <p>{item[1][0].label} -&nbsp;
-                    <a href={item[1][0].value}>change</a>
-                  </p>
-              }
+            {item[1][0].length ? (
+              <p>{item[1]}</p>
+            ) : (
+              <p>
+                {item[1][0].label} -&nbsp;
+                <a href={item[1][0].value}>change</a>
+              </p>
+            )}
           </StyledHeaderList>
-          )
-        })
-      }
+        )
+      })}
     </StyledHeaderDetails>
   )
 }
 
 LocalHeaderDetails.propTypes = {
-  items: PropTypes.shape({
-    Status: PropTypes.array.isRequired
-  }).isRequired
+  items: PropTypes.object.isRequired,
 }
 
 export default LocalHeaderDetails
