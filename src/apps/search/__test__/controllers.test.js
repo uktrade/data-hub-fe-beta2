@@ -94,15 +94,6 @@ describe('Search Controller #renderSearchResults', () => {
         })
       )
     })
-
-    it('should transform contacts data', async () => {
-      this.req.params.searchPath = 'contacts'
-      await renderSearchResults(this.req, this.res, this.next)
-
-      const actualItems = this.renderFunction.getCall(0).args[1].results.items
-
-      expect(actualItems[0].type).to.equal('contact')
-    })
   })
 
   context('for companies', () => {
