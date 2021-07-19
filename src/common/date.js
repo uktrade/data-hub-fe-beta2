@@ -130,6 +130,14 @@ function convertValueToDate(value) {
   return toDate(parseISO(value))
 }
 
+function parseInvestmentDate(dateStr) {
+  return {
+    day: parseInt(format(new Date(dateStr), 'd')),
+    month: parseInt(format(new Date(dateStr), 'M')),
+    year: parseInt(format(new Date(dateStr), 'yyyy')),
+  }
+}
+
 module.exports = {
   formatDate,
   formatLongDate,
@@ -149,4 +157,5 @@ module.exports = {
   convertMinutesToHours,
   convertValueToDate,
   formatDateWithoutParsing,
+  parseInvestmentDate,
 }
