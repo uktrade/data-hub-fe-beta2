@@ -9,6 +9,7 @@ import {
   isAfter,
   addYears as addYearsFNS,
   subYears,
+  addDays as addDaysFNS,
 } from 'date-fns'
 
 export const DATE_FORMAT_LONG = 'yyyy-MM-dd'
@@ -102,6 +103,14 @@ export const addYears = (date, yearsToAdd) => {
   return addYearsFNS(date, yearsToAdd)
 }
 
-export const subtractYears = (date, yearsToAdd) => {
-  return subYears(date, yearsToAdd)
+export const subtractYears = (date, yearsToSubtract) => {
+  return subYears(date, yearsToSubtract)
+}
+
+export const addDays = (date, daysToAdd) => {
+  return addDaysFNS(date, daysToAdd)
+}
+
+export const subtractDays = (date, daysToSubtract) => {
+  return subDays(date, daysToSubtract)
 }

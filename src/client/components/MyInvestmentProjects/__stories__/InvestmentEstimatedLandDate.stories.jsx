@@ -4,13 +4,13 @@ import { storiesOf } from '@storybook/react'
 import InvestmentEstimatedLandDate from '../InvestmentEstimatedLandDate'
 import exampleReadme from './example.md'
 import usageReadme from './usage.md'
-import { addDays, subDays, endOfToday } from 'date-fns'
+import { addDays, subtractDays } from '../../../utils/date-utils'
 
-const today = endOfToday()
+const today = new Date()
 const futureDate = addDays(today, 100)
 const tomorrow = addDays(today, 1)
 const twoMonthsAhead = addDays(today, 60)
-const pastDate = subDays(today, 10)
+const pastDate = subtractDays(today, 10)
 
 storiesOf('InvestmentEstimatedLandDate', module)
   .addParameters({
