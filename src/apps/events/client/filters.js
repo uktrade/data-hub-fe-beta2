@@ -32,7 +32,7 @@ export const buildSelectedFilters = (
       categoryLabel: LABELS.startDateAfter,
     }),
   },
-  dateBefore: {
+  startDateBefore: {
     queryParam: 'start_date_before',
     options: buildDatesFilter({
       value: queryParams.start_date_before,

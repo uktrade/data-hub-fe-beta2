@@ -27,6 +27,8 @@ const getCompanies = ({
   archived,
   export_to_countries,
   future_interest_countries,
+  latest_interaction_date_before,
+  latest_interaction_date_after,
   one_list_group_global_account_manager,
   sortby = 'modified_on:desc',
 }) => {
@@ -47,6 +49,8 @@ const getCompanies = ({
       archived,
       export_to_countries,
       future_interest_countries,
+      latest_interaction_date_before,
+      latest_interaction_date_after,
       one_list_group_global_account_manager,
       sortby,
     })
