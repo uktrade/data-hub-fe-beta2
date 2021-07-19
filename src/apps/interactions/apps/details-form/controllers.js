@@ -6,10 +6,10 @@ const {
   transformObjectToOption,
 } = require('../../../transformers')
 const { getOptions } = require('../../../../lib/options')
+const { formatDateWithoutParsing } = require('../../../../common/date')
 
 const { OPTION_YES, OPTION_NO } = require('../../../constants')
 const urls = require('../../../../lib/urls')
-const { formatDate } = require('../../../../common/date')
 
 const transformServiceToOption = (service) => ({
   value: service.id,
@@ -143,9 +143,9 @@ const getInitialFormValues = (req, res) => {
     company: company.id,
     investment_project: investmentId,
     date: {
-      day: formatDate(date, 'dd'),
-      month: formatDate(date, 'MM'),
-      year: formatDate(date, 'yyyy'),
+      day: formatDateWithoutParsing(date, 'dd', false),
+      month: formatDateWithoutParsing(date, 'MM', false),
+      year: formatDateWithoutParsing(date, 'yyyy', false),
     },
     contacts:
       referral && referral.contact

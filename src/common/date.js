@@ -30,8 +30,12 @@ function formatDate(date, dateFormat) {
   return isDateValid(date) ? format(parseISO(date), dateFormat) : null
 }
 
-function formatDateWithoutParsing(date, dateFormat) {
-  return isUnparsedDateValid(date) ? format(parseISO(date), dateFormat) : null
+function formatDateWithoutParsing(date, dateFormat, parseISOInFormat = true) {
+  if (parseISOInFormat) {
+    return isUnparsedDateValid(date) ? format(parseISO(date), dateFormat) : null
+  } else {
+    return isUnparsedDateValid(date) ? format(date, dateFormat) : null
+  }
 }
 
 function formatLongDate(dateString) {
