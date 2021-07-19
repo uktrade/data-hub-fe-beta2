@@ -16,7 +16,7 @@ describe('Download CSV', () => {
           count: 0,
         },
       })
-      cy.visit(urls.interactions.react())
+      cy.visit(urls.interactions.index())
     })
     it('should not render the download header', () => {
       cy.get(downloadHeader).should('not.exist')
@@ -31,7 +31,7 @@ describe('Download CSV', () => {
           count: interactionList.length,
         },
       })
-      cy.visit(urls.interactions.react())
+      cy.visit(urls.interactions.index())
     })
     it('should render the download header', () => {
       cy.get(downloadHeader).should('exist')
@@ -60,7 +60,7 @@ describe('Download CSV', () => {
           count: 4999,
         },
       })
-      cy.visit(urls.interactions.react())
+      cy.visit(urls.interactions.index())
     })
     it('should render a download message', () => {
       cy.get(downloadHeader).should(
@@ -78,7 +78,7 @@ describe('Download CSV', () => {
           count: 5000,
         },
       })
-      cy.visit(urls.interactions.react())
+      cy.visit(urls.interactions.index())
     })
     it('should render a download message', () => {
       cy.get(downloadHeader).should(
@@ -109,7 +109,7 @@ describe('Download CSV', () => {
           count: interactionsList.length,
         },
       })
-      cy.visit(`${urls.interactions.react()}?${queryString}`)
+      cy.visit(`${urls.interactions.index()}?${queryString}`)
     })
     it('should have the correct query string', () => {
       cy.get(downloadButton).should(

@@ -156,7 +156,7 @@ const assertInteractionDetails = ({
       })
 }
 
-describe('Interactions Collections - React', () => {
+describe('Interactions Collections', () => {
   before(() => {
     cy.intercept('POST', '/api-proxy/v3/search/interaction', {
       body: {
@@ -164,7 +164,7 @@ describe('Interactions Collections - React', () => {
         results: interactionsList,
       },
     }).as('apiRequest')
-    cy.visit(interactions.react())
+    cy.visit(interactions.index())
     cy.wait('@apiRequest')
   })
 
