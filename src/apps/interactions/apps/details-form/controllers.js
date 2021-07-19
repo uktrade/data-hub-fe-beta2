@@ -9,7 +9,7 @@ const { getOptions } = require('../../../../lib/options')
 
 const { OPTION_YES, OPTION_NO } = require('../../../constants')
 const urls = require('../../../../lib/urls')
-const { parseAndFormatDate } = require('../../../../common/date')
+const { formatDate } = require('../../../../common/date')
 
 const transformServiceToOption = (service) => ({
   value: service.id,
@@ -142,7 +142,11 @@ const getInitialFormValues = (req, res) => {
     kind,
     company: company.id,
     investment_project: investmentId,
-    date: parseAndFormatDate(date),
+    date: {
+      day: formatDate(date, 'dd'),
+      month: formatDate(date, 'MM'),
+      year: formatDate(date, 'yyyy'),
+    },
     contacts:
       referral && referral.contact
         ? [transformObjectToOption(referral.contact)]

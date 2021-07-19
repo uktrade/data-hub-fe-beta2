@@ -5,7 +5,15 @@ const { requiredChecks: types } = require('../constants')
 const {
   transformAdviserToOption,
 } = require('../../../../../adviser/transformers')
-const { parseAndFormatDate } = require('../../../../../../common/date')
+const { formatDate } = require('../../../../../../common/date')
+
+const parseDate = (dateStr) => {
+  return {
+    day: parseInt(formatDate(new Date(dateStr), 'd')),
+    month: parseInt(formatDate(new Date(dateStr), 'M')),
+    year: parseInt(formatDate(new Date(dateStr), 'yyyy')),
+  }
+}
 
 const transformInvestorTypes = (investorTypesMetadata, { investorType }) => {
   const { value } = investorType
@@ -49,12 +57,12 @@ const transformRequiredChecks = (
 
   if (type === types.CLEARED) {
     transformed.cleared.adviser = requiredChecks.adviser
-    transformed.cleared.date = parseAndFormatDate(requiredChecks.date)
+    transformed.cleared.date = parseDate(requiredChecks.date)
   }
 
   if (type === types.ISSUES_IDENTIFIED) {
     transformed.issuesIdentified.adviser = requiredChecks.adviser
-    transformed.issuesIdentified.date = parseAndFormatDate(requiredChecks.date)
+    transformed.issuesIdentified.date = parseDate(requiredChecks.date)
   }
 
   const id = get(requiredChecks, 'type.id')

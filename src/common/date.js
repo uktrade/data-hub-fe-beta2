@@ -87,14 +87,6 @@ function getInteractionTimestamp({ offset }) {
   return formatDate(date, INTERACTION_TIMESTAMP_FORMAT)
 }
 
-const parseAndFormatDate = (dateStr) => {
-  return {
-    day: parseInt(format(new Date(dateStr), 'd')),
-    month: parseInt(format(new Date(dateStr), 'M')),
-    year: parseInt(format(new Date(dateStr), 'yyyy')),
-  }
-}
-
 function getDifferenceInWords(date, suffix = true) {
   const formattedDate = formatDistanceToNowStrict(parseISO(date), {
     addSuffix: suffix,
@@ -143,7 +135,6 @@ module.exports = {
   parseDateString,
   transformValueForApi,
   getInteractionTimestamp,
-  parseAndFormatDate,
   getDifferenceInWords,
   getYesterday,
   subtractMonths,
