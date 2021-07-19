@@ -7,6 +7,8 @@ import {
   parse,
   subDays,
   isAfter,
+  addYears as addYearsFNS,
+  subYears,
 } from 'date-fns'
 
 export const DATE_FORMAT_LONG = 'yyyy-MM-dd'
@@ -94,4 +96,12 @@ export const isDNBChangeRequestValid = (date) => {
   const todaysDate = today()
   const timeInterval = subDays(todaysDate, 20)
   return isAfter(date, timeInterval)
+}
+
+export const addYears = (date, yearsToAdd) => {
+  return addYearsFNS(date, yearsToAdd)
+}
+
+export const subtractYears = (date, yearsToAdd) => {
+  return subYears(date, yearsToAdd)
 }
