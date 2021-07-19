@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { format } from 'date-fns'
+import { format } from '../../utils/date-utils'
 
 import { H3 } from '@govuk-react/heading'
 import { LINK_COLOUR, RED, TEXT } from 'govuk-colours'
