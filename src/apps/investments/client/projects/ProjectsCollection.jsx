@@ -69,7 +69,7 @@ const ProjectsCollection = ({
   const myProjectsSelected = selectedFilters.advisers.options
     .map(({ value }) => value)
     .includes(currentAdviserId)
-  const myProjectsOption = { label: 'My Projects', value: currentAdviserId }
+  const myProjectsOption = { label: 'My projects', value: currentAdviserId }
 
   return (
     <FilteredCollectionList
@@ -95,7 +95,7 @@ const ProjectsCollection = ({
           data-test="stage-filter"
         />
         <RoutedCheckboxGroupField
-          legend="My Projects"
+          legend="My projects"
           name="my_projects"
           qsParam="adviser"
           options={[myProjectsOption]}
