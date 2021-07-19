@@ -70,7 +70,6 @@ const OpportunityRequirementsForm = ({ opportunityId }) => {
             name={TASK_GET_OPPORTUNITY_REQUIREMENTS_METADATA}
             id={ID}
             startOnRender={{
-              payload: { opportunityId },
               onSuccessDispatch:
                 INVESTMENT_OPPORTUNITY__REQUIREMENTS_METADATA_LOADED,
             }}
