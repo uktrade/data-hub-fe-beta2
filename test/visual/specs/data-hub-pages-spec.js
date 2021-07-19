@@ -56,6 +56,7 @@ describe('Data Hub', () => {
 
   it('interactions page', async () => {
     await browser.url('/interactions')
+    await $('[data-test="metadata"]')
     await hideScrollBarIE()
     await browser.imageDiff.take()
     const result = await browser.imageDiff.validate()

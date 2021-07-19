@@ -6,7 +6,7 @@ describe('Interactions Collections Sort', () => {
   context('Default sort', () => {
     before(() => {
       cy.intercept('POST', interactionsSearchEndpoint).as('apiRequest')
-      cy.visit(urls.interactions.react())
+      cy.visit(urls.interactions.index())
       cy.wait('@apiRequest')
     })
 
@@ -35,7 +35,7 @@ describe('Interactions Collections Sort', () => {
 
     beforeEach(() => {
       cy.intercept('POST', interactionsSearchEndpoint).as('apiRequest')
-      cy.visit(`${urls.interactions.react()}?page=1`)
+      cy.visit(`${urls.interactions.index()}?page=1`)
       cy.wait('@apiRequest')
     })
 

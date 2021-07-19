@@ -63,7 +63,6 @@ function createInteractionsSubApp(mountPoint, pathPrefix = '') {
     createType: url(mountPoint, pathPrefix + '/create/:theme/:kind'),
     edit: url(mountPoint, pathPrefix + '/:interactionId/edit'),
     complete: url(mountPoint, pathPrefix + '/:interactionId/complete'),
-    react: url(mountPoint, pathPrefix + '/react'),
   }
 }
 
