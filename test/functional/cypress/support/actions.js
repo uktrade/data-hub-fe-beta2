@@ -22,7 +22,7 @@ export const selectFirstAdvisersTypeaheadOption = ({ element, input }) =>
 export const selectFirstTeamsTypeaheadOption = ({ element, input }) =>
   cy.get(element).within(() => {
     cy.server()
-    cy.route('/api-proxy/v4/metadata/team?*').as('teamResults')
+    cy.intercept('/api-proxy/v4/metadata/team?*').as('teamResults')
     cy.get('div').eq(0).type(input)
     cy.wait('@teamResults')
     cy.get('[class*="menu"] > div').click()
