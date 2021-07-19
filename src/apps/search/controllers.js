@@ -6,7 +6,6 @@ const {
   transformApiResponseToSearchCollection,
 } = require('../../modules/search/transformers')
 const { transformCompanyToListItem } = require('../companies/transformers')
-const { transformContactToListItem } = require('../contacts/transformers')
 const { transformEventToListItem } = require('../events/transformers')
 const {
   transformInvestmentProjectToListItem,
@@ -30,9 +29,6 @@ async function renderSearchResults(req, res) {
 
   if (searchEntity === 'investment_project') {
     itemTransformers.push(transformInvestmentProjectToListItem)
-  }
-  if (searchEntity === 'contact') {
-    itemTransformers.push(transformContactToListItem)
   }
   if (searchEntity === 'event') {
     itemTransformers.push(transformEventToListItem)

@@ -2,7 +2,6 @@
 const { get, compact } = require('lodash')
 
 const { formatWithTime } = require('../../../client/utils/date-utils')
-const { contactMetaItemLabels } = require('../labels')
 const urls = require('../../../lib/urls')
 
 const getTelephoneNumber = (telephone_countrycode, telephone_number) =>
@@ -35,19 +34,14 @@ export const transformContactToListItem = ({
   )
 
   const metadata = [
-    { label: 'company', value: get(company, 'name') },
-    { label: 'job_title', value: job_title },
-    { label: 'company_sector', value: get(company_sector, 'name') },
-    { label: 'address_country', value: get(address_country, 'name') },
-    { label: 'company_uk_region', value: get(company_uk_region, 'name') },
-    { label: 'telephone', value: telephoneNumber },
-    { label: 'email', value: email },
-  ]
-    .filter((item) => item.value)
-    .map(({ label, value }) => ({
-      label: contactMetaItemLabels[label],
-      value,
-    }))
+    { label: 'Company', value: get(company, 'name') },
+    { label: 'Job title', value: job_title },
+    { label: 'Sector', value: get(company_sector, 'name') },
+    { label: 'Country', value: get(address_country, 'name') },
+    { label: 'UK region', value: get(company_uk_region, 'name') },
+    { label: 'Phone number', value: telephoneNumber },
+    { label: 'Email', value: email },
+  ].filter((item) => item.value)
 
   const badges = [
     { text: primary ? 'Primary' : null },

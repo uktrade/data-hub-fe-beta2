@@ -9,7 +9,6 @@ const {
 
 const { getRequestBody } = require('../../middleware/collection')
 const {
-  // getCollection,
   exportCollection,
 } = require('../../modules/search/middleware/collection')
 
@@ -29,21 +28,6 @@ const { getAudit } = require('./controllers/audit')
 const { setInteractionsDetails } = require('./middleware/interactions')
 
 const interactionsRouter = require('../interactions/router.sub-app')
-
-// TODO: Remove legacy contacts list code
-// We'll remove the old code in a week or so as we want
-// both implementations for the time being
-
-// const { ENTITIES } = require('../search/constants')
-// const { renderContactList } = require('./controllers/list')
-// const { transformContactToListItem } = require('./transformers')
-// router.get(
-//   urls.contacts.index.route,
-//   setDefaultQuery(DEFAULT_COLLECTION_QUERY),
-//   getRequestBody(QUERY_FIELDS),
-//   getCollection('contact', ENTITIES, transformContactToListItem),
-//   renderContactList
-// )
 
 router.get(urls.contacts.index.route, renderContactsView)
 
