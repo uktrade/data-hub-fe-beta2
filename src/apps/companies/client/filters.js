@@ -1,4 +1,5 @@
 import {
+  buildDatesFilter,
   buildOptionsFilter,
   buildInputFieldFilter,
 } from '../../../client/filters'
@@ -93,6 +94,20 @@ export const buildSelectedFilters = (
       options: metadata.countryOptions,
       value: queryParams.future_interest_countries,
       categoryLabel: LABELS.futureCountriesOfInterest,
+    }),
+  },
+  lastInteractionDateAfter: {
+    queryParam: 'latest_interaction_date_after',
+    options: buildDatesFilter({
+      value: queryParams.latest_interaction_date_after,
+      categoryLabel: LABELS.lastInteractionAfter,
+    }),
+  },
+  lastInteractionDateBefore: {
+    queryParam: 'latest_interaction_date_before',
+    options: buildDatesFilter({
+      value: queryParams.latest_interaction_date_before,
+      categoryLabel: LABELS.lastInteractionBefore,
     }),
   },
   leadItaOrGlobalAccountManagers: {

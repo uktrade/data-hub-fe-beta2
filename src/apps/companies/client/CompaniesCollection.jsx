@@ -11,6 +11,7 @@ import {
   FilteredCollectionList,
   RoutedAdvisersTypeahead,
   RoutedCheckboxGroupField,
+  RoutedDateField,
   RoutedInputField,
   RoutedTypeahead,
 } from '../../../client/components'
@@ -179,6 +180,18 @@ const CompaniesCollection = ({
           options={optionMetadata.countryOptions}
           selectedOptions={selectedFilters.futureCountriesOfInterest.options}
           data-test="future-countries-of-interest-filter"
+        />
+        <RoutedDateField
+          label={LABELS.lastInteractionAfter}
+          name="latest_interaction_date_after"
+          qsParamName="latest_interaction_date_after"
+          data-test="last-interaction-after-filter"
+        />
+        <RoutedDateField
+          label={LABELS.lastInteractionBefore}
+          name="latest_interaction_date_before"
+          qsParamName="latest_interaction_date_before"
+          data-test="last-interaction-before-filter"
         />
         <RoutedAdvisersTypeahead
           isMulti={true}
