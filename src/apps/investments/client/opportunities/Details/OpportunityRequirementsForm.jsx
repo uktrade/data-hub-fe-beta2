@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector, shallowEqual } from 'react-redux'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Button from '@govuk-react/button'
@@ -8,11 +8,11 @@ import { SPACING } from '@govuk-react/constants'
 import url from '../../../../../lib/urls'
 
 import {
-  TASK_SAVE_OPPORTUNITY_REQUIREMENTS,
   ID,
+  state2props,
+  TASK_SAVE_OPPORTUNITY_REQUIREMENTS,
   TASK_GET_OPPORTUNITY_REQUIREMENTS_METADATA,
 } from './state'
-
 import {
   INVESTMENT_OPPORTUNITY__REQUIREMENTS_METADATA_LOADED,
   INVESTMENT_OPPORTUNITY__REQUIREMENTS_CHANGE,
@@ -41,9 +41,8 @@ const StyledP = styled('p')`
 
 const IS_NUMBER = /^[0-9]*$/ // Input validation to eliminates input script injection
 
-const OpportunityRequirementsForm = ({ opportunityId }) => {
-  const { details, metadata } = useSelector((state) => state[ID], shallowEqual)
-
+const OpportunityRequirementsForm = (state) => {
+  const { opportunityId, details, metadata } = state
   const {
     totalInvestmentSought,
     currentInvestmentSecured,
@@ -167,5 +166,4 @@ const OpportunityRequirementsForm = ({ opportunityId }) => {
 OpportunityRequirementsForm.propTypes = {
   opportunityId: PropTypes.string.isRequired,
 }
-
-export default OpportunityRequirementsForm
+export default connect(state2props)(OpportunityRequirementsForm)
