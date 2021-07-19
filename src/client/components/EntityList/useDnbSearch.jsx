@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import { compact, isEmpty } from 'lodash'
+import { getCompanyAddress } from '../../utils/addresses'
 
 function getTradingNames(dnb_company) {
   return isEmpty(dnb_company.trading_names)
@@ -13,17 +14,9 @@ function getTradingNames(dnb_company) {
 }
 
 function getAddress(dnb_company, features) {
-  const isAddressAreaEnabled = features && features.isAddressAreaEnabled
   return {
     label: 'Location at',
-    value: compact([
-      dnb_company.address_line_1,
-      dnb_company.address_line_2,
-      dnb_company.address_town,
-      dnb_company.address_county,
-      isAddressAreaEnabled ? dnb_company.address_area_name : null,
-      dnb_company.address_postcode,
-    ]).join(', '),
+    value: getCompanyAddress(dnb_company, features),
   }
 }
 

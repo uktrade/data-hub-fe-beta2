@@ -111,7 +111,7 @@ function AddCompanyForm({
             />
 
             {!values.cannotFind && (
-              <CompanyFoundStep countryName={countryName} />
+              <CompanyFoundStep countryName={countryName} features={features} />
             )}
 
             {!values.cannotFind && (

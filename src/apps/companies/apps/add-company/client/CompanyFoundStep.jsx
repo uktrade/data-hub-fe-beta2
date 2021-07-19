@@ -1,24 +1,14 @@
 /* eslint-disable camelcase */
 
 import React from 'react'
-import { compact, get } from 'lodash'
+import { get } from 'lodash'
 import PropTypes from 'prop-types'
 import { H3 } from '@govuk-react/heading'
 import InsetText from '@govuk-react/inset-text'
 
 import { Step, SummaryList } from '../../../../../client/components'
+import { getCompanyAddress } from '../../../../../client/utils/addresses'
 import { useFormContext } from '../../../../../client/components/Form/hooks'
-
-function getCompanyAddress(dnbCompany) {
-  if (dnbCompany) {
-    return compact([
-      dnbCompany.address_line_1,
-      dnbCompany.address_line_2,
-      dnbCompany.address_town,
-      dnbCompany.address_postcode,
-    ]).join(', ')
-  }
-}
 
 function getCompaniesHouseNumber(dnbCompany) {
   if (dnbCompany) {
@@ -33,12 +23,12 @@ function getCompaniesHouseNumber(dnbCompany) {
   }
 }
 
-function CompanyFoundStep({ countryName }) {
+function CompanyFoundStep({ countryName, features }) {
   const { values } = useFormContext()
 
   const dnbCompany = get(values, 'dnbCompany')
   const companyName = get(dnbCompany, 'primary_name')
-  const companyAddress = getCompanyAddress(dnbCompany)
+  const companyAddress = getCompanyAddress(dnbCompany, features)
   const companiesHouseNumber = getCompaniesHouseNumber(dnbCompany)
 
   return (
