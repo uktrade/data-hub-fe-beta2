@@ -5,6 +5,7 @@ import {
   INTERACTIONS__LOADED,
   INTERACTIONS_SELECTED_ADVISERS,
   INTERACTIONS__METADATA_LOADED,
+  INTERACTIONS_SELECTED_TEAMS,
 } from '../../../client/actions'
 
 import { LABELS, KIND_OPTIONS, BUSINESS_INTELLIGENCE_OPTION } from './constants'
@@ -15,6 +16,7 @@ import {
   RoutedAdvisersTypeahead,
   RoutedTypeahead,
   RoutedDateField,
+  RoutedTeamsTypeahead,
   CollectionFilters,
 } from '../../../client/components'
 
@@ -24,6 +26,7 @@ import {
   TASK_GET_INTERACTIONS_LIST,
   TASK_GET_INTERACTIONS_ADVISER_NAME,
   TASK_GET_INTERACTIONS_METADATA,
+  TASK_GET_INTERACTIONS_TEAM_NAME,
 } from './state'
 
 const InteractionCollection = ({
@@ -68,6 +71,16 @@ const InteractionCollection = ({
   const myInteractionsOption = {
     label: LABELS.myInteractions,
     value: currentAdviserId,
+  }
+
+  const teamListTask = {
+    name: TASK_GET_INTERACTIONS_TEAM_NAME,
+    id: ID,
+    progressMessage: 'Loading teams',
+    startOnRender: {
+      payload: payload.dit_participants__team,
+      onSuccessDispatch: INTERACTIONS_SELECTED_TEAMS,
+    },
   }
 
   return (
@@ -122,6 +135,17 @@ const InteractionCollection = ({
           name="date_before"
           qsParamName="date_before"
           data-test="date-before-filter"
+        />
+        <RoutedTeamsTypeahead
+          taskProps={teamListTask}
+          isMulti={true}
+          legend={LABELS.teams}
+          name="dit_participants__team"
+          qsParam="dit_participants__team"
+          placeholder="Search teams"
+          noOptionsMessage={() => <>No teams found</>}
+          selectedOptions={selectedFilters.teams.options}
+          data-test="team-filter"
         />
         <RoutedCheckboxGroupField
           maxScrollHeight={350}

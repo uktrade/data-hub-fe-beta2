@@ -5,7 +5,8 @@ import { buildOptionsFilter, buildDatesFilter } from '../../../client/filters'
 export const buildSelectedFilters = (
   queryParams,
   metadata,
-  selectedAdvisers
+  selectedAdvisers,
+  selectedTeams
 ) => ({
   kind: {
     queryParam: 'kind',
@@ -84,5 +85,13 @@ export const buildSelectedFilters = (
       value: queryParams.company_one_list_group_tier,
       categoryLabel: LABELS.policyIssueType,
     }),
+  },
+  teams: {
+    queryParam: 'dit_participants__team',
+    options: selectedTeams.map(({ teams }) => ({
+      label: teams.name,
+      value: teams.id,
+      categoryLabel: LABELS.teams,
+    })),
   },
 })
