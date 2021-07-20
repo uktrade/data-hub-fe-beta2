@@ -5,7 +5,7 @@ const urls = require('../../../../../src/lib/urls')
 
 const { assertKeyValueTable } = require('../../support/assertions')
 
-import { format } from 'date-fns'
+import { formatWithoutParsing } from '../../../../../src/client/utils/date-utils'
 
 const today = new Date()
 
@@ -20,12 +20,24 @@ const createEvent = () => {
     .select('UK-India Free Trade Agreement')
   cy.get(selectors.eventCreate.eventName).type('Eventful event')
   cy.get(selectors.eventCreate.eventType).select('Account management')
-  cy.get(selectors.eventCreate.startDateDay).type(format(today, 'dd'))
-  cy.get(selectors.eventCreate.startDateMonth).type(format(today, 'MM'))
-  cy.get(selectors.eventCreate.startDateYear).type(format(today, 'yyyy'))
-  cy.get(selectors.eventCreate.endDateDay).type(format(today, 'dd'))
-  cy.get(selectors.eventCreate.endDateMonth).type(format(today, 'MM'))
-  cy.get(selectors.eventCreate.endDateYear).type(format(today, 'yyyy'))
+  cy.get(selectors.eventCreate.startDateDay).type(
+    formatWithoutParsing(today, 'dd')
+  )
+  cy.get(selectors.eventCreate.startDateMonth).type(
+    formatWithoutParsing(today, 'MM')
+  )
+  cy.get(selectors.eventCreate.startDateYear).type(
+    formatWithoutParsing(today, 'yyyy')
+  )
+  cy.get(selectors.eventCreate.endDateDay).type(
+    formatWithoutParsing(today, 'dd')
+  )
+  cy.get(selectors.eventCreate.endDateMonth).type(
+    formatWithoutParsing(today, 'MM')
+  )
+  cy.get(selectors.eventCreate.endDateYear).type(
+    formatWithoutParsing(today, 'yyyy')
+  )
   cy.get(selectors.eventCreate.addressLine1).type('Address1')
   cy.get(selectors.eventCreate.addressLine2).type('Address2')
   cy.get(selectors.eventCreate.addressTown).type('Campinas')

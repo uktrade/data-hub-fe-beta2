@@ -3,7 +3,7 @@ const selectors = require('../../../../selectors')
 
 const { investments } = require('../../../../../src/lib/urls')
 
-import { format } from 'date-fns'
+import { formatWithoutParsing } from '../../../../../src/client/utils/date-utils'
 
 const today = new Date()
 
@@ -11,9 +11,15 @@ const createProposition = (data) => {
   cy.get(selectors.entityCollection.addProposition).click()
   cy.get(selectors.investment.proposition.name).type(data.name)
   cy.get(selectors.investment.proposition.scope).type(data.scope)
-  cy.get(selectors.investment.proposition.day).type(format(data.date, 'dd'))
-  cy.get(selectors.investment.proposition.month).type(format(data.date, 'MM'))
-  cy.get(selectors.investment.proposition.year).type(format(data.date, 'yyyy'))
+  cy.get(selectors.investment.proposition.day).type(
+    formatWithoutParsing(data.date, 'dd')
+  )
+  cy.get(selectors.investment.proposition.month).type(
+    formatWithoutParsing(data.date, 'MM')
+  )
+  cy.get(selectors.investment.proposition.year).type(
+    formatWithoutParsing(data.date, 'yyyy')
+  )
   cy.get(selectors.investment.proposition.button).click()
 }
 
@@ -39,7 +45,7 @@ describe('Proposition', () => {
     )
 
     cy.get(selectors.collection.items)
-      .should('contain', format(today, 'd MMMM yyyy'))
+      .should('contain', formatWithoutParsing(today, 'd MMMM yyyy'))
       .and('contain', data.name)
       .and('contain', 'DIT Staff')
   })
