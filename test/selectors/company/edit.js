@@ -1,4 +1,5 @@
 module.exports = {
+  form: 'form',
   tradingName: 'input[name="trading_names"]',
   vatNumber: 'input[name="vat_number"]',
   annualTurnover: 'input[name="turnover_range"]',
@@ -12,6 +13,7 @@ module.exports = {
     town: 'input[name="city"]',
     county: 'input[name="county"]',
     postcode: 'input[name="postcode"]',
+    area: 'select#area',
   },
   registeredAddressLegend: 'fieldset legend:contains("Registered address")',
   region: 'select#uk_region',
