@@ -1,5 +1,6 @@
 const { convertUsdToGbp } = require('../../../../../src/common/currency')
 const { roundToSignificantDigits } = require('../../../../../src/common/number')
+const selectors = require('../../../../selectors')
 const urls = require('../../../../../src/lib/urls')
 const fixtures = require('../../fixtures')
 
@@ -249,6 +250,12 @@ describe('Company edit', () => {
         },
       ],
     })
+
+    it('renders errors correctly', () => {
+      cy.get(selectors.companyEdit.address.area).select('-- Select state --')
+      cy.contains('Submit').click()
+      cy.get(selectors.companyEdit.form).contains('Select a state')
+    })
   })
 
   context('when editing unmatched Canadian company NOT on the One List', () => {
@@ -326,6 +333,12 @@ describe('Company edit', () => {
           assert: assertFieldRadios,
         },
       ],
+    })
+
+    it('renders errors correctly', () => {
+      cy.get(selectors.companyEdit.address.area).select('-- Select province --')
+      cy.contains('Submit').click()
+      cy.get(selectors.companyEdit.form).contains('Select a province')
     })
   })
 

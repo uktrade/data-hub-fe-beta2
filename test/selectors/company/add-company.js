@@ -48,7 +48,6 @@ module.exports = {
       findUkAddress: 'form button:contains("Find UK address")',
       options: 'label:contains("Select an address") select',
     },
-    area: 'select#area',
     region: 'select#uk_region',
     sector: 'select#sector',
     area: 'select#area',
