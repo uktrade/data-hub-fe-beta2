@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { format } from '../../utils/date-utils'
+import { formatWithoutParsing } from '../../utils/date-utils'
 
 import { H3 } from '@govuk-react/heading'
 import { LINK_COLOUR, RED, TEXT } from 'govuk-colours'
@@ -88,7 +88,11 @@ const OutstandingPropositions = ({ results, count }) => (
                   {investment_project.project_code}
                 </StyledProjectCode>
                 <StyledDueDate data-test="outstanding-proposition-deadline">
-                  Due {format(new Date(deadline), DATE_DAY_LONG_FORMAT)}
+                  Due{' '}
+                  {formatWithoutParsing(
+                    new Date(deadline),
+                    DATE_DAY_LONG_FORMAT
+                  )}
                 </StyledDueDate>
               </StyledDetails>
               <StyledDueCountdown data-test="outstanding-proposition-countdown">

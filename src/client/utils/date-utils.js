@@ -34,8 +34,15 @@ export const isDateValid = (date) => {
   return isValid(parseISO(date))
 }
 
+export const isUnparsedDateValid = (date) => {
+  return isValid(date)
+}
+
 export const format = (dateStr, dateFormat = 'dd MMM yyyy') =>
   isDateValid(dateStr) ? formatFNS(parseISO(dateStr), dateFormat) : null
+
+export const formatWithoutParsing = (dateStr, dateFormat = 'dd MMM yyyy') =>
+  isUnparsedDateValid(dateStr) ? formatFNS(dateStr, dateFormat) : null
 
 export const today = () => {
   return format(new Date())
