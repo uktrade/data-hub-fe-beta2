@@ -122,7 +122,7 @@ const OpportunityRequirementsForm = (state) => {
                       />
                       <StyledP>
                         If the type of investment you wish to select is not
-                        shown above, then please request it from{' '}
+                        shown above, you can request it from{' '}
                         <Link>capitalinvestment@trade.gov.uk</Link>.
                       </StyledP>
                       <FieldRadios

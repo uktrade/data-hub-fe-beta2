@@ -95,6 +95,7 @@ const Opportunities = ({
     <Task.Status
       name={TASK_GET_OPPORTUNITY_DETAILS}
       id={ID}
+      progressMessage="Loading opportunity"
       startOnRender={{
         payload: {
           opportunityId,
