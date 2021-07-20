@@ -117,8 +117,8 @@ const FieldAddress = ({
     setFieldValue('address2', address.address2)
     setFieldValue('city', address.city)
     setFieldValue('county', address.county)
-    setFieldValue('country', country.id)
     setFieldValue('area', address.area)
+    setFieldValue('country', country.id)
 
     if (onSelectUKAddress) {
       onSelectUKAddress(address)
@@ -212,6 +212,8 @@ const FieldAddress = ({
         required="Enter town or city"
       />
 
+      <FieldInput type="text" name="county" label="County (optional)" />
+
       {areaFieldEnabled && (
         <>
           {renderUsStateField()}
@@ -224,7 +226,6 @@ const FieldAddress = ({
         </>
       )}
 
-      <FieldInput type="text" name="county" label="County (optional)" />
       <FieldUneditable name="country" label="Country">
         {country.name}
       </FieldUneditable>

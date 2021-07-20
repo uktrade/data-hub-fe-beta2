@@ -314,6 +314,11 @@ const assertFieldAddress = ({ element, hint = null, value = {} }) => {
       value: value.town,
       assert: assertFieldInput,
     },
+    {
+      label: 'County (optional)',
+      value: value.county,
+      assert: assertFieldInput,
+    },
   ]
 
   if (hasStateField) {
@@ -328,11 +333,6 @@ const assertFieldAddress = ({ element, hint = null, value = {} }) => {
   }
   addressElements = [
     ...addressElements,
-    {
-      label: 'County (optional)',
-      value: value.county,
-      assert: assertFieldInput,
-    },
     {
       label: 'Country',
       value: value.country.name,
