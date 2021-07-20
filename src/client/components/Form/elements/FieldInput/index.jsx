@@ -20,9 +20,6 @@ const StyledInputWrapper = styled('div')`
     border-left: ${BORDER_WIDTH_FORM_ELEMENT_ERROR} solid ${ERROR_COLOUR};
     margin-right: ${SPACING.SCALE_3};
     padding-left: ${SPACING.SCALE_2};
-    span {
-      font-size: 16px;
-    }
   `}
 `
 

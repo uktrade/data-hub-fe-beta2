@@ -6,6 +6,7 @@ import {
   INVESTMENT_OPPORTUNITY__EDIT_REQUIREMENTS,
   INVESTMENT_OPPORTUNITY__CANCEL_EDIT,
   INVESTMENT_OPPORTUNITY__DETAILS_CHANGE,
+  INVESTMENT_OPPORTUNITY__REQUIREMENTS_CHANGE,
 } from '../../../../../client/actions'
 
 const initialState = {
@@ -104,6 +105,11 @@ export default (state = initialState, { type, result }) => {
         },
       }
     case INVESTMENT_OPPORTUNITY__DETAILS_CHANGE:
+      return {
+        ...state,
+        details: { ...state.details, ...result, formSaved: true },
+      }
+    case INVESTMENT_OPPORTUNITY__REQUIREMENTS_CHANGE:
       return {
         ...state,
         details: { ...state.details, ...result, formSaved: true },

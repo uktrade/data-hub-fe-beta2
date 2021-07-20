@@ -12,6 +12,7 @@ import {
 import OpportunityDetails from './OpportunityDetails'
 import OpportunityRequirements from './OpportunityRequirements'
 import OpportunityDetailsForm from './OpportunityDetailsForm'
+import OpportunityRequirementsForm from './OpportunityRequirementsForm'
 
 import Task from '../../../../../client/components/Task'
 import ToggleSection from '../../../../../client/components/ToggleSection'
@@ -57,7 +58,6 @@ const OpportunitySection = ({
   form,
   isEditing,
   onEdit,
-  formEnabled, // TODO: remove when there is a Requirements Form
 }) => (
   <>
     {RequiredFields(incompleteFields)}
@@ -67,11 +67,9 @@ const OpportunitySection = ({
       ) : (
         <>
           <SummaryTable>{children}</SummaryTable>
-          {formEnabled ? (
-            <Button onClick={onEdit} dataTest={`${id}_button`}>
-              Edit
-            </Button>
-          ) : null}
+          <Button onClick={onEdit} dataTest={`${id}_button`}>
+            Edit
+          </Button>
         </>
       )}
     </ToggleSection>
@@ -97,6 +95,7 @@ const Opportunities = ({
     <Task.Status
       name={TASK_GET_OPPORTUNITY_DETAILS}
       id={ID}
+      progressMessage="Loading opportunity"
       startOnRender={{
         payload: {
           opportunityId,
@@ -114,14 +113,13 @@ const Opportunities = ({
             id="opportunity_details"
             isEditing={isEditingDetails}
             onEdit={onDetailsEdit}
-            formEnabled={true} // TODO: remove this conditional when Requirements form added
           >
             <OpportunityDetails details={detailsFields} />
           </OpportunitySection>
 
           <OpportunitySection
             incompleteFields={incompleteRequirementsFields}
-            form={<div>This will be a form</div>}
+            form={<OpportunityRequirementsForm opportunityId={opportunityId} />}
             toggleName="Opportunity requirements"
             id="opportunity_requirements"
             isEditing={isEditingRequirements}
