@@ -128,7 +128,14 @@ const FieldAddress = ({
   const renderUsStateField = () => {
     if (isUS && usStates?.length > 0) {
       return (
-        <FieldSelect type="text" name="area" label="State" options={usStates} />
+        <FieldSelect
+          type="text"
+          name="area"
+          label="State"
+          options={usStates}
+          required="Select a state"
+          emptyOption="-- Select state --"
+        />
       )
     }
   }
@@ -141,6 +148,8 @@ const FieldAddress = ({
           name="area"
           label="Province"
           options={canadaProvinces}
+          required="Select a province"
+          emptyOption="-- Select province --"
         />
       )
     }
