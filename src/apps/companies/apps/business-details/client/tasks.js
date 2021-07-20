@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { subDays, endOfToday, isAfter } from 'date-fns'
+import { isDNBChangeRequestValid } from '../../../../../client/utils/date-utils'
 
 export function checkIfPendingRequest(duns_number) {
   if (duns_number) {
@@ -14,11 +14,10 @@ export function checkIfPendingRequest(duns_number) {
 
 const checkIfRequestIsValid = ({ count, results }) => {
   if (count > 0) {
-    const todaysDate = endOfToday()
-    const timeInterval = subDays(todaysDate, 20)
-    const isValid = isAfter(todaysDate, timeInterval)
     const validRequests = results.filter(
-      (result) => ['pending', 'submitted'].includes(result.status) && isValid
+      (result) =>
+        ['pending', 'submitted'].includes(result.status) &&
+        isDNBChangeRequestValid(result.created_on)
     )
     return validRequests.length > 0
   }

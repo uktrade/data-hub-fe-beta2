@@ -1,7 +1,7 @@
 import { apiProxyAxios } from '../../../../../client/components/Task/utils'
+import { format } from '../../../../../client/utils/date-utils'
 
 const { investments } = require('../../../../../lib/urls')
-const { format, parseISO } = require('date-fns')
 
 const { DATE_LONG_FORMAT } = require('../../../../../common/constants')
 
@@ -30,7 +30,7 @@ export function getOpportunities({ activePage, payload }) {
           metadata: [
             {
               label: 'Updated on',
-              value: format(new Date(parseISO(created_on)), DATE_LONG_FORMAT),
+              value: format(new Date(created_on), DATE_LONG_FORMAT),
             },
           ],
         }

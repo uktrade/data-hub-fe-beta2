@@ -1,7 +1,7 @@
 const { assign, get } = require('lodash')
 const numeral = require('numeral')
 const chrono = require('chrono-node')
-const dateFns = require('date-fns')
+const { formatDate } = require('../../../../../common/date')
 
 const logger = require('../../../../../config/logger')
 const { EditController } = require('../../../controllers')
@@ -31,7 +31,7 @@ class EditPaymentReconciliationController extends EditController {
     const parsedDate = chrono.en.GB.parseDate(paymentDateStr)
 
     if (parsedDate) {
-      req.form.values.received_on = dateFns.format(parsedDate, 'yyyy-MM-dd')
+      req.form.values.received_on = formatDate(parsedDate, 'yyyy-MM-dd')
     } else {
       req.form.values.received_on = paymentDateStr
     }

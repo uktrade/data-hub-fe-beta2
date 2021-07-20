@@ -1,16 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { isBoolean, isNumber } from 'lodash'
-import { formatWithTime } from '../../../client/utils/date-utils'
-import { isValid, parseISO } from 'date-fns'
+import { formatWithTime, isDateValid } from '../../../client/utils/date-utils'
 
 import { CHANGE_TYPE_TEXT, TRUE, FALSE, NOT_SET } from '../constants'
 
 import EditHistory from '../../../client/components/EditHistory/EditHistory'
-
-function isDate(dateStr) {
-  return isValid(parseISO(dateStr))
-}
 
 function getValue(value) {
   if (isBoolean(value)) {
@@ -22,7 +17,7 @@ function getValue(value) {
     return value.toString()
   }
 
-  if (isDate(value)) {
+  if (isDateValid(value)) {
     return formatWithTime(value)
   }
 

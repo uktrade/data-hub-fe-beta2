@@ -8,6 +8,7 @@ const DATE_LONG_FORMAT = 'd MMMM yyyy'
 const DATE_DAY_LONG_FORMAT = 'E, dd MMM yyyy'
 const DATE_MEDIUM_FORMAT = 'd mmm yyyy'
 const DATE_TIME_MEDIUM_FORMAT = 'd MMM yyyy, h:mmaaa'
+const INTERACTION_TIMESTAMP_FORMAT = 'y-MM-d'
 
 module.exports = {
   EXCHANGE_RATE_USD_TO_GBP,
@@ -16,4 +17,5 @@ module.exports = {
   DATE_LONG_FORMAT,
   DATE_MEDIUM_FORMAT,
   DATE_TIME_MEDIUM_FORMAT,
+  INTERACTION_TIMESTAMP_FORMAT,
 }

@@ -5,6 +5,11 @@ import {
   parseISO,
   isValid,
   parse,
+  subDays,
+  isAfter,
+  addYears as addYearsFNS,
+  subYears,
+  addDays as addDaysFNS,
 } from 'date-fns'
 
 export const DATE_FORMAT_LONG = 'yyyy-MM-dd'
@@ -25,24 +30,40 @@ const normaliseAndFormatDate = (year, month, day) => {
   return day ? `${yearAndMonth}-${padZero(day)}` : yearAndMonth
 }
 
+export const isDateValid = (date) => {
+  return isValid(parseISO(date))
+}
+
+export const isUnparsedDateValid = (date) => {
+  return isValid(date)
+}
+
 export const format = (dateStr, dateFormat = 'dd MMM yyyy') =>
-  dateStr ? formatFNS(parseISO(dateStr), dateFormat) : null
+  isDateValid(dateStr) ? formatFNS(parseISO(dateStr), dateFormat) : null
+
+export const formatWithoutParsing = (dateStr, dateFormat = 'dd MMM yyyy') =>
+  isUnparsedDateValid(dateStr) ? formatFNS(dateStr, dateFormat) : null
 
 export const today = () => {
-  return formatFNS(new Date(), 'dd MMM yyyy')
+  return format(new Date())
 }
 
 export const formatWithTime = (dateTimeStr) => {
-  return formatFNS(parseISO(dateTimeStr), 'd MMM yyyy, h:mmaaa')
+  return format(dateTimeStr, 'd MMM yyyy, h:mmaaa')
 }
 
-export const isDateValid = (year, month, day, format = DATE_FORMAT_LONG) => {
+export const isNormalisedDateValid = (
+  year,
+  month,
+  day,
+  format = DATE_FORMAT_LONG
+) => {
   const date = normaliseAndFormatDate(year, month, day)
   return isValid(parse(date, format, new Date()))
 }
 
 export const isShortDateValid = (year, month) => {
-  return isDateValid(year, month, null, DATE_FORMAT_SHORT)
+  return isNormalisedDateValid(year, month, null, DATE_FORMAT_SHORT)
 }
 
 export const transformValueForAPI = ({ year, month, day = 1 }) => {
@@ -51,6 +72,10 @@ export const transformValueForAPI = ({ year, month, day = 1 }) => {
   }
 
   return null
+}
+
+export const createExpectedWinDateForPipeline = (date) => {
+  return parse(date, 'yyyy-MM-dd', new Date())
 }
 
 /**
@@ -74,3 +99,25 @@ export const getFinancialYearStart = (date) =>
 
 export const generateFinancialYearLabel = (yearStart) =>
   `${yearStart}-${(yearStart + 1).toString().slice(-2)}`
+
+export const isDNBChangeRequestValid = (date) => {
+  const todaysDate = today()
+  const timeInterval = subDays(todaysDate, 20)
+  return isAfter(date, timeInterval)
+}
+
+export const addYears = (date, yearsToAdd) => {
+  return addYearsFNS(date, yearsToAdd)
+}
+
+export const subtractYears = (date, yearsToSubtract) => {
+  return subYears(date, yearsToSubtract)
+}
+
+export const addDays = (date, daysToAdd) => {
+  return addDaysFNS(date, daysToAdd)
+}
+
+export const subtractDays = (date, daysToSubtract) => {
+  return subDays(date, daysToSubtract)
+}

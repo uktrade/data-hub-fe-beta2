@@ -1,4 +1,4 @@
-import { addYears, subYears } from 'date-fns'
+import { addYears, subtractYears } from '../../utils/date-utils'
 
 /**
  * Converts investment summary received by the API into data ranges
@@ -15,7 +15,7 @@ export const investmentSummaryAsDataRanges = ({
       const endDate = new Date(end)
 
       const now = new Date()
-      const oneYearAgo = subYears(now, 1)
+      const oneYearAgo = subtractYears(now, 1)
       const oneYearAhead = addYears(now, 1)
 
       const { label, order } =

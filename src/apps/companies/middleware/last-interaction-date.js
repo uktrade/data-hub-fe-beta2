@@ -1,20 +1,9 @@
-const { endOfToday, format, subMonths } = require('date-fns')
 const { QUERY_FIELDS_MAP } = require('../constants')
+const { getInteractionTimestamp } = require('../../../common/date')
 
 const QUERY_PARAM = QUERY_FIELDS_MAP.lastInteractionDate
 const START_DATE_PARAM = 'latest_interaction_date_before'
 const END_DATE_PARAM = 'latest_interaction_date_after'
-const DATE_FORMAT = 'y-MM-d'
-
-function getTimestamp(offset) {
-  const date = endOfToday()
-
-  if (offset > 0) {
-    subMonths(date, offset)
-  }
-
-  return format(date, DATE_FORMAT)
-}
 
 module.exports = (req, res, next) => {
   const value = req.body[QUERY_PARAM]
@@ -45,8 +34,8 @@ module.exports = (req, res, next) => {
     }
 
     if (values.length) {
-      req.body[START_DATE_PARAM] = getTimestamp(Math.min(...values))
-      req.body[END_DATE_PARAM] = getTimestamp(Math.max(...values))
+      req.body[START_DATE_PARAM] = getInteractionTimestamp(Math.min(...values))
+      req.body[END_DATE_PARAM] = getInteractionTimestamp(Math.max(...values))
     }
   }
 

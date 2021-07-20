@@ -3,9 +3,9 @@ import faker from 'faker'
 const { companies, interactions } = require('../../../../../src/lib/urls')
 
 import { investmentProjectFaker } from '../../fakers/investment-projects'
-import { format } from 'date-fns'
+import { formatWithoutParsing } from '../../../../../src/client/utils/date-utils'
 
-const todayFormatted = format(new Date(), 'dd MMM yyyy')
+const todayFormatted = formatWithoutParsing(new Date(), 'dd MMM yyyy')
 
 describe('Dashboard - Investment details', () => {
   const investmentProject = investmentProjectFaker({

@@ -8,7 +8,7 @@ const {
   mapValues,
   map,
 } = require('lodash')
-const { format, parseISO } = require('date-fns')
+const { formatDate } = require('../../../common/date')
 
 const { getInvestmentTypeDetails } = require('./shared')
 const { transformDateObjectToDateString } = require('../../transformers')
@@ -111,8 +111,9 @@ function transformFromApi(body) {
   const estimatedLandDate = body.estimated_land_date
   if (!isEmpty(estimatedLandDate)) {
     const date = new Date(estimatedLandDate)
+    const month = date.getMonth() + 1
     formatted.estimated_land_date_year = date.getFullYear().toString()
-    formatted.estimated_land_date_month = format(date, 'MM')
+    formatted.estimated_land_date_month = month.toString()
   }
 
   return assign({}, body, formatted)
@@ -166,7 +167,7 @@ function transformInvestmentForView({
     level_of_involvement,
     specific_programme,
     estimated_land_date: !isEmpty(estimated_land_date)
-      ? format(parseISO(estimated_land_date), 'MMMM yyyy')
+      ? formatDate(estimated_land_date, 'MMMM yyyy')
       : null,
     actual_land_date: !isEmpty(actual_land_date)
       ? {
@@ -211,7 +212,7 @@ function transformBriefInvestmentSummary(data) {
       .map((country) => country.name)
       .join(', '),
     estimated_land_date: !isEmpty(data.estimated_land_date)
-      ? format(parseISO(data.estimated_land_date), 'MMMM yyyy')
+      ? formatDate(data.estimated_land_date, 'MMMM yyyy')
       : null,
     total_investment: data.total_investment
       ? {
